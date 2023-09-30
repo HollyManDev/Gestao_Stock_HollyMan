@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -69,10 +70,11 @@ public class Servicos_Organizacao extends JFrame {
         pnlMenu_Botoes.setBounds(0, 0, 280, 700);
         pnlMenu_Botoes.setLayout(null);
         pnlMenu_Botoes.setBackground(new Color(102, 102, 255));
-        pnlPrincipal.add(pnlMenu_Botoes);
+       
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
         JLabel lblFormacao = new JLabel();
+        
         lblFoto.setBounds(10, 40, 100, 120);
         lblNomefuncionario.setBounds(120, 75, 280, 30);
         lblFormacao.setBounds(120, 65, 280, 100);
@@ -147,15 +149,19 @@ public class Servicos_Organizacao extends JFrame {
         JPanel pnlDefinicoes = new JPanel();
 
         //Todos paineis comecam como false porque nao pretendo usa-los durante o programa todo somente em lugares especificos
-        pnlMeuPerfil.setVisible(false);
-        pnlServicos.setVisible(false);
+      /*  pnlMeuPerfil.setVisible(false);
+       pnlServicos.setVisible(false);
         pnlHistorico.setVisible(false);
         pnlDefinicoes.setVisible(false);
-
+*/
         //primeiro sera o botao  meu perfil
         btnMeuPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlServicos.setVisible(false);
+                pnlHistorico.setVisible(false);
+                pnlDefinicoes.setVisible(false);
+
                 pnlMenu_Botoes.setVisible(false);
 
                 pnlMeuPerfil.setBounds(0, 0, 280, 700);
@@ -258,11 +264,18 @@ public class Servicos_Organizacao extends JFrame {
         btnServicos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlHistorico.setVisible(false);
+                pnlDefinicoes.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
+
+                pnlMenu_Botoes.setVisible(false);
+                
                 JPanel pnlListar = new JPanel();
                 JPanel pnlVenderProdutos = new JPanel();
                 JPanel pnlProcurarProdutos = new JPanel();
+                
+           
 
-                pnlMenu_Botoes.setVisible(false);
                 pnlServicos.setBounds(0, 0, 1200, 700);
                 pnlServicos.setBackground(Color.white);
                 pnlServicos.setLayout(null);
@@ -273,7 +286,7 @@ public class Servicos_Organizacao extends JFrame {
                 JButton btnVender = new JButton("   Vender Produtos");
                 JButton btnListarProdutos = new JButton("   Listar Produtos");
                 JButton btnProcurarProduto = new JButton("   Procurar Produto");
-                JButton btnSair2 = new JButton("   Voltar");
+                JButton btnVoltarPrincipal = new JButton("   Voltar");
 
                 lblFotografia.setBounds(45, 50, 180, 180);
                 txtbarra2.setBounds(30, 251, 210, 1);
@@ -281,32 +294,32 @@ public class Servicos_Organizacao extends JFrame {
                 btnVender.setBounds(20, 281, 240, 40);
                 btnListarProdutos.setBounds(13, 351, 240, 40);
                 btnProcurarProduto.setBounds(23, 421, 240, 40);
-                btnSair2.setBounds(15, 491, 150, 40);
+                btnVoltarPrincipal.setBounds(15, 491, 150, 40);
 
                 MenuServicos.setLayout(null);
                 btnVender.setBackground(new Color(102, 102, 255));
                 btnListarProdutos.setBackground(new Color(102, 102, 255));
                 btnProcurarProduto.setBackground(new Color(102, 102, 255));
-                btnSair2.setBackground(new Color(102, 102, 255));
+                btnVoltarPrincipal.setBackground(new Color(102, 102, 255));
                 MenuServicos.setBackground(new Color(102, 102, 255));
 
                 btnVender.setForeground(Color.white);
                 btnListarProdutos.setForeground(Color.white);
                 btnProcurarProduto.setForeground(Color.white);
-                btnSair2.setForeground(Color.white);
+                btnVoltarPrincipal.setForeground(Color.white);
 
                 btnVender.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
                 btnListarProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
                 btnProcurarProduto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnSair2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
 
-                btnSair2.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnVender.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnListarProdutos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnProcurarProduto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
 
                 //Colocando Icones
-                btnSair2.setIcon(Icon_Voltar);
+                btnVoltarPrincipal.setIcon(Icon_Voltar);
                 btnListarProdutos.setIcon(Icon_Listar);
                 btnVender.setIcon(Icon_Vender);
                 btnProcurarProduto.setIcon(Icon_Procurar);
@@ -317,9 +330,10 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
+                        
                         pnlVenderProdutos.setLayout(null);
                         pnlVenderProdutos.setBounds(280, 0, 920, 700);
-                        pnlVenderProdutos.setBackground(Color.black);
+                        pnlVenderProdutos.setBackground(Color.white);
 
                         JLabel lblListar = new JLabel();
                         JLabel lblLista_compras = new JLabel();
@@ -333,14 +347,17 @@ public class Servicos_Organizacao extends JFrame {
                         lblLista_compras.setBounds(270, 310, 350, 30);
                         lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
 
+                        btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnEliminar_Carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+
                         lblListar.setText("Selecione o produto na Tabela");
                         lblLista_compras.setText("Lista de Produtos Selecionados");
 
                         lblListar.setForeground(new Color(102, 102, 255));
                         lblLista_compras.setForeground(new Color(102, 102, 255));
 
-                        btnAdicionar_carinho.setBackground(Color.black);
-                        btnEliminar_Carinho.setBackground(Color.black);
+                        btnAdicionar_carinho.setBackground(Color.white);
+                        btnEliminar_Carinho.setBackground(Color.white);
 
                         String[] listar = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço_uni", "Validade", "Estado", "Imagem"};
                         String[][] inf = {{}};
@@ -390,6 +407,8 @@ public class Servicos_Organizacao extends JFrame {
                         pnlVenderProdutos.add(btnAdicionar_carinho);
                         pnlVenderProdutos.add(btnEliminar_Carinho);
 
+                        JOptionPane.showMessageDialog(null, "Selecione o poduto que pretende vender e adicione ao carinho,Caso\nqueira remove-lo, selecione na lista de produtos e clique no carinho.", "Venda de Produtos", Font.BOLD);
+
                         pnlVenderProdutos.setVisible(true);
 
                     }
@@ -399,6 +418,7 @@ public class Servicos_Organizacao extends JFrame {
                 btnListarProdutos.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        
                         pnlVenderProdutos.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
                         pnlListar.setLayout(null);
@@ -440,7 +460,7 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
                         pnlVenderProdutos.setVisible(false);
-
+                      
                         pnlProcurarProdutos.setLayout(null);
                         pnlProcurarProdutos.setBounds(281, 0, 1000, 700);
                         pnlProcurarProdutos.setBackground(Color.white);
@@ -453,6 +473,9 @@ public class Servicos_Organizacao extends JFrame {
                         btnBuscar.setBackground(Color.white);
                         btnBuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
                         txtbuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+
+                        btnBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+
                         btnBuscar.setIcon(Icon_Procurar);
                         lblLogo.setIcon(Imagem_Cumpany);
 
@@ -482,32 +505,35 @@ public class Servicos_Organizacao extends JFrame {
 
                     }
                 });
-
-                // aqui vou dar o comando para voltar 
-                btnSair2.addActionListener(new ActionListener() {
+                
+                btnVoltarPrincipal.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
-                        pnlServicos.setVisible(false);
+                   
+                        System.out.println("cHEGUYEI");
+                         pnlServicos.setVisible(false);
+                         
+                         System.out.println("Ja");
+                       
                         pnlMenu_Botoes.setVisible(true);
+                        System.out.println("valeu");
                     }
                 });
-
+                
+              
                 lblFotografia.setIcon(fotografiaPerfil);
-                pnlPrincipal.add(pnlServicos);
+               
                 MenuServicos.add(lblFotografia);
                 MenuServicos.add(txtbarra2);
                 MenuServicos.add(btnVender);
                 MenuServicos.add(btnListarProdutos);
                 MenuServicos.add(btnProcurarProduto);
-                MenuServicos.add(btnSair2);
+                MenuServicos.add(btnVoltarPrincipal);
                 pnlServicos.add(MenuServicos);
                 pnlServicos.add(pnlListar);
                 pnlServicos.add(pnlProcurarProdutos);
                 pnlServicos.add(pnlVenderProdutos);
-
                 pnlServicos.setVisible(true);
-
             }
         });
 
@@ -515,6 +541,47 @@ public class Servicos_Organizacao extends JFrame {
         btnHistorico_Vendas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlServicos.setVisible(false);
+                pnlDefinicoes.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
+
+                pnlHistorico.setLayout(null);
+                pnlHistorico.setBounds(280, 0, 920, 700);
+                pnlHistorico.setBackground(Color.white);
+
+                JLabel lblListar = new JLabel();
+                lblListar.setBounds(270, 30, 350, 30);
+                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                lblListar.setText("Relatorio de Minhas Vendas");
+                lblListar.setForeground(new Color(102, 102, 255));
+                String[] listar = {"Categoria", "Nome_Produto", "Codigo_Barra", "Preço_uni", "Quantidade", "Pagemento", "Total_Pago", "Data", "Hora", "Imagem"};
+                String[][] inf = {{}};
+                DefaultTableModel tabela = new DefaultTableModel(inf, listar);
+                JTable infCa = new JTable(tabela);
+
+                infCa.setModel(tabela);
+                infCa.setRowHeight(180);
+                infCa.getColumnModel().getColumn(9).setPreferredWidth(230);
+                infCa.getColumnModel().getColumn(0).setPreferredWidth(150);
+                infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
+                infCa.getColumnModel().getColumn(5).setPreferredWidth(120);
+                infCa.getColumnModel().getColumn(6).setPreferredWidth(120);
+                infCa.getColumnModel().getColumn(7).setPreferredWidth(100);
+                infCa.getColumnModel().getColumn(8).setPreferredWidth(100);
+                infCa.getColumnModel().getColumn(3).setPreferredWidth(120);
+                infCa.getColumnModel().getColumn(2).setPreferredWidth(120);
+                infCa.getColumnModel().getColumn(4).setPreferredWidth(120);
+
+                tabela.setRowCount(10);
+                JScrollPane rol = new JScrollPane(infCa);
+                rol.setBounds(10, 80, 890, 540);
+
+                pnlHistorico.add(lblListar);
+
+                pnlHistorico.add(rol);
+
+              
+                pnlHistorico.setVisible(true);
 
             }
         });
@@ -522,9 +589,15 @@ public class Servicos_Organizacao extends JFrame {
         btnDefinicoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                pnlServicos.setVisible(false);
+                pnlHistorico.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
             }
         });
+         pnlPrincipal.add(pnlMenu_Botoes);
+         pnlPrincipal.add(pnlServicos);
+           pnlPrincipal.add(pnlHistorico);
+
         this.setVisible(true);
     }
 
