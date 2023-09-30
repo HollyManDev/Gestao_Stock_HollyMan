@@ -45,24 +45,27 @@ public class Servicos_Organizacao extends JFrame {
     JButton btnServicos = new JButton("  Tarefas");
     JButton btnHistorico_Vendas = new JButton("   Minhas Vendas");
     JButton btnDefinicoes = new JButton("   Definiçoes");
-
+    JLabel lblImagem = new JLabel();
     JButton btnSair = new JButton("   Voltar");
 
     JTextField txtbarra = new JTextField();
+    JPanel pnlPrincipal = new JPanel();
 
     // Este é o construtor da classe respondavel pela criacaoda frame e tudo que nele existir
     public Servicos_Organizacao() {
 
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
-        //this.setUndecorated(true);
         this.setLayout(null);
-        JPanel pnlPrincipal = new JPanel();
+
         pnlPrincipal.setLayout(null);
         pnlPrincipal.setBounds(0, 0, 1200, 700);
         pnlPrincipal.setBackground(Color.white);
 
         this.add(pnlPrincipal);
+        lblImagem.setBounds(280, 0, 920, 700);
+        //lblImagem.setIcon(fotografiaPerfil);
+        pnlPrincipal.add(lblImagem);
         // O codigo abaixo é referente a criacao de um perfil para o funcionario
         // e tambem alguns paineis.
 
@@ -70,11 +73,13 @@ public class Servicos_Organizacao extends JFrame {
         pnlMenu_Botoes.setBounds(0, 0, 280, 700);
         pnlMenu_Botoes.setLayout(null);
         pnlMenu_Botoes.setBackground(new Color(102, 102, 255));
-       
+
+        pnlPrincipal.add(pnlMenu_Botoes);
+
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
         JLabel lblFormacao = new JLabel();
-        
+
         lblFoto.setBounds(10, 40, 100, 120);
         lblNomefuncionario.setBounds(120, 75, 280, 30);
         lblFormacao.setBounds(120, 65, 280, 100);
@@ -149,11 +154,11 @@ public class Servicos_Organizacao extends JFrame {
         JPanel pnlDefinicoes = new JPanel();
 
         //Todos paineis comecam como false porque nao pretendo usa-los durante o programa todo somente em lugares especificos
-      /*  pnlMeuPerfil.setVisible(false);
-       pnlServicos.setVisible(false);
+        pnlMeuPerfil.setVisible(false);
+        pnlServicos.setVisible(false);
         pnlHistorico.setVisible(false);
         pnlDefinicoes.setVisible(false);
-*/
+
         //primeiro sera o botao  meu perfil
         btnMeuPerfil.addActionListener(new ActionListener() {
             @Override
@@ -267,14 +272,11 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
-
                 pnlMenu_Botoes.setVisible(false);
-                
+
                 JPanel pnlListar = new JPanel();
                 JPanel pnlVenderProdutos = new JPanel();
                 JPanel pnlProcurarProdutos = new JPanel();
-                
-           
 
                 pnlServicos.setBounds(0, 0, 1200, 700);
                 pnlServicos.setBackground(Color.white);
@@ -330,7 +332,7 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
-                        
+
                         pnlVenderProdutos.setLayout(null);
                         pnlVenderProdutos.setBounds(280, 0, 920, 700);
                         pnlVenderProdutos.setBackground(Color.white);
@@ -397,19 +399,15 @@ public class Servicos_Organizacao extends JFrame {
                         btnEliminar_Carinho.setIcon(Icon_Eliminar_Carinha);
 
                         pnlVenderProdutos.add(lblListar);
-
                         pnlVenderProdutos.add(lblLista_compras);
-
                         pnlVenderProdutos.add(rol);
-
                         pnlVenderProdutos.add(rol_Compras);
-
                         pnlVenderProdutos.add(btnAdicionar_carinho);
                         pnlVenderProdutos.add(btnEliminar_Carinho);
 
-                        JOptionPane.showMessageDialog(null, "Selecione o poduto que pretende vender e adicione ao carinho,Caso\nqueira remove-lo, selecione na lista de produtos e clique no carinho.", "Venda de Produtos", Font.BOLD);
-
                         pnlVenderProdutos.setVisible(true);
+
+                        JOptionPane.showMessageDialog(null, "Selecione o poduto que pretende vender e adicione ao carinho,Caso\nqueira remove-lo, selecione na lista de produtos e clique no carinho.", "Venda de Produtos", Font.BOLD);
 
                     }
                 });
@@ -418,18 +416,22 @@ public class Servicos_Organizacao extends JFrame {
                 btnListarProdutos.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         pnlVenderProdutos.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
+
                         pnlListar.setLayout(null);
                         pnlListar.setBounds(280, 0, 920, 700);
                         pnlListar.setBackground(Color.white);
 
                         JLabel lblListar = new JLabel();
+
                         lblListar.setBounds(270, 30, 350, 30);
+
                         lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
                         lblListar.setText("Lista de Produtos da Organizacao");
                         lblListar.setForeground(new Color(102, 102, 255));
+
                         String[] listar = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço_uni", "Validade", "Estado", "Imagem"};
                         String[][] inf = {{}};
                         DefaultTableModel tabela = new DefaultTableModel(inf, listar);
@@ -460,7 +462,7 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
                         pnlVenderProdutos.setVisible(false);
-                      
+
                         pnlProcurarProdutos.setLayout(null);
                         pnlProcurarProdutos.setBounds(281, 0, 1000, 700);
                         pnlProcurarProdutos.setBackground(Color.white);
@@ -505,34 +507,36 @@ public class Servicos_Organizacao extends JFrame {
 
                     }
                 });
-                
+
+                //Neste passo, vou colocar no false todos paineis que eu tenha usando neste metodo, para assegurar
+                //com que estes paineis nao se sobrepoam e deixar apenas um visivel aqui antescede a esta.
                 btnVoltarPrincipal.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                   
-                        System.out.println("cHEGUYEI");
-                         pnlServicos.setVisible(false);
-                         
-                         System.out.println("Ja");
-                       
+                        pnlVenderProdutos.setVisible(false);
+                        pnlProcurarProdutos.setVisible(false);
+                        pnlListar.setVisible(false);
+                        MenuServicos.setVisible(false);
                         pnlMenu_Botoes.setVisible(true);
-                        System.out.println("valeu");
+
                     }
                 });
-                
-              
+
                 lblFotografia.setIcon(fotografiaPerfil);
-               
+
                 MenuServicos.add(lblFotografia);
                 MenuServicos.add(txtbarra2);
                 MenuServicos.add(btnVender);
                 MenuServicos.add(btnListarProdutos);
                 MenuServicos.add(btnProcurarProduto);
                 MenuServicos.add(btnVoltarPrincipal);
+
                 pnlServicos.add(MenuServicos);
                 pnlServicos.add(pnlListar);
                 pnlServicos.add(pnlProcurarProdutos);
                 pnlServicos.add(pnlVenderProdutos);
+
+                pnlPrincipal.add(pnlServicos);
                 pnlServicos.setVisible(true);
             }
         });
@@ -560,7 +564,9 @@ public class Servicos_Organizacao extends JFrame {
                 JTable infCa = new JTable(tabela);
 
                 infCa.setModel(tabela);
+
                 infCa.setRowHeight(180);
+
                 infCa.getColumnModel().getColumn(9).setPreferredWidth(230);
                 infCa.getColumnModel().getColumn(0).setPreferredWidth(150);
                 infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -580,7 +586,8 @@ public class Servicos_Organizacao extends JFrame {
 
                 pnlHistorico.add(rol);
 
-              
+                pnlPrincipal.add(pnlHistorico);
+
                 pnlHistorico.setVisible(true);
 
             }
@@ -589,14 +596,79 @@ public class Servicos_Organizacao extends JFrame {
         btnDefinicoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlMenu_Botoes.setVisible(false);
                 pnlServicos.setVisible(false);
                 pnlHistorico.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
+
+                pnlDefinicoes.setBounds(0, 0, 280, 700);
+                pnlDefinicoes.setBackground(new Color(102, 102, 255));
+                pnlDefinicoes.setLayout(null);
+
+                JButton btnActualizardados = new JButton("   Actualizar Dados");
+                JButton btnVoltar = new JButton("   Voltar");
+
+                JLabel lblFotografia = new JLabel();
+                JTextField txtbarra = new JTextField();
+
+                lblFotografia.setBounds(45, 50, 180, 180);
+                txtbarra.setBounds(30, 251, 210, 1);
+
+                btnActualizardados.setBounds(20, 281, 240, 40);
+                btnVoltar.setBounds(13, 351, 240, 40);
+
+                btnActualizardados.setBackground(new Color(102, 102, 255));
+                btnVoltar.setBackground(new Color(102, 102, 255));
+
+                btnActualizardados.setForeground(Color.white);
+                btnVoltar.setForeground(Color.white);
+
+                btnActualizardados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+
+                btnVoltar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnActualizardados.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+
+                lblFotografia.setIcon(fotografiaPerfil);
+
+                pnlDefinicoes.add(lblFotografia);
+                pnlDefinicoes.add(txtbarra);
+                pnlDefinicoes.add(btnVoltar);
+                pnlDefinicoes.add(btnActualizardados);
+
+                // Declarando os paineis que irei usar no botao defincao
+                JPanel pnlActualizar_Dados = new JPanel();
+
+                //Neste passo , vou dar continuidade, colocando as componentes para actualizar dados
+                btnActualizardados.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlActualizar_Dados.setBounds(280, 0, 920, 700);
+                        pnlActualizar_Dados.setBackground(Color.red);
+                        pnlActualizar_Dados.setLayout(null);
+
+                        pnlActualizar_Dados.setVisible(true);
+                    }
+                });
+
+                //Neste passo, vou colocar no false todos paineis que eu tenha usando neste metodo, para assegurar
+                //com que estes paineis nao se sobrepoam e deixar apenas um visivel aqui antescede a esta.
+                btnVoltar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlActualizar_Dados.setVisible(false);
+                        pnlDefinicoes.setVisible(false);
+                        pnlMenu_Botoes.setVisible(true);
+                                
+                    }
+                });
+
+                pnlPrincipal.add(pnlDefinicoes);
+                pnlPrincipal.add(pnlActualizar_Dados);
+                pnlDefinicoes.setVisible(true);
+
             }
         });
-         pnlPrincipal.add(pnlMenu_Botoes);
-         pnlPrincipal.add(pnlServicos);
-           pnlPrincipal.add(pnlHistorico);
 
         this.setVisible(true);
     }
