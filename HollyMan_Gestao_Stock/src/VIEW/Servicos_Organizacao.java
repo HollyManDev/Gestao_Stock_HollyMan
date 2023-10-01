@@ -74,12 +74,12 @@ public class Servicos_Organizacao extends JFrame {
 
         // O codigo abaixo é referente a criacao de um perfil para o funcionario
         // e tambem alguns paineis.
-        JPanel pnlMenu_Principal = new JPanel();
-        pnlMenu_Principal.setBounds(0, 0, 280, 700);
-        pnlMenu_Principal.setLayout(null);
-        pnlMenu_Principal.setBackground(new Color(102, 102, 255));
+        JPanel pnlDe_Menu_Principal = new JPanel();
+        pnlDe_Menu_Principal.setBounds(0, 0, 280, 700);
+        pnlDe_Menu_Principal.setLayout(null);
+        pnlDe_Menu_Principal.setBackground(new Color(102, 102, 255));
 
-        pnlPrincipal.add(pnlMenu_Principal);
+        pnlPrincipal.add(pnlDe_Menu_Principal);
 
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
@@ -142,15 +142,15 @@ public class Servicos_Organizacao extends JFrame {
         btnSair.setIcon(Icon_Voltar);
 
         // Neste passo, adicionei as componenetes criadas acima criados.
-        pnlMenu_Principal.add(lblFoto);
-        pnlMenu_Principal.add(lblNomefuncionario);
-        pnlMenu_Principal.add(lblFormacao);
-        pnlMenu_Principal.add(txtbarra);
-        pnlMenu_Principal.add(btnMeuPerfil);
-        pnlMenu_Principal.add(btnServicos);
-        pnlMenu_Principal.add(btnHistorico_Vendas);
-        pnlMenu_Principal.add(btnDefinicoes);
-        pnlMenu_Principal.add(btnSair);
+        pnlDe_Menu_Principal.add(lblFoto);
+        pnlDe_Menu_Principal.add(lblNomefuncionario);
+        pnlDe_Menu_Principal.add(lblFormacao);
+        pnlDe_Menu_Principal.add(txtbarra);
+        pnlDe_Menu_Principal.add(btnMeuPerfil);
+        pnlDe_Menu_Principal.add(btnServicos);
+        pnlDe_Menu_Principal.add(btnHistorico_Vendas);
+        pnlDe_Menu_Principal.add(btnDefinicoes);
+        pnlDe_Menu_Principal.add(btnSair);
 
         // Neste passo vou criar paineis e dar accção para cada um desses botes.
         JPanel pnlMeuPerfil = new JPanel();
@@ -172,7 +172,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
 
-                pnlMenu_Principal.setVisible(false);
+                pnlDe_Menu_Principal.setVisible(false);
 
                 pnlMeuPerfil.setBounds(0, 0, 280, 700);
                 pnlMeuPerfil.setBackground(new Color(102, 102, 255));
@@ -263,7 +263,7 @@ public class Servicos_Organizacao extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlMeuPerfil.setVisible(false);
-                        pnlMenu_Principal.setVisible(true);
+                        pnlDe_Menu_Principal.setVisible(true);
                     }
                 });
 
@@ -277,7 +277,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
-                pnlMenu_Principal.setVisible(false);
+                pnlDe_Menu_Principal.setVisible(false);
 
                 JPanel pnlListar = new JPanel();
                 JPanel pnlVenderProdutos = new JPanel();
@@ -560,7 +560,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlProcurarProdutos.setVisible(false);
                         pnlListar.setVisible(false);
                         MenuServicos.setVisible(false);
-                        pnlMenu_Principal.setVisible(true);
+                        pnlDe_Menu_Principal.setVisible(true);
 
                     }
                 });
@@ -647,7 +647,7 @@ public class Servicos_Organizacao extends JFrame {
         btnDefinicoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pnlMenu_Principal.setVisible(false);
+                pnlDe_Menu_Principal.setVisible(false);
                 pnlServicos.setVisible(false);
                 pnlHistorico.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
@@ -656,7 +656,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlDefinicoes.setBackground(new Color(102, 102, 255));
                 pnlDefinicoes.setLayout(null);
 
-                JButton btnActualizardados = new JButton("   Actualizar minhas Informaçôes");
+                JButton btnActualizardados = new JButton("   Actualizar Informaçôes");
                 JButton btnAlterarSenha = new JButton(" Segurança e Privacidade");
                 JButton btnVoltar = new JButton("   Voltar");
 
@@ -701,6 +701,9 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Criando as componentes
                         JLabel lblTitulo = new JLabel();
+                        
+                        //Dando Cordenadas
+                           lblTitulo.setBounds(270, 30, 350, 30);
 
                         //Colocando as informacoes nas componentes
                         lblTitulo.setText("Actualizar meus dados");
@@ -712,7 +715,13 @@ public class Servicos_Organizacao extends JFrame {
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
 
                         //Personalizando as Bordas das componentes
+                        
+                        //Adicionando as componentes
+                        pnlActualizar_Dados.add(lblTitulo);
+                        
                         pnlActualizar_Dados.setVisible(true);
+                        
+                        
                     }
                 });
 
@@ -723,7 +732,8 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlActualizar_Dados.setVisible(false);
                         pnlDefinicoes.setVisible(false);
-                        pnlMenu_Principal.setVisible(true);
+                        pnlDe_Menu_Principal.setVisible(true);
+                       
 
                     }
                 });
