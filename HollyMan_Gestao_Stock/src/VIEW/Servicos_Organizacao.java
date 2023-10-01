@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header_Compras, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -19,7 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -38,8 +41,9 @@ public class Servicos_Organizacao extends JFrame {
     ImageIcon Icon_Vender = new ImageIcon("src\\Imagens\\produtos.png");
     ImageIcon Icon_Historico = new ImageIcon("src\\Imagens\\Historico.png");
     ImageIcon Icon_Procurar = new ImageIcon("src\\Imagens\\pesquisa.png");
-    ImageIcon Icon_Adicionar_Carinha = new ImageIcon("src\\Imagens\\Carinho_add.png");
-    ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\carrinho-de-compras.png");
+    ImageIcon Icon_Busca = new ImageIcon("src\\Imagens\\Busca1.png");
+    ImageIcon Icon_Adicionar_Carinha = new ImageIcon("src\\Imagens\\adicionar-ao-carrinho (1).png");
+    ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\remover-do-carrinho (1).png");
 
     JButton btnMeuPerfil = new JButton("   Meu Perfil");
     JButton btnServicos = new JButton("  Tarefas");
@@ -56,6 +60,7 @@ public class Servicos_Organizacao extends JFrame {
 
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
+        this.setUndecorated(true);
         this.setLayout(null);
 
         pnlPrincipal.setLayout(null);
@@ -66,15 +71,15 @@ public class Servicos_Organizacao extends JFrame {
         lblImagem.setBounds(280, 0, 920, 700);
         //lblImagem.setIcon(fotografiaPerfil);
         pnlPrincipal.add(lblImagem);
+
         // O codigo abaixo é referente a criacao de um perfil para o funcionario
         // e tambem alguns paineis.
+        JPanel pnlMenu_Principal = new JPanel();
+        pnlMenu_Principal.setBounds(0, 0, 280, 700);
+        pnlMenu_Principal.setLayout(null);
+        pnlMenu_Principal.setBackground(new Color(102, 102, 255));
 
-        JPanel pnlMenu_Botoes = new JPanel();
-        pnlMenu_Botoes.setBounds(0, 0, 280, 700);
-        pnlMenu_Botoes.setLayout(null);
-        pnlMenu_Botoes.setBackground(new Color(102, 102, 255));
-
-        pnlPrincipal.add(pnlMenu_Botoes);
+        pnlPrincipal.add(pnlMenu_Principal);
 
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
@@ -137,15 +142,15 @@ public class Servicos_Organizacao extends JFrame {
         btnSair.setIcon(Icon_Voltar);
 
         // Neste passo, adicionei as componenetes criadas acima criados.
-        pnlMenu_Botoes.add(lblFoto);
-        pnlMenu_Botoes.add(lblNomefuncionario);
-        pnlMenu_Botoes.add(lblFormacao);
-        pnlMenu_Botoes.add(txtbarra);
-        pnlMenu_Botoes.add(btnMeuPerfil);
-        pnlMenu_Botoes.add(btnServicos);
-        pnlMenu_Botoes.add(btnHistorico_Vendas);
-        pnlMenu_Botoes.add(btnDefinicoes);
-        pnlMenu_Botoes.add(btnSair);
+        pnlMenu_Principal.add(lblFoto);
+        pnlMenu_Principal.add(lblNomefuncionario);
+        pnlMenu_Principal.add(lblFormacao);
+        pnlMenu_Principal.add(txtbarra);
+        pnlMenu_Principal.add(btnMeuPerfil);
+        pnlMenu_Principal.add(btnServicos);
+        pnlMenu_Principal.add(btnHistorico_Vendas);
+        pnlMenu_Principal.add(btnDefinicoes);
+        pnlMenu_Principal.add(btnSair);
 
         // Neste passo vou criar paineis e dar accção para cada um desses botes.
         JPanel pnlMeuPerfil = new JPanel();
@@ -167,7 +172,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
 
-                pnlMenu_Botoes.setVisible(false);
+                pnlMenu_Principal.setVisible(false);
 
                 pnlMeuPerfil.setBounds(0, 0, 280, 700);
                 pnlMeuPerfil.setBackground(new Color(102, 102, 255));
@@ -258,7 +263,7 @@ public class Servicos_Organizacao extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlMeuPerfil.setVisible(false);
-                        pnlMenu_Botoes.setVisible(true);
+                        pnlMenu_Principal.setVisible(true);
                     }
                 });
 
@@ -272,7 +277,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
-                pnlMenu_Botoes.setVisible(false);
+                pnlMenu_Principal.setVisible(false);
 
                 JPanel pnlListar = new JPanel();
                 JPanel pnlVenderProdutos = new JPanel();
@@ -344,10 +349,10 @@ public class Servicos_Organizacao extends JFrame {
                         JButton btnEliminar_Carinho = new JButton();
 
                         lblListar.setBounds(270, 0, 350, 30);
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
 
                         lblLista_compras.setBounds(270, 310, 350, 30);
-                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
 
                         btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnEliminar_Carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -361,39 +366,54 @@ public class Servicos_Organizacao extends JFrame {
                         btnAdicionar_carinho.setBackground(Color.white);
                         btnEliminar_Carinho.setBackground(Color.white);
 
-                        String[] listar = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço_uni", "Validade", "Estado", "Imagem"};
+                        String[] Colunas_Produtos = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço", "Validade", "Estado", "Imagem"};
                         String[][] inf = {{}};
-                        DefaultTableModel tabela = new DefaultTableModel(inf, listar);
+                        DefaultTableModel tabela = new DefaultTableModel(inf, Colunas_Produtos);
 
-                        String[] listar_Compras = {"Nome_Produto", "Preço Unitario", "Quantidade", "Imagem", "Total a pagar"};
+                        String[] Colunas_Compras = {"Nome_Produto", "Preço Unitario", "Quantidade", "Imagem", "Total a pagar"};
                         String[][] inf_Compras = {{}};
-                        DefaultTableModel tabela_Compras = new DefaultTableModel(inf_Compras, listar_Compras);
+                        DefaultTableModel tabela_Compras = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
-                        JTable infCa = new JTable(tabela);
-                        JTable infCa_Compras = new JTable(tabela_Compras);
+                        // Criando as Tabelas/Listas
+                        JTable Lista_Produtos = new JTable(tabela);
+                        JTable Lista_Compras = new JTable(tabela_Compras);
+                        JTableHeader header_Compras = Lista_Compras.getTableHeader();
+                        JTableHeader header_Produtos = Lista_Produtos.getTableHeader();
 
-                        infCa.setModel(tabela);
-                        infCa.setRowHeight(120);
-                        infCa.getColumnModel().getColumn(7).setPreferredWidth(230);
-                        infCa.getColumnModel().getColumn(0).setPreferredWidth(1);
-                        infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.setModel(tabela);
+                        Lista_Produtos.setRowHeight(120);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(230);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(110);
 
-                        infCa_Compras.setModel(tabela_Compras);
-                        infCa_Compras.setRowHeight(120);
-                        infCa_Compras.getColumnModel().getColumn(3).setPreferredWidth(230);
-                        infCa_Compras.getColumnModel().getColumn(0).setPreferredWidth(150);
+                        Lista_Compras.setModel(tabela_Compras);
+                        Lista_Compras.setRowHeight(120);
+                        Lista_Compras.getColumnModel().getColumn(3).setPreferredWidth(230);
+                        Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(150);
+
+                        //Personalizando a Lista de Produtos
+                        Lista_Produtos.setShowGrid(false);
+                        header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Produtos.setForeground(new Color(102, 102, 255));
+
+                        //Personalizando a Linhas_Colunas/lista de Compras
+                        Lista_Compras.setShowGrid(false);
+                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Compras.setForeground(new Color(102, 102, 255));
 
                         tabela.setRowCount(10);
                         tabela_Compras.setRowCount(10);
 
-                        JScrollPane rol = new JScrollPane(infCa);
-                        JScrollPane rol_Compras = new JScrollPane(infCa_Compras);
+                        JScrollPane rol = new JScrollPane(Lista_Produtos);
+                        JScrollPane rol_Compras = new JScrollPane(Lista_Compras);
 
                         rol.setBounds(10, 40, 890, 250);
                         rol_Compras.setBounds(10, 350, 890, 250);
 
-                        btnAdicionar_carinho.setBounds(800, 300, 50, 40);
-                        btnEliminar_Carinho.setBounds(800, 610, 50, 40);
+                        btnAdicionar_carinho.setBounds(800, 290, 60, 60);
+                        btnEliminar_Carinho.setBounds(800, 600, 60, 60);
 
                         btnAdicionar_carinho.setIcon(Icon_Adicionar_Carinha);
                         btnEliminar_Carinho.setIcon(Icon_Eliminar_Carinha);
@@ -412,7 +432,7 @@ public class Servicos_Organizacao extends JFrame {
                     }
                 });
 
-                //Neste vou permitir com que possa listar os produtos existentes
+                //Neste vou permitir com que possa Colunas_Produtos os produtos existentes
                 btnListarProdutos.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -428,23 +448,32 @@ public class Servicos_Organizacao extends JFrame {
 
                         lblListar.setBounds(270, 30, 350, 30);
 
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
                         lblListar.setText("Lista de Produtos da Organizacao");
                         lblListar.setForeground(new Color(102, 102, 255));
 
-                        String[] listar = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço_uni", "Validade", "Estado", "Imagem"};
+                        String[] Colunas_Tabela = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço", "Validade", "Estado", "Imagem"};
                         String[][] inf = {{}};
-                        DefaultTableModel tabela = new DefaultTableModel(inf, listar);
-                        JTable infCa = new JTable(tabela);
 
-                        infCa.setModel(tabela);
-                        infCa.setRowHeight(120);
-                        infCa.getColumnModel().getColumn(7).setPreferredWidth(230);
-                        infCa.getColumnModel().getColumn(0).setPreferredWidth(1);
-                        infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        DefaultTableModel Linhas_Colunas = new DefaultTableModel(inf, Colunas_Tabela);
+                        JTable Lista_Produtos = new JTable(Linhas_Colunas);
+                        JTableHeader header_Lista = Lista_Produtos.getTableHeader();
 
-                        tabela.setRowCount(10);
-                        JScrollPane rol = new JScrollPane(infCa);
+                        //Personalizando a Linhas_Colunas
+                        header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Lista.setForeground(new Color(102, 102, 255));
+                        Lista_Produtos.setShowGrid(false);
+
+                        Lista_Produtos.setModel(Linhas_Colunas);
+                        Lista_Produtos.setRowHeight(120);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(230);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(110);
+
+                        Linhas_Colunas.setRowCount(10);
+                        JScrollPane rol = new JScrollPane(Lista_Produtos);
                         rol.setBounds(10, 80, 890, 540);
 
                         pnlListar.add(lblListar);
@@ -476,28 +505,42 @@ public class Servicos_Organizacao extends JFrame {
                         btnBuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
                         txtbuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
 
-                        btnBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnBuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
 
-                        btnBuscar.setIcon(Icon_Procurar);
+                        btnBuscar.setIcon(Icon_Busca);
                         lblLogo.setIcon(Imagem_Cumpany);
 
                         //Criando a Tabela que vai mostrar as informacoes
-                        String[] listar = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço_uni", "Validade", "Estado", "Imagem"};
+                        String[] Nome_Colunas = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço", "Validade", "Estado", "Imagem"};
                         String[][] inf = {{}};
-                        DefaultTableModel tabela = new DefaultTableModel(inf, listar);
-                        JTable infCa = new JTable(tabela);
 
-                        // infCa.setModel(tabela);
-                        infCa.setRowHeight(120);
-                        infCa.getColumnModel().getColumn(7).setPreferredWidth(230);
-                        infCa.getColumnModel().getColumn(0).setPreferredWidth(1);
-                        infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        DefaultTableModel Linhas_Colunas = new DefaultTableModel(inf, Nome_Colunas);
+                        JTable Lista_Produtos = new JTable(Linhas_Colunas);
+                        JTableHeader header = Lista_Produtos.getTableHeader();
 
-                        JScrollPane rol = new JScrollPane(infCa);
+                        //Personalizacao da Lista
+                        header.setForeground(new Color(102, 102, 255));
+                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+
+                        // Lista_Produtos.setModel(Linhas_Colunas);
+                        Lista_Produtos.setRowHeight(180);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(230);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(140);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(130);
+
+                        //Personalizando a fonte das informacoes da Linhas_Colunas
+                        Lista_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        Lista_Produtos.setForeground(new Color(102, 102, 255));
+                        Lista_Produtos.setShowGrid(false);
+
+                        JScrollPane rol = new JScrollPane(Lista_Produtos);
                         lblLogo.setBounds(330, 35, 200, 200);
-                        rol.setBounds(10, 370, 880, 130);
-                        txtbuscar.setBounds(270, 290, 270, 40);
-                        btnBuscar.setBounds(570, 290, 40, 40);
+                        rol.setBounds(10, 370, 880, 180);
+                        txtbuscar.setBounds(250, 290, 270, 40);
+                        btnBuscar.setBounds(530, 280, 60, 60);
                         pnlProcurarProdutos.add(lblLogo);
                         pnlProcurarProdutos.add(rol);
                         pnlProcurarProdutos.add(txtbuscar);
@@ -517,7 +560,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlProcurarProdutos.setVisible(false);
                         pnlListar.setVisible(false);
                         MenuServicos.setVisible(false);
-                        pnlMenu_Botoes.setVisible(true);
+                        pnlMenu_Principal.setVisible(true);
 
                     }
                 });
@@ -554,29 +597,37 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.setBackground(Color.white);
 
                 JLabel lblListar = new JLabel();
+
                 lblListar.setBounds(270, 30, 350, 30);
                 lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
                 lblListar.setText("Relatorio de Minhas Vendas");
+
                 lblListar.setForeground(new Color(102, 102, 255));
-                String[] listar = {"Categoria", "Nome_Produto", "Codigo_Barra", "Preço_uni", "Quantidade", "Pagemento", "Total_Pago", "Data", "Hora", "Imagem"};
+
+                String[] listar = {"Produto", "Preço", "Quant", "Forma_Pag", "Data", "Hora", "Total_Pago", "Imagem"};
                 String[][] inf = {{}};
+
                 DefaultTableModel tabela = new DefaultTableModel(inf, listar);
                 JTable infCa = new JTable(tabela);
+                JTableHeader header = infCa.getTableHeader();
+
+                //Personalizando a fonte das informacoes da Linhas_Colunas
+                header.setForeground(new Color(102, 102, 255));
+                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                infCa.setShowGrid(false);
 
                 infCa.setModel(tabela);
 
-                infCa.setRowHeight(180);
+                infCa.setRowHeight(200);
 
-                infCa.getColumnModel().getColumn(9).setPreferredWidth(230);
-                infCa.getColumnModel().getColumn(0).setPreferredWidth(150);
-                infCa.getColumnModel().getColumn(1).setPreferredWidth(150);
-                infCa.getColumnModel().getColumn(5).setPreferredWidth(120);
-                infCa.getColumnModel().getColumn(6).setPreferredWidth(120);
-                infCa.getColumnModel().getColumn(7).setPreferredWidth(100);
-                infCa.getColumnModel().getColumn(8).setPreferredWidth(100);
-                infCa.getColumnModel().getColumn(3).setPreferredWidth(120);
-                infCa.getColumnModel().getColumn(2).setPreferredWidth(120);
-                infCa.getColumnModel().getColumn(4).setPreferredWidth(120);
+                infCa.getColumnModel().getColumn(7).setPreferredWidth(400);
+                infCa.getColumnModel().getColumn(0).setPreferredWidth(280);
+                infCa.getColumnModel().getColumn(3).setPreferredWidth(250);
+                infCa.getColumnModel().getColumn(4).setPreferredWidth(150);
+                infCa.getColumnModel().getColumn(5).setPreferredWidth(150);
+                infCa.getColumnModel().getColumn(6).setPreferredWidth(250);
+                infCa.getColumnModel().getColumn(1).setPreferredWidth(200);
+                infCa.getColumnModel().getColumn(2).setPreferredWidth(230);
 
                 tabela.setRowCount(10);
                 JScrollPane rol = new JScrollPane(infCa);
@@ -596,7 +647,7 @@ public class Servicos_Organizacao extends JFrame {
         btnDefinicoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pnlMenu_Botoes.setVisible(false);
+                pnlMenu_Principal.setVisible(false);
                 pnlServicos.setVisible(false);
                 pnlHistorico.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
@@ -605,7 +656,8 @@ public class Servicos_Organizacao extends JFrame {
                 pnlDefinicoes.setBackground(new Color(102, 102, 255));
                 pnlDefinicoes.setLayout(null);
 
-                JButton btnActualizardados = new JButton("   Actualizar Dados");
+                JButton btnActualizardados = new JButton("   Actualizar minhas Informaçôes");
+                JButton btnAlterarSenha = new JButton(" Segurança e Privacidade");
                 JButton btnVoltar = new JButton("   Voltar");
 
                 JLabel lblFotografia = new JLabel();
@@ -644,9 +696,22 @@ public class Servicos_Organizacao extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlActualizar_Dados.setBounds(280, 0, 920, 700);
-                        pnlActualizar_Dados.setBackground(Color.red);
+                        pnlActualizar_Dados.setBackground(Color.white);
                         pnlActualizar_Dados.setLayout(null);
 
+                        //Criando as componentes
+                        JLabel lblTitulo = new JLabel();
+
+                        //Colocando as informacoes nas componentes
+                        lblTitulo.setText("Actualizar meus dados");
+
+                        //Personalizado a cor das letras
+                        lblTitulo.setForeground(new Color(102, 102, 255));
+
+                        //Personalizando a fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+
+                        //Personalizando as Bordas das componentes
                         pnlActualizar_Dados.setVisible(true);
                     }
                 });
@@ -658,8 +723,8 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlActualizar_Dados.setVisible(false);
                         pnlDefinicoes.setVisible(false);
-                        pnlMenu_Botoes.setVisible(true);
-                                
+                        pnlMenu_Principal.setVisible(true);
+
                     }
                 });
 
