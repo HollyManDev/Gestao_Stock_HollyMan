@@ -701,6 +701,23 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Criando as componentes
                         JLabel lblTitulo = new JLabel();
+                        JLabel lblFoto = new JLabel();
+                        
+                        JTextField txtApelido = new JTextField();
+                        JTextField txtNome = new JTextField();
+                        JTextField txtGenero = new JTextField();
+                        JTextField txtNascimento = new JTextField();
+                        JTextField txtBI_Nuit = new JTextField();
+                        JTextField txtEmail = new JTextField();
+                        JTextField txtPassword = new JTextField();
+                        JTextField txtContacto = new JTextField();
+                        JTextField txtAcesso = new JTextField();
+                        JTextField txtData_Contratacao = new JTextField();
+                        
+                        JButton btnCarregarFoto = new JButton();
+                        JButton btnActualizar = new JButton();
+                        JButton btnReset = new JButton();
+                        
                         
                         //Dando Cordenadas
                            lblTitulo.setBounds(270, 30, 350, 30);
