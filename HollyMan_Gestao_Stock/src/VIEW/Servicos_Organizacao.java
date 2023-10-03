@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,7 +46,22 @@ public class Servicos_Organizacao extends JFrame {
     ImageIcon Icon_Busca = new ImageIcon("src\\Imagens\\Busca1.png");
     ImageIcon Icon_Adicionar_Carinha = new ImageIcon("src\\Imagens\\adicionar-ao-carrinho (1).png");
     ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\remover-do-carrinho (1).png");
+    ImageIcon Icon_foto= new ImageIcon("src\\Imagens\\imagemGaleria.png");
+    ImageIcon Icon_CarregarFoto= new ImageIcon("src\\Imagens\\carregar.png");
+    ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\Actualizar.png");
 
+    // Icons para campos de texto
+      ImageIcon Icon_Apelido = new ImageIcon("src\\Imagens\\");
+      ImageIcon Icon_Nome = new ImageIcon("src\\Imagens\\");
+      ImageIcon Icon_Genero = new ImageIcon("src\\Imagens\\genero.png");
+      ImageIcon Icon_BI = new ImageIcon("src\\Imagens\\BI.png");
+      ImageIcon Icon_Nascimento = new ImageIcon("src\\Imagens\\calendario.png");
+      ImageIcon Icon_Email = new ImageIcon("src\\Imagens\\email.png");
+      ImageIcon Icon_Password = new ImageIcon("src\\Imagens\\password.png");
+      ImageIcon Icon_Contacto = new ImageIcon("src\\Imagens\\telefone.png");
+      ImageIcon Icon_Contratacao = new ImageIcon("src\\Imagens\\Contratacao.png");
+      ImageIcon Icon_Acesso = new ImageIcon("src\\Imagens\\");
+      
     JButton btnMeuPerfil = new JButton("   Meu Perfil");
     JButton btnServicos = new JButton("  Tarefas");
     JButton btnHistorico_Vendas = new JButton("   Minhas Vendas");
@@ -690,6 +707,7 @@ public class Servicos_Organizacao extends JFrame {
 
                 // Declarando os paineis que irei usar no botao defincao
                 JPanel pnlActualizar_Dados = new JPanel();
+                pnlActualizar_Dados.setVisible(false);
 
                 //Neste passo , vou dar continuidade, colocando as componentes para actualizar dados
                 btnActualizardados.addActionListener(new ActionListener() {
@@ -702,43 +720,210 @@ public class Servicos_Organizacao extends JFrame {
                         //Criando as componentes
                         JLabel lblTitulo = new JLabel();
                         JLabel lblFoto = new JLabel();
-                        
+                        JLabel imgApelido = new JLabel();
+                        JLabel imgNome = new JLabel();
+                        JLabel imgGenero = new JLabel();
+                        JLabel imgNascimento = new JLabel();
+                        JLabel imgBI = new JLabel();
+                        JLabel imgEmail = new JLabel();
+                        JLabel imgPassword = new JLabel();
+                        JLabel imgContacto = new JLabel();
+                        JLabel imgContratacao = new JLabel();
+                        JLabel imgAcesso = new JLabel();
+
+                        JLabel lblApelido = new JLabel("Apelido");
+                        JLabel lblNome = new JLabel("Nome");
+                        JLabel lblGenero = new JLabel("Genero");
+                        JLabel lblNascimento = new JLabel("Data de Nascimento");
+                        JLabel lblBI_Nuit = new JLabel("Numero do BI/Nuit");
+                        JLabel lblEmail = new JLabel("Email");
+                        JLabel lblPassword = new JLabel("Palavra-passe");
+                        JLabel lblContacto = new JLabel("Contacto");
+                        JLabel lblAcesso = new JLabel("Perfil");
+                        JLabel lblContratacao = new JLabel("Data da contratação");
+
                         JTextField txtApelido = new JTextField();
                         JTextField txtNome = new JTextField();
-                        JTextField txtGenero = new JTextField();
-                        JTextField txtNascimento = new JTextField();
+                        JComboBox jcGenero = new JComboBox();
+                        JDateChooser txtNascimento = new JDateChooser();
                         JTextField txtBI_Nuit = new JTextField();
                         JTextField txtEmail = new JTextField();
                         JTextField txtPassword = new JTextField();
                         JTextField txtContacto = new JTextField();
                         JTextField txtAcesso = new JTextField();
-                        JTextField txtData_Contratacao = new JTextField();
-                        
-                        JButton btnCarregarFoto = new JButton();
-                        JButton btnActualizar = new JButton();
-                        JButton btnReset = new JButton();
-                        
-                        
+                          JDateChooser txtData_Contratacao = new    JDateChooser();
+
+                        JButton btnCarregarFoto = new JButton("Carregar Imagem");
+                        JButton btnActualizar = new JButton("Actualizar");
+                        JButton btnReset = new JButton("Limpar");
+
                         //Dando Cordenadas
-                           lblTitulo.setBounds(270, 30, 350, 30);
+                        lblTitulo.setBounds(300, 60, 350, 30);
 
-                        //Colocando as informacoes nas componentes
+                        lblApelido.setBounds(20, 150, 200, 30);
+                        txtApelido.setBounds(20, 180, 270, 40);
+                        imgApelido.setBounds(340, 180, 30, 30);
+                        
+                        lblNome.setBounds(20, 220, 200, 30);
+                        txtNome.setBounds(20, 250, 270, 40);
+                        
+                        lblBI_Nuit.setBounds(20, 290, 200, 30);
+                        txtBI_Nuit.setBounds(20, 320, 270, 40);
+                        imgBI.setBounds(300, 325, 35, 34);
+                        
+                        lblGenero.setBounds(20, 360, 200, 30);
+                        jcGenero.setBounds(20, 390, 270, 40);
+                        imgGenero.setBounds(300, 390, 35, 40);
+                        
+                        lblNascimento.setBounds(20, 430, 200, 30);
+                        txtNascimento.setBounds(20, 460, 270, 40);
+                        imgNascimento.setBounds(300, 460, 35, 40);
+                        
+                        lblEmail.setBounds(360, 150, 200, 30);
+                        txtEmail.setBounds(360, 180, 270, 40);
+                       imgEmail.setBounds(635, 180, 35, 40);
+                        
+                        lblPassword.setBounds(360, 220, 200, 30);
+                        txtPassword.setBounds(360, 250, 270, 40);
+                        imgPassword.setBounds(635, 245, 35, 40);
+                        
+                        lblContacto.setBounds(360, 290, 200, 30);
+                        txtContacto.setBounds(360, 320, 270, 40);
+                        imgContacto.setBounds(635, 320, 350, 40);
+                        
+                        lblContratacao.setBounds(360, 360, 200, 30);
+                        txtData_Contratacao.setBounds(360, 390, 270, 40);
+                        imgContratacao.setBounds(635, 390, 35, 40);
+                        
+                        lblAcesso.setBounds(360, 430, 200, 30);
+                        txtAcesso.setBounds(360, 460, 270, 40);
+                        imgAcesso.setBounds(635, 460, 35, 40);
+                        
+                        lblFoto.setBounds(680,190,225,225);
+                        
+                        btnCarregarFoto.setBounds(720,390,170,40);
+                        btnActualizar.setBounds(100,560,130,40);
+                        btnReset.setBounds(430,560,130,40);
+                        
+                        /*Uma vez que nem todos dados podem ser modificados pelo funcionario, vou neste passo, definir as funcionalidades que podem
+                        que podem ser  alteradas, sequem as intruções
+                        */
+                                txtApelido.setEditable(false);
+                                txtNome.setEditable(false);
+                                txtBI_Nuit.setEditable(false);
+                                txtNascimento.setEnabled(false);
+                                jcGenero.setEditable(false);
+                                txtData_Contratacao.setEnabled(false);
+                                txtAcesso.setEditable(false);
+                        //Colocando as informacoes nas componentes e Icons
                         lblTitulo.setText("Actualizar meus dados");
-
+                        imgBI.setIcon(Icon_BI);
+                        imgGenero.setIcon(Icon_Genero);
+                        imgNascimento.setIcon(Icon_Nascimento);
+                        imgContacto.setIcon(Icon_Contacto);
+                        imgEmail.setIcon(Icon_Email);
+                        imgPassword.setIcon(Icon_Password);
+                        imgContratacao.setIcon(Icon_Contratacao);
+                        imgAcesso.setIcon(Icon_Acesso);
+                        lblFoto.setIcon(Icon_foto);
+                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
+                        btnActualizar.setIcon(Icon_Actualizar);
+                        
+                         // Personalizando o BackGround
+                            btnCarregarFoto.setBackground(Color.white);
+                            btnActualizar.setBackground(Color.white);
+                            btnReset.setBackground(Color.white);
+                            
+                            
                         //Personalizado a cor das letras
                         lblTitulo.setForeground(new Color(102, 102, 255));
+                        lblApelido.setForeground(new Color(102, 102, 255));
+                        lblNome.setForeground(new Color(102, 102, 255));
+                        lblGenero.setForeground(new Color(102, 102, 255));
+                        lblNascimento.setForeground(new Color(102, 102, 255));
+                        lblBI_Nuit.setForeground(new Color(102, 102, 255));
+                        lblEmail.setForeground(new Color(102, 102, 255));
+                        lblPassword.setForeground(new Color(102, 102, 255));
+                        lblContacto.setForeground(new Color(102, 102, 255));
+                        lblContratacao.setForeground(new Color(102, 102, 255));
+                        lblAcesso.setForeground(new Color(102, 102, 255));
+                        btnCarregarFoto.setForeground(new Color(102, 102, 255));
+                        btnActualizar.setForeground(new Color(102, 102, 255));
+                        btnReset.setForeground(new Color(102, 102, 255));
+                        
+                        //Personalizando o BackGround
 
                         //Personalizando a fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
 
                         //Personalizando as Bordas das componentes
+                        txtApelido.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtNome.setBorder(BorderFactory.createMatteBorder(1,1,1,1,new Color(102,102,255)));
+                        jcGenero.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtNascimento.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtBI_Nuit.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtEmail.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtPassword.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtContacto.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtData_Contratacao.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        txtAcesso.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(102,102,255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0,0,1,0, new Color(102,102,255)));
+                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0,0,1,0, new Color(102,102,255)));
+                        btnReset.setBorder(BorderFactory.createMatteBorder(0,0,1,0, new Color(102,102,255)));
                         
                         //Adicionando as componentes
                         pnlActualizar_Dados.add(lblTitulo);
+                        pnlActualizar_Dados.add(lblApelido);
+                        pnlActualizar_Dados.add(lblNome);
+                        pnlActualizar_Dados.add(lblGenero);
+                        pnlActualizar_Dados.add(lblNascimento);
+                        pnlActualizar_Dados.add(lblBI_Nuit);
+                        pnlActualizar_Dados.add(lblEmail);
+                        pnlActualizar_Dados.add(lblPassword);
+                        pnlActualizar_Dados.add(lblContacto);
+                        pnlActualizar_Dados.add(lblContratacao);
+                        pnlActualizar_Dados.add(lblAcesso);
+                        pnlActualizar_Dados.add(lblFoto);
+                      
+                        pnlActualizar_Dados.add(txtApelido);
+                        pnlActualizar_Dados.add(txtNome);
+                        pnlActualizar_Dados.add(jcGenero);
+                        pnlActualizar_Dados.add(txtNascimento);
+                        pnlActualizar_Dados.add(txtBI_Nuit);
+                        pnlActualizar_Dados.add(txtEmail);
+                        pnlActualizar_Dados.add(txtPassword);
+                        pnlActualizar_Dados.add(txtContacto);
+                        pnlActualizar_Dados.add(txtData_Contratacao);
+                        pnlActualizar_Dados.add(txtAcesso);
+                        
+                        pnlActualizar_Dados.add(imgBI);
+                        pnlActualizar_Dados.add(imgNascimento);
+                        pnlActualizar_Dados.add(imgGenero);
+                        pnlActualizar_Dados.add(imgEmail);
+                        pnlActualizar_Dados.add(imgPassword);
+                        pnlActualizar_Dados.add(imgContacto);
+                        pnlActualizar_Dados.add(imgContratacao);
+                        pnlActualizar_Dados.add(imgAcesso);
+
+                        pnlActualizar_Dados.add(btnCarregarFoto);
+                        pnlActualizar_Dados.add(btnActualizar);
+                        pnlActualizar_Dados.add(btnReset);
                         
                         pnlActualizar_Dados.setVisible(true);
-                        
-                        
+
                     }
                 });
 
@@ -750,7 +935,6 @@ public class Servicos_Organizacao extends JFrame {
                         pnlActualizar_Dados.setVisible(false);
                         pnlDefinicoes.setVisible(false);
                         pnlDe_Menu_Principal.setVisible(true);
-                       
 
                     }
                 });
