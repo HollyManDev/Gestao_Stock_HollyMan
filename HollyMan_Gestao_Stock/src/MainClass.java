@@ -18,7 +18,7 @@ public class MainClass {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new Servicos_Organizacao().setVisible(true);
+       new Login().setVisible(true);
     }
     
 }

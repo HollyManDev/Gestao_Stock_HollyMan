@@ -26,7 +26,7 @@ public class Gerente extends JFrame {
     ImageIcon Icon_Admin = new ImageIcon("src\\Imagens\\Gerente1.png");
     ImageIcon Icon_Configurações = new ImageIcon("src\\Imagens\\definicoes2.png");
     ImageIcon Icon_Perfil = new ImageIcon("src\\Imagens\\Perfil2.png");
-    ImageIcon Icon_Gestao_Funcionario = new  ImageIcon("src\\Imagens\\funcionarios.png");
+    ImageIcon Icon_Gestao_Funcionario = new ImageIcon("src\\Imagens\\funcionarios.png");
     ImageIcon Icon_Voltar = new ImageIcon("src\\Imagens\\Voltar.png");
 
     public Gerente() {
@@ -38,8 +38,8 @@ public class Gerente extends JFrame {
 
         JPanel pnlPrincipal = new JPanel();
         pnlPrincipal.setLayout(null);
-        pnlPrincipal.setBounds(0, 40, 920, 660);
-        pnlPrincipal.setBackground(Color.white);
+        pnlPrincipal.setBounds(0, 40, 1200, 660);
+        pnlPrincipal.setBackground(Color.blue);
 
         //Criando estancias dos paineis
         JPanel pnlMenu_Botoes = new JPanel();
@@ -47,7 +47,7 @@ public class Gerente extends JFrame {
         JPanel pnlBarra2 = new JPanel();
 
         //Dando Cordenadas aos paineis
-        pnlMenu_Botoes.setBounds(0, 40, 280, 660);
+        pnlMenu_Botoes.setBounds(0, 0, 280, 700);
         pnlBarra1.setBounds(0, 0, 280, 40);
         pnlBarra2.setBounds(280, 0, 920, 40);
 
@@ -58,8 +58,8 @@ public class Gerente extends JFrame {
 
         //Personalizando o Background dos paineis
         pnlMenu_Botoes.setBackground(new Color(102, 102, 255));
-        pnlBarra1.setBackground(new Color(102, 102, 255));
-        pnlBarra2.setBackground(Color.white);
+        pnlBarra1.setBackground(Color.pink);
+        pnlBarra2.setBackground(Color.red);
 
         //Criando instancias da Labels que irei colocar para definir o perfil
         JLabel lblFoto = new JLabel();
@@ -121,7 +121,7 @@ public class Gerente extends JFrame {
         btnConfiguracoes.setIcon(Icon_Configurações);
         btnPerfil.setIcon(Icon_Perfil);
         btnVoltar.setIcon(Icon_Voltar);
-      btnGestao_Funcionarios.setIcon(Icon_Gestao_Funcionario);
+        btnGestao_Funcionarios.setIcon(Icon_Gestao_Funcionario);
 
         //Dando Cordenadas aos Botoes
         btnGestao_Produtos.setBounds(12, 200, 150, 40);
@@ -155,12 +155,38 @@ public class Gerente extends JFrame {
         pnlVisaoGeral.setVisible(false);
         pnlConfiguracoes.setVisible(false);
         pnlPerfil.setVisible(false);
-
+        
+        //Background
+        pnlGestao_Produtos.setBackground(Color.white);
+        pnlGestao_Funcionarios.setBackground(Color.white);
+        pnlVisaoGeral.setBackground(Color.white);
+        pnlConfiguracoes.setBackground(Color.white);
+    
         // dando acção ao botao Gestao de Produtos
         btnGestao_Produtos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                pnlGestao_Funcionarios.setVisible(false);
+                pnlVisaoGeral.setVisible(false);
+                pnlConfiguracoes.setVisible(false);
+                pnlPerfil.setVisible(false);
+                pnlMenu_Botoes.setVisible(false);
+                
+                pnlGestao_Produtos.setLayout(null);
+                JPanel pnlMenu_Gestaoprodutos =  new JPanel();
+                pnlMenu_Gestaoprodutos.setLayout(null);
+                
+                //
+                pnlMenu_Gestaoprodutos.setBackground(new Color(102,102,255));
+                
+                //
+                pnlGestao_Produtos.setBounds(280,40,920,660);
+                pnlMenu_Gestaoprodutos.setBounds(0,0,280,700);
+                
+             
+                  pnlPrincipal.add(pnlGestao_Produtos);
+                  pnlGestao_Produtos.add(pnlMenu_Gestaoprodutos);
+                   pnlGestao_Produtos.setVisible(true);
             }
         });
 
@@ -203,8 +229,8 @@ public class Gerente extends JFrame {
         });
         this.add(pnlPrincipal);
         pnlPrincipal.add(pnlMenu_Botoes);
-        pnlPrincipal.add(pnlBarra1);
-        pnlPrincipal.add(pnlBarra2);
+        this.add(pnlBarra1);
+        this.add(pnlBarra2);
         this.setVisible(true);
     }
 
