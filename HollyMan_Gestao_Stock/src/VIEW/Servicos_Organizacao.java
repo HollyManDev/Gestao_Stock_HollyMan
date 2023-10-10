@@ -72,6 +72,7 @@ public class Servicos_Organizacao extends JFrame {
 
     JTextField txtbarra = new JTextField();
     JPanel pnlPrincipal = new JPanel();
+    JPanel pnlauxPrincipal = new JPanel();
     JPanel pnlBarra = new JPanel();
     JPanel pnlBarra1 = new JPanel();
 
@@ -87,6 +88,7 @@ public class Servicos_Organizacao extends JFrame {
         pnlBarra.setBackground(new Color(102, 102, 255));
         pnlBarra1.setBackground(Color.white);
         pnlPrincipal.setLayout(null);
+        pnlauxPrincipal.setLayout(null);
         pnlBarra.setBounds(0, 0, 280, 40);
         pnlBarra1.setBounds(280, 0, 920, 40);
         pnlBarra1.setLayout(null);
@@ -98,13 +100,12 @@ public class Servicos_Organizacao extends JFrame {
          */
 
         // Dando acao ao painel para se movimentar
-        pnlPrincipal.setBounds(0, 40, 1200, 660);
+        pnlauxPrincipal.setBounds(0, 40, 1200, 660);
+        pnlPrincipal.setBounds(280, 0, 920, 660);
+        pnlauxPrincipal.setBackground(Color.white);
         pnlPrincipal.setBackground(Color.white);
 
-        this.add(pnlBarra);
-        this.add(pnlBarra1);
-        this.add(pnlPrincipal);
-          lblImagem.setBounds(280, 0, 920, 700);
+          lblImagem.setBounds(0, 0, 920, 660);
         lblImagem.setIcon(Logotipo);
         pnlPrincipal.add(lblImagem);
 
@@ -115,7 +116,7 @@ public class Servicos_Organizacao extends JFrame {
         pnlDe_Menu_Principal.setLayout(null);
         pnlDe_Menu_Principal.setBackground(new Color(102, 102, 255));
 
-        pnlPrincipal.add(pnlDe_Menu_Principal);
+        pnlauxPrincipal.add(pnlDe_Menu_Principal);
 
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
@@ -291,7 +292,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlMeuPerfil.add(lblestado);
                 pnlMeuPerfil.add(txtbarra1);
                 pnlMeuPerfil.add(btnSair2);
-                pnlPrincipal.add(pnlMeuPerfil);
+                pnlauxPrincipal.add(pnlMeuPerfil);
                 pnlMeuPerfil.setVisible(true);
 
                 // dando acção ao botao para voltar
@@ -310,6 +311,7 @@ public class Servicos_Organizacao extends JFrame {
         btnServicos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
@@ -437,7 +439,7 @@ public class Servicos_Organizacao extends JFrame {
                         //Personalizando a Linhas_Colunas/lista de Compras
                         Lista_Compras.setShowGrid(false);
                         header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        header_Compras.setForeground(new Color(102, 102, 255));
+                        header_Compras.setForeground(new Color(102, 102, 220));
 
                         tabela.setRowCount(10);
                         tabela_Compras.setRowCount(10);
@@ -497,7 +499,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Personalizando a Linhas_Colunas
                         header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        header_Lista.setForeground(new Color(102, 102, 255));
+                        header_Lista.setForeground(new Color(102, 102, 220));
                         Lista_Produtos.setShowGrid(false);
 
                         Lista_Produtos.setModel(Linhas_Colunas);
@@ -555,7 +557,7 @@ public class Servicos_Organizacao extends JFrame {
                         JTableHeader header = Lista_Produtos.getTableHeader();
 
                         //Personalizacao da Lista
-                        header.setForeground(new Color(102, 102, 255));
+                        header.setForeground(new Color(102, 102, 220));
                         header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
 
                         // Lista_Produtos.setModel(Linhas_Colunas);
@@ -569,7 +571,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Personalizando a fonte das informacoes da Linhas_Colunas
                         Lista_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        Lista_Produtos.setForeground(new Color(102, 102, 255));
+                        //Lista_Produtos.setForeground(new Color(102, 102, 220));
                         Lista_Produtos.setShowGrid(false);
 
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
@@ -596,6 +598,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlProcurarProdutos.setVisible(false);
                         pnlListar.setVisible(false);
                         MenuServicos.setVisible(false);
+                        pnlPrincipal.setVisible(true);
                         pnlDe_Menu_Principal.setVisible(true);
 
                     }
@@ -615,7 +618,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlServicos.add(pnlProcurarProdutos);
                 pnlServicos.add(pnlVenderProdutos);
 
-                pnlPrincipal.add(pnlServicos);
+                pnlauxPrincipal.add(pnlServicos);
                 pnlServicos.setVisible(true);
             }
         });
@@ -624,6 +627,7 @@ public class Servicos_Organizacao extends JFrame {
         btnHistorico_Vendas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(false);
                 pnlServicos.setVisible(false);
                 pnlDefinicoes.setVisible(false);
                 pnlMeuPerfil.setVisible(false);
@@ -635,10 +639,10 @@ public class Servicos_Organizacao extends JFrame {
                 JLabel lblListar = new JLabel();
 
                 lblListar.setBounds(270, 30, 350, 30);
-                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
                 lblListar.setText("Relatorio de Minhas Vendas");
 
-                lblListar.setForeground(new Color(102, 102, 255));
+                lblListar.setForeground(new Color(102, 102, 225));
 
                 String[] listar = {"Produto", "Preço", "Quant", "Forma_Pag", "Data", "Hora", "Total_Pago", "Imagem"};
                 String[][] inf = {{}};
@@ -648,7 +652,7 @@ public class Servicos_Organizacao extends JFrame {
                 JTableHeader header = infCa.getTableHeader();
 
                 //Personalizando a fonte das informacoes da Linhas_Colunas
-                header.setForeground(new Color(102, 102, 255));
+                header.setForeground(new Color(102, 102, 220));
                 header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                 infCa.setShowGrid(false);
 
@@ -674,7 +678,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.add(rol);
 
                 pnlHistorico.setVisible(true);
-                      pnlPrincipal.add(pnlHistorico);
+                      pnlauxPrincipal.add(pnlHistorico);
             }
              
         });
@@ -682,6 +686,7 @@ public class Servicos_Organizacao extends JFrame {
         btnDefinicoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
                 pnlDe_Menu_Principal.setVisible(false);
                 pnlServicos.setVisible(false);
                 pnlHistorico.setVisible(false);
@@ -732,6 +737,7 @@ public class Servicos_Organizacao extends JFrame {
                 btnActualizardados.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        pnlPrincipal.setVisible(false);
                         pnlActualizar_Dados.setBounds(280, 0, 920, 700);
                         pnlActualizar_Dados.setBackground(Color.white);
                         pnlActualizar_Dados.setLayout(null);
@@ -863,17 +869,17 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Personalizado a cor das letras
                         lblTitulo.setForeground(new Color(102, 102, 255));
-                        lblApelido.setForeground(new Color(102, 102, 255));
-                        lblNome.setForeground(new Color(102, 102, 255));
-                        lblGenero.setForeground(new Color(102, 102, 255));
-                        lblNascimento.setForeground(new Color(102, 102, 255));
-                        lblBI_Nuit.setForeground(new Color(102, 102, 255));
-                        lblEmail.setForeground(new Color(102, 102, 255));
-                        lblPassword.setForeground(new Color(102, 102, 255));
-                        lblContacto.setForeground(new Color(102, 102, 255));
-                        lblContratacao.setForeground(new Color(102, 102, 255));
-                        lblAcesso.setForeground(new Color(102, 102, 255));
-                        lblEndereco.setForeground(new Color(102, 102, 255));
+                        lblApelido.setForeground(new Color(102, 102, 220));
+                        lblNome.setForeground(new Color(102, 102, 220));
+                        lblGenero.setForeground(new Color(102, 102, 220));
+                        lblNascimento.setForeground(new Color(102, 102, 220));
+                        lblBI_Nuit.setForeground(new Color(102, 102, 220));
+                        lblEmail.setForeground(new Color(102, 102, 220));
+                        lblPassword.setForeground(new Color(102, 102, 220));
+                        lblContacto.setForeground(new Color(102, 102, 220));
+                        lblContratacao.setForeground(new Color(102, 102, 220));
+                        lblAcesso.setForeground(new Color(102, 102, 220));
+                        lblEndereco.setForeground(new Color(102, 102, 220));
                         btnCarregarFoto.setForeground(new Color(102, 102, 255));
                         btnActualizar.setForeground(new Color(102, 102, 255));
                         btnReset.setForeground(new Color(102, 102, 255));
@@ -892,7 +898,7 @@ public class Servicos_Organizacao extends JFrame {
                         lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                         lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                         lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                         btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
@@ -978,18 +984,22 @@ public class Servicos_Organizacao extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         pnlActualizar_Dados.setVisible(false);
                         pnlDefinicoes.setVisible(false);
+                        pnlPrincipal.setVisible(true);
                         pnlDe_Menu_Principal.setVisible(true);
 
                     }
                 });
 
-                pnlPrincipal.add(pnlDefinicoes);
-                pnlPrincipal.add(pnlActualizar_Dados);
+                pnlauxPrincipal.add(pnlDefinicoes);
+                pnlauxPrincipal.add(pnlActualizar_Dados);
                 pnlDefinicoes.setVisible(true);
 
             }
         });
-
+          this.add(pnlBarra);
+        this.add(pnlBarra1);
+        this.add(pnlauxPrincipal);
+        pnlauxPrincipal.add(pnlPrincipal);
         this.setVisible(true);
     }
 
