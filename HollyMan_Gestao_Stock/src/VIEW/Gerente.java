@@ -41,6 +41,7 @@ public class Gerente extends JFrame {
     ImageIcon Icon_carregarImagem = new ImageIcon("src\\Imagens\\carregar.png");
     ImageIcon Icon_Produtos_Categoria = new ImageIcon("src\\Imagens\\categorias.png");
     ImageIcon Icon_VisaoGeral = new ImageIcon("src\\Imagens\\Visao_Geral.png");
+    ImageIcon Icon_Procurar = new ImageIcon("src\\Imagens\\Busca1.png");
 
     //Icons
     ImageIcon Icon_Apelido = new ImageIcon("src\\Imagens\\");
@@ -214,6 +215,7 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
                 pnlGestao_Funcionarios.setVisible(false);
                 pnlVisaoGeral.setVisible(false);
                 pnlMenssagens.setVisible(false);
@@ -226,6 +228,8 @@ public class Gerente extends JFrame {
                 //
                 pnlMenu_Gestaoprodutos.setBackground(new Color(102, 102, 255));
                 pnlMenu_Gestaoprodutos.setBounds(0, 0, 280, 660);
+                
+                pnlPrincipal.setBounds(280, 40, 920, 660);
 
                 JButton btnGerirCategorias = new JButton("Gerir Categorias");
                 JButton btnGerirProdutos = new JButton("Gerir Produtos");
@@ -343,7 +347,7 @@ public class Gerente extends JFrame {
                         btnReactivar.setForeground(new Color(0, 102, 255));
 
                         //Aqui vou definir a fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
                         lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                         lblData.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                         lblSubCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
@@ -466,31 +470,324 @@ public class Gerente extends JFrame {
                     }
                 }); //Gerir Categorias
 
+                //Produtos
                 btnGerirProdutos.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlPrincipal.setVisible(false);
                         pnlGeirCategorias.setVisible(false);
-                        pnlGeirRelatorio.setVisible(false);
+                        pnlGestao_Funcionarios.setVisible(false);
+                        pnlVisaoGeral.setVisible(false);
+                        pnlMenssagens.setVisible(false);
+                        pnlPerfil.setVisible(false);
 
                         pnlGerirProdutos.setBackground(Color.white);
                         pnlGerirProdutos.setLayout(null);
                         pnlGerirProdutos.setBounds(280, 0, 920, 660);
 
-                        JLabel lblTitulo = new JLabel("Gestão de Produtos");
+                        //Craindo as Componentes
+                        JLabel lblTitulo = new JLabel("Gerir Produtos");
+                        JLabel lblFoto = new JLabel();
+                        JLabel imgApelido = new JLabel();
+                        JLabel imgNome = new JLabel();
+                        JLabel imgGenero = new JLabel();
+                        JLabel imgNascimento = new JLabel();
+                        JLabel imgBI = new JLabel();
+                        JLabel imgEmail = new JLabel();
+                        JLabel imgPassword = new JLabel();
+                        JLabel imgContacto = new JLabel();
+                        JLabel imgContratacao = new JLabel();
+                        JLabel imgAcesso = new JLabel();
+                        JLabel imgEndereço = new JLabel();
+
+                        JLabel lblCategoria_Produto = new JLabel("Categoria do Produto");
+                        JLabel lblNome = new JLabel("Nome do Produto");
+                        JLabel lblGenero = new JLabel("Codigo de Barra");
+                        JLabel lblValidade = new JLabel("Validade");
+                        JLabel lblNumero_Lote = new JLabel("Numero do Lote");
+                        JLabel lblEmail = new JLabel("Email");
+                        JLabel lblPassword = new JLabel("Palavra-passe");
+                        JLabel lblContacto = new JLabel("Contacto");
+                        JLabel lblAcesso = new JLabel("Perfil");
+                        JLabel lblContratacao = new JLabel("Data da contratação");
+                        JLabel lblEndereco = new JLabel("Endereço");
+
+                        JComboBox jcCategoria_Produto = new JComboBox();
+                        JTextField txtNome = new JTextField();
+                        JTextField txtCodigo_Barra = new JTextField();
+                        JDateChooser txtValidade = new JDateChooser();
+                        JTextField txtNumero_Lote = new JTextField();
+                        JTextField txtEmail = new JTextField();
+                        JTextField txtPassword = new JTextField();
+                        JTextField txtContacto = new JTextField();
+                        JTextField txtAcesso = new JTextField();
+                        JDateChooser txtData_Contratacao = new JDateChooser();
+                        JTextField txtEndereco = new JTextField();
+
+                        JButton btnCarregarFoto = new JButton("Carregar IMG");
+                        JButton btnActualizar = new JButton("Actualizar");
+                        JButton btnReset = new JButton("Limpar");
+                        JButton btnCadastrar = new JButton("Cadastrar");
+                        JButton btnListar = new JButton("Listar");
+                        JButton btnProcurar = new JButton("procurar");
+                        JButton btnEliminar = new JButton("Demitir");
+                        JButton btnReademitir = new JButton("Reademitir");
+                        JButton btnCarregar = new JButton("Carregar Dados");
 
                         //Foreground
                         lblTitulo.setForeground(new Color(102, 102, 255));
 
                         //Cordenadas
-                        lblTitulo.setBounds(340, 30, 350, 30);
+                        lblTitulo.setBounds(340, 0, 350, 30);
 
+                        lblCategoria_Produto.setBounds(10, 50, 200, 30);
+                        jcCategoria_Produto.setBounds(10, 80, 250, 40);
+                        //imgApelido.setBounds(325, 160, 30, 30);
+
+                        lblNome.setBounds(10, 120, 200, 30);
+                        txtNome.setBounds(10, 150, 250, 40);
+
+                        lblNumero_Lote.setBounds(10, 190, 200, 30);
+                        txtNumero_Lote.setBounds(10, 220, 250, 40);
+                        imgBI.setBounds(270, 225, 35, 34);
+
+                        lblGenero.setBounds(10, 260, 200, 30);
+                        txtCodigo_Barra.setBounds(10, 290, 250, 40);
+                        imgGenero.setBounds(265, 290, 35, 40);
+
+                        lblValidade.setBounds(10, 330, 200, 30);
+                        txtValidade.setBounds(10, 360, 250, 40);
+                        imgNascimento.setBounds(270, 360, 35, 40);
+
+                        lblEmail.setBounds(320, 50, 200, 30);
+                        txtEmail.setBounds(320, 80, 250, 40);
+                        imgEmail.setBounds(575, 80, 35, 40);
+
+                        lblPassword.setBounds(320, 120, 200, 30);
+                        txtPassword.setBounds(320, 150, 250, 40);
+                        imgPassword.setBounds(575, 145, 35, 40);
+
+                        lblContacto.setBounds(320, 190, 200, 30);
+                        txtContacto.setBounds(320, 220, 250, 40);
+                        imgContacto.setBounds(575, 220, 350, 40);
+
+                        lblContratacao.setBounds(320, 260, 200, 30);
+                        txtData_Contratacao.setBounds(320, 290, 250, 40);
+                        imgContratacao.setBounds(575, 290, 35, 40);
+
+                        lblAcesso.setBounds(320, 330, 200, 30);
+                        txtAcesso.setBounds(320, 360, 250, 40);
+                        imgAcesso.setBounds(595, 360, 35, 40);
+                        lblEndereco.setBounds(620, 50, 200, 30);
+                        txtEndereco.setBounds(620, 80, 250, 40);
+                        imgEndereço.setBounds(585, 360, 35, 40);
+
+                        lblFoto.setBounds(620, 100, 225, 225);
+
+                        btnCarregarFoto.setBounds(665, 310, 165, 30);
+                        btnCadastrar.setBounds(10, 420, 100, 30);
+                        btnListar.setBounds(120, 420, 70, 30);
+                        btnCarregar.setBounds(200, 420, 140, 30);
+                        btnActualizar.setBounds(350, 420, 130, 30);
+                        btnEliminar.setBounds(490, 420, 100, 30);
+                        btnReademitir.setBounds(600, 420, 100, 30);
+                        btnReset.setBounds(710, 420, 100, 30);
+
+                        //cOLOCANDO AS INFORMACOES NAS CAIXAS
+                     
+                        jcCategoria_Produto.addItem("  < Selecionar a Categoria >");
+                        
+                        txtPassword.setText("0000");
+                        txtAcesso.setText("Funcionario");
+
+                        txtPassword.setEnabled(false);
+                        txtAcesso.setEnabled(false);
+
+                        //Personalizando a fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 24));
+                        lblCategoria_Produto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblValidade.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblNumero_Lote.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnReademitir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+
+                        // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
+                        jcCategoria_Produto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtCodigo_Barra.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtValidade.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtNumero_Lote.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtData_Contratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                        //////
+                        jcCategoria_Produto.setForeground(new Color(102, 102, 255));
+                        txtNome.setForeground(new Color(102, 102, 255));
+                        txtCodigo_Barra.setForeground(new Color(102, 102, 255));
+                        txtValidade.setForeground(new Color(102, 102, 255));
+                        txtNumero_Lote.setForeground(new Color(102, 102, 255));
+                        txtEmail.setForeground(new Color(102, 102, 255));
+                        txtPassword.setForeground(new Color(102, 102, 255));
+                        txtContacto.setForeground(new Color(102, 102, 255));
+                        txtData_Contratacao.setForeground(new Color(102, 102, 255));
+                        txtAcesso.setForeground(new Color(102, 102, 255));
+                        txtEndereco.setForeground(new Color(102, 102, 255));
+                        //Icons
+                        imgBI.setIcon(Icon_BI);
+                        imgGenero.setIcon(Icon_Genero);
+                        imgNascimento.setIcon(Icon_Nascimento);
+                        imgContacto.setIcon(Icon_Contacto);
+                        imgEmail.setIcon(Icon_Email);
+                        imgPassword.setIcon(Icon_Password);
+                        imgContratacao.setIcon(Icon_Contratacao);
+                        imgAcesso.setIcon(Icon_Acesso);
+                        //    imgEndereço.setIcon();
+                        lblFoto.setIcon(Icon_foto);
+                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
+                        btnActualizar.setIcon(Icon_Actualizar);
+
+                        //Personalizando as Bordas das componentes
+                        jcCategoria_Produto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtCodigo_Barra.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtValidade.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtNumero_Lote.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtEmail.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtPassword.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtContacto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtData_Contratacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtAcesso.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        txtEndereco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnActualizar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnReset.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnListar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnCarregar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnEliminar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnReademitir.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnProcurar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+
+                        // Criando a tabela 
+                        String[] Colunas_Compras = {"Apelido", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Fotografia"};
+                        String[][] inf_Compras = {{}};
+                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
+
+                        // Criando as Tabelas/Listas
+                        JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
+                        JTableHeader header_Compras = Lista_Funcionarios.getTableHeader();
+                        Lista_Funcionarios.setShowGrid(false);
+                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Compras.setForeground(new Color(102, 102, 255));
+                        Lista_Funcionarios.setRowHeight(120);
+                        Lista_Funcionarios.getColumnModel().getColumn(7).setPreferredWidth(230);
+                        JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
+                        tabela_Funcionarios.setRowCount(10);
+                        rol_Compras.setBounds(10, 470, 900, 180);
                         //Adicionando
                         pnlGerirProdutos.add(lblTitulo);
+                        pnlGerirProdutos.add(lblTitulo);
+                        pnlGerirProdutos.add(lblCategoria_Produto);
+                        pnlGerirProdutos.add(lblNome);
+                        pnlGerirProdutos.add(lblGenero);
+                        pnlGerirProdutos.add(lblValidade);
+                        pnlGerirProdutos.add(lblNumero_Lote);
+                        pnlGerirProdutos.add(lblEmail);
+                        pnlGerirProdutos.add(lblPassword);
+                        pnlGerirProdutos.add(lblContacto);
+                        pnlGerirProdutos.add(lblContratacao);
+                        pnlGerirProdutos.add(lblAcesso);
+                        pnlGerirProdutos.add(lblEndereco);
+                        pnlGerirProdutos.add(lblFoto);
+
+                        pnlGerirProdutos.add(jcCategoria_Produto);
+                        pnlGerirProdutos.add(txtNome);
+                        pnlGerirProdutos.add(txtCodigo_Barra);
+                        pnlGerirProdutos.add(txtValidade);
+                        pnlGerirProdutos.add(txtNumero_Lote);
+                        pnlGerirProdutos.add(txtEmail);
+                        pnlGerirProdutos.add(txtPassword);
+                        pnlGerirProdutos.add(txtContacto);
+                        pnlGerirProdutos.add(txtData_Contratacao);
+                        pnlGerirProdutos.add(txtAcesso);
+                        pnlGerirProdutos.add(txtEndereco);
+
+                        pnlGerirProdutos.add(imgBI);
+                        pnlGerirProdutos.add(imgNascimento);
+                        pnlGerirProdutos.add(imgGenero);
+                        pnlGerirProdutos.add(imgEmail);
+                        pnlGerirProdutos.add(imgPassword);
+                        pnlGerirProdutos.add(imgContacto);
+                        pnlGerirProdutos.add(imgContratacao);
+                        pnlGerirProdutos.add(imgAcesso);
+                        pnlGerirProdutos.add(imgEndereço);
+
+                        pnlGerirProdutos.add(rol_Compras);
+
+                        pnlGerirProdutos.add(btnCarregarFoto);
+                        pnlGerirProdutos.add(btnReset);
+                        pnlGerirProdutos.add(btnActualizar);
+                        pnlGerirProdutos.add(btnCadastrar);
+                        pnlGerirProdutos.add(btnListar);
+                        pnlGerirProdutos.add(btnCarregar);
+                        pnlGerirProdutos.add(btnProcurar);
+                        pnlGerirProdutos.add(btnEliminar);
+                        pnlGerirProdutos.add(btnReademitir);
 
                         //Fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblCategoria_Produto.setForeground(new Color(102, 102, 255));
+                        lblNome.setForeground(new Color(102, 102, 255));
+                        lblGenero.setForeground(new Color(102, 102, 255));
+                        lblValidade.setForeground(new Color(102, 102, 255));
+                        lblNumero_Lote.setForeground(new Color(102, 102, 255));
+                        lblEmail.setForeground(new Color(102, 102, 255));
+                        lblPassword.setForeground(new Color(102, 102, 255));
+                        lblContacto.setForeground(new Color(102, 102, 255));
+                        lblContratacao.setForeground(new Color(102, 102, 255));
+                        lblAcesso.setForeground(new Color(102, 102, 255));
+                        lblEndereco.setForeground(new Color(102, 102, 255));
+                        btnCarregarFoto.setForeground(new Color(0, 102, 255));
+                        btnActualizar.setForeground(new Color(0, 102, 255));
+                        btnCadastrar.setForeground(new Color(0, 102, 255));
+                        btnListar.setForeground(new Color(0, 102, 255));
+                        btnCarregar.setForeground(new Color(0, 102, 255));
+                        btnEliminar.setForeground(new Color(0, 102, 255));
+                        btnProcurar.setForeground(new Color(0, 102, 255));
+                        btnReademitir.setForeground(new Color(0, 102, 255));
+                        btnReset.setForeground(new Color(0, 102, 255));
 
+                        // Personalizando o BackGround
+                        btnCarregarFoto.setBackground(Color.white);
+                        btnActualizar.setBackground(Color.white);
+                        btnReset.setBackground(Color.white);
+                        btnCadastrar.setBackground(Color.white);
+                        btnCarregar.setBackground(Color.white);
+                        btnListar.setBackground(Color.white);
+                        btnProcurar.setBackground(Color.white);
+                        btnEliminar.setBackground(Color.white);
+                        btnReademitir.setBackground(Color.white);
+
+                        pnlauxPrincipal.add(pnlGerirProdutos);
                         pnlGerirProdutos.setVisible(true);
 
                     }
@@ -521,6 +818,7 @@ public class Gerente extends JFrame {
                 pnlauxPrincipal.add(pnlGerirProdutos);
                 pnlauxPrincipal.add(pnlGeirCategorias);
                 pnlauxPrincipal.add(pnlGeirRelatorio);
+                pnlauxPrincipal.add(pnlPrincipal);
 
                 pnlMenu_Gestaoprodutos.setVisible(true);
             }
@@ -913,6 +1211,11 @@ public class Gerente extends JFrame {
                 JPanel pnlCaixa = new JPanel();
                 JPanel pnlGerir = new JPanel();
 
+                // ESTADO INICIAL
+                pnlEnviar.setVisible(false);
+                pnlCaixa.setVisible(false);
+                pnlGerir.setVisible(false);
+
                 // Enviar Mensssagem
                 btnEnviar.addActionListener(new ActionListener() {
                     @Override
@@ -947,11 +1250,12 @@ public class Gerente extends JFrame {
                         btnEnviar.setForeground(new Color(0, 102, 255));
 
                         //BackGround
-                        btnEnviar.setBackground(Color.white);
+                        btnEnviar.setBackground(Color.white
+                        );
                         btnLimpar.setBackground(Color.white);
 
                         //Cordenadas
-                        lblTitulo.setBounds(100, 130, 130, 30);
+                        lblTitulo.setBounds(100, 130, 250, 30);
                         lblRemetente.setBounds(100, 30, 100, 30);
                         txtRemetente.setBounds(100, 60, 250, 40);
                         lblDestinatario.setBounds(570, 30, 100, 30);
@@ -978,6 +1282,7 @@ public class Gerente extends JFrame {
                         btnEnviar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                         // Instrucao que nao permite alterar
+                        jcDestinatario.addItem("<Selecionar Destinatario>");
                         txtRemetente.setEditable(false);
 
                         //Adicionando as Componentes
@@ -994,6 +1299,188 @@ public class Gerente extends JFrame {
                         pnlEnviar.setVisible(true);
                     }
                 });
+
+                //Caixa de Entrada
+                btnCaixa.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlPrincipal.setVisible(false);
+                        pnlGerir.setVisible(false);
+                        pnlEnviar.setVisible(false);
+
+                        pnlCaixa.setBackground(Color.white);
+                        pnlCaixa.setLayout(null);
+                        pnlCaixa.setBounds(280, 0, 920, 660);
+
+                        //CRIANDO AS COMPONENTES
+                        JLabel lblMenssagem = new JLabel();
+                        JLabel lblTitulo = new JLabel("Menssagens Recebidas");
+                        JButton btnNext = new JButton("Next");
+                        JButton btnPreview = new JButton("Back");
+                        JButton btnProcurar = new JButton();
+                        JComboBox jcRementente = new JComboBox();
+
+                        //ForeGround
+                        lblTitulo.setForeground(new Color(0, 102, 255));
+                        lblMenssagem.setForeground(new Color(102, 102, 255));
+                        jcRementente.setForeground(new Color(102, 102, 255));
+
+                        //Background
+                        btnNext.setBackground(Color.white);
+                        btnPreview.setBackground(Color.white);
+                        jcRementente.setBackground(Color.white);
+                        btnProcurar.setBackground(Color.white);
+
+                        //Bordas
+                        lblMenssagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        jcRementente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        btnNext.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnPreview.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+
+                        //Localizacao
+                        lblMenssagem.setBounds(105, 140, 700, 500);
+                        jcRementente.setBounds(500, 90, 250, 40);
+                        btnProcurar.setBounds(750, 90, 40, 40);
+                        lblTitulo.setBounds(370, 0, 250, 30);
+                        btnPreview.setBounds(20, 350, 40, 40);
+                        btnNext.setBounds(850, 350, 40, 40);
+
+                        // 
+                        jcRementente.addItem("<Selecionar o Rementente>");
+                        btnProcurar.setIcon(Icon_Procurar);
+
+                        //Fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblMenssagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        jcRementente.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+
+                        pnlCaixa.add(lblMenssagem);
+                        pnlCaixa.add(lblTitulo);
+                        pnlCaixa.add(btnPreview);
+                        pnlCaixa.add(btnNext);
+                        pnlCaixa.add(jcRementente);
+                        pnlCaixa.add(btnProcurar);
+
+                        pnlauxPrincipal.add(pnlCaixa);
+
+                        pnlCaixa.setVisible(true);
+                    }
+                });
+
+                //Gerir Menssagens
+                btnGerir.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlPrincipal.setVisible(true);
+                        pnlMenssagens.setVisible(false);
+                        pnlCaixa.setVisible(false);
+                        pnlEnviar.setVisible(false);
+
+                        pnlGerir.setBackground(new Color(102, 102, 255));
+                        pnlGerir.setLayout(null);
+                        pnlGerir.setBounds(0, 0, 280, 660);
+                        JButton btnMenssagens_Envidas = new JButton("Menssagens Enviadas ");
+                        JButton btnMenssagens_Recebidas = new JButton("Menssagens Recebidas");
+                        JButton btnRelatorio_enviadas = new JButton("Relatorio de Envio");
+                        JButton btnVoltarPrincipal = new JButton("Voltar");
+
+                        JTextField txtbarra2 = new JTextField();
+                        JLabel lblFotografia = new JLabel();
+                        lblFotografia.setIcon(Icon_Logo);
+
+                        lblFotografia.setBounds(45, 50, 180, 180);
+                        txtbarra2.setBounds(30, 251, 210, 1);
+                        btnMenssagens_Envidas.setBounds(20, 281, 240, 40);
+                        btnMenssagens_Recebidas.setBounds(13, 351, 240, 40);
+                        btnRelatorio_enviadas.setBounds(23, 421, 240, 40);
+                        btnVoltarPrincipal.setBounds(15, 491, 150, 40);
+
+                        btnMenssagens_Envidas.setBackground(new Color(102, 102, 255));
+                        btnMenssagens_Recebidas.setBackground(new Color(102, 102, 255));
+                        btnRelatorio_enviadas.setBackground(new Color(102, 102, 255));
+                        btnVoltarPrincipal.setBackground(new Color(102, 102, 255));
+
+                        btnMenssagens_Envidas.setForeground(Color.white);
+                        btnMenssagens_Recebidas.setForeground(Color.white);
+                        btnRelatorio_enviadas.setForeground(Color.white);
+                        btnVoltarPrincipal.setForeground(Color.white);
+
+                        btnMenssagens_Envidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        btnMenssagens_Recebidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        btnRelatorio_enviadas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+
+                        btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnMenssagens_Envidas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnMenssagens_Recebidas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnRelatorio_enviadas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+
+                        JPanel pnlMenssagens_Enviadas = new JPanel();
+                        JPanel pnlMenssagens_Recebidas = new JPanel();
+                        JPanel pnlMenssagens_Relatorio = new JPanel();
+
+                        pnlMenssagens_Enviadas.setVisible(false);
+                        pnlMenssagens_Recebidas.setVisible(false);
+                        pnlMenssagens_Relatorio.setVisible(false);
+
+                        //Menssagens Enviadas
+                        btnMenssagens_Envidas.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //Duas possibilidades!!!
+                                ///Criar uma tabela com informacoe basicas da menssgem e uma label para visualizar
+
+                            }
+                        });
+
+                        //Menssagens Recebidas
+                        btnMenssagens_Recebidas.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //Duas possibilidades!!!
+                                ///Criar uma tabela com informacoe basicas da menssgem e uma label para visualizar
+
+                            }
+                        });
+                        // Relatorio de Menssagens
+                        btnRelatorio_enviadas.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //Duas possibilidades!!!
+                                ///Criar uma tabela com informacoe basicas da menssgem e uma label para visualizar
+
+                            }
+                        });
+
+                        //aqui serve para Voltar a tela Principal de Menssagens
+                        btnVoltarPrincipal.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                pnlGerir.setVisible(false);
+                                pnlMenssagens_Enviadas.setVisible(false);
+                                pnlMenssagens_Recebidas.setVisible(false);
+                                pnlMenssagens_Relatorio.setVisible(false);
+                                pnlMenssagens.setVisible(true);
+                                pnlPrincipal.setVisible(true);
+
+                            }
+                        });
+
+                        pnlGerir.add(lblFotografia);
+                        pnlGerir.add(txtbarra2);
+                        pnlGerir.add(btnMenssagens_Envidas);
+                        pnlGerir.add(btnMenssagens_Recebidas);
+                        pnlGerir.add(btnRelatorio_enviadas);
+                        pnlGerir.add(btnVoltarPrincipal);
+
+                        pnlauxPrincipal.add(pnlGerir);
+                        pnlauxPrincipal.add(pnlPrincipal);
+
+                        pnlGerir.setVisible(true);
+                    }
+                });
+
                 // Neste passo, vou fechar o painel de categorias e recolocar o painel principal
                 btnVoltarPrincipal.addActionListener(new ActionListener() {
                     @Override
