@@ -46,7 +46,7 @@ public class Servicos_Organizacao extends JFrame {
     ImageIcon Icon_Adicionar_Carinha = new ImageIcon("src\\Imagens\\adicionar-ao-carrinho (1).png");
     ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\remover-do-carrinho (1).png");
     ImageIcon Icon_foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
-    ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\carregar.png");
+    ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\CarregarImagemF.png");
     ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\Actualizar.png");
     ImageIcon Icon_btnActualizarFu = new ImageIcon("src\\Imagens\\funcionarios.png");
     ImageIcon Logotipo = new ImageIcon("src\\Imagens\\Logo.jpeg");
