@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -49,29 +51,15 @@ public class Gerente extends JFrame {
     ImageIcon Icon_ActualizarC = new ImageIcon("src\\Imagens\\editar.png");
     ImageIcon Icon_Proximo = new ImageIcon("src\\Imagens\\proximo.png");
     ImageIcon Icon_Anterior = new ImageIcon("src\\Imagens\\anterior.png");
+    ImageIcon Icon_ListarFun = new ImageIcon("src\\Imagens\\listarFun.png");
 
     ///
-    ImageIcon Icon_AdicionarFun = new ImageIcon("src\\Imagens\\adicionarFun.png");
-    ImageIcon Icon_ListarFun = new ImageIcon("src\\Imagens\\ListarFun.png");
-    ImageIcon Icon_CarregarInfFn = new ImageIcon("src\\Imagens\\CarregarInf.png");
-    ImageIcon Icon_ActualizarCFun = new ImageIcon("src\\Imagens\\editarFun.png");
-    ImageIcon Icon_EliminarFun = new ImageIcon("src\\Imagens\\excluirFun.png");
-
     ///
     ImageIcon Icon_EscreverMenssagem = new ImageIcon("src\\Imagens\\escrever-mensagem.png");
     ImageIcon Icon_CaixaMenssagem = new ImageIcon("src\\Imagens\\caixaMenssagens.png");
     ImageIcon Icon_RelatorioMenssagem = new ImageIcon("src\\Imagens\\relatorio_1.png");
     //Icons
-    ImageIcon Icon_Apelido = new ImageIcon("src\\Imagens\\");
-    ImageIcon Icon_Nome = new ImageIcon("src\\Imagens\\");
-    ImageIcon Icon_Genero = new ImageIcon("src\\Imagens\\genero.png");
-    ImageIcon Icon_BI = new ImageIcon("src\\Imagens\\BI.png");
-    ImageIcon Icon_Nascimento = new ImageIcon("src\\Imagens\\calendario.png");
-    ImageIcon Icon_Email = new ImageIcon("src\\Imagens\\email.png");
-    ImageIcon Icon_Password = new ImageIcon("src\\Imagens\\password.png");
-    ImageIcon Icon_Contacto = new ImageIcon("src\\Imagens\\telefone.png");
-    ImageIcon Icon_Contratacao = new ImageIcon("src\\Imagens\\Contratacao.png");
-    ImageIcon Icon_Acesso = new ImageIcon("src\\Imagens\\");
+
     ImageIcon Icon_foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
     ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\CarregarImagemF.png");
     ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\editar.png");
@@ -171,13 +159,13 @@ public class Gerente extends JFrame {
         btnVoltar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
 
         //Personalizando a Fonte
-        btnGestao_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnGestao_Funcionarios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnVisaoGeral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnMenssagens.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnConfiguracoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+        btnGestao_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnGestao_Funcionarios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnVisaoGeral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnMenssagens.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnConfiguracoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
         //Colocando Icon
         lblFoto.setIcon(Icon_Admin);
@@ -252,7 +240,7 @@ public class Gerente extends JFrame {
 
                 JButton btnGerirCategorias = new JButton("Gerir Categorias");
                 JButton btnGerirProdutos = new JButton("Gerir Produtos");
-                JButton btnRelatorio = new JButton("Relatorio de Vendas");
+                JButton btnRelatorio = new JButton("Relatorio de Transações");
                 JButton btnVoltarPrincipal = new JButton("Voltar");
 
                 JTextField txtbarra2 = new JTextField();
@@ -278,10 +266,10 @@ public class Gerente extends JFrame {
                 btnRelatorio.setForeground(Color.white);
                 btnVoltarPrincipal.setForeground(Color.white);
 
-                btnGerirCategorias.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnGerirProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnRelatorio.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnGerirCategorias.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnGerirProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnRelatorio.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
                 btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnGerirCategorias.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -320,11 +308,9 @@ public class Gerente extends JFrame {
 
                         JButton btnCarregarImagem = new JButton("Carregar IMG");
                         JButton btnCadastrar = new JButton("Adicionar");
-                        JButton btnListar = new JButton(" Listar");
-                        JButton btnCarregar = new JButton("Carregar Dados");
+                        JButton btnListar = new JButton("Listar");
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnEliminar = new JButton("Eliminar");
-                        JButton btnReactivar = new JButton(" Reactivar");
 
                         String[] Colunas_Tabela = {"Id", "Nome da Categoria", "Nome da sub-Categoria", "Imagem", "Data", "Estado"};
                         String[][] inf = {{}};
@@ -357,7 +343,6 @@ public class Gerente extends JFrame {
                         btnCadastrar.setIcon(Icon_Adicionar);
                         btnListar.setIcon(Icon_Listar);
                         btnActualizar.setIcon(Icon_ActualizarC);
-                        btnCarregar.setIcon(Icon_CarregarInf);
 
                         //Aqui vou definir a cor das letras
                         lblTitulo.setForeground(new Color(0, 102, 255));
@@ -367,10 +352,8 @@ public class Gerente extends JFrame {
                         btnCarregarImagem.setForeground(new Color(0, 102, 255));
                         btnCadastrar.setForeground(new Color(0, 102, 255));
                         btnListar.setForeground(new Color(0, 102, 255));
-                        btnCarregar.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
                         btnEliminar.setForeground(new Color(0, 102, 255));
-                        btnReactivar.setForeground(new Color(0, 102, 255));
 
                         //Aqui vou definir a fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
@@ -380,54 +363,41 @@ public class Gerente extends JFrame {
                         btnCarregarImagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnReactivar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                         txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         data.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         txtNomeSubCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
-                        //Aqui vou definir as Bordas
-                        txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtNomeSubCategoria.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        data.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        data.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        btnCarregarImagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnListar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnCarregar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnEliminar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnReactivar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnCarregarImagem.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
 
                         //Background
                         btnCarregarImagem.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
                         btnListar.setBackground(Color.white);
-                        btnCarregar.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
-                        btnReactivar.setBackground(Color.white);
 
                         //aqui vou configurar a localizacao
                         lblTitulo.setBounds(340, 30, 350, 30);
-                        lblFoto.setBounds(500, 70, 225, 225);
-                        lblNome.setBounds(150, 90, 150, 30);
-                        txtNome.setBounds(150, 120, 270, 40);
-                        lblSubCategoria.setBounds(150, 160, 270, 30);
-                        txtNomeSubCategoria.setBounds(150, 190, 270, 40);
-                        lblData.setBounds(150, 230, 270, 30);
-                        data.setBounds(150, 260, 270, 40);
-                        btnCarregarImagem.setBounds(540, 265, 150, 40);
-                        btnCadastrar.setBounds(150, 330, 120, 40);
-                        btnListar.setBounds(150, 375, 90, 40);
-                        btnCarregar.setBounds(350, 330, 170, 40);
-                        btnActualizar.setBounds(350, 375, 120, 40);
-                        btnEliminar.setBounds(615, 330, 105, 40);
-                        btnReactivar.setBounds(615, 375, 90, 40);
-                        rol.setBounds(40, 430, 820, 210);
+                        lblFoto.setBounds(340, 100, 225, 225);
+                        lblNome.setBounds(50, 120, 150, 30);
+                        txtNome.setBounds(50, 150, 250, 35);
+                        lblSubCategoria.setBounds(50, 190, 270, 30);
+                        txtNomeSubCategoria.setBounds(50, 220, 250, 35);
+                        lblData.setBounds(50, 260, 250, 35);
+                        data.setBounds(50, 290, 250, 35);
+                        btnCarregarImagem.setBounds(390, 290, 150, 40);
+                        btnCadastrar.setBounds(650, 130, 120, 40);
+                        btnListar.setBounds(650, 180, 90, 40);
+                        btnActualizar.setBounds(655, 230, 120, 40);
+                        btnEliminar.setBounds(657, 280, 105, 40);
+                        rol.setBounds(40, 390, 820, 250);
 
                         //Acção para cada um dos botoes
                         btnCadastrar.addActionListener(new ActionListener() {
@@ -443,29 +413,9 @@ public class Gerente extends JFrame {
 
                             }
                         });
-                        //Carrecar Campos
-                        btnCarregar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
 
-                            }
-                        });
-                        //Actualizar
-                        btnActualizar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
                         //Eliminar
                         btnEliminar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-                        //Reactivar
-                        btnReactivar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
@@ -484,10 +434,8 @@ public class Gerente extends JFrame {
                         pnlGeirCategorias.add(btnCarregarImagem);
                         pnlGeirCategorias.add(btnCadastrar);
                         pnlGeirCategorias.add(btnListar);
-                        pnlGeirCategorias.add(btnCarregar);
                         pnlGeirCategorias.add(btnActualizar);
                         pnlGeirCategorias.add(btnEliminar);
-                        pnlGeirCategorias.add(btnReactivar);
                         pnlGeirCategorias.add(rol);
 
                         // Dando Acção aos Botoes
@@ -528,16 +476,20 @@ public class Gerente extends JFrame {
 
                         JLabel lblCategoria_Produto = new JLabel("Categoria do Produto");
                         JLabel lblNome = new JLabel("Nome do Produto");
-                        JLabel lblGenero = new JLabel("Codigo de Barra");
+                        JLabel lblCodigo_Barra = new JLabel("Codigo de Barra");
                         JLabel lblValidade = new JLabel("Validade");
                         JLabel lblNumero_Lote = new JLabel("Numero do Lote");
                         JLabel lblEmbalagem_Nao = new JLabel("Tipo de produto");
                         JLabel lnlQuantidade_Embalagens = new JLabel("Quantidade de Embalagens");
                         JLabel lblProdutos = new JLabel("Produtos por Embalagem");
-                        JLabel lblQuantidade_Produtos = new JLabel("Quantidade de Produtos");
-                        JLabel lblTotalProdtos = new JLabel("Total de Produtos");
-                        JLabel lblVolum_Peso = new JLabel("Volume/Peso");
-                        JLabel lblPreco = new JLabel("Preço por Unidade");
+                        JLabel lblQuantidade_Produtos = new JLabel("Quantidade a Adicionar");
+                        JLabel lblStatus = new JLabel("Status do Produto");
+                        JLabel lblMarca = new JLabel("Marca do Produto");
+                        JLabel lblUnidade_Medida = new JLabel("Unidade Medida");
+                        JLabel lblPeso_Volume = new JLabel("Peso ou Volume");
+                        JLabel lblPreco_Compra = new JLabel("Preço de Compra");
+                        JLabel lblPreco_Venda = new JLabel("Preço de Venda");
+                        JLabel lblDescricao = new JLabel("Descrição do Produto");
 
                         JComboBox jcCategoria_Produto = new JComboBox();
                         JTextField txtNome = new JTextField();
@@ -547,11 +499,14 @@ public class Gerente extends JFrame {
                         JComboBox jcEmbalado = new JComboBox();
                         JTextField txtQntEmbalagem = new JTextField();
                         JTextField txtProdutos_Embalagem = new JTextField();
-                        JTextField txtTotal_de_Produtos = new JTextField();
-                        JTextField txtProdutosQtd = new   JTextField();
-                        JTextField txtVolume_Peso = new JTextField();
-                        JTextField txtPreco = new JTextField();
-
+                        JComboBox txtStatus = new JComboBox();
+                        JTextField txtProdutosQtd = new JTextField();
+                        JTextField txtMarca = new JTextField();
+                        JComboBox jcMedida = new JComboBox();
+                        JTextField txtPeso_Volume = new JTextField();
+                        JTextField txtPreco_Compra = new JTextField();
+                        JTextField txtPreco_Venda = new JTextField();
+                        JTextArea txtDescricao = new JTextArea();
                         JButton btnCarregarFoto = new JButton("Carregar IMG");
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnReset = new JButton("Limpar");
@@ -559,8 +514,6 @@ public class Gerente extends JFrame {
                         JButton btnListar = new JButton("Listar");
                         JButton btnProcurar = new JButton("procurar");
                         JButton btnEliminar = new JButton("Eliminar");
-                        JButton btnReademitir = new JButton("Reactivar");
-                        JButton btnCarregar = new JButton("Carregar Dados");
 
                         //Foreground
                         lblTitulo.setForeground(new Color(102, 102, 255));
@@ -569,108 +522,112 @@ public class Gerente extends JFrame {
                         lblTitulo.setBounds(340, 0, 350, 30);
 
                         lblCategoria_Produto.setBounds(10, 50, 200, 30);
-                        jcCategoria_Produto.setBounds(10, 80, 250, 40);
-                        //imgApelido.setBounds(325, 160, 30, 30);
+                        jcCategoria_Produto.setBounds(10, 80, 200, 35);
 
-                        lblNome.setBounds(10, 120, 200, 30);
-                        txtNome.setBounds(10, 150, 250, 40);
+                        lblNome.setBounds(10, 115, 200, 30);
+                        txtNome.setBounds(10, 145, 200, 35);
 
-                        lblNumero_Lote.setBounds(10, 190, 200, 30);
-                        txtNumero_Lote.setBounds(10, 220, 250, 40);
-                        imgBI.setBounds(270, 225, 35, 34);
+                        lblNumero_Lote.setBounds(10, 185, 200, 30);
+                        txtNumero_Lote.setBounds(10, 215, 200, 35);
 
-                        lblGenero.setBounds(10, 260, 200, 30);
-                        txtCodigo_Barra.setBounds(10, 290, 250, 40);
-                        imgGenero.setBounds(265, 290, 35, 40);
+                        lblCodigo_Barra.setBounds(10, 255, 200, 30);
+                        txtCodigo_Barra.setBounds(10, 285, 200, 35);
 
-                        lblValidade.setBounds(10, 330, 200, 30);
-                        txtValidade.setBounds(10, 360, 250, 40);
-                        imgNascimento.setBounds(270, 360, 35, 40);
+                        lblValidade.setBounds(10, 325, 200, 30);
+                        txtValidade.setBounds(10, 355, 200, 35);
 
-                        lblEmbalagem_Nao.setBounds(320, 50, 200, 30);
-                        jcEmbalado.setBounds(320, 80, 250, 40);
-                        imgEmail.setBounds(575, 80, 35, 40);
+                        lblEmbalagem_Nao.setBounds(240, 50, 200, 30);
+                        jcEmbalado.setBounds(240, 80, 200, 35);
 
-                        lnlQuantidade_Embalagens.setBounds(320, 120, 200, 30);
-                        txtQntEmbalagem.setBounds(320, 150, 250, 40);
-                        imgPassword.setBounds(575, 145, 35, 40);
+                        lnlQuantidade_Embalagens.setBounds(240, 115, 200, 30);
+                        txtQntEmbalagem.setBounds(240, 145, 200, 35);
 
-                        lblProdutos.setBounds(320, 190, 200, 30);
-                        txtProdutos_Embalagem.setBounds(320, 220, 250, 40);
-                        imgContacto.setBounds(575, 220, 350, 40);
+                        lblProdutos.setBounds(240, 185, 200, 30);
+                        txtProdutos_Embalagem.setBounds(240, 215, 200, 35);
 
-                        lblQuantidade_Produtos.setBounds(320, 260, 200, 30);
-                        txtProdutosQtd.setBounds(320, 290, 250, 40);
-                        imgContratacao.setBounds(575, 290, 35, 40);
+                        lblQuantidade_Produtos.setBounds(240, 255, 200, 30);
+                        txtProdutosQtd.setBounds(240, 285, 200, 35);
 
-                        lblTotalProdtos.setBounds(320, 330, 200, 30);
-                        txtTotal_de_Produtos.setBounds(320, 360, 250, 40);
-                        imgAcesso.setBounds(595, 360, 35, 40);
-                        lblVolum_Peso.setBounds(620, 50, 200, 30);
-                        txtVolume_Peso.setBounds(620, 80, 250, 40);
-                        imgEndereço.setBounds(585, 360, 35, 40);
-                        lblPreco.setBounds(620, 120, 200, 30);
-                        txtPreco.setBounds(620, 150, 250, 40);
+                        lblStatus.setBounds(240, 325, 200, 30);
+                        txtStatus.setBounds(240, 355, 200, 35);
 
-                        lblFoto.setBounds(620, 160, 225, 225);
-                     
+                        lblMarca.setBounds(470, 50, 200, 30);
+                        txtMarca.setBounds(470, 80, 200, 35);
 
-                        btnCarregarFoto.setBounds(665, 360, 175, 40);
-                        btnCadastrar.setBounds(10, 420, 120, 40);
-                        btnListar.setBounds(145, 420, 90, 40);
-                        btnCarregar.setBounds(250, 420, 170, 40);
-                        btnActualizar.setBounds(435, 420, 120, 40);
-                        btnEliminar.setBounds(570, 420, 100, 40);
-                        btnReademitir.setBounds(690, 420, 100, 40);
-                        btnReset.setBounds(810, 420, 100 , 40);
+                        lblUnidade_Medida.setBounds(470, 115, 200, 30);
+                        jcMedida.setBounds(470, 145, 200, 35);
+
+                        lblPeso_Volume.setBounds(470, 185, 200, 30);
+                        txtPeso_Volume.setBounds(470, 215, 200, 35);
+
+                        lblPreco_Compra.setBounds(470, 255, 200, 30);
+                        txtPreco_Compra.setBounds(470, 285, 200, 35);
+
+                        lblPreco_Venda.setBounds(470, 325, 200, 30);
+                        txtPreco_Venda.setBounds(470, 355, 200, 35);
+
+                        lblDescricao.setBounds(700, 50, 200, 30);
+                        txtDescricao.setBounds(700, 80, 200, 100);
+
+                        lblFoto.setBounds(680, 160, 225, 225);
+                        btnCarregarFoto.setBounds(720, 355, 175, 40);
+
+                        btnCadastrar.setBounds(50, 410, 120, 40);
+                        btnListar.setBounds(200, 410, 90, 40);
+
+                        btnActualizar.setBounds(310, 410, 120, 40);
+                        btnEliminar.setBounds(450, 410, 100, 40);
+                        btnReset.setBounds(570, 410, 100, 40);
 
                         //cOLOCANDO AS INFORMACOES NAS CAIXAS
-                        jcCategoria_Produto.addItem("  < Selecionar a Categoria >");
+                        jcCategoria_Produto.addItem("");
                         jcCategoria_Produto.setBackground(Color.WHITE);
-                        
-                       jcEmbalado.addItem("<Selecionar o tipo>");
-                       jcEmbalado.addItem("Embalado");
-                       jcEmbalado.addItem("Não Embalado");    
-                       jcEmbalado.setBackground(Color.white);
- 
+
+                        jcEmbalado.addItem("");
+                        jcEmbalado.addItem("Embalado");
+                        jcEmbalado.addItem("Não Embalado");
+                        jcEmbalado.setBackground(Color.white);
+
+                        jcMedida.setBackground(Color.white);
+                        jcMedida.addItem("");
+                        jcMedida.addItem("Quilogramas (Kg)");
+                        jcMedida.addItem("Litros (L)");
+
+                        txtStatus.setBackground(Color.white);
+                        txtStatus.addItem("");
+                        txtStatus.addItem("Activo");
+                        txtStatus.addItem("Inactivo");
+
+                        //Definindo a Visibilidade
                         txtQntEmbalagem.setEnabled(false);
-                        txtProdutos_Embalagem.setEnabled(false);
                         txtProdutosQtd.setEnabled(false);
-                        txtTotal_de_Produtos.setEnabled(false);
-                        
-                        if(jcEmbalado.getSelectedItem().equals("Embalado")){
-                               txtQntEmbalagem.setEnabled(true);
-                        txtProdutos_Embalagem.setEnabled(true);
-                        }else{
-                               if(jcEmbalado.getSelectedItem().equals("Não Embalado"))
-                                   txtProdutosQtd.setEnabled(true);
-                              
-                        }
-                        
-                            
- 
+                        txtProdutos_Embalagem.setEnabled(false);
+
                         //Personalizando a fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 24));
                         lblCategoria_Produto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblCodigo_Barra.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblValidade.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblNumero_Lote.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblEmbalagem_Nao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lnlQuantidade_Embalagens.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblTotalProdtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblQuantidade_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblVolum_Peso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblPreco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblMarca.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblUnidade_Medida.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblPeso_Volume.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblPreco_Compra.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblPreco_Venda.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblDescricao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        // btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnReademitir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                         // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
@@ -683,52 +640,34 @@ public class Gerente extends JFrame {
                         txtQntEmbalagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         txtProdutos_Embalagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         txtProdutosQtd.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
-                        txtTotal_de_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
-                        txtVolume_Peso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
-                        txtPreco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
-                        //Icons
-                       // imgBI.setIcon(Icon_BI);
-                      //  imgGenero.setIcon(Icon_Genero);
-                     //   imgNascimento.setIcon(Icon_Nascimento);
-                    //    imgContacto.setIcon(Icon_Contacto);
-                       // imgEmail.setIcon(Icon_Email);
-                       // imgPassword.setIcon(Icon_Password);
-                       // imgContratacao.setIcon(Icon_Contratacao);
-                       // imgAcesso.setIcon(Icon_Acesso);
-                        //    imgEndereço.setIcon();
+                        txtStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtMarca.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcMedida.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPeso_Volume.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPreco_Compra.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPreco_Venda.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtDescricao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
                         lblFoto.setIcon(Icon_foto);
-                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
+
                         btnActualizar.setIcon(Icon_ActualizarC);
                         btnCadastrar.setIcon(Icon_Adicionar);
                         btnListar.setIcon(Icon_Listar);
-                        btnCarregar.setIcon(Icon_CarregarInf);
+                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
                         btnEliminar.setIcon(Icon_Eliminar);
 
                         //Personalizando as Bordas das componentes
-                        jcCategoria_Produto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtCodigo_Barra.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtValidade.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtNumero_Lote.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        jcEmbalado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtQntEmbalagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtProdutos_Embalagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtProdutosQtd.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtTotal_de_Produtos.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtVolume_Peso.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtPreco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnReset.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnListar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnCarregar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnEliminar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnReademitir.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnProcurar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnReset.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
-                        String[] Colunas_Compras = {"Id", "Categoria", "Produto", "Lote", "Codigo", "validade", "Qtd Total", "Preço", "Imagem"};
+                        String[] Colunas_Compras = {"Id", "Produto", "Pr_Compra", "Pr_Venda", "Vlr_Invst", "Vlr_Retorno", "Qtd_Disp", "Data", "Imagem", "Status"};
                         String[][] inf_Compras = {{}};
                         DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -736,45 +675,52 @@ public class Gerente extends JFrame {
                         JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
                         JTableHeader header_Compras = Lista_Funcionarios.getTableHeader();
                         Lista_Funcionarios.setShowGrid(false);
+
                         header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Compras.setForeground(new Color(102, 102, 255));
+
                         Lista_Funcionarios.setRowHeight(120);
+
                         Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(50);
                         Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        Lista_Funcionarios.getColumnModel().getColumn(2).setPreferredWidth(150);
+                        Lista_Funcionarios.getColumnModel().getColumn(2).setPreferredWidth(110);
                         Lista_Funcionarios.getColumnModel().getColumn(3).setPreferredWidth(100);
                         Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(100);
-                        Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(100);
+                        Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(110);
                         Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(100);
                         Lista_Funcionarios.getColumnModel().getColumn(7).setPreferredWidth(100);
                         Lista_Funcionarios.getColumnModel().getColumn(8).setPreferredWidth(200);
+
                         JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
                         tabela_Funcionarios.setRowCount(10);
+
                         rol_Compras.setBounds(10, 470, 900, 180);
-                     
 
                         //Fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
                         lblCategoria_Produto.setForeground(new Color(102, 102, 255));
                         lblNome.setForeground(new Color(102, 102, 255));
-                        lblGenero.setForeground(new Color(102, 102, 255));
+                        lblCodigo_Barra.setForeground(new Color(102, 102, 255));
                         lblValidade.setForeground(new Color(102, 102, 255));
                         lblNumero_Lote.setForeground(new Color(102, 102, 255));
                         lblEmbalagem_Nao.setForeground(new Color(102, 102, 255));
                         lnlQuantidade_Embalagens.setForeground(new Color(102, 102, 255));
                         lblProdutos.setForeground(new Color(102, 102, 255));
-                        lblTotalProdtos.setForeground(new Color(102, 102, 255));
+                        lblStatus.setForeground(new Color(102, 102, 255));
                         lblQuantidade_Produtos.setForeground(new Color(102, 102, 255));
-                        lblVolum_Peso.setForeground(new Color(102, 102, 255));
-                        lblPreco.setForeground(new Color(102, 102, 255));
+                        lblMarca.setForeground(new Color(102, 102, 255));
+                        lblUnidade_Medida.setForeground(new Color(102, 102, 255));
+                        lblPreco_Compra.setForeground(new Color(102, 102, 255));
+                        lblPreco_Venda.setForeground(new Color(102, 102, 255));
+                        lblDescricao.setForeground(new Color(102, 102, 255));
+                        lblPeso_Volume.setForeground(new Color(102, 102, 255));
                         btnCarregarFoto.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
                         btnCadastrar.setForeground(new Color(0, 102, 255));
                         btnListar.setForeground(new Color(0, 102, 255));
-                        btnCarregar.setForeground(new Color(0, 102, 255));
+
                         btnEliminar.setForeground(new Color(0, 102, 255));
                         btnProcurar.setForeground(new Color(0, 102, 255));
-                        btnReademitir.setForeground(new Color(0, 102, 255));
                         btnReset.setForeground(new Color(0, 102, 255));
 
                         // Personalizando o BackGround
@@ -782,27 +728,58 @@ public class Gerente extends JFrame {
                         btnActualizar.setBackground(Color.white);
                         btnReset.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
-                        btnCarregar.setBackground(Color.white);
+
                         btnListar.setBackground(Color.white);
                         btnProcurar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
-                        btnReademitir.setBackground(Color.white);
-                     
-                           //Adicionando
+
+                        //Dando ação as Componentes////////////////////////////////////////////////////////////
+                        jcEmbalado.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                if (jcEmbalado.getSelectedIndex() == 1) {
+
+                                    txtQntEmbalagem.setEnabled(true);
+                                    txtProdutos_Embalagem.setEnabled(true);
+                                    txtProdutosQtd.setEnabled(false);
+                                } else {
+                                    if (jcEmbalado.getSelectedIndex() == 2) {
+                                        txtQntEmbalagem.setEnabled(false);
+                                        txtProdutos_Embalagem.setEnabled(false);
+                                        txtProdutosQtd.setEnabled(true);
+                                    } else {
+                                        txtQntEmbalagem.setEnabled(false);
+                                        txtProdutos_Embalagem.setEnabled(false);
+                                        txtProdutosQtd.setEnabled(false);
+                                    }
+
+                                }
+
+                            }
+                        });
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //AdicionandoL 
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblCategoria_Produto);
                         pnlGerirProdutos.add(lblNome);
-                        pnlGerirProdutos.add(lblGenero);
+                        pnlGerirProdutos.add(lblCodigo_Barra);
                         pnlGerirProdutos.add(lblValidade);
                         pnlGerirProdutos.add(lblNumero_Lote);
                         pnlGerirProdutos.add(lblEmbalagem_Nao);
                         pnlGerirProdutos.add(lnlQuantidade_Embalagens);
                         pnlGerirProdutos.add(lblProdutos);
-                        pnlGerirProdutos.add(lblTotalProdtos);
+                        pnlGerirProdutos.add(lblStatus);
                         pnlGerirProdutos.add(lblQuantidade_Produtos);
-                        pnlGerirProdutos.add(lblVolum_Peso);
-                        pnlGerirProdutos.add(lblPreco);
+                        pnlGerirProdutos.add(lblMarca);
+                        pnlGerirProdutos.add(lblUnidade_Medida);
+                        pnlGerirProdutos.add(lblPeso_Volume);
+                        pnlGerirProdutos.add(lblPreco_Compra);
+                        pnlGerirProdutos.add(lblPreco_Venda);
+                        pnlGerirProdutos.add(lblDescricao);
+
                         pnlGerirProdutos.add(lblFoto);
 
                         pnlGerirProdutos.add(jcCategoria_Produto);
@@ -814,19 +791,13 @@ public class Gerente extends JFrame {
                         pnlGerirProdutos.add(txtQntEmbalagem);
                         pnlGerirProdutos.add(txtProdutos_Embalagem);
                         pnlGerirProdutos.add(txtProdutosQtd);
-                        pnlGerirProdutos.add(txtTotal_de_Produtos);
-                        pnlGerirProdutos.add(txtVolume_Peso);
-                        pnlGerirProdutos.add(txtPreco);
-
-                        pnlGerirProdutos.add(imgBI);
-                        pnlGerirProdutos.add(imgNascimento);
-                        pnlGerirProdutos.add(imgGenero);
-                        pnlGerirProdutos.add(imgEmail);
-                        pnlGerirProdutos.add(imgPassword);
-                        pnlGerirProdutos.add(imgContacto);
-                        pnlGerirProdutos.add(imgContratacao);
-                        pnlGerirProdutos.add(imgAcesso);
-                        pnlGerirProdutos.add(imgEndereço);
+                        pnlGerirProdutos.add(txtStatus);
+                        pnlGerirProdutos.add(txtMarca);
+                        pnlGerirProdutos.add(jcMedida);
+                        pnlGerirProdutos.add(txtPeso_Volume);
+                        pnlGerirProdutos.add(txtPreco_Compra);
+                        pnlGerirProdutos.add(txtPreco_Venda);
+                        pnlGerirProdutos.add(txtDescricao);
 
                         pnlGerirProdutos.add(rol_Compras);
 
@@ -835,10 +806,9 @@ public class Gerente extends JFrame {
                         pnlGerirProdutos.add(btnActualizar);
                         pnlGerirProdutos.add(btnCadastrar);
                         pnlGerirProdutos.add(btnListar);
-                        pnlGerirProdutos.add(btnCarregar);
+
                         pnlGerirProdutos.add(btnProcurar);
                         pnlGerirProdutos.add(btnEliminar);
-                        pnlGerirProdutos.add(btnReademitir);
 
                         pnlauxPrincipal.add(pnlGerirProdutos);
                         pnlGerirProdutos.setVisible(true);
@@ -917,6 +887,9 @@ public class Gerente extends JFrame {
                 JLabel lblAcesso = new JLabel("Perfil");
                 JLabel lblContratacao = new JLabel("Data da contratação");
                 JLabel lblEndereco = new JLabel("Endereço");
+                JLabel lblFuncao = new JLabel("Função Desempenhada ");
+                JLabel lblStatus = new JLabel("Status do Funcionario ");
+                JLabel lblSalario = new JLabel("Salario ");
 
                 JTextField txtApelido = new JTextField();
                 JTextField txtNome = new JTextField();
@@ -924,11 +897,14 @@ public class Gerente extends JFrame {
                 JDateChooser txtNascimento = new JDateChooser();
                 JTextField txtBI_Nuit = new JTextField();
                 JTextField txtEmail = new JTextField();
-                JTextField txtPassword = new JTextField();
+                JPasswordField txtPassword = new JPasswordField();
                 JTextField txtContacto = new JTextField();
                 JTextField txtAcesso = new JTextField();
                 JDateChooser txtData_Contratacao = new JDateChooser();
                 JTextField txtEndereco = new JTextField();
+                JComboBox jcFuncao = new JComboBox<>();
+                JComboBox jcStatus = new JComboBox<>();
+                JTextField txtSalario = new JTextField();
 
                 JButton btnCarregarFoto = new JButton("Carregar IMG");
                 JButton btnActualizar = new JButton("Actualizar");
@@ -937,8 +913,6 @@ public class Gerente extends JFrame {
                 JButton btnListar = new JButton("Listar");
                 JButton btnProcurar = new JButton("procurar");
                 JButton btnEliminar = new JButton("Demitir");
-                JButton btnReademitir = new JButton("Reademitir");
-                JButton btnCarregar = new JButton("Carregar Dados");
 
                 //Foreground
                 lblTitulo.setForeground(new Color(102, 102, 255));
@@ -947,64 +921,76 @@ public class Gerente extends JFrame {
                 lblTitulo.setBounds(340, 0, 350, 30);
 
                 lblApelido.setBounds(10, 50, 200, 30);
-                txtApelido.setBounds(10, 80, 250, 40);
-                //imgApelido.setBounds(325, 160, 30, 30);
+                txtApelido.setBounds(10, 80, 200, 40);
 
                 lblNome.setBounds(10, 120, 200, 30);
-                txtNome.setBounds(10, 150, 250, 40);
+                txtNome.setBounds(10, 150, 200, 40);
 
                 lblBI_Nuit.setBounds(10, 190, 200, 30);
-                txtBI_Nuit.setBounds(10, 220, 250, 40);
-                imgBI.setBounds(270, 225, 35, 34);
+                txtBI_Nuit.setBounds(10, 220, 200, 40);
 
                 lblGenero.setBounds(10, 260, 200, 30);
-                jcGenero.setBounds(10, 290, 250, 40);
-                imgGenero.setBounds(265, 290, 35, 40);
+                jcGenero.setBounds(10, 290, 200, 40);
 
                 lblNascimento.setBounds(10, 330, 200, 30);
-                txtNascimento.setBounds(10, 360, 250, 40);
-                imgNascimento.setBounds(270, 360, 35, 40);
+                txtNascimento.setBounds(10, 360, 200, 40);
 
-                lblEmail.setBounds(320, 50, 200, 30);
-                txtEmail.setBounds(320, 80, 250, 40);
-                imgEmail.setBounds(575, 80, 35, 40);
+                lblEmail.setBounds(240, 50, 200, 30);
+                txtEmail.setBounds(240, 80, 200, 40);
 
-                lblPassword.setBounds(320, 120, 200, 30);
-                txtPassword.setBounds(320, 150, 250, 40);
-                imgPassword.setBounds(575, 145, 35, 40);
+                lblPassword.setBounds(240, 120, 200, 30);
+                txtPassword.setBounds(240, 150, 200, 40);
 
-                lblContacto.setBounds(320, 190, 200, 30);
-                txtContacto.setBounds(320, 220, 250, 40);
-                imgContacto.setBounds(575, 220, 350, 40);
+                lblContacto.setBounds(240, 190, 200, 30);
+                txtContacto.setBounds(240, 220, 200, 40);
 
-                lblContratacao.setBounds(320, 260, 200, 30);
-                txtData_Contratacao.setBounds(320, 290, 250, 40);
-                imgContratacao.setBounds(575, 290, 35, 40);
+                lblContratacao.setBounds(240, 260, 200, 30);
+                txtData_Contratacao.setBounds(240, 290, 200, 40);
 
-                lblAcesso.setBounds(320, 330, 200, 30);
-                txtAcesso.setBounds(320, 360, 250, 40);
-                imgAcesso.setBounds(595, 360, 35, 40);
-                lblEndereco.setBounds(620, 50, 200, 30);
-                txtEndereco.setBounds(620, 80, 250, 40);
-                imgEndereço.setBounds(585, 360, 35, 40);
+                lblAcesso.setBounds(240, 330, 200, 30);
+                txtAcesso.setBounds(240, 360, 200, 40);
 
-                lblFoto.setBounds(620, 100, 225, 225);
+                lblEndereco.setBounds(470, 50, 200, 30);
+                txtEndereco.setBounds(470, 80, 200, 40);
 
-                btnCarregarFoto.setBounds(665, 310, 165, 30);
-                btnCadastrar.setBounds(10, 420, 120, 40);
-                btnListar.setBounds(145, 420, 90, 40);
-                btnCarregar.setBounds(250, 420, 170, 40);
-                btnActualizar.setBounds(435, 420, 120, 40);
-                btnEliminar.setBounds(570, 420, 100, 40);
-                btnReademitir.setBounds(690, 420, 100, 40);
-                btnReset.setBounds(810, 420, 100, 40);
+                lblFuncao.setBounds(470, 120, 200, 30);
+                jcFuncao.setBounds(470, 150, 200, 40);
+
+                lblStatus.setBounds(470, 190, 200, 30);
+                jcStatus.setBounds(470, 220, 200, 40);
+
+                lblSalario.setBounds(700, 50, 200, 30);
+                txtSalario.setBounds(700, 80, 200, 40);
+
+                lblFoto.setBounds(673, 95, 225, 210);
+
+                btnCarregarFoto.setBounds(730, 295, 165, 30);
+
+                btnCadastrar.setBounds(470, 290, 120, 40);
+                btnActualizar.setBounds(600, 290, 125, 40);
+
+                btnListar.setBounds(585, 360, 120, 40);
+                btnEliminar.setBounds(470, 360, 100, 40);
+                btnReset.setBounds(730, 360, 100, 40);
 
                 //cOLOCANDO AS INFORMACOES NAS CAIXAS
-                jcGenero.addItem("< Genero >");
+                jcGenero.addItem("");
                 jcGenero.addItem(" Masculino ");
                 jcGenero.addItem(" Feminino ");
+                jcGenero.setBackground(Color.white);
 
-                txtPassword.setText("0000");
+                jcFuncao.addItem("");
+                jcFuncao.addItem(" Helper Clients ");
+                jcFuncao.addItem(" Recepcionista ");
+                jcFuncao.addItem("Caixa");
+                jcFuncao.setBackground(Color.white);
+
+                jcStatus.addItem("");
+                jcStatus.addItem(" Activo ");
+                jcStatus.addItem(" Inactivo ");
+                jcStatus.setBackground(Color.white);
+
+                txtPassword.setText("0000000000");
                 txtAcesso.setText("Funcionario");
 
                 txtPassword.setEnabled(false);
@@ -1023,14 +1009,15 @@ public class Gerente extends JFrame {
                 lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                lblFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                btnReademitir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                 // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
@@ -1045,49 +1032,28 @@ public class Gerente extends JFrame {
                 txtData_Contratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 txtAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 txtEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                jcFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                jcStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                txtSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
-                //Icons
-                imgBI.setIcon(Icon_BI);
-                imgGenero.setIcon(Icon_Genero);
-                imgNascimento.setIcon(Icon_Nascimento);
-                imgContacto.setIcon(Icon_Contacto);
-                imgEmail.setIcon(Icon_Email);
-                imgPassword.setIcon(Icon_Password);
-                imgContratacao.setIcon(Icon_Contratacao);
-                imgAcesso.setIcon(Icon_Acesso);
-                //    imgEndereço.setIcon();
                 lblFoto.setIcon(Icon_foto);
                 btnCarregarFoto.setIcon(Icon_CarregarFoto);
-                btnActualizar.setIcon(Icon_ActualizarCFun);
-                btnCadastrar.setIcon(Icon_AdicionarFun);
+                btnActualizar.setIcon(Icon_ActualizarC);
+                btnCadastrar.setIcon(Icon_Adicionar);
                 btnListar.setIcon(Icon_ListarFun);
-                btnCarregar.setIcon(Icon_CarregarInfFn);
-                btnEliminar.setIcon(Icon_EliminarFun);
+                btnEliminar.setIcon(Icon_Eliminar);
 
                 //Personalizando as Bordas das componentes
-                txtApelido.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtNascimento.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtBI_Nuit.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtEmail.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtPassword.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtContacto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtData_Contratacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtAcesso.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                txtEndereco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnActualizar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnReset.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnCadastrar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnListar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnCarregar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnEliminar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnReademitir.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                btnProcurar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnReset.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
 
                 // Criando a tabela 
-                String[] Colunas_Compras = {"Apelido", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Fotografia"};
+                String[] Colunas_Compras = {"Id", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
                 String[][] inf_Compras = {{}};
                 DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -1098,10 +1064,15 @@ public class Gerente extends JFrame {
                 header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 header_Compras.setForeground(new Color(102, 102, 255));
                 Lista_Funcionarios.setRowHeight(120);
-                Lista_Funcionarios.getColumnModel().getColumn(7).setPreferredWidth(230);
+                Lista_Funcionarios.getColumnModel().getColumn(9).setPreferredWidth(200);
+                Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+                Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
+                Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(150);
+                Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(150);
                 JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
                 tabela_Funcionarios.setRowCount(10);
                 rol_Compras.setBounds(10, 470, 900, 180);
+
                 //Adicionando
                 pnlGestao_Funcionarios.add(lblTitulo);
                 pnlGestao_Funcionarios.add(lblTitulo);
@@ -1116,6 +1087,9 @@ public class Gerente extends JFrame {
                 pnlGestao_Funcionarios.add(lblContratacao);
                 pnlGestao_Funcionarios.add(lblAcesso);
                 pnlGestao_Funcionarios.add(lblEndereco);
+                pnlGestao_Funcionarios.add(lblFuncao);
+                pnlGestao_Funcionarios.add(lblStatus);
+                pnlGestao_Funcionarios.add(lblSalario);
                 pnlGestao_Funcionarios.add(lblFoto);
 
                 pnlGestao_Funcionarios.add(txtApelido);
@@ -1129,16 +1103,9 @@ public class Gerente extends JFrame {
                 pnlGestao_Funcionarios.add(txtData_Contratacao);
                 pnlGestao_Funcionarios.add(txtAcesso);
                 pnlGestao_Funcionarios.add(txtEndereco);
-
-                pnlGestao_Funcionarios.add(imgBI);
-                pnlGestao_Funcionarios.add(imgNascimento);
-                pnlGestao_Funcionarios.add(imgGenero);
-                pnlGestao_Funcionarios.add(imgEmail);
-                pnlGestao_Funcionarios.add(imgPassword);
-                pnlGestao_Funcionarios.add(imgContacto);
-                pnlGestao_Funcionarios.add(imgContratacao);
-                pnlGestao_Funcionarios.add(imgAcesso);
-                pnlGestao_Funcionarios.add(imgEndereço);
+                pnlGestao_Funcionarios.add(jcFuncao);
+                pnlGestao_Funcionarios.add(jcStatus);
+                pnlGestao_Funcionarios.add(txtSalario);
 
                 pnlGestao_Funcionarios.add(rol_Compras);
 
@@ -1147,10 +1114,8 @@ public class Gerente extends JFrame {
                 pnlGestao_Funcionarios.add(btnActualizar);
                 pnlGestao_Funcionarios.add(btnCadastrar);
                 pnlGestao_Funcionarios.add(btnListar);
-                pnlGestao_Funcionarios.add(btnCarregar);
                 pnlGestao_Funcionarios.add(btnProcurar);
                 pnlGestao_Funcionarios.add(btnEliminar);
-                pnlGestao_Funcionarios.add(btnReademitir);
 
                 //Fonte
                 lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
@@ -1165,14 +1130,15 @@ public class Gerente extends JFrame {
                 lblContratacao.setForeground(new Color(102, 102, 255));
                 lblAcesso.setForeground(new Color(102, 102, 255));
                 lblEndereco.setForeground(new Color(102, 102, 255));
+                lblFuncao.setForeground(new Color(102, 102, 255));
+                lblStatus.setForeground(new Color(102, 102, 255));
+                lblSalario.setForeground(new Color(102, 102, 255));
                 btnCarregarFoto.setForeground(new Color(0, 102, 255));
                 btnActualizar.setForeground(new Color(0, 102, 255));
                 btnCadastrar.setForeground(new Color(0, 102, 255));
                 btnListar.setForeground(new Color(0, 102, 255));
-                btnCarregar.setForeground(new Color(0, 102, 255));
                 btnEliminar.setForeground(new Color(0, 102, 255));
                 btnProcurar.setForeground(new Color(0, 102, 255));
-                btnReademitir.setForeground(new Color(0, 102, 255));
                 btnReset.setForeground(new Color(0, 102, 255));
 
                 // Personalizando o BackGround
@@ -1180,11 +1146,17 @@ public class Gerente extends JFrame {
                 btnActualizar.setBackground(Color.white);
                 btnReset.setBackground(Color.white);
                 btnCadastrar.setBackground(Color.white);
-                btnCarregar.setBackground(Color.white);
                 btnListar.setBackground(Color.white);
                 btnProcurar.setBackground(Color.white);
                 btnEliminar.setBackground(Color.white);
-                btnReademitir.setBackground(Color.white);
+
+                //Dando ação aos Botoes
+                btnCadastrar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
 
                 pnlauxPrincipal.add(pnlGestao_Funcionarios);
                 pnlGestao_Funcionarios.setVisible(true);
@@ -1203,6 +1175,7 @@ public class Gerente extends JFrame {
         btnMenssagens.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
                 pnlMenu_Botoes.setVisible(false);
                 pnlVisaoGeral.setVisible(false);
                 pnlConfiguracoes.setVisible(false);
@@ -1245,10 +1218,10 @@ public class Gerente extends JFrame {
                 btnGerir.setForeground(Color.white);
                 btnVoltarPrincipal.setForeground(Color.white);
 
-                btnEnviar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnCaixa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnGerir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnEnviar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnCaixa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnGerir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
                 btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnEnviar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -1303,24 +1276,24 @@ public class Gerente extends JFrame {
                         jcDestinatario.setBackground(Color.white);
 
                         //Cordenadas
-                        lblTitulo.setBounds(100, 130, 250, 30);
-                        lblRemetente.setBounds(100, 30, 100, 30);
-                        txtRemetente.setBounds(100, 60, 250, 40);
-                        lblDestinatario.setBounds(570, 30, 100, 30);
-                        jcDestinatario.setBounds(570, 60, 250, 40);
-                        txta.setBounds(100, 160, 720, 400);
-                        btnLimpar.setBounds(100, 600, 100, 30);
-                        btnEnviar.setBounds(720, 600, 100, 30);
+                        lblTitulo.setBounds(155, 110, 250, 30);
+                        lblRemetente.setBounds(155, 30, 100, 30);
+                        txtRemetente.setBounds(155, 60, 200, 30);
+                        lblDestinatario.setBounds(550, 30, 100, 30);
+                        jcDestinatario.setBounds(550, 60, 200, 30);
+                        txta.setBounds(155, 140, 600, 450);
+                        btnLimpar.setBounds(155, 610, 80, 30);
+                        btnEnviar.setBounds(673, 610, 80, 30);
 
                         //Borda  
-                        jcDestinatario.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txta.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtRemetente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        jcDestinatario.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+                        txta.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+                        txtRemetente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
                         btnEnviar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
                         btnLimpar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
 
                         //Fonte 
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
                         lblDestinatario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblRemetente.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         txta.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -1330,8 +1303,8 @@ public class Gerente extends JFrame {
                         btnEnviar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                         // Instrucao que nao permite alterar
-                        jcDestinatario.addItem("<Selecionar Destinatario>");
-                        txtRemetente.setEditable(false);
+                        jcDestinatario.addItem("");
+                        txtRemetente.setEnabled(false);
 
                         //Adicionando as Componentes
                         pnlEnviar.add(lblTitulo);
@@ -1381,26 +1354,26 @@ public class Gerente extends JFrame {
                         btnProcurar.setBackground(Color.white);
 
                         //Bordas
-                        lblMenssagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        jcRementente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        lblMenssagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+                        jcRementente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
                         btnNext.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnPreview.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
 
                         //Localizacao
-                        lblMenssagem.setBounds(105, 140, 700, 500);
-                        jcRementente.setBounds(500, 90, 250, 40);
-                        btnProcurar.setBounds(750, 90, 40, 40);
+                        lblMenssagem.setBounds(155, 140, 600, 500);
+                        jcRementente.setBounds(550, 90, 200, 30);
+                        btnProcurar.setBounds(750, 85, 40, 40);
                         lblTitulo.setBounds(340, 0, 250, 30);
-                        btnPreview.setBounds(20, 350, 40, 40);
-                        btnNext.setBounds(850, 350, 40, 40);
+                        btnPreview.setBounds(70, 350, 40, 40);
+                        btnNext.setBounds(800, 350, 40, 40);
 
                         // 
-                        jcRementente.addItem("<Selecionar o Rementente>");
+                        jcRementente.addItem("");
                         btnProcurar.setIcon(Icon_Procurar);
 
                         //Fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
                         lblMenssagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         jcRementente.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
 
@@ -1456,10 +1429,10 @@ public class Gerente extends JFrame {
                         btnRelatorio_enviadas.setForeground(Color.white);
                         btnVoltarPrincipal.setForeground(Color.white);
 
-                        btnMenssagens_Envidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                        btnMenssagens_Recebidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                        btnRelatorio_enviadas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                        btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                        btnMenssagens_Envidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnMenssagens_Recebidas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnRelatorio_enviadas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
                         btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnMenssagens_Envidas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));

@@ -1,5 +1,5 @@
 /*
- * To change this license header_Compras, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -47,7 +48,7 @@ public class Servicos_Organizacao extends JFrame {
     ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\remover-do-carrinho (1).png");
     ImageIcon Icon_foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
     ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\CarregarImagemF.png");
-    ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\Actualizar.png");
+    ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\editar.png");
     ImageIcon Icon_btnActualizarFu = new ImageIcon("src\\Imagens\\funcionarios.png");
     ImageIcon Logotipo = new ImageIcon("src\\Imagens\\Logo.jpeg");
 
@@ -105,7 +106,7 @@ public class Servicos_Organizacao extends JFrame {
         pnlauxPrincipal.setBackground(Color.white);
         pnlPrincipal.setBackground(Color.white);
 
-          lblImagem.setBounds(0, 0, 920, 660);
+        lblImagem.setBounds(0, 0, 920, 660);
         lblImagem.setIcon(Logotipo);
         pnlPrincipal.add(lblImagem);
 
@@ -144,11 +145,11 @@ public class Servicos_Organizacao extends JFrame {
         btnSair.setBounds(13, 470, 140, 40);
 
         // Agoora, neste passo vou trabalhar a fonte.
-        btnMeuPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnServicos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnHistorico_Vendas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnDefinicoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-        btnSair.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+        btnMeuPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnServicos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnHistorico_Vendas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnDefinicoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnSair.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
         // Neste passo, vou trabalhar o background
         btnMeuPerfil.setBackground(new Color(102, 102, 255));
@@ -177,7 +178,7 @@ public class Servicos_Organizacao extends JFrame {
         btnHistorico_Vendas.setIcon(Icon_Historico);
         btnServicos.setIcon(Icon_Tarefas);
         btnSair.setIcon(Icon_Voltar);
-        
+
         // Neste passo, adicionei as componenetes criadas acima criados.
         pnlDe_Menu_Principal.add(lblFoto);
         pnlDe_Menu_Principal.add(lblNomefuncionario);
@@ -205,6 +206,7 @@ public class Servicos_Organizacao extends JFrame {
         btnMeuPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
                 pnlServicos.setVisible(false);
                 pnlHistorico.setVisible(false);
                 pnlDefinicoes.setVisible(false);
@@ -214,6 +216,8 @@ public class Servicos_Organizacao extends JFrame {
                 pnlMeuPerfil.setBounds(0, 0, 280, 700);
                 pnlMeuPerfil.setBackground(new Color(102, 102, 255));
                 pnlMeuPerfil.setLayout(null);
+                
+                pnlPrincipal.setBounds(280, 0, 920, 700);
 
                 //Declarando as componentes
                 JLabel lblApelido = new JLabel();
@@ -269,15 +273,15 @@ public class Servicos_Organizacao extends JFrame {
                 btnSair2.setIcon(Icon_Voltar);
 
                 //Personalizando a fonte da labels
-                lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblNomeFuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblData_Nascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblNumeroBI.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                lblestado.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 13));
-                btnSair2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblNomeFuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblData_Nascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblNumeroBI.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblestado.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                btnSair2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                 //Adicionando todas componentes ao painel
                 lblFotografia.setIcon(fotografiaPerfil);
@@ -293,6 +297,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlMeuPerfil.add(txtbarra1);
                 pnlMeuPerfil.add(btnSair2);
                 pnlauxPrincipal.add(pnlMeuPerfil);
+                pnlauxPrincipal.add(pnlPrincipal);
                 pnlMeuPerfil.setVisible(true);
 
                 // dando acção ao botao para voltar
@@ -330,7 +335,7 @@ public class Servicos_Organizacao extends JFrame {
                 JPanel MenuServicos = new JPanel();
                 JButton btnVender = new JButton("   Vender Produtos");
                 JButton btnListarProdutos = new JButton("   Listar Produtos");
-                JButton btnProcurarProduto = new JButton("   Procurar Produto");
+                JButton btnProcurarProduto = new JButton("   Stock de Produto");
                 JButton btnVoltarPrincipal = new JButton("   Voltar");
 
                 lblFotografia.setBounds(45, 50, 180, 180);
@@ -353,10 +358,10 @@ public class Servicos_Organizacao extends JFrame {
                 btnProcurarProduto.setForeground(Color.white);
                 btnVoltarPrincipal.setForeground(Color.white);
 
-                btnVender.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnListarProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnProcurarProduto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnVender.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnListarProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnProcurarProduto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
                 btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnVender.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -387,10 +392,10 @@ public class Servicos_Organizacao extends JFrame {
                         JButton btnEliminar_Carinho = new JButton();
 
                         lblListar.setBounds(270, 0, 350, 30);
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
 
                         lblLista_compras.setBounds(270, 310, 350, 30);
-                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
 
                         btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnEliminar_Carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -433,12 +438,12 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Personalizando a Lista de Produtos
                         Lista_Produtos.setShowGrid(false);
-                        header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Produtos.setForeground(new Color(102, 102, 255));
 
                         //Personalizando a Linhas_Colunas/lista de Compras
                         Lista_Compras.setShowGrid(false);
-                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Compras.setForeground(new Color(102, 102, 255));
 
                         tabela.setRowCount(10);
@@ -486,7 +491,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         lblListar.setBounds(270, 20, 350, 30);
 
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
                         lblListar.setText("Lista de Produtos da Organizacao");
                         lblListar.setForeground(new Color(0, 102, 255));
 
@@ -498,7 +503,7 @@ public class Servicos_Organizacao extends JFrame {
                         JTableHeader header_Lista = Lista_Produtos.getTableHeader();
 
                         //Personalizando a Linhas_Colunas
-                        header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Lista.setForeground(new Color(102, 102, 255));
                         Lista_Produtos.setShowGrid(false);
 
@@ -558,7 +563,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         //Personalizacao da Lista
                         header.setForeground(new Color(102, 102, 220));
-                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
 
                         // Lista_Produtos.setModel(Linhas_Colunas);
                         Lista_Produtos.setRowHeight(180);
@@ -570,7 +575,7 @@ public class Servicos_Organizacao extends JFrame {
                         Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(130);
 
                         //Personalizando a fonte das informacoes da Linhas_Colunas
-                        Lista_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                        Lista_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         //Lista_Produtos.setForeground(new Color(102, 102, 220));
                         Lista_Produtos.setShowGrid(false);
 
@@ -639,10 +644,10 @@ public class Servicos_Organizacao extends JFrame {
                 JLabel lblListar = new JLabel();
 
                 lblListar.setBounds(270, 30, 350, 30);
-                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 22));
+                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
                 lblListar.setText("Relatorio de Minhas Vendas");
 
-                lblListar.setForeground(new Color(102, 102, 225));
+                lblListar.setForeground(new Color(0, 102, 225));
 
                 String[] listar = {"Produto", "Preço", "Quant", "Forma_Pag", "Data", "Hora", "Total_Pago", "Imagem"};
                 String[][] inf = {{}};
@@ -653,7 +658,7 @@ public class Servicos_Organizacao extends JFrame {
 
                 //Personalizando a fonte das informacoes da Linhas_Colunas
                 header.setForeground(new Color(102, 102, 220));
-                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 infCa.setShowGrid(false);
 
                 infCa.setModel(tabela);
@@ -678,9 +683,9 @@ public class Servicos_Organizacao extends JFrame {
                 pnlHistorico.add(rol);
 
                 pnlHistorico.setVisible(true);
-                      pnlauxPrincipal.add(pnlHistorico);
+                pnlauxPrincipal.add(pnlHistorico);
             }
-             
+
         });
         // Definicoes
         btnDefinicoes.addActionListener(new ActionListener() {
@@ -714,8 +719,8 @@ public class Servicos_Organizacao extends JFrame {
                 btnActualizardados.setForeground(Color.white);
                 btnVoltar.setForeground(Color.white);
 
-                btnActualizardados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
-                btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 20));
+                btnActualizardados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
                 btnVoltar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                 btnActualizardados.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -741,9 +746,9 @@ public class Servicos_Organizacao extends JFrame {
                         pnlActualizar_Dados.setBounds(280, 0, 920, 700);
                         pnlActualizar_Dados.setBackground(Color.white);
                         pnlActualizar_Dados.setLayout(null);
-                     
-                        //Criando as componentes
-                        JLabel lblTitulo = new JLabel();
+
+                        //Craindo as ComponentesAt
+                        JLabel lblTitulo = new JLabel("Actualizar Infomações");
                         JLabel lblFoto = new JLabel();
                         JLabel imgApelido = new JLabel();
                         JLabel imgNome = new JLabel();
@@ -768,6 +773,9 @@ public class Servicos_Organizacao extends JFrame {
                         JLabel lblAcesso = new JLabel("Perfil");
                         JLabel lblContratacao = new JLabel("Data da contratação");
                         JLabel lblEndereco = new JLabel("Endereço");
+                        JLabel lblFuncao = new JLabel("Função Desempenhada ");
+                        JLabel lblStatus = new JLabel("Status do Funcionario ");
+                        JLabel lblSalario = new JLabel("Salario ");
 
                         JTextField txtApelido = new JTextField();
                         JTextField txtNome = new JTextField();
@@ -775,132 +783,143 @@ public class Servicos_Organizacao extends JFrame {
                         JDateChooser txtNascimento = new JDateChooser();
                         JTextField txtBI_Nuit = new JTextField();
                         JTextField txtEmail = new JTextField();
-                        JTextField txtPassword = new JTextField();
+                        JPasswordField txtPassword = new JPasswordField();
                         JTextField txtContacto = new JTextField();
                         JTextField txtAcesso = new JTextField();
                         JDateChooser txtData_Contratacao = new JDateChooser();
                         JTextField txtEndereco = new JTextField();
+                        JComboBox jcFuncao = new JComboBox<>();
+                        JComboBox jcStatus = new JComboBox<>();
+                        JTextField txtSalario = new JTextField();
 
                         JButton btnCarregarFoto = new JButton("Carregar IMG");
                         JButton btnActualizar = new JButton("Actualizar");
-                        JButton btnReset = new JButton("Limpar");
+                        
+                              // Criando a tabela 
+                String[] Colunas = {"Email","Password", "Contacto","Endereço","Fotografia"};
+                String[][] inf = {{}};
+                DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
 
-                        //Dando Cordenadas
-                        lblTitulo.setBounds(315, 40, 350, 40);
+                // Criando as Tabelas/Listas
+                JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
+                JTableHeader header = Lista_Funcionarios.getTableHeader();
+                
+                Lista_Funcionarios.setShowGrid(false);//
+                
+                 Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+                
+                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                header.setForeground(new Color(102, 102, 255));
+                
+                Lista_Funcionarios.setRowHeight(120);
+                
+                JScrollPane rol = new JScrollPane(Lista_Funcionarios);
+                
+                        //Foreground
+                        lblTitulo.setForeground(new Color(102, 102, 255));
+                        
 
-                        lblApelido.setBounds(10, 130, 200, 30);
-                        txtApelido.setBounds(10, 160, 250, 40);
-                        //imgApelido.setBounds(325, 160, 30, 30);
+                        //Cordenadas
+                        lblTitulo.setBounds(340, 0, 350, 30);
 
-                        lblNome.setBounds(10, 200, 200, 30);
-                        txtNome.setBounds(10, 230, 250, 40);
+                        lblApelido.setBounds(100, 70, 200, 30);
+                        txtApelido.setBounds(100,100, 200, 40);
 
-                        lblBI_Nuit.setBounds(10, 270, 200, 30);
-                        txtBI_Nuit.setBounds(10, 300, 250, 40);
-                        imgBI.setBounds(270, 305, 35, 34);
+                        lblNome.setBounds(100,140, 200, 30);
+                        txtNome.setBounds(100, 170, 200, 40);
 
-                        lblGenero.setBounds(10, 340, 200, 30);
-                        jcGenero.setBounds(10, 370, 250, 40);
-                        imgGenero.setBounds(265, 370, 35, 40);
+                        lblBI_Nuit.setBounds(100, 210, 200, 30);
+                        txtBI_Nuit.setBounds(100,240, 200, 40);
 
-                        lblNascimento.setBounds(10, 410, 200, 30);
-                        txtNascimento.setBounds(10, 440, 250, 40);
-                        imgNascimento.setBounds(270, 440, 35, 40);
+                        lblGenero.setBounds(100,280, 200, 30);
+                        jcGenero.setBounds(100,310, 200, 40);
 
-                        lblEmail.setBounds(320, 130, 200, 30);
-                        txtEmail.setBounds(320, 160, 250, 40);
-                        imgEmail.setBounds(575, 160, 35, 40);
+                        lblNascimento.setBounds(100,350, 200, 30);
+                        txtNascimento.setBounds(100, 380, 200, 40);
 
-                        lblPassword.setBounds(320, 200, 200, 30);
-                        txtPassword.setBounds(320, 230, 250, 40);
-                        imgPassword.setBounds(575, 225, 35, 40);
+                        lblEmail.setBounds(360,70, 200, 30);
+                        txtEmail.setBounds(360, 100, 200, 40);
 
-                        lblContacto.setBounds(320, 270, 200, 30);
-                        txtContacto.setBounds(320, 300, 250, 40);
-                        imgContacto.setBounds(575, 300, 350, 40);
+                        lblPassword.setBounds(360, 140, 200, 30);
+                        txtPassword.setBounds(360, 170, 200, 40);
 
-                        lblContratacao.setBounds(320, 340, 200, 30);
-                        txtData_Contratacao.setBounds(320, 370, 250, 40);
-                        imgContratacao.setBounds(575, 370, 35, 40);
+                        lblContacto.setBounds(620, 70, 200, 30);
+                        txtContacto.setBounds(620, 100, 200, 40);
 
-                        lblAcesso.setBounds(320, 410, 200, 30);
-                        txtAcesso.setBounds(320, 440, 250, 40);
-                        imgAcesso.setBounds(595, 440, 35, 40);
-                        lblEndereco.setBounds(620, 130, 200, 30);
-                        txtEndereco.setBounds(620, 160, 250, 40);
-                        imgEndereço.setBounds(585, 440, 35, 40);
+                        lblContratacao.setBounds(620, 140, 200, 30);
+                        txtData_Contratacao.setBounds(620, 170, 200, 40);
 
-                        lblFoto.setBounds(620, 210, 225, 225);
+                        lblAcesso.setBounds(620, 210, 200, 30);
+                        txtAcesso.setBounds(620,240, 200, 40);
 
-                        btnCarregarFoto.setBounds(665, 410, 170, 30);
-                        btnActualizar.setBounds(20, 540, 140, 30);
-                        btnReset.setBounds(470, 540, 120, 30);
+                        lblEndereco.setBounds(620, 280, 200, 30);
+                        txtEndereco.setBounds(620,310, 200, 40);
 
-                        /*Uma vez que nem todos dados podem ser modificados pelo funcionario, vou neste passo, definir as funcionalidades que podem
-                        que podem ser  alteradas, sequem as intruções
-                         */
-                        txtApelido.setEditable(false);
-                        txtNome.setEditable(false);
-                        txtBI_Nuit.setEditable(false);
-                        txtNascimento.setEnabled(false);
-                        jcGenero.setEnabled(false);
-                        txtData_Contratacao.setEnabled(false);
-                        txtAcesso.setEditable(false);
+                        lblFuncao.setBounds(620,350, 200, 30);
+                        jcFuncao.setBounds(620,380, 200, 40);
 
-                        //Colocando as informacoes nas componentes e Icons
-                        lblTitulo.setText("Actualizar meus dados");
-                        imgBI.setIcon(Icon_BI);
-                        imgGenero.setIcon(Icon_Genero);
-                        imgNascimento.setIcon(Icon_Nascimento);
-                        imgContacto.setIcon(Icon_Contacto);
-                        imgEmail.setIcon(Icon_Email);
-                        imgPassword.setIcon(Icon_Password);
-                        imgContratacao.setIcon(Icon_Contratacao);
-                        imgAcesso.setIcon(Icon_Acesso);
-                        //    imgEndereço.setIcon();
-                        lblFoto.setIcon(Icon_foto);
-                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
-                        btnActualizar.setIcon(Icon_Actualizar);
+                        lblSalario.setBounds(620,420, 200, 30);
+                        txtSalario.setBounds(620, 450, 200, 40);
 
-                        // Personalizando o BackGround
-                        btnCarregarFoto.setBackground(Color.white);
-                        btnActualizar.setBackground(Color.white);
-                        btnReset.setBackground(Color.white);
+                        lblStatus.setBounds(100,420, 200, 30);
+                        jcStatus.setBounds(100,450, 200, 40);
 
-                        //Personalizado a cor das letras
-                        lblTitulo.setForeground(new Color(0, 102, 255));
-                        lblApelido.setForeground(new Color(102, 102, 255));
-                        lblNome.setForeground(new Color(102, 102, 255));
-                        lblGenero.setForeground(new Color(102, 102, 255));
-                        lblNascimento.setForeground(new Color(102, 102, 255));
-                        lblBI_Nuit.setForeground(new Color(102, 102, 255));
-                        lblEmail.setForeground(new Color(102, 102, 255));
-                        lblPassword.setForeground(new Color(102, 102, 255));
-                        lblContacto.setForeground(new Color(102, 102, 255));
-                        lblContratacao.setForeground(new Color(102, 102, 255));
-                        lblAcesso.setForeground(new Color(102, 102, 255));
-                        lblEndereco.setForeground(new Color(102, 102, 255));
-                        btnCarregarFoto.setForeground(new Color(0, 102, 255));
-                        btnActualizar.setForeground(new Color(0, 102, 255));
-                        btnReset.setForeground(new Color(0, 102, 255));
+                       lblFoto.setBounds(330, 200, 225, 210);
 
-                        //Personalizando o BackGround
+                       btnCarregarFoto.setBounds(380, 390, 165, 30);
+                       
+                        btnActualizar.setBounds(365, 450, 165, 30);
+                        
+                           rol.setBounds(100, 520, 720, 610);
+
+                        //cOLOCANDO AS INFORMACOES NAS CAIXAS
+                        jcGenero.addItem("");
+                        jcGenero.addItem(" Masculino ");
+                        jcGenero.addItem(" Feminino ");
+                        jcGenero.setBackground(Color.white);
+
+                        jcFuncao.addItem("");
+                        jcFuncao.addItem(" Helper Clients ");
+                        jcFuncao.addItem(" Recepcionista ");
+                        jcFuncao.addItem("Caixa");
+                        jcFuncao.setBackground(Color.white);
+
+                        jcStatus.addItem("");
+                        jcStatus.addItem(" Activo ");
+                        jcStatus.addItem(" Inactivo ");
+                        jcStatus.setBackground(Color.white);
+
+                  //Privando algumas Actualições
+                         txtApelido.setEnabled(false);
+                         txtNome.setEnabled(false);
+                         jcGenero.setEnabled(false);
+                         txtNascimento.setEnabled(false);
+                         txtBI_Nuit.setEnabled(false);
+                         txtData_Contratacao.setEnabled(false);
+                         txtAcesso.setEnabled(false);
+                         jcFuncao.setEnabled(false);
+                         jcStatus.setEnabled(false);
+                         txtSalario.setEnabled(false);
+                         
                         //Personalizando a fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 24));
-                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
-                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN,18));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 24));
+                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN,18));
+                     
 
                         // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
                         txtApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -914,24 +933,26 @@ public class Servicos_Organizacao extends JFrame {
                         txtData_Contratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         txtAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         txtEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
+                        lblFoto.setIcon(Icon_foto);
+                        
+                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
+                        btnActualizar.setIcon(Icon_Actualizar);
                         //Personalizando as Bordas das componentes
-                        txtApelido.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtNascimento.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtBI_Nuit.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtEmail.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtPassword.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtContacto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtData_Contratacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtAcesso.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        txtEndereco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-                        btnReset.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                      
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                
+                            }
+                        });
 
-                        //Adicionando as componentes
+                        pnlActualizar_Dados.add(lblTitulo);
                         pnlActualizar_Dados.add(lblTitulo);
                         pnlActualizar_Dados.add(lblApelido);
                         pnlActualizar_Dados.add(lblNome);
@@ -944,6 +965,9 @@ public class Servicos_Organizacao extends JFrame {
                         pnlActualizar_Dados.add(lblContratacao);
                         pnlActualizar_Dados.add(lblAcesso);
                         pnlActualizar_Dados.add(lblEndereco);
+                        pnlActualizar_Dados.add(lblFuncao);
+                        pnlActualizar_Dados.add(lblStatus);
+                        pnlActualizar_Dados.add(lblSalario);
                         pnlActualizar_Dados.add(lblFoto);
 
                         pnlActualizar_Dados.add(txtApelido);
@@ -957,21 +981,37 @@ public class Servicos_Organizacao extends JFrame {
                         pnlActualizar_Dados.add(txtData_Contratacao);
                         pnlActualizar_Dados.add(txtAcesso);
                         pnlActualizar_Dados.add(txtEndereco);
-
-                        pnlActualizar_Dados.add(imgBI);
-                        pnlActualizar_Dados.add(imgNascimento);
-                        pnlActualizar_Dados.add(imgGenero);
-                        pnlActualizar_Dados.add(imgEmail);
-                        pnlActualizar_Dados.add(imgPassword);
-                        pnlActualizar_Dados.add(imgContacto);
-                        pnlActualizar_Dados.add(imgContratacao);
-                        pnlActualizar_Dados.add(imgAcesso);
-                        pnlActualizar_Dados.add(imgEndereço);
+                        pnlActualizar_Dados.add(jcFuncao);
+                        pnlActualizar_Dados.add(jcStatus);
+                        pnlActualizar_Dados.add(txtSalario);
+                        pnlActualizar_Dados.add(rol);
 
                         pnlActualizar_Dados.add(btnCarregarFoto);
                         pnlActualizar_Dados.add(btnActualizar);
-                        pnlActualizar_Dados.add(btnReset);
 
+                        //Fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
+                        lblApelido.setForeground(new Color(102, 102, 255));
+                        lblNome.setForeground(new Color(102, 102, 255));
+                        lblGenero.setForeground(new Color(102, 102, 255));
+                        lblNascimento.setForeground(new Color(102, 102, 255));
+                        lblBI_Nuit.setForeground(new Color(102, 102, 255));
+                        lblEmail.setForeground(new Color(102, 102, 255));
+                        lblPassword.setForeground(new Color(102, 102, 255));
+                        lblContacto.setForeground(new Color(102, 102, 255));
+                        lblContratacao.setForeground(new Color(102, 102, 255));
+                        lblAcesso.setForeground(new Color(102, 102, 255));
+                        lblEndereco.setForeground(new Color(102, 102, 255));
+                        lblFuncao.setForeground(new Color(102, 102, 255));
+                        lblStatus.setForeground(new Color(102, 102, 255));
+                        lblSalario.setForeground(new Color(102, 102, 255));
+                        btnCarregarFoto.setForeground(new Color(0, 102, 255));
+                        btnActualizar.setForeground(new Color(0, 102, 255));
+                 
+
+                        // Personalizando o BackGround
+                        btnCarregarFoto.setBackground(Color.white);
+                        btnActualizar.setBackground(Color.white);
                         pnlActualizar_Dados.setVisible(true);
 
                     }
@@ -996,7 +1036,7 @@ public class Servicos_Organizacao extends JFrame {
 
             }
         });
-          this.add(pnlBarra);
+        this.add(pnlBarra);
         this.add(pnlBarra1);
         this.add(pnlauxPrincipal);
         pnlauxPrincipal.add(pnlPrincipal);
