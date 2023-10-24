@@ -216,7 +216,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlMeuPerfil.setBounds(0, 0, 280, 700);
                 pnlMeuPerfil.setBackground(new Color(102, 102, 255));
                 pnlMeuPerfil.setLayout(null);
-                
+
                 pnlPrincipal.setBounds(280, 0, 920, 700);
 
                 //Declarando as componentes
@@ -387,24 +387,37 @@ public class Servicos_Organizacao extends JFrame {
 
                         JLabel lblListar = new JLabel();
                         JLabel lblLista_compras = new JLabel();
-
+                        JLabel lblTotal = new JLabel("Total a Pagar");
+                        JLabel lblViewMoney= new JLabel("0");
+                        
+                                
                         JButton btnAdicionar_carinho = new JButton();
                         JButton btnEliminar_Carinho = new JButton();
+                        JButton btnProximo = new JButton("Proximo");
+                        
+                        //BackGround
+                        btnProximo.setBackground(Color.white);
 
                         lblListar.setBounds(270, 0, 350, 30);
                         lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
+                        lblTotal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblViewMoney.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                         lblLista_compras.setBounds(270, 310, 350, 30);
                         lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
+                        btnProximo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
 
                         btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnEliminar_Carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnProximo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
 
                         lblListar.setText("Selecione o produto na Tabela");
                         lblLista_compras.setText("Lista de Produtos Selecionados");
 
                         lblListar.setForeground(new Color(0, 102, 255));
                         lblLista_compras.setForeground(new Color(0, 102, 255));
+                        btnProximo.setForeground(new Color(0, 102, 255));
+                        lblTotal.setForeground(new Color(102, 102, 255));
 
                         btnAdicionar_carinho.setBackground(Color.white);
                         btnEliminar_Carinho.setBackground(Color.white);
@@ -456,7 +469,11 @@ public class Servicos_Organizacao extends JFrame {
                         rol_Compras.setBounds(10, 350, 890, 250);
 
                         btnAdicionar_carinho.setBounds(800, 290, 60, 60);
+                         btnProximo.setBounds(370, 615, 80, 30);
                         btnEliminar_Carinho.setBounds(800, 600, 60, 60);
+                        lblTotal.setBounds(10, 600, 100, 30);
+                        lblViewMoney.setBounds(20, 625, 60, 30);
+                  
 
                         btnAdicionar_carinho.setIcon(Icon_Adicionar_Carinha);
                         btnEliminar_Carinho.setIcon(Icon_Eliminar_Carinha);
@@ -467,6 +484,9 @@ public class Servicos_Organizacao extends JFrame {
                         pnlVenderProdutos.add(rol_Compras);
                         pnlVenderProdutos.add(btnAdicionar_carinho);
                         pnlVenderProdutos.add(btnEliminar_Carinho);
+                        pnlVenderProdutos.add(lblTotal);
+                        pnlVenderProdutos.add(lblViewMoney);
+                        pnlVenderProdutos.add(btnProximo);
 
                         pnlVenderProdutos.setVisible(true);
 
@@ -794,50 +814,49 @@ public class Servicos_Organizacao extends JFrame {
 
                         JButton btnCarregarFoto = new JButton("Carregar IMG");
                         JButton btnActualizar = new JButton("Actualizar");
-                        
-                              // Criando a tabela 
-                String[] Colunas = {"Email","Password", "Contacto","Endereço","Fotografia"};
-                String[][] inf = {{}};
-                DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
 
-                // Criando as Tabelas/Listas
-                JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
-                JTableHeader header = Lista_Funcionarios.getTableHeader();
-                
-                Lista_Funcionarios.setShowGrid(false);//
-                
-                 Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
-                
-                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                header.setForeground(new Color(102, 102, 255));
-                
-                Lista_Funcionarios.setRowHeight(120);
-                
-                JScrollPane rol = new JScrollPane(Lista_Funcionarios);
-                
+                        // Criando a tabela 
+                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Fotografia"};
+                        String[][] inf = {{}};
+                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
+
+                        // Criando as Tabelas/Listas
+                        JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
+                        JTableHeader header = Lista_Funcionarios.getTableHeader();
+
+                        Lista_Funcionarios.setShowGrid(false);//
+                             Lista_Funcionarios.setRowHeight(120);
+
+
+                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+
+                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        header.setForeground(new Color(102, 102, 255));
+
+                        JScrollPane rol = new JScrollPane(Lista_Funcionarios);
+
                         //Foreground
                         lblTitulo.setForeground(new Color(102, 102, 255));
-                        
 
                         //Cordenadas
                         lblTitulo.setBounds(340, 0, 350, 30);
 
                         lblApelido.setBounds(100, 70, 200, 30);
-                        txtApelido.setBounds(100,100, 200, 40);
+                        txtApelido.setBounds(100, 100, 200, 40);
 
-                        lblNome.setBounds(100,140, 200, 30);
+                        lblNome.setBounds(100, 140, 200, 30);
                         txtNome.setBounds(100, 170, 200, 40);
 
                         lblBI_Nuit.setBounds(100, 210, 200, 30);
-                        txtBI_Nuit.setBounds(100,240, 200, 40);
+                        txtBI_Nuit.setBounds(100, 240, 200, 40);
 
-                        lblGenero.setBounds(100,280, 200, 30);
-                        jcGenero.setBounds(100,310, 200, 40);
+                        lblGenero.setBounds(100, 280, 200, 30);
+                        jcGenero.setBounds(100, 310, 200, 40);
 
-                        lblNascimento.setBounds(100,350, 200, 30);
+                        lblNascimento.setBounds(100, 350, 200, 30);
                         txtNascimento.setBounds(100, 380, 200, 40);
 
-                        lblEmail.setBounds(360,70, 200, 30);
+                        lblEmail.setBounds(360, 70, 200, 30);
                         txtEmail.setBounds(360, 100, 200, 40);
 
                         lblPassword.setBounds(360, 140, 200, 30);
@@ -850,27 +869,27 @@ public class Servicos_Organizacao extends JFrame {
                         txtData_Contratacao.setBounds(620, 170, 200, 40);
 
                         lblAcesso.setBounds(620, 210, 200, 30);
-                        txtAcesso.setBounds(620,240, 200, 40);
+                        txtAcesso.setBounds(620, 240, 200, 40);
 
                         lblEndereco.setBounds(620, 280, 200, 30);
-                        txtEndereco.setBounds(620,310, 200, 40);
+                        txtEndereco.setBounds(620, 310, 200, 40);
 
-                        lblFuncao.setBounds(620,350, 200, 30);
-                        jcFuncao.setBounds(620,380, 200, 40);
+                        lblFuncao.setBounds(620, 350, 200, 30);
+                        jcFuncao.setBounds(620, 380, 200, 40);
 
-                        lblSalario.setBounds(620,420, 200, 30);
+                        lblSalario.setBounds(620, 420, 200, 30);
                         txtSalario.setBounds(620, 450, 200, 40);
 
-                        lblStatus.setBounds(100,420, 200, 30);
-                        jcStatus.setBounds(100,450, 200, 40);
+                        lblStatus.setBounds(100, 420, 200, 30);
+                        jcStatus.setBounds(100, 450, 200, 40);
 
-                       lblFoto.setBounds(330, 200, 225, 210);
+                        lblFoto.setBounds(330, 200, 225, 210);
 
-                       btnCarregarFoto.setBounds(380, 390, 165, 30);
-                       
+                        btnCarregarFoto.setBounds(380, 390, 165, 30);
+
                         btnActualizar.setBounds(365, 450, 165, 30);
-                        
-                           rol.setBounds(100, 520, 720, 610);
+
+                        rol.setBounds(100, 520, 720, 560);
 
                         //cOLOCANDO AS INFORMACOES NAS CAIXAS
                         jcGenero.addItem("");
@@ -889,18 +908,18 @@ public class Servicos_Organizacao extends JFrame {
                         jcStatus.addItem(" Inactivo ");
                         jcStatus.setBackground(Color.white);
 
-                  //Privando algumas Actualições
-                         txtApelido.setEnabled(false);
-                         txtNome.setEnabled(false);
-                         jcGenero.setEnabled(false);
-                         txtNascimento.setEnabled(false);
-                         txtBI_Nuit.setEnabled(false);
-                         txtData_Contratacao.setEnabled(false);
-                         txtAcesso.setEnabled(false);
-                         jcFuncao.setEnabled(false);
-                         jcStatus.setEnabled(false);
-                         txtSalario.setEnabled(false);
-                         
+                        //Privando algumas Actualições
+                        txtApelido.setEnabled(false);
+                        txtNome.setEnabled(false);
+                        jcGenero.setEnabled(false);
+                        txtNascimento.setEnabled(false);
+                        txtBI_Nuit.setEnabled(false);
+                        txtData_Contratacao.setEnabled(false);
+                        txtAcesso.setEnabled(false);
+                        jcFuncao.setEnabled(false);
+                        jcStatus.setEnabled(false);
+                        txtSalario.setEnabled(false);
+
                         //Personalizando a fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 24));
                         lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
@@ -919,7 +938,6 @@ public class Servicos_Organizacao extends JFrame {
                         lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                     
 
                         // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
                         txtApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -938,17 +956,17 @@ public class Servicos_Organizacao extends JFrame {
                         txtSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                         lblFoto.setIcon(Icon_foto);
-                        
+
                         btnCarregarFoto.setIcon(Icon_CarregarFoto);
                         btnActualizar.setIcon(Icon_Actualizar);
                         //Personalizando as Bordas das componentes
                         btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
                         btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                      
+
                         btnActualizar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                
+
                             }
                         });
 
@@ -1007,7 +1025,6 @@ public class Servicos_Organizacao extends JFrame {
                         lblSalario.setForeground(new Color(102, 102, 255));
                         btnCarregarFoto.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
-                 
 
                         // Personalizando o BackGround
                         btnCarregarFoto.setBackground(Color.white);
