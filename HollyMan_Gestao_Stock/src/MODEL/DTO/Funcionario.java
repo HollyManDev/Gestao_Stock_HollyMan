@@ -13,7 +13,7 @@ public class Funcionario {
     
     private String apelido, nome, genero,data_nascimento, email, password,nivel_acesso, funcao, estado;
     private int numero_BI_Nuit, contacto;
-    private long id;
+    private long codigo_funcionario;
     private double salario;
     private byte  foto;
 }

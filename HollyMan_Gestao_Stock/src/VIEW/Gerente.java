@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +27,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import CSS.BotaoPersonalizado;
+import CSS.JLabelComBordaRedonda;
 
 /**
  *
@@ -150,13 +155,20 @@ public class Gerente extends JFrame {
         btnVoltar.setBackground(new Color(102, 102, 255));
 
         //Personalizando a Borda dos Botoes
-        btnGestao_Produtos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnGestao_Funcionarios.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnVisaoGeral.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnMenssagens.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnConfiguracoes.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnPerfil.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
-        btnVoltar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 0, 0, 0)));
+        btnGestao_Produtos.setBorder(BorderFactory.createEmptyBorder());
+        btnGestao_Produtos.setFocusPainted(false);
+        btnGestao_Funcionarios.setBorder(BorderFactory.createEmptyBorder());
+        btnGestao_Funcionarios.setFocusPainted(false);
+        btnVisaoGeral.setBorder(BorderFactory.createEmptyBorder());
+        btnVisaoGeral.setFocusPainted(false);
+        btnMenssagens.setBorder(BorderFactory.createEmptyBorder());
+        btnMenssagens.setFocusPainted(false);
+        btnConfiguracoes.setBorder(BorderFactory.createEmptyBorder());
+        btnConfiguracoes.setFocusPainted(false);
+        btnPerfil.setBorder(BorderFactory.createEmptyBorder());
+        btnPerfil.setFocusPainted(false);
+        btnVoltar.setBorder(BorderFactory.createEmptyBorder());
+        btnVoltar.setFocusPainted(false);
 
         //Personalizando a Fonte
         btnGestao_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
@@ -240,7 +252,7 @@ public class Gerente extends JFrame {
 
                 JButton btnGerirCategorias = new JButton("Gerir Categorias");
                 JButton btnGerirProdutos = new JButton("Gerir Produtos");
-                JButton btnRelatorio = new JButton("Relatorio de Transações");
+                JButton btnRelatorio = new JButton("Relatorio e Estatistica");
                 JButton btnVoltarPrincipal = new JButton("Voltar");
 
                 JTextField txtbarra2 = new JTextField();
@@ -271,10 +283,14 @@ public class Gerente extends JFrame {
                 btnRelatorio.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                 btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnGerirCategorias.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnGerirProdutos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnRelatorio.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnVoltarPrincipal.setBorder(BorderFactory.createEmptyBorder());
+                btnVoltarPrincipal.setFocusPainted(false);
+                btnGerirCategorias.setBorder(BorderFactory.createEmptyBorder());
+                btnGerirCategorias.setFocusPainted(false);
+                btnGerirProdutos.setBorder(BorderFactory.createEmptyBorder());
+                btnGerirProdutos.setFocusPainted(false);
+                btnRelatorio.setBorder(BorderFactory.createEmptyBorder());
+                btnRelatorio.setFocusPainted(false);
 
                 // Criando instancia dos paineis que vou usar
                 JPanel pnlGeirCategorias = new JPanel();
@@ -298,17 +314,22 @@ public class Gerente extends JFrame {
                         //Neste passo, vou criar instancias dos objectos que vou usar.
                         JLabel lblTitulo = new JLabel("Gestão de Categorias");
                         JLabel lblFoto = new JLabel();
-                        JLabel lblNome = new JLabel("Nome da Categoria");
+                        JLabel lblNome = new JLabel("Nome ");
                         JLabel lblData = new JLabel("Data");
-                        JLabel lblSubCategoria = new JLabel("Nome da Sub-Categoria");
+                        JLabel lblSattusCategoria = new JLabel("Status");
 
                         JTextField txtNome = new JTextField();
-                        JTextField txtNomeSubCategoria = new JTextField();
+                        JComboBox jcStatusCategoria = new JComboBox();
                         JDateChooser data = new JDateChooser();
+
+                        jcStatusCategoria.setBackground(Color.white);
+
+                        jcStatusCategoria.addItem("");
+                        jcStatusCategoria.addItem("Activo");
+                        jcStatusCategoria.addItem("Inactivo");
 
                         JButton btnCarregarImagem = new JButton("Carregar IMG");
                         JButton btnCadastrar = new JButton("Adicionar");
-                        JButton btnListar = new JButton("Listar");
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnEliminar = new JButton("Eliminar");
 
@@ -341,17 +362,15 @@ public class Gerente extends JFrame {
                         btnCarregarImagem.setIcon(Icon_CarregarFoto);
                         btnEliminar.setIcon(Icon_Eliminar);
                         btnCadastrar.setIcon(Icon_Adicionar);
-                        btnListar.setIcon(Icon_Listar);
                         btnActualizar.setIcon(Icon_ActualizarC);
 
                         //Aqui vou definir a cor das letras
                         lblTitulo.setForeground(new Color(0, 102, 255));
                         lblNome.setForeground(new Color(102, 102, 255));
                         lblData.setForeground(new Color(102, 102, 255));
-                        lblSubCategoria.setForeground(new Color(102, 102, 255));
+                        lblSattusCategoria.setForeground(new Color(102, 102, 255));
                         btnCarregarImagem.setForeground(new Color(0, 102, 255));
                         btnCadastrar.setForeground(new Color(0, 102, 255));
-                        btnListar.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
                         btnEliminar.setForeground(new Color(0, 102, 255));
 
@@ -359,55 +378,47 @@ public class Gerente extends JFrame {
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
                         lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         lblData.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblSubCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblSattusCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         btnCarregarImagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-
                         txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         data.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
-                        txtNomeSubCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcStatusCategoria.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
-                        btnCarregarImagem.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnCarregarImagem.setBorder(BorderFactory.createEmptyBorder());
+                        btnCarregarImagem.setFocusPainted(false);
+                        btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
+                        btnCadastrar.setFocusPainted(false);
+                        btnActualizar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActualizar.setFocusPainted(false);
+                        btnEliminar.setBorder(BorderFactory.createEmptyBorder());
+                        btnEliminar.setFocusPainted(false);
 
                         //Background
                         btnCarregarImagem.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
-                        btnListar.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
 
                         //aqui vou configurar a localizacao
                         lblTitulo.setBounds(340, 30, 350, 30);
-                        lblFoto.setBounds(340, 100, 225, 225);
-                        lblNome.setBounds(50, 120, 150, 30);
-                        txtNome.setBounds(50, 150, 250, 35);
-                        lblSubCategoria.setBounds(50, 190, 270, 30);
-                        txtNomeSubCategoria.setBounds(50, 220, 250, 35);
-                        lblData.setBounds(50, 260, 250, 35);
-                        data.setBounds(50, 290, 250, 35);
-                        btnCarregarImagem.setBounds(390, 290, 150, 40);
-                        btnCadastrar.setBounds(650, 130, 120, 40);
-                        btnListar.setBounds(650, 180, 90, 40);
-                        btnActualizar.setBounds(655, 230, 120, 40);
-                        btnEliminar.setBounds(657, 280, 105, 40);
+                        lblFoto.setBounds(380, 100, 225, 225);
+                        lblNome.setBounds(150, 120, 200, 30);
+                        txtNome.setBounds(150, 150, 200, 35);
+                        lblData.setBounds(150, 190, 200, 30);
+                        data.setBounds(150, 220, 200, 35);
+                        lblSattusCategoria.setBounds(150, 260, 200, 35);
+                        jcStatusCategoria.setBounds(150, 290, 200, 35);
+                        btnCarregarImagem.setBounds(435, 290, 150, 40);
+                        btnCadastrar.setBounds(650, 133, 120, 40);
+                        btnActualizar.setBounds(654, 190, 120, 40);
+                        btnEliminar.setBounds(648, 250, 120, 40);
                         rol.setBounds(40, 390, 820, 250);
 
                         //Acção para cada um dos botoes
                         btnCadastrar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-                        //Listar
-                        btnListar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
@@ -429,11 +440,10 @@ public class Gerente extends JFrame {
                         pnlGeirCategorias.add(txtNome);
                         pnlGeirCategorias.add(lblData);
                         pnlGeirCategorias.add(data);
-                        pnlGeirCategorias.add(lblSubCategoria);
-                        pnlGeirCategorias.add(txtNomeSubCategoria);
+                        pnlGeirCategorias.add(lblSattusCategoria);
+                        pnlGeirCategorias.add(jcStatusCategoria);
                         pnlGeirCategorias.add(btnCarregarImagem);
                         pnlGeirCategorias.add(btnCadastrar);
-                        pnlGeirCategorias.add(btnListar);
                         pnlGeirCategorias.add(btnActualizar);
                         pnlGeirCategorias.add(btnEliminar);
                         pnlGeirCategorias.add(rol);
@@ -507,11 +517,11 @@ public class Gerente extends JFrame {
                         JTextField txtPreco_Compra = new JTextField();
                         JTextField txtPreco_Venda = new JTextField();
                         JTextArea txtDescricao = new JTextArea();
+
                         JButton btnCarregarFoto = new JButton("Carregar IMG");
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnReset = new JButton("Limpar");
                         JButton btnCadastrar = new JButton("Adicionar");
-                        JButton btnListar = new JButton("Listar");
                         JButton btnProcurar = new JButton("procurar");
                         JButton btnEliminar = new JButton("Eliminar");
 
@@ -571,13 +581,10 @@ public class Gerente extends JFrame {
 
                         lblFoto.setBounds(680, 160, 225, 225);
                         btnCarregarFoto.setBounds(720, 355, 175, 40);
-
-                        btnCadastrar.setBounds(50, 410, 120, 40);
-                        btnListar.setBounds(200, 410, 90, 40);
-
-                        btnActualizar.setBounds(310, 410, 120, 40);
-                        btnEliminar.setBounds(450, 410, 100, 40);
-                        btnReset.setBounds(570, 410, 100, 40);
+                        btnCadastrar.setBounds(5, 410, 120, 40);
+                        btnActualizar.setBounds(150, 410, 120, 40);
+                        btnEliminar.setBounds(295, 410, 100, 40);
+                        btnReset.setBounds(395, 410, 100, 40);
 
                         //cOLOCANDO AS INFORMACOES NAS CAIXAS
                         jcCategoria_Produto.addItem("");
@@ -625,9 +632,7 @@ public class Gerente extends JFrame {
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        // btnCarregar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                         // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
@@ -652,18 +657,22 @@ public class Gerente extends JFrame {
 
                         btnActualizar.setIcon(Icon_ActualizarC);
                         btnCadastrar.setIcon(Icon_Adicionar);
-                        btnListar.setIcon(Icon_Listar);
                         btnCarregarFoto.setIcon(Icon_CarregarFoto);
                         btnEliminar.setIcon(Icon_Eliminar);
 
                         //Personalizando as Bordas das componentes
-                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnReset.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createEmptyBorder());
+                        btnCarregarFoto.setFocusPainted(false);
+                        btnActualizar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActualizar.setFocusPainted(false);
+                        btnReset.setBorder(BorderFactory.createEmptyBorder());
+                        btnReset.setFocusPainted(false);
+                        btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
+                        btnCadastrar.setFocusPainted(false);
+                        btnEliminar.setBorder(BorderFactory.createEmptyBorder());
+                        btnEliminar.setFocusPainted(false);
+                        btnProcurar.setBorder(BorderFactory.createEmptyBorder());
+                        btnProcurar.setFocusPainted(false);
                         txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
@@ -717,8 +726,6 @@ public class Gerente extends JFrame {
                         btnCarregarFoto.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
                         btnCadastrar.setForeground(new Color(0, 102, 255));
-                        btnListar.setForeground(new Color(0, 102, 255));
-
                         btnEliminar.setForeground(new Color(0, 102, 255));
                         btnProcurar.setForeground(new Color(0, 102, 255));
                         btnReset.setForeground(new Color(0, 102, 255));
@@ -728,8 +735,6 @@ public class Gerente extends JFrame {
                         btnActualizar.setBackground(Color.white);
                         btnReset.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
-
-                        btnListar.setBackground(Color.white);
                         btnProcurar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
 
@@ -805,7 +810,6 @@ public class Gerente extends JFrame {
                         pnlGerirProdutos.add(btnReset);
                         pnlGerirProdutos.add(btnActualizar);
                         pnlGerirProdutos.add(btnCadastrar);
-                        pnlGerirProdutos.add(btnListar);
 
                         pnlGerirProdutos.add(btnProcurar);
                         pnlGerirProdutos.add(btnEliminar);
@@ -910,7 +914,6 @@ public class Gerente extends JFrame {
                 JButton btnActualizar = new JButton("Actualizar");
                 JButton btnReset = new JButton("Limpar");
                 JButton btnCadastrar = new JButton("Cadastrar");
-                JButton btnListar = new JButton("Listar");
                 JButton btnProcurar = new JButton("procurar");
                 JButton btnEliminar = new JButton("Demitir");
 
@@ -968,10 +971,8 @@ public class Gerente extends JFrame {
 
                 btnCadastrar.setBounds(470, 290, 120, 40);
                 btnActualizar.setBounds(600, 290, 125, 40);
-
-                btnListar.setBounds(585, 360, 120, 40);
                 btnEliminar.setBounds(470, 360, 100, 40);
-                btnReset.setBounds(730, 360, 100, 40);
+                btnReset.setBounds(600, 360, 100, 40);
 
                 //cOLOCANDO AS INFORMACOES NAS CAIXAS
                 jcGenero.addItem("");
@@ -1017,7 +1018,6 @@ public class Gerente extends JFrame {
                 btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                btnListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                 // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
@@ -1040,17 +1040,21 @@ public class Gerente extends JFrame {
                 btnCarregarFoto.setIcon(Icon_CarregarFoto);
                 btnActualizar.setIcon(Icon_ActualizarC);
                 btnCadastrar.setIcon(Icon_Adicionar);
-                btnListar.setIcon(Icon_ListarFun);
                 btnEliminar.setIcon(Icon_Eliminar);
 
                 //Personalizando as Bordas das componentes
-                btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnReset.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnCadastrar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnListar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                btnCarregarFoto.setBorder(BorderFactory.createEmptyBorder());
+                btnCarregarFoto.setFocusPainted(false);
+                btnActualizar.setBorder(BorderFactory.createEmptyBorder());
+                btnActualizar.setFocusPainted(false);
+                btnReset.setBorder(BorderFactory.createEmptyBorder());
+                btnReset.setFocusPainted(false);
+                btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
+                btnCadastrar.setFocusPainted(false);
+                btnEliminar.setBorder(BorderFactory.createEmptyBorder());
+                btnEliminar.setFocusPainted(false);
+                btnProcurar.setBorder(BorderFactory.createEmptyBorder());
+                btnProcurar.setFocusPainted(false);
 
                 // Criando a tabela 
                 String[] Colunas_Compras = {"Id", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
@@ -1113,7 +1117,6 @@ public class Gerente extends JFrame {
                 pnlGestao_Funcionarios.add(btnReset);
                 pnlGestao_Funcionarios.add(btnActualizar);
                 pnlGestao_Funcionarios.add(btnCadastrar);
-                pnlGestao_Funcionarios.add(btnListar);
                 pnlGestao_Funcionarios.add(btnProcurar);
                 pnlGestao_Funcionarios.add(btnEliminar);
 
@@ -1136,7 +1139,6 @@ public class Gerente extends JFrame {
                 btnCarregarFoto.setForeground(new Color(0, 102, 255));
                 btnActualizar.setForeground(new Color(0, 102, 255));
                 btnCadastrar.setForeground(new Color(0, 102, 255));
-                btnListar.setForeground(new Color(0, 102, 255));
                 btnEliminar.setForeground(new Color(0, 102, 255));
                 btnProcurar.setForeground(new Color(0, 102, 255));
                 btnReset.setForeground(new Color(0, 102, 255));
@@ -1146,7 +1148,6 @@ public class Gerente extends JFrame {
                 btnActualizar.setBackground(Color.white);
                 btnReset.setBackground(Color.white);
                 btnCadastrar.setBackground(Color.white);
-                btnListar.setBackground(Color.white);
                 btnProcurar.setBackground(Color.white);
                 btnEliminar.setBackground(Color.white);
 
@@ -1223,10 +1224,14 @@ public class Gerente extends JFrame {
                 btnGerir.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                 btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnEnviar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnCaixa.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnGerir.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnVoltarPrincipal.setBorder(BorderFactory.createEmptyBorder());
+                btnVoltarPrincipal.setFocusPainted(false);
+                btnEnviar.setBorder(BorderFactory.createEmptyBorder());
+                btnEnviar.setFocusPainted(false);
+                btnCaixa.setBorder(BorderFactory.createEmptyBorder());
+                btnCaixa.setFocusPainted(false);
+                btnGerir.setBorder(BorderFactory.createEmptyBorder());
+                btnGerir.setFocusPainted(false);
 
                 // Criando instancia dos paineis que vou usar
                 JPanel pnlEnviar = new JPanel();
@@ -1259,9 +1264,10 @@ public class Gerente extends JFrame {
                         JTextField txtRemetente = new JTextField();
 
                         //Botoes 
-                        JButton btnEnviar = new JButton("Enviar");
-                        JButton btnLimpar = new JButton("Apagar");
-
+                        BotaoPersonalizado btnEnviar = new BotaoPersonalizado("Enviar");
+                        btnEnviar.setFocusPainted(false);
+                        BotaoPersonalizado btnLimpar = new BotaoPersonalizado("Apagar");
+                        btnLimpar.setFocusPainted(false);
                         //Foreground
                         lblTitulo.setForeground(new Color(102, 102, 255));
                         lblDestinatario.setForeground(new Color(102, 102, 255));
@@ -1276,21 +1282,18 @@ public class Gerente extends JFrame {
                         jcDestinatario.setBackground(Color.white);
 
                         //Cordenadas
-                        lblTitulo.setBounds(155, 110, 250, 30);
-                        lblRemetente.setBounds(155, 30, 100, 30);
-                        txtRemetente.setBounds(155, 60, 200, 30);
-                        lblDestinatario.setBounds(550, 30, 100, 30);
-                        jcDestinatario.setBounds(550, 60, 200, 30);
-                        txta.setBounds(155, 140, 600, 450);
-                        btnLimpar.setBounds(155, 610, 80, 30);
-                        btnEnviar.setBounds(673, 610, 80, 30);
+                        lblTitulo.setBounds(95, 110, 250, 30);
+                        lblRemetente.setBounds(565, 115, 100, 30);
+                        txtRemetente.setBounds(565, 145, 200, 30);
+                        lblDestinatario.setBounds(565, 200, 100, 30);
+                        jcDestinatario.setBounds(565, 230, 200, 30);
+                        txta.setBounds(95, 140, 450, 350);
+                        btnLimpar.setBounds(690, 460, 80, 30);
+                        btnEnviar.setBounds(565, 460, 80, 30);
 
                         //Borda  
-                        jcDestinatario.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
                         txta.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
                         txtRemetente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-                        btnEnviar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
-                        btnLimpar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
 
                         //Fonte 
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
@@ -1334,7 +1337,8 @@ public class Gerente extends JFrame {
                         pnlCaixa.setBounds(280, 0, 920, 660);
 
                         //CRIANDO AS COMPONENTES
-                        JLabel lblMenssagem = new JLabel();
+                        JLabelComBordaRedonda lblMenssagem = new JLabelComBordaRedonda();
+                        lblMenssagem.setText("Ola mundo\n i miss you");
                         JLabel lblTitulo = new JLabel("Menssagens Recebidas");
                         JButton btnNext = new JButton();
                         JButton btnPreview = new JButton();
@@ -1354,11 +1358,13 @@ public class Gerente extends JFrame {
                         btnProcurar.setBackground(Color.white);
 
                         //Bordas
-                        lblMenssagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-                        jcRementente.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-                        btnNext.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnProcurar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnPreview.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        //blMenssagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+                        btnNext.setBorder(BorderFactory.createEmptyBorder());
+                        btnNext.setFocusPainted(false);
+                        btnProcurar.setBorder(BorderFactory.createEmptyBorder());
+                        btnProcurar.setFocusPainted(false);
+                        btnPreview.setBorder(BorderFactory.createEmptyBorder());
+                        btnPreview.setFocusPainted(false);
 
                         //Localizacao
                         lblMenssagem.setBounds(155, 140, 600, 500);
@@ -1434,10 +1440,14 @@ public class Gerente extends JFrame {
                         btnRelatorio_enviadas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                         btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                        btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnMenssagens_Envidas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnMenssagens_Recebidas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnRelatorio_enviadas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                        btnVoltarPrincipal.setBorder(BorderFactory.createEmptyBorder());
+                        btnVoltar.setFocusPainted(false);
+                        btnMenssagens_Envidas.setBorder(BorderFactory.createEmptyBorder());
+                        btnMenssagens_Envidas.setFocusPainted(false);
+                        btnMenssagens_Recebidas.setBorder(BorderFactory.createEmptyBorder());
+                        btnMenssagens_Recebidas.setFocusPainted(false);
+                        btnRelatorio_enviadas.setBorder(BorderFactory.createEmptyBorder());
+                        btnRelatorio_enviadas.setFocusPainted(false);
 
                         JPanel pnlMenssagens_Enviadas = new JPanel();
                         JPanel pnlMenssagens_Recebidas = new JPanel();

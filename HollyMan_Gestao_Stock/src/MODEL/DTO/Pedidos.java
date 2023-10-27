@@ -10,5 +10,5 @@ package MODEL.DTO;
  */
 public class Pedidos extends Produtos {
     private String nome, genero;
-    private long id, codigo_pedido;
+    private long codigo_pedido;
 }

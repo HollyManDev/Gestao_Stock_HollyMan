@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import CSS.BotaoPersonalizado;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
@@ -166,11 +167,16 @@ public class Servicos_Organizacao extends JFrame {
         btnSair.setForeground(Color.white);
 
         // Neste passo, vou trabalhar as bordas dos botoes
-        btnMeuPerfil.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-        btnServicos.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-        btnHistorico_Vendas.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-        btnDefinicoes.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
-        btnSair.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+        btnMeuPerfil.setBorder(BorderFactory.createEmptyBorder());
+        btnMeuPerfil.setFocusPainted(false);
+        btnServicos.setBorder(BorderFactory.createEmptyBorder());
+        btnServicos.setFocusPainted(false);
+        btnHistorico_Vendas.setBorder(BorderFactory.createEmptyBorder());
+        btnHistorico_Vendas.setFocusPainted(false);
+        btnDefinicoes.setBorder(BorderFactory.createEmptyBorder());
+        btnDefinicoes.setFocusPainted(false);
+        btnSair.setBorder(BorderFactory.createEmptyBorder());
+        btnSair.setFocusPainted(false);
 
         // Adiciobando Icon 
         btnMeuPerfil.setIcon(Icon_Perfil);
@@ -265,7 +271,9 @@ public class Servicos_Organizacao extends JFrame {
                 btnSair2.setBounds(10, 591, 140, 30);
 
                 // Personalizando o botao voltar
-                btnSair2.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                btnSair2.setBorder(BorderFactory.createEmptyBorder());
+                btnSair2.setFocusPainted(false);
+
                 btnSair2.setBackground(new Color(102, 102, 255));
                 btnSair2.setForeground(Color.white);
 
@@ -333,9 +341,9 @@ public class Servicos_Organizacao extends JFrame {
                 JTextField txtbarra2 = new JTextField();
                 JLabel lblFotografia = new JLabel();
                 JPanel MenuServicos = new JPanel();
-                JButton btnVender = new JButton("   Vender Produtos");
+                JButton btnVender = new JButton("   Venda & Pedidos");
                 JButton btnListarProdutos = new JButton("   Listar Produtos");
-                JButton btnProcurarProduto = new JButton("   Stock de Produto");
+                JButton btnPedidos = new JButton("   Pedidos");
                 JButton btnVoltarPrincipal = new JButton("   Voltar");
 
                 lblFotografia.setBounds(45, 50, 180, 180);
@@ -343,43 +351,47 @@ public class Servicos_Organizacao extends JFrame {
                 MenuServicos.setBounds(0, 0, 280, 700);
                 btnVender.setBounds(20, 281, 240, 40);
                 btnListarProdutos.setBounds(13, 351, 240, 40);
-                btnProcurarProduto.setBounds(23, 421, 240, 40);
+                btnPedidos.setBounds(35, 421, 130, 40);
                 btnVoltarPrincipal.setBounds(15, 491, 150, 40);
 
                 MenuServicos.setLayout(null);
                 btnVender.setBackground(new Color(102, 102, 255));
                 btnListarProdutos.setBackground(new Color(102, 102, 255));
-                btnProcurarProduto.setBackground(new Color(102, 102, 255));
+                btnPedidos.setBackground(new Color(102, 102, 255));
                 btnVoltarPrincipal.setBackground(new Color(102, 102, 255));
                 MenuServicos.setBackground(new Color(102, 102, 255));
 
                 btnVender.setForeground(Color.white);
                 btnListarProdutos.setForeground(Color.white);
-                btnProcurarProduto.setForeground(Color.white);
+                btnPedidos.setForeground(Color.white);
                 btnVoltarPrincipal.setForeground(Color.white);
 
                 btnVender.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                 btnListarProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
-                btnProcurarProduto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnPedidos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                 btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                btnVoltarPrincipal.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnVender.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnListarProdutos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnProcurarProduto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnVoltarPrincipal.setBorder(BorderFactory.createEmptyBorder());
+                btnVoltarPrincipal.setFocusPainted(false);
+                btnVender.setBorder(BorderFactory.createEmptyBorder());
+                btnVender.setFocusPainted(false);
+                btnVoltarPrincipal.setFocusPainted(false);
+                btnListarProdutos.setBorder(BorderFactory.createEmptyBorder());
+                btnListarProdutos.setFocusPainted(false);
+                btnPedidos.setBorder(BorderFactory.createEmptyBorder());
+                btnPedidos.setFocusPainted(false);
 
                 //Colocando Icones
                 btnVoltarPrincipal.setIcon(Icon_Voltar);
                 btnListarProdutos.setIcon(Icon_Listar);
                 btnVender.setIcon(Icon_Vender);
-                btnProcurarProduto.setIcon(Icon_Procurar);
+                btnPedidos.setIcon(Icon_Definições);
 
                 // neste, passo vou aqui permitir com que ao clicar no botao vender ele abra uma outra janela com os produtos
                 btnVender.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
-                        pnlProcurarProdutos.setVisible(false);
 
                         pnlVenderProdutos.setLayout(null);
                         pnlVenderProdutos.setBounds(280, 0, 920, 700);
@@ -388,13 +400,12 @@ public class Servicos_Organizacao extends JFrame {
                         JLabel lblListar = new JLabel();
                         JLabel lblLista_compras = new JLabel();
                         JLabel lblTotal = new JLabel("Total a Pagar");
-                        JLabel lblViewMoney= new JLabel("0");
-                        
-                                
+                        JLabel lblViewMoney = new JLabel("0");
+
                         JButton btnAdicionar_carinho = new JButton();
                         JButton btnEliminar_Carinho = new JButton();
-                        JButton btnProximo = new JButton("Proximo");
-                        
+                        BotaoPersonalizado btnProximo = new BotaoPersonalizado("Proximo");
+
                         //BackGround
                         btnProximo.setBackground(Color.white);
 
@@ -409,7 +420,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
                         btnEliminar_Carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                        btnProximo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0, 102, 255)));
+                        btnProximo.setFocusPainted(false);
 
                         lblListar.setText("Selecione o produto na Tabela");
                         lblLista_compras.setText("Lista de Produtos Selecionados");
@@ -422,11 +433,11 @@ public class Servicos_Organizacao extends JFrame {
                         btnAdicionar_carinho.setBackground(Color.white);
                         btnEliminar_Carinho.setBackground(Color.white);
 
-                        String[] Colunas_Produtos = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço", "Validade", "Estado", "Imagem"};
+                        String[] Colunas_Produtos = {"Nome_Produto", "Marca", "Codigo_Barra", "Preço", "Validade", "Qtd Disponivel", "Imagem"};
                         String[][] inf = {{}};
                         DefaultTableModel tabela = new DefaultTableModel(inf, Colunas_Produtos);
 
-                        String[] Colunas_Compras = {"Nome_Produto", "Preço Unitario", "Quantidade", "Imagem", "Total a pagar"};
+                        String[] Colunas_Compras = {"Nome_Produto", "Marca", "Unid Medida", "Validade", "Preço Unitario", "Quantidade", "Imagem"};
                         String[][] inf_Compras = {{}};
                         DefaultTableModel tabela_Compras = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -438,16 +449,17 @@ public class Servicos_Organizacao extends JFrame {
 
                         Lista_Produtos.setModel(tabela);
                         Lista_Produtos.setRowHeight(120);
-                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(230);
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(200);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(100);
                         Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(90);
+                        Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(110);
 
                         Lista_Compras.setModel(tabela_Compras);
                         Lista_Compras.setRowHeight(120);
-                        Lista_Compras.getColumnModel().getColumn(3).setPreferredWidth(230);
-                        Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(150);
+                        Lista_Compras.getColumnModel().getColumn(6).setPreferredWidth(200);
+                        Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(120);
 
                         //Personalizando a Lista de Produtos
                         Lista_Produtos.setShowGrid(false);
@@ -469,14 +481,21 @@ public class Servicos_Organizacao extends JFrame {
                         rol_Compras.setBounds(10, 350, 890, 250);
 
                         btnAdicionar_carinho.setBounds(800, 290, 60, 60);
-                         btnProximo.setBounds(370, 615, 80, 30);
+                        btnProximo.setBounds(370, 615, 80, 30);
                         btnEliminar_Carinho.setBounds(800, 600, 60, 60);
                         lblTotal.setBounds(10, 600, 100, 30);
                         lblViewMoney.setBounds(20, 625, 60, 30);
-                  
 
                         btnAdicionar_carinho.setIcon(Icon_Adicionar_Carinha);
                         btnEliminar_Carinho.setIcon(Icon_Eliminar_Carinha);
+
+                        //Dando ação
+                        btnProximo.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                JOptionPane.showMessageDialog(null, "Doing great");
+                            }
+                        });
 
                         pnlVenderProdutos.add(lblListar);
                         pnlVenderProdutos.add(lblLista_compras);
@@ -548,69 +567,116 @@ public class Servicos_Organizacao extends JFrame {
                     }
                 });
 
-                //Neste vou permitir com que possa fazer a busca de um produto, usando varios aspectos
-                btnProcurarProduto.addActionListener(new ActionListener() {
+                //Neste vou permitir que possam visualizar os pedidos
+                btnPedidos.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        pnlPrincipal.setVisible(true);
                         pnlListar.setVisible(false);
                         pnlVenderProdutos.setVisible(false);
+                        MenuServicos.setVisible(false);
 
-                        pnlProcurarProdutos.setLayout(null);
-                        pnlProcurarProdutos.setBounds(281, 0, 1000, 700);
-                        pnlProcurarProdutos.setBackground(Color.white);
+                        JTextField txtbarra2 = new JTextField();
+                        JLabel lblFotografia = new JLabel();
 
-                        JTextField txtbuscar = new JTextField();
-                        JButton btnBuscar = new JButton("");
-                        JLabel lblLogo = new JLabel();
+                        JPanel MenuPedidos = new JPanel();
+                        JPanel pnlPendentes = new JPanel();
+                        JPanel pnlFinalizados = new JPanel();
+                        JPanel pnlRelatorios = new JPanel();
 
-                        btnBuscar.setForeground(new Color(0, 102, 255));
-                        btnBuscar.setBackground(Color.white);
-                        btnBuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
-                        txtbuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+                        JButton btnPendentes = new JButton("   Pendentes");
+                        JButton btnFinalizados = new JButton("   Finalizados");
+                        JButton btnDescartados = new JButton("   Descartados");
+                        JButton btnVoltarPrincipal = new JButton("   Voltar");
 
-                        btnBuscar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
+                        lblFotografia.setBounds(45, 50, 180, 180);
+                        txtbarra2.setBounds(30, 251, 210, 1);
+                        MenuPedidos.setBounds(0, 0, 280, 700);
+                        btnPendentes.setBounds(33, 281, 150, 40);
+                        btnFinalizados.setBounds(33, 351, 150, 40);
+                        btnDescartados.setBounds(33, 421, 160, 40);
+                        btnVoltarPrincipal.setBounds(15, 491, 150, 40);
 
-                        btnBuscar.setIcon(Icon_Busca);
-                        lblLogo.setIcon(Imagem_Cumpany);
+                        MenuPedidos.setLayout(null);
+                        btnPendentes.setBackground(new Color(102, 102, 255));
+                        btnFinalizados.setBackground(new Color(102, 102, 255));
+                        btnDescartados.setBackground(new Color(102, 102, 255));
+                        btnVoltarPrincipal.setBackground(new Color(102, 102, 255));
+                        MenuPedidos.setBackground(new Color(102, 102, 255));
 
-                        //Criando a Tabela que vai mostrar as informacoes
-                        String[] Nome_Colunas = {"Id", "Nome_Produto", "Peso/Volume", "Codigo_Barra", "Preço", "Validade", "Estado", "Imagem"};
-                        String[][] inf = {{}};
+                        btnPendentes.setForeground(Color.white);
+                        btnFinalizados.setForeground(Color.white);
+                        btnDescartados.setForeground(Color.white);
+                        btnVoltarPrincipal.setForeground(Color.white);
 
-                        DefaultTableModel Linhas_Colunas = new DefaultTableModel(inf, Nome_Colunas);
-                        JTable Lista_Produtos = new JTable(Linhas_Colunas);
-                        JTableHeader header = Lista_Produtos.getTableHeader();
+                        btnPendentes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnFinalizados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnDescartados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                        btnVoltarPrincipal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                        //Personalizacao da Lista
-                        header.setForeground(new Color(102, 102, 220));
-                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        btnVoltarPrincipal.setBorder(BorderFactory.createEmptyBorder());
+                        btnVoltarPrincipal.setFocusPainted(false);
+                        btnPendentes.setBorder(BorderFactory.createEmptyBorder());
+                        btnPendentes.setFocusPainted(false);
+                        btnFinalizados.setBorder(BorderFactory.createEmptyBorder());
+                        btnFinalizados.setFocusPainted(false);
+                        btnDescartados.setBorder(BorderFactory.createEmptyBorder());
+                        btnDescartados.setFocusPainted(false);
 
-                        // Lista_Produtos.setModel(Linhas_Colunas);
-                        Lista_Produtos.setRowHeight(180);
-                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(230);
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(140);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(130);
+                        //Colocando Icones
+                        lblFotografia.setIcon(Imagem_Fundo);
+                        btnVoltarPrincipal.setIcon(Icon_Voltar);
+                        btnFinalizados.setIcon(Icon_Listar);
+                        btnPendentes.setIcon(Icon_Vender);
+                        btnDescartados.setIcon(Icon_Procurar);
 
-                        //Personalizando a fonte das informacoes da Linhas_Colunas
-                        Lista_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        //Lista_Produtos.setForeground(new Color(102, 102, 220));
-                        Lista_Produtos.setShowGrid(false);
+                        //Pedidos no estado pendente
+                        btnPendentes.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
 
-                        JScrollPane rol = new JScrollPane(Lista_Produtos);
-                        lblLogo.setBounds(330, 35, 200, 200);
-                        rol.setBounds(10, 370, 880, 180);
-                        txtbuscar.setBounds(250, 290, 270, 40);
-                        btnBuscar.setBounds(530, 280, 60, 60);
-                        pnlProcurarProdutos.add(lblLogo);
-                        pnlProcurarProdutos.add(rol);
-                        pnlProcurarProdutos.add(txtbuscar);
-                        pnlProcurarProdutos.add(btnBuscar);
+                            }
+                        });
 
-                        pnlProcurarProdutos.setVisible(true);
+                        //Finalizados
+                        btnFinalizados.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
 
+                            }
+                        });
+
+                        //Relatorios e Estatisticas
+                        btnDescartados.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        //Neste passo, vou colocar no false todos paineis que eu tenha usando neste metodo, para assegurar
+                        //com que estes paineis nao se sobreponham e deixar apenas um visivel aqui antescede a esta.
+                        btnVoltarPrincipal.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                MenuPedidos.setVisible(false);
+                                pnlPendentes.setVisible(false);
+                                pnlFinalizados.setVisible(false);
+                                pnlRelatorios.setVisible(false);
+                                pnlPrincipal.setVisible(true);
+                                MenuServicos.setVisible(true);
+
+                            }
+                        });
+
+                        MenuPedidos.add(lblFotografia);
+                        MenuPedidos.add(txtbarra2);
+                        MenuPedidos.add(btnPendentes);
+                        MenuPedidos.add(btnFinalizados);
+                        MenuPedidos.add(btnDescartados);
+                        MenuPedidos.add(btnVoltarPrincipal);
+                        pnlServicos.add(MenuPedidos);
+                        MenuPedidos.setVisible(true);
                     }
                 });
 
@@ -635,13 +701,14 @@ public class Servicos_Organizacao extends JFrame {
                 MenuServicos.add(txtbarra2);
                 MenuServicos.add(btnVender);
                 MenuServicos.add(btnListarProdutos);
-                MenuServicos.add(btnProcurarProduto);
+                MenuServicos.add(btnPedidos);
                 MenuServicos.add(btnVoltarPrincipal);
 
                 pnlServicos.add(MenuServicos);
                 pnlServicos.add(pnlListar);
                 pnlServicos.add(pnlProcurarProdutos);
                 pnlServicos.add(pnlVenderProdutos);
+                pnlServicos.add(pnlPrincipal);
 
                 pnlauxPrincipal.add(pnlServicos);
                 pnlServicos.setVisible(true);
@@ -742,8 +809,10 @@ public class Servicos_Organizacao extends JFrame {
                 btnActualizardados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
                 btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
-                btnVoltar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
-                btnActualizardados.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
+                btnVoltar.setBorder(BorderFactory.createEmptyBorder());
+                btnVoltar.setFocusPainted(false);
+                btnActualizardados.setBorder(BorderFactory.createEmptyBorder());
+                btnActualizardados.setFocusPainted(false);
 
                 lblFotografia.setIcon(fotografiaPerfil);
                 btnVoltar.setIcon(Icon_Voltar);
@@ -825,8 +894,7 @@ public class Servicos_Organizacao extends JFrame {
                         JTableHeader header = Lista_Funcionarios.getTableHeader();
 
                         Lista_Funcionarios.setShowGrid(false);//
-                             Lista_Funcionarios.setRowHeight(120);
-
+                        Lista_Funcionarios.setRowHeight(120);
 
                         Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
 
@@ -960,8 +1028,10 @@ public class Servicos_Organizacao extends JFrame {
                         btnCarregarFoto.setIcon(Icon_CarregarFoto);
                         btnActualizar.setIcon(Icon_Actualizar);
                         //Personalizando as Bordas das componentes
-                        btnCarregarFoto.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
-                        btnActualizar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0, 102, 255)));
+                        btnCarregarFoto.setBorder(BorderFactory.createEmptyBorder());
+                        btnCarregarFoto.setFocusPainted(false);
+                        btnActualizar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActualizar.setFocusPainted(false);
 
                         btnActualizar.addActionListener(new ActionListener() {
                             @Override
@@ -1049,6 +1119,7 @@ public class Servicos_Organizacao extends JFrame {
 
                 pnlauxPrincipal.add(pnlDefinicoes);
                 pnlauxPrincipal.add(pnlActualizar_Dados);
+                pnlauxPrincipal.add(pnlPrincipal);
                 pnlDefinicoes.setVisible(true);
 
             }
