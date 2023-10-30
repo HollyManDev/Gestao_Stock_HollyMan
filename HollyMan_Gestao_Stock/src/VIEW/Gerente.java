@@ -333,7 +333,7 @@ public class Gerente extends JFrame {
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnEliminar = new JButton("Eliminar");
 
-                        String[] Colunas_Tabela = {"Id", "Nome da Categoria", "Nome da sub-Categoria", "Imagem", "Data", "Estado"};
+                        String[] Colunas_Tabela = {"Codigo", "Nome ", "Imagem", "Data", "Estado"};
                         String[][] inf = {{}};
 
                         DefaultTableModel Linhas_Colunas = new DefaultTableModel(inf, Colunas_Tabela);
@@ -349,11 +349,11 @@ public class Gerente extends JFrame {
                         Lista_Produtos.setRowHeight(160);
 
                         Lista_Produtos.setRowHeight(120);
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(3);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(120);
-
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(200);
+                      
                         Linhas_Colunas.setRowCount(10);
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
 
@@ -404,18 +404,18 @@ public class Gerente extends JFrame {
 
                         //aqui vou configurar a localizacao
                         lblTitulo.setBounds(340, 30, 350, 30);
-                        lblFoto.setBounds(380, 100, 225, 225);
-                        lblNome.setBounds(150, 120, 200, 30);
-                        txtNome.setBounds(150, 150, 200, 35);
-                        lblData.setBounds(150, 190, 200, 30);
-                        data.setBounds(150, 220, 200, 35);
-                        lblSattusCategoria.setBounds(150, 260, 200, 35);
-                        jcStatusCategoria.setBounds(150, 290, 200, 35);
-                        btnCarregarImagem.setBounds(435, 290, 150, 40);
+                        lblFoto.setBounds(350, 100, 225, 225);
+                        lblNome.setBounds(110, 120, 200, 30);
+                        txtNome.setBounds(110, 150, 200, 35);
+                        lblData.setBounds(110, 190, 200, 30);
+                        data.setBounds(110, 220, 200, 35);
+                        lblSattusCategoria.setBounds(110, 260, 200, 35);
+                        jcStatusCategoria.setBounds(110, 290, 200, 35);
+                        btnCarregarImagem.setBounds(400, 290, 150, 40);
                         btnCadastrar.setBounds(650, 133, 120, 40);
                         btnActualizar.setBounds(654, 190, 120, 40);
                         btnEliminar.setBounds(648, 250, 120, 40);
-                        rol.setBounds(40, 390, 820, 250);
+                        rol.setBounds(110, 390, 680, 200);
 
                         //Acção para cada um dos botoes
                         btnCadastrar.addActionListener(new ActionListener() {
@@ -529,7 +529,7 @@ public class Gerente extends JFrame {
                         lblTitulo.setForeground(new Color(102, 102, 255));
 
                         //Cordenadas
-                        lblTitulo.setBounds(340, 0, 350, 30);
+                        lblTitulo.setBounds(350, 0, 350, 30);
 
                         lblCategoria_Produto.setBounds(10, 50, 200, 30);
                         jcCategoria_Produto.setBounds(10, 80, 200, 35);
@@ -579,8 +579,8 @@ public class Gerente extends JFrame {
                         lblDescricao.setBounds(700, 50, 200, 30);
                         txtDescricao.setBounds(700, 80, 200, 100);
 
-                        lblFoto.setBounds(680, 160, 225, 225);
-                        btnCarregarFoto.setBounds(720, 355, 175, 40);
+                        lblFoto.setBounds(670, 160, 225, 225);
+                        btnCarregarFoto.setBounds(714, 355, 175, 40);
                         btnCadastrar.setBounds(5, 410, 120, 40);
                         btnActualizar.setBounds(150, 410, 120, 40);
                         btnEliminar.setBounds(295, 410, 100, 40);

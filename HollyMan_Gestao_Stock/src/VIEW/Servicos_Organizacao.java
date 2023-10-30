@@ -6,6 +6,7 @@
 package VIEW;
 
 import CSS.BotaoPersonalizado;
+import com.sun.tools.javac.tree.JCTree;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
@@ -333,6 +334,7 @@ public class Servicos_Organizacao extends JFrame {
                 JPanel pnlListar = new JPanel();
                 JPanel pnlVenderProdutos = new JPanel();
                 JPanel pnlProcurarProdutos = new JPanel();
+                JPanel pnlVendas = new JPanel();
 
                 pnlServicos.setBounds(0, 0, 1200, 700);
                 pnlServicos.setBackground(Color.white);
@@ -392,6 +394,7 @@ public class Servicos_Organizacao extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         pnlListar.setVisible(false);
+                        pnlVendas.setVisible(false);
 
                         pnlVenderProdutos.setLayout(null);
                         pnlVenderProdutos.setBounds(280, 0, 920, 700);
@@ -410,12 +413,12 @@ public class Servicos_Organizacao extends JFrame {
                         btnProximo.setBackground(Color.white);
 
                         lblListar.setBounds(270, 0, 350, 30);
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
-                        lblTotal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        lblTotal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         lblViewMoney.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                         lblLista_compras.setBounds(270, 310, 350, 30);
-                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
+                        lblLista_compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnProximo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
 
                         btnAdicionar_carinho.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(255, 255, 255)));
@@ -433,11 +436,11 @@ public class Servicos_Organizacao extends JFrame {
                         btnAdicionar_carinho.setBackground(Color.white);
                         btnEliminar_Carinho.setBackground(Color.white);
 
-                        String[] Colunas_Produtos = {"Nome_Produto", "Marca", "Codigo_Barra", "Preço", "Validade", "Qtd Disponivel", "Imagem"};
+                        String[] Colunas_Produtos = {"Produto", "Marca", "Codigo_Barra", "Descrição", "Preço", "Medida", "Qtd Disponivel", "Imagem"};
                         String[][] inf = {{}};
                         DefaultTableModel tabela = new DefaultTableModel(inf, Colunas_Produtos);
 
-                        String[] Colunas_Compras = {"Nome_Produto", "Marca", "Unid Medida", "Validade", "Preço Unitario", "Quantidade", "Imagem"};
+                        String[] Colunas_Compras = {"Produto", "Marca", "Descrição", "Preço", "Quantidade", "Imagem", "Sub Total"};
                         String[][] inf_Compras = {{}};
                         DefaultTableModel tabela_Compras = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -449,26 +452,24 @@ public class Servicos_Organizacao extends JFrame {
 
                         Lista_Produtos.setModel(tabela);
                         Lista_Produtos.setRowHeight(120);
-                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(200);
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(90);
-                        Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(180);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(100);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(100);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
 
                         Lista_Compras.setModel(tabela_Compras);
                         Lista_Compras.setRowHeight(120);
-                        Lista_Compras.getColumnModel().getColumn(6).setPreferredWidth(200);
-                        Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(120);
+                        Lista_Compras.getColumnModel().getColumn(5).setPreferredWidth(200);
+                        Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(100);
 
                         //Personalizando a Lista de Produtos
                         Lista_Produtos.setShowGrid(false);
-                        header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header_Produtos.setForeground(new Color(102, 102, 255));
 
                         //Personalizando a Linhas_Colunas/lista de Compras
                         Lista_Compras.setShowGrid(false);
-                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header_Compras.setForeground(new Color(102, 102, 255));
 
                         tabela.setRowCount(10);
@@ -493,7 +494,318 @@ public class Servicos_Organizacao extends JFrame {
                         btnProximo.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(null, "Doing great");
+                                pnlVenderProdutos.setVisible(false);
+
+                                JLabel lblTransacao = new JLabel("Tipo de Serviço");
+                                JLabel lblNome = new JLabel("Nome do Cliente");
+                                JLabel lblGenero = new JLabel("Genero");
+                                JLabel lblContacto = new JLabel("Contacto/Email");
+                                JLabel lblnumero_cartao = new JLabel("Numero do cartao");
+                                JLabel lblValidade_Cartao = new JLabel("Validade do cartao");
+                                JLabel lblPagamento = new JLabel("Tipo de Pagamento");
+                                JLabel lblValor = new JLabel("Valor Pago");
+                                JLabel lblValor_a_Pagar = new JLabel("Total a Pagar");
+                                JLabel lblValor_a_PagarView = new JLabel("0");
+                                JLabel lblTrocos = new JLabel("Trocos");
+
+                                JComboBox jcTransacao = new JComboBox();
+                                JTextField txtNome = new JTextField();
+                                JComboBox jcGenero = new JComboBox();
+                                JTextField txtnumero_cartao = new JTextField();
+                                JComboBox jcTipo = new JComboBox();
+                                JTextField txtMontante = new JTextField();
+                                JTextField txtContacto_Email = new JTextField();
+                                JTextField txtTrocos = new JTextField();
+                                JDateChooser txtValidade_cartao = new JDateChooser();
+                                //adicionando items nas JComboBox
+                                /////////////////////////////////////////////////
+                                jcGenero.setBackground(Color.white);
+                                jcGenero.addItem("");
+                                jcGenero.addItem("Masculino");
+                                jcGenero.addItem("Feminino");
+
+                                jcTransacao.setBackground(Color.white);
+                                jcTransacao.addItem("");
+                                jcTransacao.addItem("Registar Venda");
+                                jcTransacao.addItem("Registar Pedido");
+
+                                jcTipo.setBackground(Color.white);
+                                jcTipo.addItem("");
+                                jcTipo.addItem("Pagamento em Dinheiro");
+                                jcTipo.addItem("Cartão de Credito");
+                                jcTipo.addItem("Cartão de Debito");
+                                
+                                ////////////////////////////////////////////////////////////
+
+                                BotaoPersonalizado btnPagar = new BotaoPersonalizado("Registar ");
+                                BotaoPersonalizado btnAlterar = new BotaoPersonalizado("Alterar");
+                                BotaoPersonalizado btnRecibo = new BotaoPersonalizado("Recibo");
+                                BotaoPersonalizado btnCancelar = new BotaoPersonalizado("Cancelar");
+
+                                pnlVendas.setLayout(null);
+                                pnlVendas.setBounds(280, 0, 920, 700);
+                                pnlVendas.setBackground(Color.white);
+
+                                String[] Colunas_Vendas = {"Produto", "Marca", "Descrição", "Preço", "Quantidade", "Imagem", "Sub Total"};
+                                String[][] inf_Vendas = {{}};
+                                DefaultTableModel tabela_Vendas = new DefaultTableModel(inf_Vendas, Colunas_Vendas);
+
+                                // Criando as Tabelas/Listas
+                                JTable Lista_Vendas = new JTable(tabela_Vendas);
+                                JTableHeader header_Vendas = Lista_Vendas.getTableHeader();
+
+                                Lista_Vendas.setModel(tabela_Vendas);
+                                Lista_Vendas.setRowHeight(120);
+                                Lista_Vendas.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                Lista_Vendas.getColumnModel().getColumn(2).setPreferredWidth(100);
+                                Lista_Vendas.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+                                //Personalizando a Linhas_Colunas/lista de Compras
+                                Lista_Vendas.setShowGrid(false);
+                                header_Vendas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Vendas.setForeground(new Color(102, 102, 255));
+
+                                tabela_Vendas.setRowCount(10);
+
+                                JScrollPane rol_Vendas = new JScrollPane(Lista_Vendas);
+
+                                //Fonte
+                                lblTransacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblPagamento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblnumero_cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblValor.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblTrocos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblValor_a_Pagar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblValor_a_PagarView.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblValidade_Cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                                jcTransacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                jcGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtContacto_Email.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtMontante.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtnumero_cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtValidade_cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                jcTipo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                                btnPagar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnCancelar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnAlterar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnRecibo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+
+                                btnPagar.setFocusPainted(false);
+                                btnAlterar.setFocusPainted(false);
+                                btnCancelar.setFocusPainted(false);
+                                btnRecibo.setFocusPainted(false);
+
+                                //Foreground
+                                lblTransacao.setForeground(new Color(102, 102, 255));
+                                lblNome.setForeground(new Color(102, 102, 255));
+                                lblGenero.setForeground(new Color(102, 102, 255));
+                                lblContacto.setForeground(new Color(102, 102, 255));
+                                lblPagamento.setForeground(new Color(102, 102, 255));
+                                lblValor.setForeground(new Color(102, 102, 255));
+                                lblnumero_cartao.setForeground(new Color(102, 102, 255));
+                                lblValidade_Cartao.setForeground(new Color(102, 102, 255));
+                                lblValor_a_Pagar.setForeground(new Color(102, 102, 255));
+                                btnPagar.setForeground(new Color(0, 102, 255));
+                                btnCancelar.setForeground(new Color(0, 102, 255));
+                                btnRecibo.setForeground(new Color(0, 102, 255));
+                                btnAlterar.setForeground(new Color(0, 102, 255));
+
+                                //Visibilidade inicial das  Componentes
+                                txtNome.setEnabled(false);
+                                jcGenero.setEnabled(false);
+                                jcTipo.setEnabled(false);
+                                txtContacto_Email.setEnabled(false);
+                                txtMontante.setEnabled(false);
+                                txtnumero_cartao.setEnabled(false);
+                                txtValidade_cartao.setEnabled(false);
+                                btnPagar.setEnabled(false);
+                                btnRecibo.setEnabled(false);
+
+                                //Action 
+                                jcTransacao.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        if (jcTransacao.getSelectedIndex() == 1) {
+
+                                            jcTipo.setEnabled(true);
+                                            jcTipo.setSelectedIndex(0);
+                                            jcGenero.setSelectedIndex(0);
+                                            txtNome.setEnabled(false);
+                                            jcGenero.setEnabled(false);
+                                            txtContacto_Email.setEnabled(false);
+                                            txtMontante.setEnabled(false);
+                                            txtnumero_cartao.setEnabled(false);
+                                             txtValidade_cartao.setEnabled(false);
+                                            btnPagar.setEnabled(false);
+                                            btnRecibo.setEnabled(false);
+
+                                            jcTipo.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    if (jcTipo.getSelectedIndex() == 1) {
+                                                        txtMontante.setEnabled(true);
+                                                        btnPagar.setEnabled(true);
+
+                                                        txtNome.setEnabled(false);
+                                                        jcGenero.setEnabled(false);
+                                                        txtContacto_Email.setEnabled(false);
+                                                        txtnumero_cartao.setEnabled(false);
+                                                        txtValidade_cartao.setEnabled(false);
+                                                        btnRecibo.setEnabled(false);
+
+                                                        //Salvar Venda por meio do pagamento em Dinheiro
+                                                        btnPagar.addActionListener(new ActionListener() {
+                                                            @Override
+                                                            public void actionPerformed(ActionEvent e) {
+
+                                                            }
+
+                                                        });
+
+                                                    } else {
+                                                        if (jcTipo.getSelectedIndex() == 2) {
+                                                            lblNome.setText("");
+                                                            lblNome.setText("Nome do Titular da Conta");
+                                                            txtMontante.setEnabled(false);
+                                                            txtNome.setEnabled(true);
+                                                            jcGenero.setEnabled(false);
+                                                            txtContacto_Email.setEnabled(false);
+                                                            txtnumero_cartao.setEnabled(true);
+                                                             txtValidade_cartao.setEnabled(true);
+                                                            btnPagar.setEnabled(true);
+                                                            btnRecibo.setEnabled(false);
+
+                                                            //Salvar Venda por meio do cartao de Credito
+                                                            btnPagar.addActionListener(new ActionListener() {
+                                                                @Override
+                                                                public void actionPerformed(ActionEvent e) {
+
+                                                                }
+
+                                                            });
+                                                        } else {
+                                                            if (jcTipo.getSelectedIndex() == 3) {
+                                                                lblNome.setText("");
+                                                                lblNome.setText("Nome do Titular da Conta");
+                                                                txtMontante.setEnabled(false);
+                                                                txtNome.setEnabled(true);
+                                                                jcGenero.setEnabled(false);
+                                                                txtContacto_Email.setEnabled(false);
+                                                                txtnumero_cartao.setEnabled(true);
+                                                                 txtValidade_cartao.setEnabled(true);
+                                                                btnPagar.setEnabled(true);
+                                                                btnRecibo.setEnabled(false);
+
+                                                                //Salvar Venda por meio do Cartão de Debito
+                                                                btnPagar.addActionListener(new ActionListener() {
+                                                                    @Override
+                                                                    public void actionPerformed(ActionEvent e) {
+
+                                                                        //Opção de imprimir factura desabilitada
+                                                                        btnRecibo.setEnabled(true);
+                                                                    }
+
+                                                                });
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+
+                                            });
+
+                                        } else if (jcTransacao.getSelectedIndex() == 2) {
+                                            jcTipo.setSelectedIndex(0);
+                                            jcGenero.setSelectedIndex(0);
+                                            btnPagar.setEnabled(true);
+                                            lblNome.setText("");
+                                            lblNome.setText("Nome do Cliente");
+                                            txtNome.setEnabled(true);
+                                            jcGenero.setEnabled(true);
+                                            jcTipo.setEnabled(false);
+                                            txtContacto_Email.setEnabled(true);
+                                            txtMontante.setEnabled(false);
+                                            txtnumero_cartao.setEnabled(false);
+                                             txtValidade_cartao.setEnabled(false);
+                                            btnRecibo.setEnabled(false);
+
+                                            //Salvar Venda Pedido
+                                            btnPagar.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+
+                                                    //Opção de Imprimir factura do pedido
+                                                    btnRecibo.setEnabled(true);
+                                                }
+
+                                            });
+
+                                        }
+
+                                    }
+                                });
+
+                                //////////////////////////////////////////////////////////////
+                                rol_Vendas.setBounds(80, 100, 760, 200);
+                                lblValor_a_Pagar.setBounds(80, 300, 100, 30);
+                                lblValor_a_PagarView.setBounds(80, 325, 100, 30);
+                                lblTransacao.setBounds(80, 10, 760, 30);
+                                jcTransacao.setBounds(80, 40, 200, 35);
+                                lblNome.setBounds(80, 345, 200, 30);
+                                txtNome.setBounds(80, 375, 200, 35);
+                                lblContacto.setBounds(80, 410, 200, 30);
+                                txtContacto_Email.setBounds(80, 440, 200, 35);
+                                lblValor.setBounds(80, 475, 200, 30);
+                                txtMontante.setBounds(80, 510, 200, 35);
+                                lblGenero.setBounds(320, 345, 200, 30);
+                                jcGenero.setBounds(320, 375, 200, 35);
+                                lblPagamento.setBounds(320, 410, 200, 30);
+                                jcTipo.setBounds(320, 440, 200, 35);
+                                lblnumero_cartao.setBounds(560, 345, 200, 30);
+                                txtnumero_cartao.setBounds(560, 375, 200, 35);
+                                lblValidade_Cartao.setBounds(560, 410, 200, 30);
+                                txtValidade_cartao.setBounds(560, 440, 200, 35);
+                                btnPagar.setBounds(80, 560, 100, 30);
+                                btnAlterar.setBounds(270, 570, 100, 30);
+                                btnCancelar.setBounds(470, 570, 100, 30);
+                                btnRecibo.setBounds(660, 570, 100, 30);
+
+                                pnlVendas.add(rol_Vendas);
+                                pnlVendas.add(lblTransacao);
+                                pnlVendas.add(jcTransacao);
+                                pnlVendas.add(lblNome);
+                                pnlVendas.add(lblGenero);
+                                pnlVendas.add(lblContacto);
+                                pnlVendas.add(lblnumero_cartao);
+                                pnlVendas.add(lblPagamento);
+                                pnlVendas.add(lblValidade_Cartao);
+                                pnlVendas.add(lblValor_a_Pagar);
+                                pnlVendas.add(lblValor_a_PagarView);
+                                pnlVendas.add(lblPagamento);
+                                pnlVendas.add(lblValor);
+                                pnlVendas.add(lblTrocos);
+                                pnlVendas.add(txtNome);
+                                pnlVendas.add(jcGenero);
+                                pnlVendas.add(txtContacto_Email);
+                                pnlVendas.add(txtnumero_cartao);
+                                pnlVendas.add(txtValidade_cartao);
+                                pnlVendas.add(jcTipo);
+                                pnlVendas.add(txtMontante);
+                                pnlVendas.add(txtTrocos);
+
+                                pnlVendas.add(btnPagar);
+                                pnlVendas.add(btnCancelar);
+                                pnlVendas.add(btnRecibo);
+                                pnlVendas.add(btnAlterar);
+
+                                pnlVendas.setVisible(true);
+
                             }
                         });
 
@@ -521,6 +833,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         pnlVenderProdutos.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
+                        pnlVendas.setVisible(false);
 
                         pnlListar.setLayout(null);
                         pnlListar.setBounds(280, 0, 920, 700);
@@ -530,7 +843,7 @@ public class Servicos_Organizacao extends JFrame {
 
                         lblListar.setBounds(270, 20, 350, 30);
 
-                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
+                        lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         lblListar.setText("Lista de Produtos da Organizacao");
                         lblListar.setForeground(new Color(0, 102, 255));
 
@@ -542,7 +855,7 @@ public class Servicos_Organizacao extends JFrame {
                         JTableHeader header_Lista = Lista_Produtos.getTableHeader();
 
                         //Personalizando a Linhas_Colunas
-                        header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header_Lista.setForeground(new Color(102, 102, 255));
                         Lista_Produtos.setShowGrid(false);
 
@@ -574,6 +887,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlPrincipal.setVisible(true);
                         pnlListar.setVisible(false);
                         pnlVenderProdutos.setVisible(false);
+                        pnlVendas.setVisible(false);
                         MenuServicos.setVisible(false);
 
                         JTextField txtbarra2 = new JTextField();
@@ -688,6 +1002,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlVenderProdutos.setVisible(false);
                         pnlProcurarProdutos.setVisible(false);
                         pnlListar.setVisible(false);
+                        pnlVendas.setVisible(false);
                         MenuServicos.setVisible(false);
                         pnlPrincipal.setVisible(true);
                         pnlDe_Menu_Principal.setVisible(true);
@@ -708,6 +1023,7 @@ public class Servicos_Organizacao extends JFrame {
                 pnlServicos.add(pnlListar);
                 pnlServicos.add(pnlProcurarProdutos);
                 pnlServicos.add(pnlVenderProdutos);
+                pnlServicos.add(pnlVendas);
                 pnlServicos.add(pnlPrincipal);
 
                 pnlauxPrincipal.add(pnlServicos);
@@ -731,7 +1047,7 @@ public class Servicos_Organizacao extends JFrame {
                 JLabel lblListar = new JLabel();
 
                 lblListar.setBounds(270, 30, 350, 30);
-                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 20));
+                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 lblListar.setText("Relatorio de Minhas Vendas");
 
                 lblListar.setForeground(new Color(0, 102, 225));
@@ -745,7 +1061,7 @@ public class Servicos_Organizacao extends JFrame {
 
                 //Personalizando a fonte das informacoes da Linhas_Colunas
                 header.setForeground(new Color(102, 102, 220));
-                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 infCa.setShowGrid(false);
 
                 infCa.setModel(tabela);
@@ -898,13 +1214,13 @@ public class Servicos_Organizacao extends JFrame {
 
                         Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
 
-                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header.setForeground(new Color(102, 102, 255));
 
                         JScrollPane rol = new JScrollPane(Lista_Funcionarios);
 
                         //Foreground
-                        lblTitulo.setForeground(new Color(102, 102, 255));
+                        lblTitulo.setForeground(new Color(0, 102, 255));
 
                         //Cordenadas
                         lblTitulo.setBounds(340, 0, 350, 30);
@@ -989,21 +1305,21 @@ public class Servicos_Organizacao extends JFrame {
                         txtSalario.setEnabled(false);
 
                         //Personalizando a fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 24));
-                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                        lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
@@ -1078,7 +1394,7 @@ public class Servicos_Organizacao extends JFrame {
                         pnlActualizar_Dados.add(btnActualizar);
 
                         //Fonte
-                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         lblApelido.setForeground(new Color(102, 102, 255));
                         lblNome.setForeground(new Color(102, 102, 255));
                         lblGenero.setForeground(new Color(102, 102, 255));

@@ -11,7 +11,7 @@ package MODEL.DTO;
  */
 public class Produtos extends Categorias{
   private String nome_produto,  lote, codigo_barra,validade, tipo_Produto, estado_produto, data_cadastro,  status_disponibilidade, Marca,Descricao, unidadeMedida;  
-  private long id;
+  private long codigo_produto;
   private double quantidade_embalada, quantidade_emEmbalagem, quantidade_Adicionar, peso_volume,preco_compra, preco_venda,lucro_unidade, total_custos,valor_esperado, totalDisponiveis;
      
 }
