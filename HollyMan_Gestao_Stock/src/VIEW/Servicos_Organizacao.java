@@ -64,7 +64,11 @@ public class Servicos_Organizacao extends JFrame {
     ImageIcon Icon_Password = new ImageIcon("src\\Imagens\\password.png");
     ImageIcon Icon_Contacto = new ImageIcon("src\\Imagens\\telefone.png");
     ImageIcon Icon_Contratacao = new ImageIcon("src\\Imagens\\Contratacao.png");
-    ImageIcon Icon_Acesso = new ImageIcon("src\\Imagens\\");
+    ImageIcon Icon_mpesa = new ImageIcon("src\\Imagens\\mpesa.png");
+    ImageIcon Icon_emola = new ImageIcon("src\\Imagens\\emola.png");
+    ImageIcon Icon_mkesh = new ImageIcon("src\\Imagens\\mkesh.png");
+    ImageIcon Icon_catao = new ImageIcon("src\\Imagens\\cartao_credito.png");
+    ImageIcon Icon_cartao1 = new ImageIcon("src\\Imagens\\cartao_credito1.png");
 
     JButton btnMeuPerfil = new JButton("   Meu Perfil");
     JButton btnServicos = new JButton("  Tarefas");
@@ -507,6 +511,8 @@ public class Servicos_Organizacao extends JFrame {
                                 JLabel lblValor_a_Pagar = new JLabel("Total a Pagar");
                                 JLabel lblValor_a_PagarView = new JLabel("0");
                                 JLabel lblTrocos = new JLabel("Trocos");
+                                JLabel lblCVV = new JLabel("CVV");
+                                JLabel lblIcon = new JLabel();
 
                                 JComboBox jcTransacao = new JComboBox();
                                 JTextField txtNome = new JTextField();
@@ -516,7 +522,9 @@ public class Servicos_Organizacao extends JFrame {
                                 JTextField txtMontante = new JTextField();
                                 JTextField txtContacto_Email = new JTextField();
                                 JTextField txtTrocos = new JTextField();
+                                JTextField txtCVV = new JTextField();
                                 JDateChooser txtValidade_cartao = new JDateChooser();
+
                                 //adicionando items nas JComboBox
                                 /////////////////////////////////////////////////
                                 jcGenero.setBackground(Color.white);
@@ -532,13 +540,15 @@ public class Servicos_Organizacao extends JFrame {
                                 jcTipo.setBackground(Color.white);
                                 jcTipo.addItem("");
                                 jcTipo.addItem("Pagamento em Dinheiro");
+                                jcTipo.addItem("Pagamento por m-Pesa");
+                                jcTipo.addItem("Pagamento por emola");
+                                jcTipo.addItem("Pagamento por mKesh");
                                 jcTipo.addItem("Cartão de Credito");
                                 jcTipo.addItem("Cartão de Debito");
-                                
-                                ////////////////////////////////////////////////////////////
 
+                                ////////////////////////////////////////////////////////////
                                 BotaoPersonalizado btnPagar = new BotaoPersonalizado("Registar ");
-                                BotaoPersonalizado btnAlterar = new BotaoPersonalizado("Alterar");
+                                BotaoPersonalizado btnAlterar = new BotaoPersonalizado("Editar Lista");
                                 BotaoPersonalizado btnRecibo = new BotaoPersonalizado("Recibo");
                                 BotaoPersonalizado btnCancelar = new BotaoPersonalizado("Cancelar");
 
@@ -581,6 +591,7 @@ public class Servicos_Organizacao extends JFrame {
                                 lblValor_a_Pagar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 lblValor_a_PagarView.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 lblValidade_Cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                lblCVV.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                                 jcTransacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -590,6 +601,8 @@ public class Servicos_Organizacao extends JFrame {
                                 txtnumero_cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 txtValidade_cartao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 jcTipo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtTrocos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                txtCVV.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                                 btnPagar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                                 btnCancelar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
@@ -611,6 +624,8 @@ public class Servicos_Organizacao extends JFrame {
                                 lblnumero_cartao.setForeground(new Color(102, 102, 255));
                                 lblValidade_Cartao.setForeground(new Color(102, 102, 255));
                                 lblValor_a_Pagar.setForeground(new Color(102, 102, 255));
+                                lblTrocos.setForeground(new Color(102, 102, 255));
+                                lblCVV.setForeground(new Color(102, 102, 255));
                                 btnPagar.setForeground(new Color(0, 102, 255));
                                 btnCancelar.setForeground(new Color(0, 102, 255));
                                 btnRecibo.setForeground(new Color(0, 102, 255));
@@ -624,6 +639,8 @@ public class Servicos_Organizacao extends JFrame {
                                 txtMontante.setEnabled(false);
                                 txtnumero_cartao.setEnabled(false);
                                 txtValidade_cartao.setEnabled(false);
+                                txtTrocos.setEnabled(false);
+                                txtCVV.setEnabled(false);
                                 btnPagar.setEnabled(false);
                                 btnRecibo.setEnabled(false);
 
@@ -641,7 +658,7 @@ public class Servicos_Organizacao extends JFrame {
                                             txtContacto_Email.setEnabled(false);
                                             txtMontante.setEnabled(false);
                                             txtnumero_cartao.setEnabled(false);
-                                             txtValidade_cartao.setEnabled(false);
+                                            txtValidade_cartao.setEnabled(false);
                                             btnPagar.setEnabled(false);
                                             btnRecibo.setEnabled(false);
 
@@ -657,6 +674,7 @@ public class Servicos_Organizacao extends JFrame {
                                                         txtContacto_Email.setEnabled(false);
                                                         txtnumero_cartao.setEnabled(false);
                                                         txtValidade_cartao.setEnabled(false);
+                                                        txtCVV.setEnabled(false);
                                                         btnRecibo.setEnabled(false);
 
                                                         //Salvar Venda por meio do pagamento em Dinheiro
@@ -669,7 +687,8 @@ public class Servicos_Organizacao extends JFrame {
                                                         });
 
                                                     } else {
-                                                        if (jcTipo.getSelectedIndex() == 2) {
+                                                        if (jcTipo.getSelectedIndex() == 5) {
+                                                            lblIcon.setIcon(Icon_catao);
                                                             lblNome.setText("");
                                                             lblNome.setText("Nome do Titular da Conta");
                                                             txtMontante.setEnabled(false);
@@ -677,7 +696,8 @@ public class Servicos_Organizacao extends JFrame {
                                                             jcGenero.setEnabled(false);
                                                             txtContacto_Email.setEnabled(false);
                                                             txtnumero_cartao.setEnabled(true);
-                                                             txtValidade_cartao.setEnabled(true);
+                                                            txtValidade_cartao.setEnabled(true);
+                                                            txtCVV.setEnabled(true);
                                                             btnPagar.setEnabled(true);
                                                             btnRecibo.setEnabled(false);
 
@@ -690,7 +710,8 @@ public class Servicos_Organizacao extends JFrame {
 
                                                             });
                                                         } else {
-                                                            if (jcTipo.getSelectedIndex() == 3) {
+                                                            if (jcTipo.getSelectedIndex() == 6) {
+                                                                lblIcon.setIcon(Icon_cartao1);
                                                                 lblNome.setText("");
                                                                 lblNome.setText("Nome do Titular da Conta");
                                                                 txtMontante.setEnabled(false);
@@ -698,7 +719,8 @@ public class Servicos_Organizacao extends JFrame {
                                                                 jcGenero.setEnabled(false);
                                                                 txtContacto_Email.setEnabled(false);
                                                                 txtnumero_cartao.setEnabled(true);
-                                                                 txtValidade_cartao.setEnabled(true);
+                                                                txtValidade_cartao.setEnabled(true);
+                                                                txtCVV.setEnabled(true);
                                                                 btnPagar.setEnabled(true);
                                                                 btnRecibo.setEnabled(false);
 
@@ -712,10 +734,87 @@ public class Servicos_Organizacao extends JFrame {
                                                                     }
 
                                                                 });
+                                                            } else {
+                                                                if (jcTipo.getSelectedIndex() == 2) {
+                                                                    lblIcon.setIcon(Icon_mpesa);
+                                                                    lblContacto.setText("");
+                                                                    lblContacto.setText("Contacto");
+                                                                    txtMontante.setEnabled(false);
+                                                                    txtNome.setEnabled(false);
+                                                                    jcGenero.setEnabled(false);
+                                                                    txtContacto_Email.setEnabled(true);
+                                                                    txtnumero_cartao.setEnabled(false);
+                                                                    txtValidade_cartao.setEnabled(false);
+                                                                    txtCVV.setEnabled(false);
+                                                                    btnPagar.setEnabled(true);
+                                                                    btnRecibo.setEnabled(false);
+
+                                                                    //Salvar Venda por meio do M-pesa
+                                                                    btnPagar.addActionListener(new ActionListener() {
+                                                                        @Override
+                                                                        public void actionPerformed(ActionEvent e) {
+
+                                                                            //Opção de imprimir factura desabilitada
+                                                                            btnRecibo.setEnabled(true);
+                                                                        }
+
+                                                                    });
+                                                                } else {
+                                                                    if (jcTipo.getSelectedIndex() == 3) {
+                                                                        lblIcon.setIcon(Icon_emola);
+                                                                        lblContacto.setText("");
+                                                                        lblContacto.setText("Contacto");
+                                                                        txtMontante.setEnabled(false);
+                                                                        txtNome.setEnabled(false);
+                                                                        jcGenero.setEnabled(false);
+                                                                        txtContacto_Email.setEnabled(true);
+                                                                        txtnumero_cartao.setEnabled(false);
+                                                                        txtValidade_cartao.setEnabled(false);
+                                                                        txtCVV.setEnabled(false);
+                                                                        btnPagar.setEnabled(true);
+                                                                        btnRecibo.setEnabled(false);
+
+                                                                        //Salvar Venda por meio do emola
+                                                                        btnPagar.addActionListener(new ActionListener() {
+                                                                            @Override
+                                                                            public void actionPerformed(ActionEvent e) {
+
+                                                                                //Opção de imprimir factura desabilitada
+                                                                                btnRecibo.setEnabled(true);
+                                                                            }
+
+                                                                        });
+                                                                    } else {
+                                                                        if (jcTipo.getSelectedIndex() == 4) {
+                                                                            lblIcon.setIcon(Icon_mkesh);
+                                                                            lblContacto.setText("");
+                                                                            lblContacto.setText("Contacto");
+                                                                            txtMontante.setEnabled(false);
+                                                                            txtNome.setEnabled(false);
+                                                                            jcGenero.setEnabled(false);
+                                                                            txtContacto_Email.setEnabled(true);
+                                                                            txtnumero_cartao.setEnabled(false);
+                                                                            txtValidade_cartao.setEnabled(false);
+                                                                            txtCVV.setEnabled(false);
+                                                                            btnPagar.setEnabled(true);
+                                                                            btnRecibo.setEnabled(false);
+
+                                                                            //Salvar Venda por meio do m-kesh
+                                                                            btnPagar.addActionListener(new ActionListener() {
+                                                                                @Override
+                                                                                public void actionPerformed(ActionEvent e) {
+
+                                                                                    //Opção de imprimir factura desabilitada
+                                                                                    btnRecibo.setEnabled(true);
+                                                                                }
+
+                                                                            });
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
-
                                                 }
 
                                             });
@@ -732,7 +831,8 @@ public class Servicos_Organizacao extends JFrame {
                                             txtContacto_Email.setEnabled(true);
                                             txtMontante.setEnabled(false);
                                             txtnumero_cartao.setEnabled(false);
-                                             txtValidade_cartao.setEnabled(false);
+                                            txtValidade_cartao.setEnabled(false);
+                                            txtCVV.setEnabled(false);
                                             btnRecibo.setEnabled(false);
 
                                             //Salvar Venda Pedido
@@ -752,31 +852,37 @@ public class Servicos_Organizacao extends JFrame {
                                 });
 
                                 //////////////////////////////////////////////////////////////
-                                rol_Vendas.setBounds(80, 100, 760, 200);
-                                lblValor_a_Pagar.setBounds(80, 300, 100, 30);
-                                lblValor_a_PagarView.setBounds(80, 325, 100, 30);
-                                lblTransacao.setBounds(80, 10, 760, 30);
-                                jcTransacao.setBounds(80, 40, 200, 35);
-                                lblNome.setBounds(80, 345, 200, 30);
-                                txtNome.setBounds(80, 375, 200, 35);
-                                lblContacto.setBounds(80, 410, 200, 30);
-                                txtContacto_Email.setBounds(80, 440, 200, 35);
-                                lblValor.setBounds(80, 475, 200, 30);
-                                txtMontante.setBounds(80, 510, 200, 35);
-                                lblGenero.setBounds(320, 345, 200, 30);
-                                jcGenero.setBounds(320, 375, 200, 35);
-                                lblPagamento.setBounds(320, 410, 200, 30);
-                                jcTipo.setBounds(320, 440, 200, 35);
-                                lblnumero_cartao.setBounds(560, 345, 200, 30);
-                                txtnumero_cartao.setBounds(560, 375, 200, 35);
-                                lblValidade_Cartao.setBounds(560, 410, 200, 30);
-                                txtValidade_cartao.setBounds(560, 440, 200, 35);
-                                btnPagar.setBounds(80, 560, 100, 30);
-                                btnAlterar.setBounds(270, 570, 100, 30);
-                                btnCancelar.setBounds(470, 570, 100, 30);
-                                btnRecibo.setBounds(660, 570, 100, 30);
+                                rol_Vendas.setBounds(10, 100, 890, 200);
+                                lblValor_a_Pagar.setBounds(10, 300, 100, 30);
+                                lblValor_a_PagarView.setBounds(10, 325, 100, 30);
+                                lblTransacao.setBounds(330, 10, 200, 30);
+                                jcTransacao.setBounds(330, 40, 200, 35);
+                                lblNome.setBounds(10, 355, 200, 30);
+                                txtNome.setBounds(10, 385, 200, 35);
+                                lblContacto.setBounds(10, 415, 200, 30);
+                                txtContacto_Email.setBounds(10, 440, 200, 35);
+                                lblValor.setBounds(10, 485, 200, 30);
+                                txtMontante.setBounds(10, 515, 200, 35);
+                                lblTrocos.setBounds(250, 485, 200, 30);
+                                txtTrocos.setBounds(250, 515, 200, 35);
+                                lblGenero.setBounds(250, 355, 200, 30);
+                                jcGenero.setBounds(250, 385, 200, 35);
+                                lblPagamento.setBounds(250, 420, 200, 30);
+                                jcTipo.setBounds(250, 450, 200, 35);
+                                lblnumero_cartao.setBounds(490, 355, 200, 30);
+                                txtnumero_cartao.setBounds(490, 385, 200, 35);
+                                lblValidade_Cartao.setBounds(490, 420, 200, 30);
+                                txtValidade_cartao.setBounds(490, 450, 200, 35);
+                                lblCVV.setBounds(490, 485, 200, 30);
+                                txtCVV.setBounds(490, 515, 200, 35);
+                                lblIcon.setBounds(750, 385, 140, 140);
+                                btnPagar.setBounds(10, 590, 100, 30);
+                                btnAlterar.setBounds(780, 315, 100, 30);
+                                btnRecibo.setBounds(295, 590, 100, 30);
+                                btnCancelar.setBounds(590, 590, 100, 30);
 
                                 pnlVendas.add(rol_Vendas);
+                                pnlVendas.add(lblIcon);
                                 pnlVendas.add(lblTransacao);
                                 pnlVendas.add(jcTransacao);
                                 pnlVendas.add(lblNome);
@@ -790,6 +896,7 @@ public class Servicos_Organizacao extends JFrame {
                                 pnlVendas.add(lblPagamento);
                                 pnlVendas.add(lblValor);
                                 pnlVendas.add(lblTrocos);
+                                pnlVendas.add(lblCVV);
                                 pnlVendas.add(txtNome);
                                 pnlVendas.add(jcGenero);
                                 pnlVendas.add(txtContacto_Email);
@@ -798,6 +905,7 @@ public class Servicos_Organizacao extends JFrame {
                                 pnlVendas.add(jcTipo);
                                 pnlVendas.add(txtMontante);
                                 pnlVendas.add(txtTrocos);
+                                pnlVendas.add(txtCVV);
 
                                 pnlVendas.add(btnPagar);
                                 pnlVendas.add(btnCancelar);
