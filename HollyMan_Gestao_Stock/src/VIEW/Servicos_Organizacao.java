@@ -498,6 +498,11 @@ public class Servicos_Organizacao extends JFrame {
                         btnProximo.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
+                                btnListarProdutos.setEnabled(false);
+                                btnPedidos.setEnabled(false);
+                                btnVender.setEnabled(false);
+                                btnVoltarPrincipal.setEnabled(false);
+
                                 pnlVenderProdutos.setVisible(false);
 
                                 JLabel lblTransacao = new JLabel("Tipo de Serviço");
@@ -535,7 +540,8 @@ public class Servicos_Organizacao extends JFrame {
                                 jcTransacao.setBackground(Color.white);
                                 jcTransacao.addItem("");
                                 jcTransacao.addItem("Registar Venda");
-                                jcTransacao.addItem("Registar Pedido");
+                                jcTransacao.addItem("Pedido de novo Cliente");
+                                jcTransacao.addItem("Pedido de Cliente Registado");
 
                                 jcTipo.setBackground(Color.white);
                                 jcTipo.addItem("");
@@ -551,6 +557,7 @@ public class Servicos_Organizacao extends JFrame {
                                 BotaoPersonalizado btnAlterar = new BotaoPersonalizado("Editar Lista");
                                 BotaoPersonalizado btnRecibo = new BotaoPersonalizado("Recibo");
                                 BotaoPersonalizado btnCancelar = new BotaoPersonalizado("Cancelar");
+                                BotaoPersonalizado btnVoltar = new BotaoPersonalizado("Voltar");
 
                                 pnlVendas.setLayout(null);
                                 pnlVendas.setBounds(280, 0, 920, 700);
@@ -578,6 +585,27 @@ public class Servicos_Organizacao extends JFrame {
                                 tabela_Vendas.setRowCount(10);
 
                                 JScrollPane rol_Vendas = new JScrollPane(Lista_Vendas);
+
+                                //Tabela de Clientes que ja fizeram pedidos
+                                String[] Colunas_Cli = {"Nome do Cliente", "Genero", "Contacto"};
+                                String[][] inf_Cli = {{}};
+                                DefaultTableModel tabela_Cli = new DefaultTableModel(inf_Cli, Colunas_Cli);
+
+                                // Criando as Tabelas/Listas
+                                JTable Lista_Cli = new JTable(tabela_Cli);
+                                JTableHeader header_Cli = Lista_Cli.getTableHeader();
+
+                                Lista_Cli.setModel(tabela_Cli);
+                                Lista_Cli.setRowHeight(30);
+//                          
+                                //Personalizando a Linhas_Colunas/lista de Compras
+                                Lista_Cli.setShowGrid(false);
+                                header_Cli.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Cli.setForeground(new Color(102, 102, 255));
+
+                                tabela_Cli.setRowCount(10);
+
+                                JScrollPane rol_Cli = new JScrollPane(Lista_Cli);
 
                                 //Fonte
                                 lblTransacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -608,11 +636,13 @@ public class Servicos_Organizacao extends JFrame {
                                 btnCancelar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                                 btnAlterar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                                 btnRecibo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
 
                                 btnPagar.setFocusPainted(false);
                                 btnAlterar.setFocusPainted(false);
                                 btnCancelar.setFocusPainted(false);
                                 btnRecibo.setFocusPainted(false);
+                                btnVoltar.setFocusPainted(false);
 
                                 //Foreground
                                 lblTransacao.setForeground(new Color(102, 102, 255));
@@ -630,6 +660,7 @@ public class Servicos_Organizacao extends JFrame {
                                 btnCancelar.setForeground(new Color(0, 102, 255));
                                 btnRecibo.setForeground(new Color(0, 102, 255));
                                 btnAlterar.setForeground(new Color(0, 102, 255));
+                                btnVoltar.setForeground(new Color(0, 102, 255));
 
                                 //Visibilidade inicial das  Componentes
                                 txtNome.setEnabled(false);
@@ -644,29 +675,84 @@ public class Servicos_Organizacao extends JFrame {
                                 btnPagar.setEnabled(false);
                                 btnRecibo.setEnabled(false);
 
+                                jcTransacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
                                 //Action 
                                 jcTransacao.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
+
                                         if (jcTransacao.getSelectedIndex() == 1) {
 
+                                            jcTipo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                             jcTipo.setEnabled(true);
-                                            jcTipo.setSelectedIndex(0);
-                                            jcGenero.setSelectedIndex(0);
+
+                                            lblIcon.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
+
+                                            rol_Cli.setVisible(false);
+                                            lblNome.setVisible(true);
+                                            txtNome.setVisible(true);
+                                            lblGenero.setVisible(true);
+                                            jcGenero.setVisible(true);
+                                            lblContacto.setVisible(true);
+                                            txtContacto_Email.setVisible(true);
+                                            lblValor.setVisible(true);
+                                            txtMontante.setVisible(true);
+                                            lblnumero_cartao.setVisible(true);
+                                            txtnumero_cartao.setVisible(true);
+                                            lblPagamento.setVisible(true);
+                                            jcTipo.setVisible(true);
+                                            lblTrocos.setVisible(true);
+                                            txtTrocos.setVisible(true);
+                                            lblValidade_Cartao.setVisible(true);
+                                            txtValidade_cartao.setVisible(true);
+                                            lblCVV.setVisible(true);
+                                            txtCVV.setVisible(true);
+                                            lblIcon.setVisible(true);
+
+                                            lblNome.setText("");
+                                            lblNome.setText("Nome do Titular da Conta");
+                                            lblPagamento.setBounds(10, 355, 200, 30);
+                                            jcTipo.setBounds(10, 385, 200, 35);
+                                            lblNome.setBounds(10, 420, 200, 30);
+                                            txtNome.setBounds(10, 450, 200, 35);
+                                            lblGenero.setBounds(10, 485, 200, 30);
+                                            jcGenero.setBounds(10, 515, 200, 35);
+
+                                            lblContacto.setBounds(250, 355, 200, 30);
+                                            txtContacto_Email.setBounds(250, 385, 200, 35);
+                                            lblnumero_cartao.setBounds(250, 420, 200, 30);
+                                            txtnumero_cartao.setBounds(250, 450, 200, 35);
+                                            lblValidade_Cartao.setBounds(250, 485, 200, 30);
+                                            txtValidade_cartao.setBounds(250, 515, 200, 35);
+
+                                            lblCVV.setBounds(490, 355, 200, 30);
+                                            txtCVV.setBounds(490, 385, 200, 35);
+                                            lblValor.setBounds(490, 420, 200, 30);
+                                            txtMontante.setBounds(490, 450, 200, 35);
+                                            lblTrocos.setBounds(490, 485, 200, 30);
+                                            txtTrocos.setBounds(490, 515, 200, 35);
+                                            lblIcon.setBounds(750, 385, 140, 165);
+
                                             txtNome.setEnabled(false);
                                             jcGenero.setEnabled(false);
                                             txtContacto_Email.setEnabled(false);
                                             txtMontante.setEnabled(false);
                                             txtnumero_cartao.setEnabled(false);
                                             txtValidade_cartao.setEnabled(false);
-                                            btnPagar.setEnabled(false);
-                                            btnRecibo.setEnabled(false);
+                                            txtTrocos.setEnabled(false);
+                                       //   jcTipo.setSelectedIndex(0);
+                                            jcGenero.setSelectedIndex(0);
 
                                             jcTipo.addActionListener(new ActionListener() {
                                                 @Override
                                                 public void actionPerformed(ActionEvent e) {
                                                     if (jcTipo.getSelectedIndex() == 1) {
+
+                                                        lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                         txtMontante.setEnabled(true);
+                                                        txtMontante.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
                                                         btnPagar.setEnabled(true);
 
                                                         txtNome.setEnabled(false);
@@ -688,16 +774,26 @@ public class Servicos_Organizacao extends JFrame {
 
                                                     } else {
                                                         if (jcTipo.getSelectedIndex() == 5) {
+
+                                                            lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                             lblIcon.setIcon(Icon_catao);
                                                             lblNome.setText("");
                                                             lblNome.setText("Nome do Titular da Conta");
                                                             txtMontante.setEnabled(false);
                                                             txtNome.setEnabled(true);
-                                                            jcGenero.setEnabled(false);
+                                                            jcGenero.setEnabled(true);
                                                             txtContacto_Email.setEnabled(false);
                                                             txtnumero_cartao.setEnabled(true);
                                                             txtValidade_cartao.setEnabled(true);
                                                             txtCVV.setEnabled(true);
+
+                                                            txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                            txtnumero_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                            txtValidade_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                            txtCVV.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                            jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                                             btnPagar.setEnabled(true);
                                                             btnRecibo.setEnabled(false);
 
@@ -711,16 +807,27 @@ public class Servicos_Organizacao extends JFrame {
                                                             });
                                                         } else {
                                                             if (jcTipo.getSelectedIndex() == 6) {
+
+                                                                lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                                 lblIcon.setIcon(Icon_cartao1);
                                                                 lblNome.setText("");
                                                                 lblNome.setText("Nome do Titular da Conta");
+
                                                                 txtMontante.setEnabled(false);
                                                                 txtNome.setEnabled(true);
-                                                                jcGenero.setEnabled(false);
+                                                                jcGenero.setEnabled(true);
                                                                 txtContacto_Email.setEnabled(false);
                                                                 txtnumero_cartao.setEnabled(true);
                                                                 txtValidade_cartao.setEnabled(true);
                                                                 txtCVV.setEnabled(true);
+
+                                                                txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                txtnumero_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                txtValidade_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                txtCVV.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                                                 btnPagar.setEnabled(true);
                                                                 btnRecibo.setEnabled(false);
 
@@ -736,6 +843,9 @@ public class Servicos_Organizacao extends JFrame {
                                                                 });
                                                             } else {
                                                                 if (jcTipo.getSelectedIndex() == 2) {
+
+                                                                    lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                                     lblIcon.setIcon(Icon_mpesa);
                                                                     lblContacto.setText("");
                                                                     lblContacto.setText("Contacto");
@@ -746,6 +856,9 @@ public class Servicos_Organizacao extends JFrame {
                                                                     txtnumero_cartao.setEnabled(false);
                                                                     txtValidade_cartao.setEnabled(false);
                                                                     txtCVV.setEnabled(false);
+
+                                                                    txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                                                     btnPagar.setEnabled(true);
                                                                     btnRecibo.setEnabled(false);
 
@@ -761,6 +874,9 @@ public class Servicos_Organizacao extends JFrame {
                                                                     });
                                                                 } else {
                                                                     if (jcTipo.getSelectedIndex() == 3) {
+
+                                                                        lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                                         lblIcon.setIcon(Icon_emola);
                                                                         lblContacto.setText("");
                                                                         lblContacto.setText("Contacto");
@@ -774,6 +890,8 @@ public class Servicos_Organizacao extends JFrame {
                                                                         btnPagar.setEnabled(true);
                                                                         btnRecibo.setEnabled(false);
 
+                                                                        txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                                                         //Salvar Venda por meio do emola
                                                                         btnPagar.addActionListener(new ActionListener() {
                                                                             @Override
@@ -786,6 +904,9 @@ public class Servicos_Organizacao extends JFrame {
                                                                         });
                                                                     } else {
                                                                         if (jcTipo.getSelectedIndex() == 4) {
+
+                                                                            lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
                                                                             lblIcon.setIcon(Icon_mkesh);
                                                                             lblContacto.setText("");
                                                                             lblContacto.setText("Contacto");
@@ -799,6 +920,8 @@ public class Servicos_Organizacao extends JFrame {
                                                                             btnPagar.setEnabled(true);
                                                                             btnRecibo.setEnabled(false);
 
+                                                                            txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
                                                                             //Salvar Venda por meio do m-kesh
                                                                             btnPagar.addActionListener(new ActionListener() {
                                                                                 @Override
@@ -809,6 +932,9 @@ public class Servicos_Organizacao extends JFrame {
                                                                                 }
 
                                                                             });
+                                                                        }else{
+                                                                               if(jcTipo.getSelectedIndex() == 0)
+                                                                             JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
                                                                         }
                                                                     }
                                                                 }
@@ -820,20 +946,47 @@ public class Servicos_Organizacao extends JFrame {
                                             });
 
                                         } else if (jcTransacao.getSelectedIndex() == 2) {
-                                            jcTipo.setSelectedIndex(0);
-                                            jcGenero.setSelectedIndex(0);
-                                            btnPagar.setEnabled(true);
-                                            lblNome.setText("");
-                                            lblNome.setText("Nome do Cliente");
+                                            lblIcon.setVisible(false);
                                             txtNome.setEnabled(true);
                                             jcGenero.setEnabled(true);
                                             jcTipo.setEnabled(false);
                                             txtContacto_Email.setEnabled(true);
-                                            txtMontante.setEnabled(false);
-                                            txtnumero_cartao.setEnabled(false);
-                                            txtValidade_cartao.setEnabled(false);
-                                            txtCVV.setEnabled(false);
-                                            btnRecibo.setEnabled(false);
+
+                                            lblNome.setText("");
+                                            lblNome.setText("Nome do Cliente");
+
+                                            lblNome.setBounds(10, 355, 200, 30);
+                                            txtNome.setBounds(10, 385, 200, 35);
+                                            lblGenero.setBounds(10, 420, 200, 30);
+                                            jcGenero.setBounds(10, 450, 200, 35);
+                                            lblContacto.setBounds(10, 485, 200, 30);
+                                            txtContacto_Email.setBounds(10, 515, 200, 35);
+
+                                            jcTipo.setVisible(false);
+                                            lblValor.setVisible(false);
+                                            txtMontante.setVisible(false);
+                                            lblnumero_cartao.setVisible(false);
+                                            txtnumero_cartao.setVisible(false);
+                                            lblPagamento.setVisible(false);
+                                            jcTipo.setVisible(false);
+                                            lblTrocos.setVisible(false);
+                                            txtTrocos.setVisible(false);
+                                            lblValidade_Cartao.setVisible(false);
+                                            txtValidade_cartao.setVisible(false);
+                                            lblCVV.setVisible(false);
+                                            txtCVV.setVisible(false);
+
+                                            lblIcon.setVisible(false);
+
+                                            rol_Cli.setVisible(true);
+
+                                          //  jcTipo.setSelectedIndex(0);
+                                            jcGenero.setSelectedIndex(0);
+
+                                            btnPagar.setEnabled(false);
+
+                                            lblNome.setText("");
+                                            lblNome.setText("Nome do Cliente");
 
                                             //Salvar Venda Pedido
                                             btnPagar.addActionListener(new ActionListener() {
@@ -846,8 +999,70 @@ public class Servicos_Organizacao extends JFrame {
 
                                             });
 
-                                        }
+                                        } else {
+                                            if (jcTransacao.getSelectedIndex() == 3) {
+                                                lblIcon.setVisible(false);
+                                                txtNome.setEnabled(false);
+                                                jcGenero.setEnabled(false);
+                                                jcTipo.setEnabled(false);
+                                                txtContacto_Email.setEnabled(false);
 
+                                                rol_Cli.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+
+                                                rol_Cli.setEnabled(true);
+
+                                                lblNome.setText("");
+                                                lblNome.setText("Nome do Cliente");
+
+                                                lblNome.setBounds(10, 355, 200, 30);
+                                                txtNome.setBounds(10, 385, 200, 35);
+                                                lblGenero.setBounds(10, 420, 200, 30);
+                                                jcGenero.setBounds(10, 450, 200, 35);
+                                                lblContacto.setBounds(10, 485, 200, 30);
+                                                txtContacto_Email.setBounds(10, 515, 200, 35);
+
+                                                jcTipo.setVisible(false);
+                                                lblValor.setVisible(false);
+                                                txtMontante.setVisible(false);
+                                                lblnumero_cartao.setVisible(false);
+                                                txtnumero_cartao.setVisible(false);
+                                                lblPagamento.setVisible(false);
+                                                jcTipo.setVisible(false);
+                                                lblTrocos.setVisible(false);
+                                                txtTrocos.setVisible(false);
+                                                lblValidade_Cartao.setVisible(false);
+                                                txtValidade_cartao.setVisible(false);
+                                                lblCVV.setVisible(false);
+                                                txtCVV.setVisible(false);
+
+                                                lblIcon.setVisible(false);
+
+                                                rol_Cli.setVisible(true);
+
+                                             //   jcTipo.setSelectedIndex(0);
+                                                jcGenero.setSelectedIndex(0);
+
+                                                btnPagar.setEnabled(false);
+
+                                                lblNome.setText("");
+                                                lblNome.setText("Nome do Cliente");
+
+                                                //Salvar Venda Pedido
+                                                btnPagar.addActionListener(new ActionListener() {
+                                                    @Override
+                                                    public void actionPerformed(ActionEvent e) {
+
+                                                        //Opção de Imprimir factura do pedido
+                                                        btnRecibo.setEnabled(true);
+                                                    }
+
+                                                });
+
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
+                                            }
+
+                                        }
                                     }
                                 });
 
@@ -855,33 +1070,25 @@ public class Servicos_Organizacao extends JFrame {
                                 rol_Vendas.setBounds(10, 100, 890, 200);
                                 lblValor_a_Pagar.setBounds(10, 300, 100, 30);
                                 lblValor_a_PagarView.setBounds(10, 325, 100, 30);
-                                lblTransacao.setBounds(330, 10, 200, 30);
-                                jcTransacao.setBounds(330, 40, 200, 35);
+
+                                lblTransacao.setBounds(330, 10, 220, 30);
+                                jcTransacao.setBounds(330, 40, 220, 35);
+                                rol_Cli.setBounds(250, 385, 650, 165);
+
                                 lblNome.setBounds(10, 355, 200, 30);
                                 txtNome.setBounds(10, 385, 200, 35);
-                                lblContacto.setBounds(10, 415, 200, 30);
-                                txtContacto_Email.setBounds(10, 440, 200, 35);
-                                lblValor.setBounds(10, 485, 200, 30);
-                                txtMontante.setBounds(10, 515, 200, 35);
-                                lblTrocos.setBounds(250, 485, 200, 30);
-                                txtTrocos.setBounds(250, 515, 200, 35);
-                                lblGenero.setBounds(250, 355, 200, 30);
-                                jcGenero.setBounds(250, 385, 200, 35);
-                                lblPagamento.setBounds(250, 420, 200, 30);
-                                jcTipo.setBounds(250, 450, 200, 35);
-                                lblnumero_cartao.setBounds(490, 355, 200, 30);
-                                txtnumero_cartao.setBounds(490, 385, 200, 35);
-                                lblValidade_Cartao.setBounds(490, 420, 200, 30);
-                                txtValidade_cartao.setBounds(490, 450, 200, 35);
-                                lblCVV.setBounds(490, 485, 200, 30);
-                                txtCVV.setBounds(490, 515, 200, 35);
-                                lblIcon.setBounds(750, 385, 140, 140);
+                                lblGenero.setBounds(10, 420, 200, 30);
+                                jcGenero.setBounds(10, 450, 200, 35);
+                                lblContacto.setBounds(10, 485, 200, 30);
+                                txtContacto_Email.setBounds(10, 515, 200, 35);
                                 btnPagar.setBounds(10, 590, 100, 30);
                                 btnAlterar.setBounds(780, 315, 100, 30);
-                                btnRecibo.setBounds(295, 590, 100, 30);
-                                btnCancelar.setBounds(590, 590, 100, 30);
+                                btnRecibo.setBounds(275, 590, 100, 30);
+                                btnCancelar.setBounds(570, 590, 100, 30);
+                                btnVoltar.setBounds(800, 590, 100, 30);
 
                                 pnlVendas.add(rol_Vendas);
+                                pnlVendas.add(rol_Cli);
                                 pnlVendas.add(lblIcon);
                                 pnlVendas.add(lblTransacao);
                                 pnlVendas.add(jcTransacao);
@@ -911,6 +1118,7 @@ public class Servicos_Organizacao extends JFrame {
                                 pnlVendas.add(btnCancelar);
                                 pnlVendas.add(btnRecibo);
                                 pnlVendas.add(btnAlterar);
+                                pnlVendas.add(btnVoltar);
 
                                 pnlVendas.setVisible(true);
 
