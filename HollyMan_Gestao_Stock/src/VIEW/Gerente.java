@@ -30,6 +30,9 @@ import javax.swing.table.JTableHeader;
 
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -81,14 +84,61 @@ public class Gerente extends JFrame {
         JLabel lblLogo = new JLabel();
         lblLogo.setIcon(Icon_Logo);
 
+        JMenuBar barraMenu = new JMenuBar();
+        JMenu menuAdicional = new JMenu("Menu");
+        JMenuItem btnStock = new JMenuItem("  Abastecer Produtos ");
+        JMenuItem btnAlocar = new JMenuItem("  Alocar Funcionario");
+        JMenuItem btnRelatorios = new JMenuItem("  Relatorios");
+        JMenuItem btnMenssagem = new JMenuItem("  Menssagens");
+        JMenuItem btnConfiguracoes = new JMenuItem("  Configurações");
+
+        //Personalizando a fonte
+        menuAdicional.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+        btnMenssagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnConfiguracoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnRelatorios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnAlocar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnStock.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+
+        //Adicionando opcoes na barra 
+        barraMenu.add(menuAdicional);
+        menuAdicional.add(btnStock);
+        menuAdicional.add(btnAlocar);
+        menuAdicional.add(btnRelatorios);
+        menuAdicional.add(btnMenssagem);
+        menuAdicional.add(btnConfiguracoes);
+
+        //Colondo icons nos botoes da barra de Menu
+        btnMenssagem.setIcon(Icon_Menssagem);
+        btnConfiguracoes.setIcon(Icon_Configurações);
+        btnRelatorios.setIcon(Icon_RelatorioMenssagem);
+
+        //Background  dos Menu Bar
+        menuAdicional.setBackground(new Color(102, 102, 255));
+        btnMenssagem.setBackground(new Color(102, 102, 255));
+        btnConfiguracoes.setBackground(new Color(102, 102, 255));
+        btnRelatorios.setBackground(new Color(102, 102, 255));
+        btnAlocar.setBackground(new Color(102, 102, 255));
+        btnStock.setBackground(new Color(102, 102, 255));
+
+        menuAdicional.setForeground(Color.white);
+        btnMenssagem.setForeground(Color.white);
+        btnConfiguracoes.setForeground(Color.white);
+        btnRelatorios.setForeground(Color.white);
+        btnAlocar.setForeground(Color.white);
+        btnStock.setForeground(Color.white);
+
+        barraMenu.setBackground(new Color(102, 102, 255));
+        setJMenuBar(barraMenu);
+
         JPanel pnlPrincipal = new JPanel();
         JPanel pnlauxPrincipal = new JPanel();
 
         pnlPrincipal.setLayout(null);
         pnlauxPrincipal.setLayout(null);
 
-        pnlauxPrincipal.setBounds(0, 40, 1200, 660);
-        pnlPrincipal.setBounds(280, 0, 920, 660);
+        pnlauxPrincipal.setBounds(0, 0, 1200, 680);
+        pnlPrincipal.setBounds(280, 0, 920, 680);
         lblLogo.setBounds(0, 0, 920, 660);
         pnlauxPrincipal.setBackground(Color.white);
 
@@ -99,8 +149,8 @@ public class Gerente extends JFrame {
 
         //Dando Cordenadas aos paineis
         pnlMenu_Botoes.setBounds(0, 0, 280, 700);
-        pnlBarra1.setBounds(0, 0, 280, 40);
-        pnlBarra2.setBounds(280, 0, 920, 40);
+        //  pnlBarra1.setBounds(0, 0, 280, 30);
+        //  pnlBarra2.setBounds(280, 0, 920, 30);
 
         //Definido o Layout dos paineis
         pnlMenu_Botoes.setLayout(null);
@@ -116,10 +166,12 @@ public class Gerente extends JFrame {
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
         JLabel lblFormacao = new JLabel();
+        JTextField txtbarra = new JTextField();
 
-        lblFoto.setBounds(10, 40, 130, 120);
-        lblNomefuncionario.setBounds(150, 105, 280, 30);
-        lblFormacao.setBounds(150, 95, 280, 100);
+        txtbarra.setBounds(10, 230, 255, 1);
+        lblFoto.setBounds(10, 70, 130, 120);
+        lblNomefuncionario.setBounds(150, 135, 280, 30);
+        lblFormacao.setBounds(150, 125, 280, 100);
         lblNomefuncionario.setText("Holy Man");
         lblFormacao.setText("Gerente");
         lblFormacao.setForeground(Color.white);
@@ -132,16 +184,12 @@ public class Gerente extends JFrame {
         JButton btnGestao_Produtos = new JButton(" Categorias & Produtos");
         JButton btnGestao_Funcionarios = new JButton(" Funcionarios");
         JButton btnVisaoGeral = new JButton(" Visão Geral");
-        JButton btnMenssagens = new JButton(" Menssagens ");
-        JButton btnConfiguracoes = new JButton(" Configurações");
         JButton btnVoltar = new JButton("  Voltar");
 
         //Personalizando o Foreground dos botoes
         btnGestao_Produtos.setForeground(Color.white);
         btnGestao_Funcionarios.setForeground(Color.white);
         btnVisaoGeral.setForeground(Color.white);
-        btnMenssagens.setForeground(Color.white);
-        btnConfiguracoes.setForeground(Color.white);
         btnPerfil.setForeground(Color.white);
         btnVoltar.setForeground(Color.white);
 
@@ -149,8 +197,6 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.setBackground(new Color(102, 102, 255));
         btnGestao_Funcionarios.setBackground(new Color(102, 102, 255));
         btnVisaoGeral.setBackground(new Color(102, 102, 255));
-        btnMenssagens.setBackground(new Color(102, 102, 255));
-        btnConfiguracoes.setBackground(new Color(102, 102, 255));
         btnPerfil.setBackground(new Color(102, 102, 255));
         btnVoltar.setBackground(new Color(102, 102, 255));
 
@@ -161,10 +207,6 @@ public class Gerente extends JFrame {
         btnGestao_Funcionarios.setFocusPainted(false);
         btnVisaoGeral.setBorder(BorderFactory.createEmptyBorder());
         btnVisaoGeral.setFocusPainted(false);
-        btnMenssagens.setBorder(BorderFactory.createEmptyBorder());
-        btnMenssagens.setFocusPainted(false);
-        btnConfiguracoes.setBorder(BorderFactory.createEmptyBorder());
-        btnConfiguracoes.setFocusPainted(false);
         btnPerfil.setBorder(BorderFactory.createEmptyBorder());
         btnPerfil.setFocusPainted(false);
         btnVoltar.setBorder(BorderFactory.createEmptyBorder());
@@ -174,39 +216,32 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnGestao_Funcionarios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnVisaoGeral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
-        btnMenssagens.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
-        btnConfiguracoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
         //Colocando Icon
         lblFoto.setIcon(Icon_Admin);
-        btnConfiguracoes.setIcon(Icon_Configurações);
         btnPerfil.setIcon(Icon_Perfil);
         btnVoltar.setIcon(Icon_Voltar);
         btnGestao_Funcionarios.setIcon(Icon_Gestao_Funcionario);
         btnGestao_Produtos.setIcon(Icon_Produtos_Categoria);
         btnVisaoGeral.setIcon(Icon_VisaoGeral);
-        btnMenssagens.setIcon(Icon_Menssagem);
 
         //Dando Cordenadas aos Botoes
-        btnGestao_Produtos.setBounds(5, 200, 260, 40);
-        btnGestao_Funcionarios.setBounds(2, 260, 170, 40);
-        btnVisaoGeral.setBounds(2, 330, 160, 40);
-        btnMenssagens.setBounds(5, 400, 170, 40);
-        btnConfiguracoes.setBounds(5, 470, 188, 40);
-        btnPerfil.setBounds(5, 540, 145, 40);
-        btnVoltar.setBounds(2, 610, 110, 40);
+        btnGestao_Produtos.setBounds(5, 250, 260, 40);
+        btnGestao_Funcionarios.setBounds(2, 310, 170, 40);
+        btnVisaoGeral.setBounds(2, 380, 160, 40);
+        btnPerfil.setBounds(5, 450, 145, 40);
+        btnVoltar.setBounds(2, 520, 110, 40);
 
         //Adicionando as  Compomentes ao painel 
+        pnlMenu_Botoes.add(txtbarra);
         pnlMenu_Botoes.add(lblFoto);
         pnlMenu_Botoes.add(lblFormacao);
         pnlMenu_Botoes.add(lblNomefuncionario);
         pnlMenu_Botoes.add(btnGestao_Produtos);
         pnlMenu_Botoes.add(btnGestao_Funcionarios);
         pnlMenu_Botoes.add(btnVisaoGeral);
-        pnlMenu_Botoes.add(btnMenssagens);
-        pnlMenu_Botoes.add(btnConfiguracoes);
         pnlMenu_Botoes.add(btnPerfil);
         pnlMenu_Botoes.add(btnVoltar);
 
@@ -246,9 +281,9 @@ public class Gerente extends JFrame {
                 pnlMenu_Gestaoprodutos.setLayout(null);
                 //
                 pnlMenu_Gestaoprodutos.setBackground(new Color(102, 102, 255));
-                pnlMenu_Gestaoprodutos.setBounds(0, 0, 280, 660);
+                pnlMenu_Gestaoprodutos.setBounds(0, 0, 280, 680);
 
-                pnlPrincipal.setBounds(280, 40, 920, 660);
+                pnlPrincipal.setBounds(280, 40, 920, 680);
 
                 JButton btnGerirCategorias = new JButton("Gerir Categorias");
                 JButton btnGerirProdutos = new JButton("Gerir Produtos");
@@ -309,7 +344,7 @@ public class Gerente extends JFrame {
 
                         pnlGeirCategorias.setBackground(Color.white);
                         pnlGeirCategorias.setLayout(null);
-                        pnlGeirCategorias.setBounds(280, 0, 920, 660);
+                        pnlGeirCategorias.setBounds(280, 0, 920, 680);
 
                         //Neste passo, vou criar instancias dos objectos que vou usar.
                         JLabel lblTitulo = new JLabel("Gestão de Categorias");
@@ -353,7 +388,7 @@ public class Gerente extends JFrame {
                         Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
                         Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
                         Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(200);
-                      
+
                         Linhas_Colunas.setRowCount(10);
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
 
@@ -467,7 +502,7 @@ public class Gerente extends JFrame {
 
                         pnlGerirProdutos.setBackground(Color.white);
                         pnlGerirProdutos.setLayout(null);
-                        pnlGerirProdutos.setBounds(280, 0, 920, 660);
+                        pnlGerirProdutos.setBounds(280, 0, 920, 680);
 
                         //Craindo as Componentes
                         JLabel lblTitulo = new JLabel("Gerir Produtos");
@@ -863,7 +898,7 @@ public class Gerente extends JFrame {
 
                 pnlGestao_Funcionarios.setBackground(Color.white);
                 pnlGestao_Funcionarios.setLayout(null);
-                pnlGestao_Funcionarios.setBounds(280, 0, 920, 660);
+                pnlGestao_Funcionarios.setBounds(280, 0, 920, 680);
 
                 //Craindo as Componentes
                 JLabel lblTitulo = new JLabel("Gerir Funcionarios");
@@ -1173,7 +1208,7 @@ public class Gerente extends JFrame {
         });
 
         //Menssagens
-        btnMenssagens.addActionListener(new ActionListener() {
+        btnMenssagem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pnlPrincipal.setVisible(true);
@@ -1187,7 +1222,7 @@ public class Gerente extends JFrame {
                 pnlMenssagens.setLayout(null);
                 //
                 pnlMenssagens.setBackground(new Color(102, 102, 255));
-                pnlMenssagens.setBounds(0, 0, 280, 660);
+                pnlMenssagens.setBounds(0, 0, 280, 680);
 
                 JButton btnEnviar = new JButton("Escrever ");
                 JButton btnCaixa = new JButton(" Recebidas");
@@ -1254,7 +1289,7 @@ public class Gerente extends JFrame {
 
                         pnlEnviar.setBackground(Color.white);
                         pnlEnviar.setLayout(null);
-                        pnlEnviar.setBounds(280, 0, 920, 660);
+                        pnlEnviar.setBounds(280, 0, 920, 680);
 
                         JLabel lblTitulo = new JLabel("Menssagem");
                         JLabel lblDestinatario = new JLabel("Destinatario");
@@ -1334,7 +1369,7 @@ public class Gerente extends JFrame {
 
                         pnlCaixa.setBackground(Color.white);
                         pnlCaixa.setLayout(null);
-                        pnlCaixa.setBounds(280, 0, 920, 660);
+                        pnlCaixa.setBounds(280, 0, 920, 680);
 
                         //CRIANDO AS COMPONENTES
                         JLabelComBordaRedonda lblMenssagem = new JLabelComBordaRedonda();
@@ -1407,7 +1442,7 @@ public class Gerente extends JFrame {
 
                         pnlGerir.setBackground(new Color(102, 102, 255));
                         pnlGerir.setLayout(null);
-                        pnlGerir.setBounds(0, 0, 280, 660);
+                        pnlGerir.setBounds(0, 0, 280, 680);
                         JButton btnMenssagens_Envidas = new JButton("Menssagens Enviadas ");
                         JButton btnMenssagens_Recebidas = new JButton("Menssagens Recebidas");
                         JButton btnRelatorio_enviadas = new JButton("Relatorio de Envio");
@@ -1566,6 +1601,7 @@ public class Gerente extends JFrame {
 
         pnlauxPrincipal.add(pnlMenu_Botoes);
         pnlauxPrincipal.add(pnlPrincipal);
+        //pnlauxPrincipal.add(barraMenu);
         pnlPrincipal.add(lblLogo);
         this.add(pnlBarra1);
         this.add(pnlBarra2);

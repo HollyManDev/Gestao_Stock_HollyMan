@@ -6,6 +6,7 @@
 package VIEW;
 
 import CSS.BotaoPersonalizado;
+import CSS.JLabelComBordaRedonda;
 import com.sun.tools.javac.tree.JCTree;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -404,8 +405,8 @@ public class Servicos_Organizacao extends JFrame {
                         pnlVenderProdutos.setBounds(280, 0, 920, 700);
                         pnlVenderProdutos.setBackground(Color.white);
 
-                        JLabel lblListar = new JLabel();
-                        JLabel lblLista_compras = new JLabel();
+                        JLabelComBordaRedonda  lblListar = new JLabelComBordaRedonda("Selecione o produto na Tabela");
+                        JLabelComBordaRedonda lblLista_compras = new JLabelComBordaRedonda();
                         JLabel lblTotal = new JLabel("Total a Pagar");
                         JLabel lblViewMoney = new JLabel("0");
 
@@ -498,11 +499,7 @@ public class Servicos_Organizacao extends JFrame {
                         btnProximo.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                btnListarProdutos.setEnabled(false);
-                                btnPedidos.setEnabled(false);
-                                btnVender.setEnabled(false);
-                                btnVoltarPrincipal.setEnabled(false);
-
+              
                                 pnlVenderProdutos.setVisible(false);
 
                                 JLabel lblTransacao = new JLabel("Tipo de Serviço");
