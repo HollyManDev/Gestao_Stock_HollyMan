@@ -109,8 +109,8 @@ public class Gerente extends JFrame {
         btnStock.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnFornecedores.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnPromocoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
-       btnRelatorio_Fornecedores.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
-      btnRelatorio_Vendas_Geral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnRelatorio_Fornecedores.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
+        btnRelatorio_Vendas_Geral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnRelatorio_Fun.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnRelatorio_Pedidos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
 
@@ -120,22 +120,21 @@ public class Gerente extends JFrame {
         barraMenu.add(btnRelatorios);
         menuAdicional.add(btnStock);
         menuAdicional.add(btnPromocoes);
-        menuAdicional.add(btnFornecedores);      
-        
-        
+        menuAdicional.add(btnFornecedores);
+
         btnRelatorios.add(btnRelatorio_Vendas_Geral);
         btnRelatorios.add(btnRelatorio_Fornecedores);
         btnRelatorios.add(btnRelatorio_Fun);
         btnRelatorios.add(btnRelatorio_Pedidos);
-        
-            menuGestao.add(btnAlocar);
+
+        menuGestao.add(btnAlocar);
         menuGestao.add(btnMenssagem);
         menuGestao.add(btnConfiguracoes);
 
         //Colondo icons nos botoes da barra de Menu
         btnMenssagem.setIcon(Icon_Menssagem);
         btnConfiguracoes.setIcon(Icon_Configurações);
-   
+
         //Background  dos Menu Bar
         menuAdicional.setBackground(new Color(102, 102, 255));
         menuGestao.setBackground(new Color(102, 102, 255));
@@ -181,17 +180,16 @@ public class Gerente extends JFrame {
 
         //Criando estancias dos paineis
         JPanel pnlMenu_Botoes = new JPanel();
-     
+
         //Dando Cordenadas aos paineis
         pnlMenu_Botoes.setBounds(0, 0, 280, 700);
-        
 
         //Definido o Layout dos paineis
         pnlMenu_Botoes.setLayout(null);
-     
+
         //Personalizando o Background dos paineis
         pnlMenu_Botoes.setBackground(new Color(102, 102, 255));
-       
+
         //Criando instancias da Labels que irei colocar para definir o perfil
         JLabel lblFoto = new JLabel();
         JLabel lblNomefuncionario = new JLabel();
