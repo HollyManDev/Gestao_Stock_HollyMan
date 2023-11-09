@@ -23,9 +23,7 @@ public class JLabelComBordaRedonda extends JLabel {
         super();
     }
 
-    public JLabelComBordaRedonda(String selecione_o_produto_na_Tabela) {
- 
-    }
+    
 
     @Override
     protected void paintComponent(Graphics g) {
