@@ -35,7 +35,7 @@ public class PainelPersonalizado extends JPanel {
 
         // Desenho do painel arredondado com fundo branco
         RoundRectangle2D.Float background = new RoundRectangle2D.Float(0, 0, width, height, cornerRadius, cornerRadius);
-        g2.setColor(new Color(0,102,255));
+        g2.setColor(new Color(255,255,255));
         g2.fill(background);
 
         // Desenho da borda branca

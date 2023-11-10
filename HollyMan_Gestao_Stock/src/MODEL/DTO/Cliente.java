@@ -8,7 +8,7 @@ package MODEL.DTO;
  *
  * @author HOLLY MAN
  */
-public class Pedidos  {
-    private String  data, prazo, status;
-    private long codigo_pedido;
+public class Cliente {
+    private String nome, genero, contacto, email, status;
+    private int codigo_cliente;
 }
