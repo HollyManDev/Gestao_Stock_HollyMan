@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"APP"},{"l":"CONTROLLER"},{"l":"CSS"},{"l":"DAO"},{"l":"MODEL.DTO"},{"l":"VIEW"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"APP"},{"l":"CONTROLLER"},{"l":"CSS"},{"l":"DAO"},{"l":"MODEL.DTO"},{"l":"Validacoes"},{"l":"VIEW"}];updateSearchResults();

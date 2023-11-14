@@ -30,9 +30,16 @@ import javax.swing.table.JTableHeader;
 
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 /**
  *
@@ -480,6 +487,92 @@ public class Gerente extends JFrame {
                         btnEliminar.setBounds(648, 250, 120, 40);
                         rol.setBounds(110, 390, 680, 200);
 
+                        //Colocando a visibilidade inicial
+                        data.setEnabled(false);
+                        jcStatusCategoria.setEnabled(false);
+                        btnCadastrar.setEnabled(false);
+                        btnCarregarImagem.setEnabled(false);
+
+                        //Eventos em cada Campo a ser Introduzido Dados 
+                        txtNome.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                    txtNome.setEditable(true);
+                                } else {
+                                    txtNome.setEditable(false);
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtNome.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtNome.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    data.setEnabled(true);
+                                    jcStatusCategoria.setEnabled(true);
+                                } else {
+                                    data.setEnabled(false);
+                                    jcStatusCategoria.setEnabled(false);
+                                    btnCadastrar.setEnabled(false);
+                                    jcStatusCategoria.setSelectedIndex(0);
+                                }
+
+                                txtNome.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                        //Validadando a  caixa Status
+                        jcStatusCategoria.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                if (jcStatusCategoria.getSelectedIndex() == 1) {
+                                    btnCarregarImagem.setEnabled(true);
+                                    btnCadastrar.setEnabled(true);
+                                } else if (jcStatusCategoria.getSelectedIndex() == 2) {
+                                    btnCadastrar.setEnabled(true);
+                                    btnCarregarImagem.setEnabled(true);
+                                } else {
+                                  
+                                    btnCadastrar.setEnabled(false);
+                                    btnCarregarImagem.setEnabled(false);
+                                }
+                            }
+
+                        });
+
                         //Acção para cada um dos botoes
                         btnCadastrar.addActionListener(new ActionListener() {
                             @Override
@@ -739,7 +832,7 @@ public class Gerente extends JFrame {
                         txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
-                        String[] Colunas_Compras = {"Id", "Produto", "Pr_Compra", "Pr_Venda", "Vlr_Invst", "Vlr_Retorno", "Qtd_Disp", "Data", "Imagem", "Status"};
+                        String[] Colunas_Compras = {"Codigo", "Produto", "Pr_Compra", "Pr_Venda", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
                         String[][] inf_Compras = {{}};
                         DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -753,11 +846,11 @@ public class Gerente extends JFrame {
 
                         Lista_Funcionarios.setRowHeight(120);
 
-                        Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+                        Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
                         Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
                         Lista_Funcionarios.getColumnModel().getColumn(2).setPreferredWidth(110);
                         Lista_Funcionarios.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(100);
+                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(120);
                         Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(110);
                         Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(100);
                         Lista_Funcionarios.getColumnModel().getColumn(7).setPreferredWidth(100);
@@ -801,25 +894,256 @@ public class Gerente extends JFrame {
                         btnProcurar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
 
-                        //Dando ação as Componentes////////////////////////////////////////////////////////////
-                        jcEmbalado.addActionListener(new ActionListener() {
+                        //Visibilidade das componentes permitindo com que sejam desbloqueados de forma sequenciada
+                        txtNome.setEnabled(false);
+                        txtCodigo_Barra.setEnabled(false);
+                        txtValidade.setEnabled(false);
+                        txtNumero_Lote.setEnabled(false);
+                        jcEmbalado.setEnabled(false);
+                        txtMarca.setEnabled(false);
+                        jcMedida.setEnabled(false);
+                        txtStatus.setEnabled(false);
+                        txtPeso_Volume.setEnabled(false);
+                        txtPreco_Compra.setEnabled(false);
+                        txtPreco_Venda.setEnabled(false);
+                        txtDescricao.setEnabled(false);
+                        btnCadastrar.setEnabled(false);
+                        btnCarregarFoto.setEnabled(false);
+
+                        jcCategoria_Produto.addItem("Teste");
+                        //Seguem as validacoes dos campos, somente permitindo que cada campo seja preenchido so e somente se o seu antecessor tiver sido
+                        jcCategoria_Produto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                if (jcCategoria_Produto.getSelectedIndex() != 0) {
+
+                                    jcCategoria_Produto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                    txtNome.setEnabled(true);
+                                    txtNome.requestFocus();
+                                    jcCategoria_Produto.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                } else {
+
+                                    jcCategoria_Produto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red));
+                                    txtNome.setEnabled(false);
+
+                                }
+
+                            }
+
+                        }); //Fim da primeira Validacao
+
+                        //Campo nome do Produto, colocando eventos
+                        txtNome.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                    txtNome.setEditable(true);
+                                } else {
+                                    txtNome.setEditable(false);
+                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtNome.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto <5) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtNome.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtNumero_Lote.setEnabled(true);
+                                  
+                                } else {
+                                    txtNumero_Lote.setEnabled(false);
+
+                                }
+
+                                txtNome.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo nome
+                       
+                        //Campo nome do Produto, colocando eventos
+                        txtNumero_Lote.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                    txtNumero_Lote.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                    txtNumero_Lote.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtNumero_Lote.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtNumero_Lote.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtCodigo_Barra.setEnabled(true);
+                                  
+                                } else {
+                                    txtCodigo_Barra.setEnabled(false);
+
+                                }
+
+                                txtNumero_Lote.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtNumero_Lote.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // Numero de Lote
+                        
+                        //Codigo de Barra
+                        txtCodigo_Barra.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                    txtCodigo_Barra.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                      txtCodigo_Barra.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =   txtCodigo_Barra.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto <= 12) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                 txtCodigo_Barra.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                   txtValidade.setEnabled(true);
+                                   jcEmbalado.setEnabled(true);
+                                  
+                                } else {
+                                    txtValidade.setEnabled(false);
+                                     jcEmbalado.setEnabled(false);
+
+                                }
+
+                                txtCodigo_Barra.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtCodigo_Barra.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); //Barra
+                        
+                        //Caixa de tipos
+                         jcEmbalado.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
                                 if (jcEmbalado.getSelectedIndex() == 1) {
-
+                                     txtStatus.setEnabled(false);
+                                     txtMarca.setEnabled(false);
                                     txtQntEmbalagem.setEnabled(true);
-                                    txtProdutos_Embalagem.setEnabled(true);
+                                    txtProdutosQtd.setText("");
                                     txtProdutosQtd.setEnabled(false);
                                 } else {
                                     if (jcEmbalado.getSelectedIndex() == 2) {
+                                         txtStatus.setEnabled(false);
+                                           txtMarca.setEnabled(false);
                                         txtQntEmbalagem.setEnabled(false);
                                         txtProdutos_Embalagem.setEnabled(false);
                                         txtProdutosQtd.setEnabled(true);
+                                        txtProdutos_Embalagem.setText("");
+                                        txtQntEmbalagem.setText("");
                                     } else {
                                         txtQntEmbalagem.setEnabled(false);
                                         txtProdutos_Embalagem.setEnabled(false);
                                         txtProdutosQtd.setEnabled(false);
+                                         txtQntEmbalagem.setText("");
+                                            txtProdutosQtd.setText("");
+                                               txtProdutos_Embalagem.setText("");
+                                               txtStatus.setEnabled(false);
+                                                 txtMarca.setEnabled(false);
                                     }
 
                                 }
@@ -827,8 +1151,503 @@ public class Gerente extends JFrame {
                             }
                         });
 
-                        ///////////////////////////////////////////////////////////////////////////////////////
-                        //AdicionandoL 
+                        //CCaixa de quantoidade por Embalagem
+                        txtQntEmbalagem.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                    txtQntEmbalagem.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                 txtQntEmbalagem.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =   txtQntEmbalagem.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                 txtQntEmbalagem.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                   txtProdutos_Embalagem.setEnabled(true);                             
+                                } else {
+                                    txtProdutos_Embalagem.setEnabled(false);
+                                }
+
+                                txtQntEmbalagem.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtQntEmbalagem.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+                        //CCaixa de quantoidade por Embalagens
+                         txtProdutos_Embalagem.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                     txtProdutos_Embalagem.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                  txtProdutos_Embalagem.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =    txtProdutos_Embalagem.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                  txtProdutos_Embalagem.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtStatus.setEnabled(true);                             
+                                } else {
+                                     txtStatus.setEnabled(false);
+                                }
+
+                               txtProdutos_Embalagem.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                         txtProdutos_Embalagem.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+
+                        //CCaixa de quantoidade avulso a adicionar
+                         txtProdutosQtd.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                     txtProdutosQtd.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                  txtProdutosQtd.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =    txtProdutosQtd.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                  txtProdutosQtd.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtStatus.setEnabled(true);                             
+                                } else {
+                                     txtStatus.setEnabled(false);
+                                }
+
+                               txtProdutosQtd.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                         txtProdutosQtd.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+
+                          // Dando instrucoes ao campo de estado 
+                          txtStatus.addActionListener(new ActionListener(){
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                               if(txtStatus.getSelectedIndex() == 1)
+                                   txtMarca.setEnabled(true);
+                               else
+                                      if(txtStatus.getSelectedIndex() == 2)
+                                        txtMarca.setEnabled(true);
+                               else
+                                           txtMarca.setEnabled(false);
+                            }
+                              
+                          });
+                          
+                            //CCaixa de Marca
+                         txtMarca.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                    txtMarca.setEditable(true);
+                                } else {
+                                    txtMarca.setEditable(false);
+                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                }
+                            
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =    txtMarca.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                   txtMarca.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    jcMedida.setEnabled(true);                             
+                                } else {
+                                     jcMedida.setEnabled(false);
+                                }
+
+                              txtMarca.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                         txtMarca.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+
+                           // Dando instrucoes ao campo de estado 
+                          jcMedida.addActionListener(new ActionListener(){
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                               if(jcMedida.getSelectedIndex() == 1)
+                                   txtPeso_Volume.setEnabled(true);
+                               else
+                                      if(jcMedida.getSelectedIndex() == 2)
+                                        txtPeso_Volume.setEnabled(true);
+                               else
+                                            txtPeso_Volume.setEnabled(false);
+                            }
+                              
+                          });
+                          
+                             //CCaixa de Peso ou Volume
+                          txtPeso_Volume.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                      txtPeso_Volume.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                   txtPeso_Volume.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtPeso_Volume.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 2) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                   txtPeso_Volume.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtPreco_Compra.setEnabled(true);                             
+                                } else {
+                                     txtPreco_Compra.setEnabled(false);
+                                }
+
+                               txtPeso_Volume.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                         txtPeso_Volume.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+                      
+                           //CCaixa de preco de Compra
+                          txtPreco_Compra.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                      txtPreco_Compra.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                     txtPreco_Compra.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =   txtPreco_Compra.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 2) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                    txtPreco_Compra.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                      txtPreco_Venda.setEnabled(true);                             
+                                } else {
+                                     txtPreco_Venda.setEnabled(false);
+                                }
+
+                               txtPreco_Compra.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                          txtPreco_Compra.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+                             //CCaixa de preco de Venda
+                          txtPreco_Venda.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                      txtPreco_Venda.setEditable(false);
+                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                } else {
+                                     txtPreco_Venda.setEditable(true);
+                                 
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =   txtPreco_Venda.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 2) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                    txtPreco_Venda.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                      txtDescricao.setEnabled(true);  
+                                   
+                                } else {
+                                     txtDescricao.setEnabled(false);
+                                     
+                                }
+
+                               txtPreco_Venda.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                          txtPreco_Venda.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+                          
+                           //Campo nome do Produto, colocando eventos
+                        txtDescricao.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                    txtDescricao.setEditable(true);
+                                } else {
+                                    txtDescricao.setEditable(false);
+                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                }
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto =txtDescricao.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto <10) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtDescricao.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                   btnCadastrar.setEnabled(true);
+                                   btnCarregarFoto.setEnabled(true);
+                                  
+                                } else {
+                                   btnCadastrar.setEnabled(false);
+                                    btnCarregarFoto.setEnabled(false);
+                                }
+
+                               txtDescricao.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                       txtDescricao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); 
+                       
+                        //Adicionando as Componentes 
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblCategoria_Produto);

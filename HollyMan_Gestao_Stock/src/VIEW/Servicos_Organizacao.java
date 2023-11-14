@@ -2122,8 +2122,7 @@ public class Servicos_Organizacao extends JFrame {
                         btnEnviar.setForeground(new Color(0, 102, 255));
 
                         //BackGround
-                        btnEnviar.setBackground(Color.white
-                        );
+                        btnEnviar.setBackground(Color.white);
                         btnLimpar.setBackground(Color.white);
                         jcDestinatario.setBackground(Color.white);
 
