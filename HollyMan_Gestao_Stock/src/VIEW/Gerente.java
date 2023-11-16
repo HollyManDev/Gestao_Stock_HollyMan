@@ -48,38 +48,37 @@ import javax.swing.event.AncestorListener;
 public class Gerente extends JFrame {
 
     // Craindo instancias das Imagens
-    ImageIcon Icon_Logo = new ImageIcon("src\\Imagens\\Logo.jpeg");
-    ImageIcon Icon_Admin = new ImageIcon("src\\Imagens\\Gerente1.png");
-    ImageIcon Icon_Configurações = new ImageIcon("src\\Imagens\\definicoes2.png");
-    ImageIcon Icon_Perfil = new ImageIcon("src\\Imagens\\Perfil2.png");
-    ImageIcon Icon_Gestao_Funcionario = new ImageIcon("src\\Imagens\\funcionarios.png");
-    ImageIcon Icon_Voltar = new ImageIcon("src\\Imagens\\botao-voltar.png");
-    ImageIcon Icon_Foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
-    ImageIcon Icon_carregarImagem = new ImageIcon("src\\Imagens\\carregar.png");
-    ImageIcon Icon_Produtos_Categoria = new ImageIcon("src\\Imagens\\categorias.png");
-    ImageIcon Icon_VisaoGeral = new ImageIcon("src\\Imagens\\Visao_Geral.png");
-    ImageIcon Icon_Procurar = new ImageIcon("src\\Imagens\\Busca1.png");
-    ImageIcon Icon_Gerir_Produtos = new ImageIcon("src\\Imagens\\Gerir_Produtos.png");
-    ImageIcon Icon_Adicionar = new ImageIcon("src\\Imagens\\adicionar.png");
-    ImageIcon Icon_Listar = new ImageIcon("src\\Imagens\\Listar_1.png");
-    ImageIcon Icon_CarregarInf = new ImageIcon("src\\Imagens\\CarregarInf.png");
-    ImageIcon Icon_ActualizarC = new ImageIcon("src\\Imagens\\editar.png");
-    ImageIcon Icon_Proximo = new ImageIcon("src\\Imagens\\proximo.png");
-    ImageIcon Icon_Anterior = new ImageIcon("src\\Imagens\\anterior.png");
-    ImageIcon Icon_ListarFun = new ImageIcon("src\\Imagens\\listarFun.png");
+    ImageIcon Icon_Logo = new ImageIcon(Gerente.class.getResource("/Imagens/Logo.jpeg"));
+    ImageIcon Icon_Admin = new ImageIcon(Gerente.class.getResource("/Imagens/Gerente1.png"));
+    ImageIcon Icon_Configurações = new ImageIcon(Gerente.class.getResource("/Imagens/definicoes2.png"));
+    ImageIcon Icon_Perfil = new ImageIcon(Gerente.class.getResource("/Imagens/Perfil2.png"));
+    ImageIcon Icon_Gestao_Funcionario = new ImageIcon(Gerente.class.getResource("/Imagens/funcionarios.png"));
+    ImageIcon Icon_Voltar = new ImageIcon(Gerente.class.getResource("/Imagens/botao-voltar.png"));
+    ImageIcon Icon_Foto = new ImageIcon(Gerente.class.getResource("/Imagens/imagemGaleria.png"));
+    ImageIcon Icon_Produtos_Categoria = new ImageIcon(Gerente.class.getResource("/Imagens/categorias.png"));
+    ImageIcon Icon_VisaoGeral = new ImageIcon(Gerente.class.getResource("/Imagens/Visao_Geral.png"));
+    ImageIcon Icon_Procurar = new ImageIcon(Gerente.class.getResource("/Imagens/Busca1.png"));
+    ImageIcon Icon_Gerir_Produtos = new ImageIcon(Gerente.class.getResource("/Imagens/Gerir_Produtos.png"));
+    ImageIcon Icon_Adicionar = new ImageIcon(Gerente.class.getResource("/Imagens/adicionar.png"));
+    ImageIcon Icon_Listar = new ImageIcon(Gerente.class.getResource("/Imagens/Listar_1.png"));
+    ImageIcon Icon_CarregarInf = new ImageIcon(Gerente.class.getResource("/Imagens\\CarregarInf.png"));
+    ImageIcon Icon_ActualizarC = new ImageIcon(Gerente.class.getResource("/Imagens/editar.png"));
+    ImageIcon Icon_Proximo = new ImageIcon(Gerente.class.getResource("/Imagens/proximo.png"));
+    ImageIcon Icon_Anterior = new ImageIcon(Gerente.class.getResource("/Imagens/anterior.png"));
+    ImageIcon Icon_ListarFun = new ImageIcon(Gerente.class.getResource("/Imagens/listarFun.png"));
 
     ///
     ///
-    ImageIcon Icon_EscreverMenssagem = new ImageIcon("src\\Imagens\\escrever-mensagem.png");
-    ImageIcon Icon_CaixaMenssagem = new ImageIcon("src\\Imagens\\caixaMenssagens.png");
-    ImageIcon Icon_RelatorioMenssagem = new ImageIcon("src\\Imagens\\relatorio_1.png");
+    ImageIcon Icon_EscreverMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/escrever-mensagem.png"));
+    ImageIcon Icon_CaixaMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/caixaMenssagens.png"));
+    ImageIcon Icon_RelatorioMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/relatorio_1.png"));
     //Icons
 
-    ImageIcon Icon_foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
-    ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\CarregarImagemF.png");
-    ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\editar.png");
-    ImageIcon Icon_Eliminar = new ImageIcon("src\\Imagens\\excluir.png");
-    ImageIcon Icon_Menssagem = new ImageIcon("src\\Imagens\\mensagem.png");
+    ImageIcon Icon_foto = new ImageIcon(Gerente.class.getResource("/Imagens/imagemGaleria.png"));
+    ImageIcon Icon_CarregarFoto = new ImageIcon(Gerente.class.getResource("/Imagens/CarregarImagemF.png"));
+    ImageIcon Icon_Actualizar = new ImageIcon(Gerente.class.getResource("/Imagens/editar.png"));
+    ImageIcon Icon_Eliminar = new ImageIcon(Gerente.class.getResource("/Imagens/excluir.png"));
+    ImageIcon Icon_Menssagem = new ImageIcon(Gerente.class.getResource("/Imagens/mensagem.png"));
 
     public Gerente() {
 
@@ -94,11 +93,11 @@ public class Gerente extends JFrame {
         JMenuBar barraMenu = new JMenuBar();
         JMenu menuAdicional = new JMenu("Produtos");
         JMenu menuGestao = new JMenu("Comunicação");
+        JMenu menuRelatorios = new JMenu("Relatorios");
         JMenuItem btnStock = new JMenuItem("Abastecer Produtos ");
         JMenuItem btnFornecedores = new JMenuItem("Fornecedores ");
         JMenuItem btnPromocoes = new JMenuItem("Descontos & Promoções ");
         JMenuItem btnAlocar = new JMenuItem("Alocar Funcionario");
-        JMenu btnRelatorios = new JMenu("Relatorios");
         JMenuItem btnRelatorio_Vendas_Geral = new JMenuItem("Vendas ");
         JMenuItem btnRelatorio_Fornecedores = new JMenuItem("Fornecedores");
         JMenuItem btnRelatorio_Fun = new JMenuItem("Funcionarios");
@@ -111,7 +110,7 @@ public class Gerente extends JFrame {
         menuGestao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
         btnMenssagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnConfiguracoes.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
-        btnRelatorios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+        menuRelatorios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
         btnAlocar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnStock.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
         btnFornecedores.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 14));
@@ -124,15 +123,15 @@ public class Gerente extends JFrame {
         //Adicionando opcoes na barra 
         barraMenu.add(menuAdicional);
         barraMenu.add(menuGestao);
-        barraMenu.add(btnRelatorios);
+        barraMenu.add(menuRelatorios);
         menuAdicional.add(btnStock);
         menuAdicional.add(btnPromocoes);
         menuAdicional.add(btnFornecedores);
 
-        btnRelatorios.add(btnRelatorio_Vendas_Geral);
-        btnRelatorios.add(btnRelatorio_Fornecedores);
-        btnRelatorios.add(btnRelatorio_Fun);
-        btnRelatorios.add(btnRelatorio_Pedidos);
+        menuRelatorios.add(btnRelatorio_Vendas_Geral);
+        menuRelatorios.add(btnRelatorio_Fornecedores);
+        menuRelatorios.add(btnRelatorio_Fun);
+        menuRelatorios.add(btnRelatorio_Pedidos);
 
         menuGestao.add(btnAlocar);
         menuGestao.add(btnMenssagem);
@@ -147,7 +146,7 @@ public class Gerente extends JFrame {
         menuGestao.setBackground(new Color(102, 102, 255));
         btnMenssagem.setBackground(new Color(102, 102, 255));
         btnConfiguracoes.setBackground(new Color(102, 102, 255));
-        btnRelatorios.setBackground(new Color(102, 102, 255));
+        menuRelatorios.setBackground(new Color(102, 102, 255));
         btnAlocar.setBackground(new Color(102, 102, 255));
         btnStock.setBackground(new Color(102, 102, 255));
         btnFornecedores.setBackground(new Color(102, 102, 255));
@@ -161,7 +160,7 @@ public class Gerente extends JFrame {
         menuGestao.setForeground(Color.white);
         btnMenssagem.setForeground(Color.white);
         btnConfiguracoes.setForeground(Color.white);
-        btnRelatorios.setForeground(Color.white);
+        menuRelatorios.setForeground(Color.white);
         btnAlocar.setForeground(Color.white);
         btnStock.setForeground(Color.white);
         btnFornecedores.setForeground(Color.white);
@@ -172,7 +171,6 @@ public class Gerente extends JFrame {
         btnRelatorio_Pedidos.setForeground(Color.white);
 
         barraMenu.setBackground(new Color(102, 102, 255));
-        setJMenuBar(barraMenu);
 
         JPanel pnlPrincipal = new JPanel();
         JPanel pnlauxPrincipal = new JPanel();
@@ -508,6 +506,7 @@ public class Gerente extends JFrame {
                                 } else {
                                     txtNome.setEditable(false);
                                 }
+
                             }
 
                             @Override
@@ -565,7 +564,7 @@ public class Gerente extends JFrame {
                                     btnCadastrar.setEnabled(true);
                                     btnCarregarImagem.setEnabled(true);
                                 } else {
-                                  
+
                                     btnCadastrar.setEnabled(false);
                                     btnCarregarImagem.setEnabled(false);
                                 }
@@ -832,7 +831,7 @@ public class Gerente extends JFrame {
                         txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
-                        String[] Colunas_Compras = {"Codigo", "Produto", "Pr_Compra", "Pr_Venda", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
+                        String[] Colunas_Compras = {"Codigo", "Produto", "Compra", "Venda", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
                         String[][] inf_Compras = {{}};
                         DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -944,12 +943,17 @@ public class Gerente extends JFrame {
                             @Override
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
-                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
                                     txtNome.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtNumero_Lote.requestFocus();
+                                    }
+
                                 } else {
                                     txtNome.setEditable(false);
-                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 }
+
                             }
 
                             @Override
@@ -958,7 +962,7 @@ public class Gerente extends JFrame {
                                 int comprimentoTexto = txtNome.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
-                                Color cor = (comprimentoTexto <5) ? Color.RED : Color.GREEN;
+                                Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
 
                                 // Cria uma borda com a cor desejada
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
@@ -969,7 +973,7 @@ public class Gerente extends JFrame {
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
                                     txtNumero_Lote.setEnabled(true);
-                                  
+
                                 } else {
                                     txtNumero_Lote.setEnabled(false);
 
@@ -992,7 +996,7 @@ public class Gerente extends JFrame {
 
                             }
                         }); // campo nome
-                       
+
                         //Campo nome do Produto, colocando eventos
                         txtNumero_Lote.addKeyListener(new KeyListener() {
                             @Override
@@ -1005,10 +1009,14 @@ public class Gerente extends JFrame {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
                                     txtNumero_Lote.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
                                     txtNumero_Lote.setEditable(true);
-                                 
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtCodigo_Barra.requestFocus();
+                                    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtNome.requestFocus();
+                                    }
                                 }
                             }
 
@@ -1029,7 +1037,7 @@ public class Gerente extends JFrame {
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
                                     txtCodigo_Barra.setEnabled(true);
-                                  
+
                                 } else {
                                     txtCodigo_Barra.setEnabled(false);
 
@@ -1052,7 +1060,7 @@ public class Gerente extends JFrame {
 
                             }
                         }); // Numero de Lote
-                        
+
                         //Codigo de Barra
                         txtCodigo_Barra.addKeyListener(new KeyListener() {
                             @Override
@@ -1065,17 +1073,20 @@ public class Gerente extends JFrame {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
                                     txtCodigo_Barra.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                      txtCodigo_Barra.setEditable(true);
-                                 
+                                    txtCodigo_Barra.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtNumero_Lote.requestFocus();
+                                    }
+
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =   txtCodigo_Barra.getText().length();
+                                int comprimentoTexto = txtCodigo_Barra.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto <= 12) ? Color.RED : Color.GREEN;
@@ -1084,16 +1095,15 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                 txtCodigo_Barra.setBorder(bordaColorida);
+                                txtCodigo_Barra.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                   txtValidade.setEnabled(true);
-                                   jcEmbalado.setEnabled(true);
-                                  
+                                    txtValidade.setEnabled(true);
+                                    jcEmbalado.setEnabled(true);
                                 } else {
                                     txtValidade.setEnabled(false);
-                                     jcEmbalado.setEnabled(false);
+                                    jcEmbalado.setEnabled(false);
 
                                 }
 
@@ -1114,22 +1124,22 @@ public class Gerente extends JFrame {
 
                             }
                         }); //Barra
-                        
+
                         //Caixa de tipos
-                         jcEmbalado.addActionListener(new ActionListener() {
+                        jcEmbalado.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
                                 if (jcEmbalado.getSelectedIndex() == 1) {
-                                     txtStatus.setEnabled(false);
-                                     txtMarca.setEnabled(false);
+                                    txtStatus.setEnabled(false);
+                                    txtMarca.setEnabled(false);
                                     txtQntEmbalagem.setEnabled(true);
                                     txtProdutosQtd.setText("");
                                     txtProdutosQtd.setEnabled(false);
                                 } else {
                                     if (jcEmbalado.getSelectedIndex() == 2) {
-                                         txtStatus.setEnabled(false);
-                                           txtMarca.setEnabled(false);
+                                        txtStatus.setEnabled(false);
+                                        txtMarca.setEnabled(false);
                                         txtQntEmbalagem.setEnabled(false);
                                         txtProdutos_Embalagem.setEnabled(false);
                                         txtProdutosQtd.setEnabled(true);
@@ -1139,11 +1149,11 @@ public class Gerente extends JFrame {
                                         txtQntEmbalagem.setEnabled(false);
                                         txtProdutos_Embalagem.setEnabled(false);
                                         txtProdutosQtd.setEnabled(false);
-                                         txtQntEmbalagem.setText("");
-                                            txtProdutosQtd.setText("");
-                                               txtProdutos_Embalagem.setText("");
-                                               txtStatus.setEnabled(false);
-                                                 txtMarca.setEnabled(false);
+                                        txtQntEmbalagem.setText("");
+                                        txtProdutosQtd.setText("");
+                                        txtProdutos_Embalagem.setText("");
+                                        txtStatus.setEnabled(false);
+                                        txtMarca.setEnabled(false);
                                     }
 
                                 }
@@ -1163,17 +1173,19 @@ public class Gerente extends JFrame {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
                                     txtQntEmbalagem.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                 txtQntEmbalagem.setEditable(true);
-                                 
+                                    txtQntEmbalagem.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtProdutos_Embalagem.requestFocus();
+                                    }
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =   txtQntEmbalagem.getText().length();
+                                int comprimentoTexto = txtQntEmbalagem.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
@@ -1182,11 +1194,11 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                 txtQntEmbalagem.setBorder(bordaColorida);
+                                txtQntEmbalagem.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                   txtProdutos_Embalagem.setEnabled(true);                             
+                                    txtProdutos_Embalagem.setEnabled(true);
                                 } else {
                                     txtProdutos_Embalagem.setEnabled(false);
                                 }
@@ -1207,9 +1219,9 @@ public class Gerente extends JFrame {
                                 });
 
                             }
-                        }); 
+                        });
                         //CCaixa de quantoidade por Embalagens
-                         txtProdutos_Embalagem.addKeyListener(new KeyListener() {
+                        txtProdutos_Embalagem.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1219,18 +1231,22 @@ public class Gerente extends JFrame {
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
-                                     txtProdutos_Embalagem.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    txtProdutos_Embalagem.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                  txtProdutos_Embalagem.setEditable(true);
-                                 
+                                    txtProdutos_Embalagem.setEditable(true);
+
+                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtQntEmbalagem.requestFocus();
+                                    }
+
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =    txtProdutos_Embalagem.getText().length();
+                                int comprimentoTexto = txtProdutos_Embalagem.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
@@ -1239,16 +1255,16 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                  txtProdutos_Embalagem.setBorder(bordaColorida);
+                                txtProdutos_Embalagem.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                    txtStatus.setEnabled(true);                             
+                                    txtStatus.setEnabled(true);
                                 } else {
-                                     txtStatus.setEnabled(false);
+                                    txtStatus.setEnabled(false);
                                 }
 
-                               txtProdutos_Embalagem.addFocusListener(new FocusListener() {
+                                txtProdutos_Embalagem.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1258,16 +1274,16 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                         txtProdutos_Embalagem.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtProdutos_Embalagem.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
+                        });
 
                         //CCaixa de quantoidade avulso a adicionar
-                         txtProdutosQtd.addKeyListener(new KeyListener() {
+                        txtProdutosQtd.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1277,18 +1293,18 @@ public class Gerente extends JFrame {
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
-                                     txtProdutosQtd.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    txtProdutosQtd.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                  txtProdutosQtd.setEditable(true);
-                                 
+                                    txtProdutosQtd.setEditable(true);
+
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =    txtProdutosQtd.getText().length();
+                                int comprimentoTexto = txtProdutosQtd.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
@@ -1297,16 +1313,16 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                  txtProdutosQtd.setBorder(bordaColorida);
+                                txtProdutosQtd.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                    txtStatus.setEnabled(true);                             
+                                    txtStatus.setEnabled(true);
                                 } else {
-                                     txtStatus.setEnabled(false);
+                                    txtStatus.setEnabled(false);
                                 }
 
-                               txtProdutosQtd.addFocusListener(new FocusListener() {
+                                txtProdutosQtd.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1316,31 +1332,31 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                         txtProdutosQtd.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtProdutosQtd.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
+                        });
 
-                          // Dando instrucoes ao campo de estado 
-                          txtStatus.addActionListener(new ActionListener(){
+                        // Dando instrucoes ao campo de estado 
+                        txtStatus.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                               if(txtStatus.getSelectedIndex() == 1)
-                                   txtMarca.setEnabled(true);
-                               else
-                                      if(txtStatus.getSelectedIndex() == 2)
-                                        txtMarca.setEnabled(true);
-                               else
-                                           txtMarca.setEnabled(false);
+                                if (txtStatus.getSelectedIndex() == 1) {
+                                    txtMarca.setEnabled(true);
+                                } else if (txtStatus.getSelectedIndex() == 2) {
+                                    txtMarca.setEnabled(true);
+                                } else {
+                                    txtMarca.setEnabled(false);
+                                }
                             }
-                              
-                          });
-                          
-                            //CCaixa de Marca
-                         txtMarca.addKeyListener(new KeyListener() {
+
+                        });
+
+                        //CCaixa de Marca
+                        txtMarca.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1349,19 +1365,19 @@ public class Gerente extends JFrame {
                             @Override
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
-                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
                                     txtMarca.setEditable(true);
                                 } else {
                                     txtMarca.setEditable(false);
-                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 }
-                            
+
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =    txtMarca.getText().length();
+                                int comprimentoTexto = txtMarca.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
@@ -1370,16 +1386,16 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                   txtMarca.setBorder(bordaColorida);
+                                txtMarca.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                    jcMedida.setEnabled(true);                             
+                                    jcMedida.setEnabled(true);
                                 } else {
-                                     jcMedida.setEnabled(false);
+                                    jcMedida.setEnabled(false);
                                 }
 
-                              txtMarca.addFocusListener(new FocusListener() {
+                                txtMarca.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1389,31 +1405,31 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                         txtMarca.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtMarca.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
+                        });
 
-                           // Dando instrucoes ao campo de estado 
-                          jcMedida.addActionListener(new ActionListener(){
+                        // Dando instrucoes ao campo de estado 
+                        jcMedida.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                               if(jcMedida.getSelectedIndex() == 1)
-                                   txtPeso_Volume.setEnabled(true);
-                               else
-                                      if(jcMedida.getSelectedIndex() == 2)
-                                        txtPeso_Volume.setEnabled(true);
-                               else
-                                            txtPeso_Volume.setEnabled(false);
+                                if (jcMedida.getSelectedIndex() == 1) {
+                                    txtPeso_Volume.setEnabled(true);
+                                } else if (jcMedida.getSelectedIndex() == 2) {
+                                    txtPeso_Volume.setEnabled(true);
+                                } else {
+                                    txtPeso_Volume.setEnabled(false);
+                                }
                             }
-                              
-                          });
-                          
-                             //CCaixa de Peso ou Volume
-                          txtPeso_Volume.addKeyListener(new KeyListener() {
+
+                        });
+
+                        //CCaixa de Peso ou Volume
+                        txtPeso_Volume.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1423,11 +1439,16 @@ public class Gerente extends JFrame {
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
-                                      txtPeso_Volume.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    txtPeso_Volume.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                   txtPeso_Volume.setEditable(true);
-                                 
+                                    txtPeso_Volume.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtPreco_Compra.requestFocus();
+                                    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPeso_Volume.requestFocus();
+                                    }
+
                                 }
                             }
 
@@ -1443,16 +1464,16 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                   txtPeso_Volume.setBorder(bordaColorida);
+                                txtPeso_Volume.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                    txtPreco_Compra.setEnabled(true);                             
+                                    txtPreco_Compra.setEnabled(true);
                                 } else {
-                                     txtPreco_Compra.setEnabled(false);
+                                    txtPreco_Compra.setEnabled(false);
                                 }
 
-                               txtPeso_Volume.addFocusListener(new FocusListener() {
+                                txtPeso_Volume.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1462,16 +1483,16 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                         txtPeso_Volume.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtPeso_Volume.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
-                      
-                           //CCaixa de preco de Compra
-                          txtPreco_Compra.addKeyListener(new KeyListener() {
+                        });
+
+                        //CCaixa de preco de Compra
+                        txtPreco_Compra.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1481,18 +1502,23 @@ public class Gerente extends JFrame {
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
-                                      txtPreco_Compra.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    txtPreco_Compra.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                     txtPreco_Compra.setEditable(true);
-                                 
+                                    txtPreco_Compra.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtPreco_Venda.requestFocus();
+                                    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPeso_Volume.requestFocus();
+                                    }
+
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =   txtPreco_Compra.getText().length();
+                                int comprimentoTexto = txtPreco_Compra.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 2) ? Color.RED : Color.GREEN;
@@ -1501,16 +1527,16 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                    txtPreco_Compra.setBorder(bordaColorida);
+                                txtPreco_Compra.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                      txtPreco_Venda.setEnabled(true);                             
+                                    txtPreco_Venda.setEnabled(true);
                                 } else {
-                                     txtPreco_Venda.setEnabled(false);
+                                    txtPreco_Venda.setEnabled(false);
                                 }
 
-                               txtPreco_Compra.addFocusListener(new FocusListener() {
+                                txtPreco_Compra.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1520,15 +1546,15 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                          txtPreco_Compra.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtPreco_Compra.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
-                             //CCaixa de preco de Venda
-                          txtPreco_Venda.addKeyListener(new KeyListener() {
+                        });
+                        //CCaixa de preco de Venda
+                        txtPreco_Venda.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -1538,18 +1564,23 @@ public class Gerente extends JFrame {
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
-                                      txtPreco_Venda.setEditable(false);
-                                       JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    txtPreco_Venda.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 } else {
-                                     txtPreco_Venda.setEditable(true);
-                                 
+                                    txtPreco_Venda.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                        txtDescricao.requestFocus();
+                                    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPreco_Compra.requestFocus();
+                                    }
+
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =   txtPreco_Venda.getText().length();
+                                int comprimentoTexto = txtPreco_Venda.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
                                 Color cor = (comprimentoTexto < 2) ? Color.RED : Color.GREEN;
@@ -1558,18 +1589,18 @@ public class Gerente extends JFrame {
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
-                                    txtPreco_Venda.setBorder(bordaColorida);
+                                txtPreco_Venda.setBorder(bordaColorida);
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                      txtDescricao.setEnabled(true);  
-                                   
+                                    txtDescricao.setEnabled(true);
+
                                 } else {
-                                     txtDescricao.setEnabled(false);
-                                     
+                                    txtDescricao.setEnabled(false);
+
                                 }
 
-                               txtPreco_Venda.addFocusListener(new FocusListener() {
+                                txtPreco_Venda.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1579,15 +1610,15 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                          txtPreco_Venda.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtPreco_Venda.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
-                          
-                           //Campo nome do Produto, colocando eventos
+                        });
+
+                        //Campo nome do Produto, colocando eventos
                         txtDescricao.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
@@ -1597,21 +1628,24 @@ public class Gerente extends JFrame {
                             @Override
                             public void keyPressed(KeyEvent e) {
                                 char c = e.getKeyChar();
-                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
                                     txtDescricao.setEditable(true);
+                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPreco_Venda.requestFocus();
+                                    }
                                 } else {
                                     txtDescricao.setEditable(false);
-                                    JOptionPane.showMessageDialog(null,"Introduza Caracteres validos!!!");
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
                                 }
                             }
 
                             @Override
                             public void keyReleased(KeyEvent e) {
                                 //Pegando o tamanho do texto
-                                int comprimentoTexto =txtDescricao.getText().length();
+                                int comprimentoTexto = txtDescricao.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
-                                Color cor = (comprimentoTexto <10) ? Color.RED : Color.GREEN;
+                                Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
 
                                 // Cria uma borda com a cor desejada
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
@@ -1621,15 +1655,15 @@ public class Gerente extends JFrame {
 
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                   btnCadastrar.setEnabled(true);
-                                   btnCarregarFoto.setEnabled(true);
-                                  
+                                    btnCadastrar.setEnabled(true);
+                                    btnCarregarFoto.setEnabled(true);
+
                                 } else {
-                                   btnCadastrar.setEnabled(false);
+                                    btnCadastrar.setEnabled(false);
                                     btnCarregarFoto.setEnabled(false);
                                 }
 
-                               txtDescricao.addFocusListener(new FocusListener() {
+                                txtDescricao.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
 
@@ -1639,14 +1673,53 @@ public class Gerente extends JFrame {
                                     public void focusLost(FocusEvent e) {
 
                                         // Restaura a borda padrão quando o campo perde o foco
-                                       txtDescricao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                                        txtDescricao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                     }
                                 });
 
                             }
-                        }); 
-                       
+                        });
+
+                        // Neste passo seguem os pocessos de cadastrar, listar e outros
+                        btnCarregarFoto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        ///Cadastrar
+                        btnCadastrar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        ///Actualizar
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+                        ///Eliminar
+                        btnEliminar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        ///Limpar Todos campos Campos
+                        btnReset.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
                         //Adicionando as Componentes 
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblTitulo);
@@ -1737,6 +1810,7 @@ public class Gerente extends JFrame {
         btnGestao_Funcionarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 pnlPrincipal.setVisible(false);
                 pnlVisaoGeral.setVisible(false);
                 pnlMenssagens.setVisible(false);
@@ -1939,7 +2013,7 @@ public class Gerente extends JFrame {
                 btnProcurar.setFocusPainted(false);
 
                 // Criando a tabela 
-                String[] Colunas_Compras = {"Id", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
+                String[] Colunas_Compras = {"Codigo", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
                 String[][] inf_Compras = {{}};
                 DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -1951,13 +2025,507 @@ public class Gerente extends JFrame {
                 header_Compras.setForeground(new Color(102, 102, 255));
                 Lista_Funcionarios.setRowHeight(120);
                 Lista_Funcionarios.getColumnModel().getColumn(9).setPreferredWidth(200);
-                Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+                Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(90);
                 Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
                 Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(150);
                 Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(150);
                 JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
                 tabela_Funcionarios.setRowCount(10);
                 rol_Compras.setBounds(10, 470, 900, 180);
+
+                //Restrigindo as componentes e Coolocando acessibilidade Inicial
+                txtNome.setEnabled(false);
+                txtBI_Nuit.setEnabled(false);
+                jcGenero.setEnabled(false);
+                txtNascimento.setEnabled(false);
+                txtEmail.setEnabled(false);
+                txtPassword.setEnabled(false);
+                txtContacto.setEnabled(false);
+                txtData_Contratacao.setEnabled(false);
+                txtEndereco.setEnabled(false);
+                jcFuncao.setEnabled(false);
+                jcStatus.setEnabled(false);
+                txtSalario.setEnabled(false);
+
+                //Campo nome do Funxionario, colocando eventos
+                txtApelido.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        char c = e.getKeyChar();
+                        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                            txtApelido.setEditable(true);
+                            if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                txtNome.requestFocus();
+                            }
+
+                        } else {
+                            txtApelido.setEditable(false);
+                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtApelido.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtApelido.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            txtNome.setEnabled(true);
+
+                        } else {
+                            txtNome.setEnabled(false);
+
+                        }
+
+                        txtApelido.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtApelido.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campo Apelido
+                //Campo nome do Funxionario, colocando eventos
+                txtNome.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        char c = e.getKeyChar();
+                        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                            txtNome.setEditable(true);
+                            if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                txtBI_Nuit.requestFocus();
+                            }
+                            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                txtApelido.requestFocus();
+                            }
+
+                        } else {
+                            txtNome.setEditable(false);
+                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtNome.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtNome.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            txtBI_Nuit.setEnabled(true);
+
+                        } else {
+                            txtBI_Nuit.setEnabled(false);
+
+                        }
+
+                        txtNome.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campoNome
+
+                //Campo Nuit do Funxionario, colocando eventos
+                txtBI_Nuit.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            jcGenero.requestFocus();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_UP) {
+                            txtNome.requestFocus();
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtBI_Nuit.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtBI_Nuit.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            jcGenero.setEnabled(true);
+
+                        } else {
+                            jcGenero.setEnabled(false);
+
+                        }
+
+                        txtBI_Nuit.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtBI_Nuit.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campo BI
+
+                //Dando Acção a caixa de Genero
+                jcGenero.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (jcGenero.getSelectedIndex() != 0) {
+                            txtNascimento.setEnabled(true);
+                            txtEmail.setEnabled(true);
+                        } else {
+                            txtEmail.setEnabled(false);
+                            txtNascimento.setEnabled(false);
+                        }
+                    }
+
+                });
+                //Email
+                txtEmail.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            txtContacto.requestFocus();
+                        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                            txtEmail.requestFocus();
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtEmail.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtEmail.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            txtContacto.setEnabled(true);
+
+                        } else {
+                            txtContacto.setEnabled(false);
+
+                        }
+
+                        txtEmail.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtEmail.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campo Email
+
+                //Contacto
+                txtContacto.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        char c = e.getKeyChar();
+                        if (Character.isLetter(c)) {
+                            txtContacto.setEditable(false);
+                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        } else {
+                            txtContacto.setEditable(true);
+                            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                txtPassword.requestFocus();
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtContacto.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtContacto.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            txtData_Contratacao.setEnabled(true);
+                            txtEndereco.setEnabled(true);
+
+                        } else {
+                            txtData_Contratacao.setEnabled(false);
+                            txtEndereco.setEnabled(false);
+
+                        }
+
+                        txtContacto.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtContacto.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campo Contacto
+
+                //Endereco
+                txtEndereco.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            jcFuncao.requestFocus();
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtEndereco.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 5) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtEndereco.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            jcFuncao.setEnabled(true);
+
+                        } else {
+                            jcFuncao.setEnabled(false);
+
+                        }
+
+                        txtEndereco.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtEndereco.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); //Endereço
+
+                //FUncao
+                jcFuncao.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (jcFuncao.getSelectedIndex() != 0) {
+                            jcStatus.setEnabled(true);
+                            jcStatus.requestFocus();
+                        } else {
+                            jcStatus.setEnabled(false);
+                        }
+                    }
+
+                });
+
+                //Status
+                jcStatus.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (jcStatus.getSelectedIndex() != 0) {
+                            txtSalario.setEnabled(true);
+                            txtSalario.requestFocus();
+                        } else {
+                            txtSalario.setEnabled(false);
+                        }
+                    }
+
+                });
+
+                //CCaixa de Peso ou Volume
+                txtSalario.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        char c = e.getKeyChar();
+                        if (Character.isLetter(c)) {
+                            txtSalario.setEditable(false);
+                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        } else {
+                            txtSalario.setEditable(true);
+                            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                jcStatus.requestFocus();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtSalario.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 4) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtSalario.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            btnCarregarFoto.setEnabled(true);
+                            btnCadastrar.setEnabled(true);
+                        } else {
+                            btnCarregarFoto.setEnabled(false);
+                            btnCadastrar.setEnabled(false);
+                        }
+
+                        txtSalario.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtSalario.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                });
 
                 //Adicionando
                 pnlGestao_Funcionarios.add(lblTitulo);
@@ -2050,6 +2618,19 @@ public class Gerente extends JFrame {
         btnVisaoGeral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(false);
+                pnlMenssagens.setVisible(false);
+                pnlConfiguracoes.setVisible(false);
+                pnlGestao_Funcionarios.setVisible(false);
+                pnlPerfil.setVisible(false);
+                  
+                pnlVisaoGeral.setLayout(null);
+                pnlVisaoGeral.setBounds(280,0,920,680);
+                pnlVisaoGeral.setBackground(Color.WHITE);
+                
+                
+                pnlVisaoGeral.setVisible(true);
+                pnlauxPrincipal.add(pnlVisaoGeral);
 
             }
         });
@@ -2427,6 +3008,577 @@ public class Gerente extends JFrame {
         btnConfiguracoes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
+                pnlMenu_Botoes.setVisible(false);
+                pnlVisaoGeral.setVisible(false);
+                pnlMenssagens.setVisible(false);
+                pnlGestao_Funcionarios.setVisible(false);
+                pnlPerfil.setVisible(false);
+
+                pnlConfiguracoes.setBounds(0, 0, 280, 700);
+                pnlConfiguracoes.setBackground(new Color(102, 102, 255));
+                pnlConfiguracoes.setLayout(null);
+
+                JButton btnActualizardados = new JButton("  Actualizar Dados");
+                JButton btnAlterarSenha = new JButton(" Segurança e Privacidade");
+                JButton btnVoltar = new JButton("  Voltar");
+
+                JLabel lblFotografia = new JLabel();
+                JTextField txtbarra = new JTextField();
+
+                lblFotografia.setBounds(45, 50, 180, 180);
+                txtbarra.setBounds(30, 251, 210, 1);
+
+                btnActualizardados.setBounds(20, 280, 220, 40);
+                btnVoltar.setBounds(20, 351, 120, 40);
+                btnActualizardados.setBackground(new Color(102, 102, 255));
+                btnVoltar.setBackground(new Color(102, 102, 255));
+
+                btnActualizardados.setForeground(Color.white);
+                btnVoltar.setForeground(Color.white);
+
+                btnActualizardados.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+                btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+
+                btnVoltar.setBorder(BorderFactory.createEmptyBorder());
+                btnVoltar.setFocusPainted(false);
+                btnActualizardados.setBorder(BorderFactory.createEmptyBorder());
+                btnActualizardados.setFocusPainted(false);
+
+                lblFotografia.setIcon(Icon_Logo);
+                btnVoltar.setIcon(Icon_Voltar);
+                btnActualizardados.setIcon(Icon_Gestao_Funcionario);
+
+                pnlConfiguracoes.add(lblFotografia);
+                pnlConfiguracoes.add(txtbarra);
+                pnlConfiguracoes.add(btnVoltar);
+                pnlConfiguracoes.add(btnActualizardados);
+
+                // Declarando os paineis que irei usar no botao defincao
+                JPanel pnlActualizar_Dados = new JPanel();
+                pnlActualizar_Dados.setVisible(false);
+
+                //Neste passo , vou dar continuidade, colocando as componentes para actualizar dados
+                btnActualizardados.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlPrincipal.setVisible(false);
+                        pnlActualizar_Dados.setBounds(280, 0, 920, 700);
+                        pnlActualizar_Dados.setBackground(Color.white);
+                        pnlActualizar_Dados.setLayout(null);
+
+                        //Craindo as ComponentesAt
+                        JLabel lblTitulo = new JLabel("Actualizar Infomações");
+                        JLabel lblFoto = new JLabel();
+                        JLabel imgApelido = new JLabel();
+                        JLabel imgNome = new JLabel();
+                        JLabel imgGenero = new JLabel();
+                        JLabel imgNascimento = new JLabel();
+                        JLabel imgBI = new JLabel();
+                        JLabel imgEmail = new JLabel();
+                        JLabel imgPassword = new JLabel();
+                        JLabel imgContacto = new JLabel();
+                        JLabel imgContratacao = new JLabel();
+                        JLabel imgAcesso = new JLabel();
+                        JLabel imgEndereço = new JLabel();
+
+                        JLabel lblApelido = new JLabel("Apelido");
+                        JLabel lblNome = new JLabel("Nome");
+                        JLabel lblGenero = new JLabel("Genero");
+                        JLabel lblNascimento = new JLabel("Data de Nascimento");
+                        JLabel lblBI_Nuit = new JLabel("Numero do BI/Nuit");
+                        JLabel lblEmail = new JLabel("Email");
+                        JLabel lblPassword = new JLabel("Palavra-passe");
+                        JLabel lblContacto = new JLabel("Contacto");
+                        JLabel lblAcesso = new JLabel("Perfil");
+                        JLabel lblContratacao = new JLabel("Data da contratação");
+                        JLabel lblEndereco = new JLabel("Endereço");
+                        JLabel lblFuncao = new JLabel("Função Desempenhada ");
+                        JLabel lblStatus = new JLabel("Status do Funcionario ");
+                        JLabel lblSalario = new JLabel("Salario ");
+
+                        JTextField txtApelido = new JTextField();
+                        JTextField txtNome = new JTextField();
+                        JComboBox jcGenero = new JComboBox();
+                        JDateChooser txtNascimento = new JDateChooser();
+                        JTextField txtBI_Nuit = new JTextField();
+                        JTextField txtEmail = new JTextField();
+                        JPasswordField txtPassword = new JPasswordField();
+                        JTextField txtContacto = new JTextField();
+                        JTextField txtAcesso = new JTextField();
+                        JDateChooser txtData_Contratacao = new JDateChooser();
+                        JTextField txtEndereco = new JTextField();
+                        JComboBox jcFuncao = new JComboBox<>();
+                        JComboBox jcStatus = new JComboBox<>();
+                        JTextField txtSalario = new JTextField();
+
+                        JButton btnCarregarFoto = new JButton("Carregar IMG");
+                        JButton btnActualizar = new JButton("Actualizar");
+
+                        // Criando a tabela 
+                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Fotografia"};
+                        String[][] inf = {{}};
+                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
+
+                        // Criando as Tabelas/Listas
+                        JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
+                        JTableHeader header = Lista_Funcionarios.getTableHeader();
+
+                        Lista_Funcionarios.setShowGrid(false);//
+                        Lista_Funcionarios.setRowHeight(120);
+
+                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+
+                        header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        header.setForeground(new Color(102, 102, 255));
+
+                        JScrollPane rol = new JScrollPane(Lista_Funcionarios);
+
+                        //Foreground
+                        lblTitulo.setForeground(new Color(0, 102, 255));
+
+                        //Cordenadas
+                        lblTitulo.setBounds(340, 0, 350, 30);
+
+                        lblApelido.setBounds(100, 70, 200, 30);
+                        txtApelido.setBounds(100, 100, 200, 40);
+
+                        lblNome.setBounds(100, 140, 200, 30);
+                        txtNome.setBounds(100, 170, 200, 40);
+
+                        lblBI_Nuit.setBounds(100, 210, 200, 30);
+                        txtBI_Nuit.setBounds(100, 240, 200, 40);
+
+                        lblGenero.setBounds(100, 280, 200, 30);
+                        jcGenero.setBounds(100, 310, 200, 40);
+
+                        lblNascimento.setBounds(100, 350, 200, 30);
+                        txtNascimento.setBounds(100, 380, 200, 40);
+
+                        lblEmail.setBounds(360, 70, 200, 30);
+                        txtEmail.setBounds(360, 100, 200, 40);
+
+                        lblPassword.setBounds(360, 140, 200, 30);
+                        txtPassword.setBounds(360, 170, 200, 40);
+
+                        lblContacto.setBounds(620, 70, 200, 30);
+                        txtContacto.setBounds(620, 100, 200, 40);
+
+                        lblContratacao.setBounds(620, 140, 200, 30);
+                        txtData_Contratacao.setBounds(620, 170, 200, 40);
+
+                        lblAcesso.setBounds(620, 210, 200, 30);
+                        txtAcesso.setBounds(620, 240, 200, 40);
+
+                        lblEndereco.setBounds(620, 280, 200, 30);
+                        txtEndereco.setBounds(620, 310, 200, 40);
+
+                        lblFuncao.setBounds(620, 350, 200, 30);
+                        jcFuncao.setBounds(620, 380, 200, 40);
+
+                        lblSalario.setBounds(620, 420, 200, 30);
+                        txtSalario.setBounds(620, 450, 200, 40);
+
+                        lblStatus.setBounds(100, 420, 200, 30);
+                        jcStatus.setBounds(100, 450, 200, 40);
+
+                        lblFoto.setBounds(330, 200, 225, 210);
+
+                        btnCarregarFoto.setBounds(380, 390, 165, 30);
+
+                        btnActualizar.setBounds(365, 450, 165, 30);
+                        rol.setBounds(100, 520, 720, 130);
+
+                        //cOLOCANDO AS INFORMACOES NAS CAIXAS
+                        jcGenero.addItem("");
+                        jcGenero.addItem(" Masculino ");
+                        jcGenero.addItem(" Feminino ");
+                        jcGenero.setBackground(Color.white);
+
+                        jcFuncao.addItem("");
+                        jcFuncao.addItem(" Helper Clients ");
+                        jcFuncao.addItem(" Recepcionista ");
+                        jcFuncao.addItem("Caixa");
+                        jcFuncao.setBackground(Color.white);
+
+                        jcStatus.addItem("");
+                        jcStatus.addItem(" Activo ");
+                        jcStatus.addItem(" Inactivo ");
+                        jcStatus.setBackground(Color.white);
+
+                        //Privando algumas Actualições
+                        txtApelido.setEnabled(false);
+                        txtNome.setEnabled(false);
+                        jcGenero.setEnabled(false);
+                        txtNascimento.setEnabled(false);
+                        txtBI_Nuit.setEnabled(false);
+                        txtData_Contratacao.setEnabled(false);
+                        txtAcesso.setEnabled(false);
+                        jcFuncao.setEnabled(false);
+                        jcStatus.setEnabled(false);
+                        txtSalario.setEnabled(false);
+
+                        //Personalizando a fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblContratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+
+                        // Neste passo, vou definir o tamanho e a fonte do conteudo a ser digitado.
+                        txtApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtNascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtBI_Nuit.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPassword.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtData_Contratacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtAcesso.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtEndereco.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        jcStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                        lblFoto.setIcon(Icon_foto);
+
+                        btnCarregarFoto.setIcon(Icon_CarregarFoto);
+                        btnActualizar.setIcon(Icon_Actualizar);
+                        //Personalizando as Bordas das componentes
+                        btnCarregarFoto.setBorder(BorderFactory.createEmptyBorder());
+                        btnCarregarFoto.setFocusPainted(false);
+                        btnActualizar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActualizar.setFocusPainted(false);
+
+                        //Validando alguns Campos
+                        //Email
+                        txtEmail.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                    txtPassword.requestFocus();
+                                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtEmail.requestFocus();
+                                }
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtEmail.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtEmail.setBorder(bordaColorida);
+                                if (cor.equals(Color.GREEN)) {
+                                    txtPassword.setEnabled(true);
+                                } else {
+                                    txtPassword.setEnabled(false);
+                                }
+
+                                txtEmail.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtEmail.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Email
+                        //Passwrod
+                        txtPassword.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                    txtContacto.requestFocus();
+                                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtEmail.requestFocus();
+                                }
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtPassword.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 8) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtPassword.setBorder(bordaColorida);
+                                if (cor.equals(Color.GREEN)) {
+                                    txtContacto.setEnabled(true);
+                                } else {
+                                    txtContacto.setEnabled(false);
+                                }
+
+                                txtPassword.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Password
+
+                        //Contacto
+                        txtContacto.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                    txtContacto.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                } else {
+                                    txtContacto.setEditable(true);
+
+                                    if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        txtEndereco.requestFocus();
+                                    }
+
+                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPassword.requestFocus();
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtContacto.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtContacto.setBorder(bordaColorida);
+
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                    txtEndereco.setEnabled(true);
+
+                                } else {
+                                    txtEndereco.setEnabled(false);
+
+                                }
+
+                                txtContacto.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtContacto.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Contacto
+
+                        //Endereco
+                        txtEndereco.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+
+                                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtContacto.requestFocus();
+                                }
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtEndereco.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtEndereco.setBorder(bordaColorida);
+
+                                txtEndereco.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtEndereco.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Endereco
+
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        pnlActualizar_Dados.add(lblTitulo);
+                        pnlActualizar_Dados.add(lblTitulo);
+                        pnlActualizar_Dados.add(lblApelido);
+                        pnlActualizar_Dados.add(lblNome);
+                        pnlActualizar_Dados.add(lblGenero);
+                        pnlActualizar_Dados.add(lblNascimento);
+                        pnlActualizar_Dados.add(lblBI_Nuit);
+                        pnlActualizar_Dados.add(lblEmail);
+                        pnlActualizar_Dados.add(lblPassword);
+                        pnlActualizar_Dados.add(lblContacto);
+                        pnlActualizar_Dados.add(lblContratacao);
+                        pnlActualizar_Dados.add(lblAcesso);
+                        pnlActualizar_Dados.add(lblEndereco);
+                        pnlActualizar_Dados.add(lblFuncao);
+                        pnlActualizar_Dados.add(lblStatus);
+                        pnlActualizar_Dados.add(lblSalario);
+                        pnlActualizar_Dados.add(lblFoto);
+
+                        pnlActualizar_Dados.add(txtApelido);
+                        pnlActualizar_Dados.add(txtNome);
+                        pnlActualizar_Dados.add(jcGenero);
+                        pnlActualizar_Dados.add(txtNascimento);
+                        pnlActualizar_Dados.add(txtBI_Nuit);
+                        pnlActualizar_Dados.add(txtEmail);
+                        pnlActualizar_Dados.add(txtPassword);
+                        pnlActualizar_Dados.add(txtContacto);
+                        pnlActualizar_Dados.add(txtData_Contratacao);
+                        pnlActualizar_Dados.add(txtAcesso);
+                        pnlActualizar_Dados.add(txtEndereco);
+                        pnlActualizar_Dados.add(jcFuncao);
+                        pnlActualizar_Dados.add(jcStatus);
+                        pnlActualizar_Dados.add(txtSalario);
+                        pnlActualizar_Dados.add(rol);
+
+                        pnlActualizar_Dados.add(btnCarregarFoto);
+                        pnlActualizar_Dados.add(btnActualizar);
+
+                        //Fonte
+                        lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        lblApelido.setForeground(new Color(102, 102, 255));
+                        lblNome.setForeground(new Color(102, 102, 255));
+                        lblGenero.setForeground(new Color(102, 102, 255));
+                        lblNascimento.setForeground(new Color(102, 102, 255));
+                        lblBI_Nuit.setForeground(new Color(102, 102, 255));
+                        lblEmail.setForeground(new Color(102, 102, 255));
+                        lblPassword.setForeground(new Color(102, 102, 255));
+                        lblContacto.setForeground(new Color(102, 102, 255));
+                        lblContratacao.setForeground(new Color(102, 102, 255));
+                        lblAcesso.setForeground(new Color(102, 102, 255));
+                        lblEndereco.setForeground(new Color(102, 102, 255));
+                        lblFuncao.setForeground(new Color(102, 102, 255));
+                        lblStatus.setForeground(new Color(102, 102, 255));
+                        lblSalario.setForeground(new Color(102, 102, 255));
+                        btnCarregarFoto.setForeground(new Color(0, 102, 255));
+                        btnActualizar.setForeground(new Color(0, 102, 255));
+
+                        // Personalizando o BackGround
+                        btnCarregarFoto.setBackground(Color.white);
+                        btnActualizar.setBackground(Color.white);
+                        pnlActualizar_Dados.setVisible(true);
+
+                    }
+                });
+
+                //Neste passo, vou colocar no false todos paineis que eu tenha usando neste metodo, para assegurar
+                //com que estes paineis nao se sobrepoam e deixar apenas um visivel aqui antescede a esta.
+                btnVoltar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlActualizar_Dados.setVisible(false);
+                        pnlConfiguracoes.setVisible(false);
+                        pnlPrincipal.setVisible(true);
+                        pnlMenu_Botoes.setVisible(true);
+
+                    }
+                });
+
+                pnlauxPrincipal.add(pnlConfiguracoes);
+                pnlauxPrincipal.add(pnlMenssagens);
+                pnlauxPrincipal.add(pnlActualizar_Dados);
+                pnlauxPrincipal.add(pnlPrincipal);
+                pnlConfiguracoes.setVisible(true);
 
             }
         });
@@ -2446,6 +3598,7 @@ public class Gerente extends JFrame {
             }
         });
 
+        setJMenuBar(barraMenu);
         pnlauxPrincipal.add(pnlMenu_Botoes);
         pnlauxPrincipal.add(pnlPrincipal);
         pnlPrincipal.add(lblLogo);

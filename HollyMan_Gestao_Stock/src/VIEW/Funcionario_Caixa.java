@@ -14,6 +14,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -28,6 +32,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -35,49 +41,41 @@ import javax.swing.table.JTableHeader;
  *
  * @author HOLLY MAN
  */
-public class Servicos_Organizacao extends JFrame {
+public class Funcionario_Caixa extends JFrame {
 
-    ImageIcon fotografiaPerfil = new ImageIcon("src\\Imagens\\Aten.jpeg");
-    ImageIcon Imagem_Cumpany = new ImageIcon("src\\Imagens\\Aten.jpeg");
-    ImageIcon Imagem_Fundo = new ImageIcon("src\\Imagens\\Aten.jpeg");
-    ImageIcon Icon_Perfil = new ImageIcon("src\\Imagens\\Perfil2.png");
-    ImageIcon Icon_Tarefas = new ImageIcon("src\\Imagens\\Tarefas2.png");
-    ImageIcon Icon_Listar = new ImageIcon("src\\Imagens\\Listar.png");
-    ImageIcon Icon_Definições = new ImageIcon("src\\Imagens\\definicoes2.png");
-    ImageIcon Icon_Voltar = new ImageIcon("src\\Imagens\\botao-voltar.png");
-    ImageIcon Icon_Vender = new ImageIcon("src\\Imagens\\produtos.png");
-    ImageIcon Icon_Historico = new ImageIcon("src\\Imagens\\Historico.png");
-    ImageIcon Icon_Procurar = new ImageIcon("src\\Imagens\\pesquisa.png");
-    ImageIcon Icon_Busca = new ImageIcon("src\\Imagens\\Busca1.png");
-    ImageIcon Icon_Adicionar_Carinha = new ImageIcon("src\\Imagens\\adicionar-ao-carrinho (1).png");
-    ImageIcon Icon_Eliminar_Carinha = new ImageIcon("src\\Imagens\\remover-do-carrinho (1).png");
-    ImageIcon Icon_foto = new ImageIcon("src\\Imagens\\imagemGaleria.png");
-    ImageIcon Icon_CarregarFoto = new ImageIcon("src\\Imagens\\CarregarImagemF.png");
-    ImageIcon Icon_Actualizar = new ImageIcon("src\\Imagens\\editar.png");
-    ImageIcon Icon_btnActualizarFu = new ImageIcon("src\\Imagens\\funcionarios.png");
-    ImageIcon Logotipo = new ImageIcon("src\\Imagens\\Logo.jpeg");
-    ImageIcon Icon_Menssagem = new ImageIcon("src\\Imagens\\mensagem.png");
+    ImageIcon fotografiaPerfil = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Aten.jpeg"));
+    ImageIcon Imagem_Cumpany = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Aten.jpeg"));
+    ImageIcon Imagem_Fundo = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Aten.jpeg"));
+    ImageIcon Icon_Perfil = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Perfil2.png"));
+    ImageIcon Icon_Tarefas = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Tarefas2.png"));
+    ImageIcon Icon_Listar = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Listar.png"));
+    ImageIcon Icon_Definições = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/definicoes2.png"));
+    ImageIcon Icon_Voltar = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/botao-voltar.png"));
+    ImageIcon Icon_Vender = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/produtos.png"));
+    ImageIcon Icon_Historico = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Historico.png"));
+    ImageIcon Icon_Procurar = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/pesquisa.png"));
+    ImageIcon Icon_Busca = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Busca1.png"));
+    ImageIcon Icon_Adicionar_Carinha = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/adicionar-ao-carrinho (1).png"));
+    ImageIcon Icon_Eliminar_Carinha = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/remover-do-carrinho (1).png"));
+    ImageIcon Icon_foto = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/imagemGaleria.png"));
+    ImageIcon Icon_CarregarFoto = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/CarregarImagemF.png"));
+    ImageIcon Icon_Actualizar = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/editar.png"));
+    ImageIcon Icon_btnActualizarFu = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/funcionarios.png"));
+    ImageIcon Logotipo = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Logo.jpeg"));
+    ImageIcon Icon_Menssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/mensagem.png"));
 
     // Icons para campos de texto
-    ImageIcon Icon_Apelido = new ImageIcon("src\\Imagens\\");
-    ImageIcon Icon_Nome = new ImageIcon("src\\Imagens\\");
-    ImageIcon Icon_Genero = new ImageIcon("src\\Imagens\\genero.png");
-    ImageIcon Icon_BI = new ImageIcon("src\\Imagens\\BI.png");
-    ImageIcon Icon_Nascimento = new ImageIcon("src\\Imagens\\calendario.png");
-    ImageIcon Icon_Email = new ImageIcon("src\\Imagens\\email.png");
-    ImageIcon Icon_Password = new ImageIcon("src\\Imagens\\password.png");
-    ImageIcon Icon_Contacto = new ImageIcon("src\\Imagens\\telefone.png");
-    ImageIcon Icon_Contratacao = new ImageIcon("src\\Imagens\\Contratacao.png");
-    ImageIcon Icon_mpesa = new ImageIcon("src\\Imagens\\mpesa.png");
-    ImageIcon Icon_emola = new ImageIcon("src\\Imagens\\emola.png");
-    ImageIcon Icon_mkesh = new ImageIcon("src\\Imagens\\mkesh.png");
-    ImageIcon Icon_catao = new ImageIcon("src\\Imagens\\cartao_credito.png");
-    ImageIcon Icon_cartao1 = new ImageIcon("src\\Imagens\\cartao_credito1.png");
-    ImageIcon Icon_RelatorioMenssagem = new ImageIcon("src\\Imagens\\relatorio_1.png");
-    ImageIcon Icon_EscreverMenssagem = new ImageIcon("src\\Imagens\\escrever-mensagem.png");
-    ImageIcon Icon_CaixaMenssagem = new ImageIcon("src\\Imagens\\caixaMenssagens.png");
-    ImageIcon Icon_Proximo = new ImageIcon("src\\Imagens\\proximo.png");
-    ImageIcon Icon_Anterior = new ImageIcon("src\\Imagens\\anterior.png");
+  
+    ImageIcon Icon_RelatorioMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/relatorio_1.png"));
+    ImageIcon Icon_EscreverMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/escrever-mensagem.png"));
+    ImageIcon Icon_CaixaMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/caixaMenssagens.png"));
+    ImageIcon Icon_Proximo = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/proximo.png"));
+    ImageIcon Icon_Anterior = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/anterior.png"));
+    ImageIcon Icon_catao = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/cartao_credito.png"));
+    ImageIcon Icon_cartao1 = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/cartao_credito1.png"));
+    ImageIcon Icon_mkesh = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/mkesh.png"));
+    ImageIcon Icon_mpesa = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/mpesa.png"));
+    ImageIcon Icon_emola = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/emola.png"));
 
     JButton btnMeuPerfil = new JButton("  Meu Perfil");
     JButton btnServicos = new JButton(" Tarefas");
@@ -92,7 +90,7 @@ public class Servicos_Organizacao extends JFrame {
     JPanel pnlauxPrincipal = new JPanel();
 
     // Este é o construtor da classe respondavel pela criacaoda frame e tudo que nele existir
-    public Servicos_Organizacao() {
+    public Funcionario_Caixa() {
 
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
@@ -2643,7 +2641,232 @@ public class Servicos_Organizacao extends JFrame {
                         btnCarregarFoto.setFocusPainted(false);
                         btnActualizar.setBorder(BorderFactory.createEmptyBorder());
                         btnActualizar.setFocusPainted(false);
+                        
+                        //Validando alguns Campos
+                     //Email
+                          txtEmail.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
 
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN ) 
+                                        txtPassword.requestFocus();
+                                    else
+                                        if (e.getKeyCode() == KeyEvent.VK_UP) 
+                                           txtEmail.requestFocus();   
+                                
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtEmail.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtEmail.setBorder(bordaColorida);
+                           if (cor.equals(Color.GREEN))
+                                   txtPassword.setEnabled(true);
+                           else
+                               txtPassword.setEnabled(false);
+                              
+                                txtEmail.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtEmail.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Email
+                          //Passwrod
+                          txtPassword.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN ) 
+                                        txtContacto.requestFocus();
+                                    else
+                                        if (e.getKeyCode() == KeyEvent.VK_UP) 
+                                           txtEmail.requestFocus();   
+                                
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtPassword.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto < 8) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtPassword.setBorder(bordaColorida);
+                                 if (cor.equals(Color.GREEN))
+                                   txtContacto.setEnabled(true);
+                           else
+                               txtContacto.setEnabled(false);
+                              
+                                txtPassword.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Password
+                          
+                          //Contacto
+                          txtContacto.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                 char c = e.getKeyChar();
+                                if (Character.isLetter(c)) {
+                                    txtContacto.setEditable(false);
+                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        }else{
+                                    txtContacto.setEditable(true);
+                                    
+                                    if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER )
+                                        txtEndereco.requestFocus();
+                                    
+                                     if (e.getKeyCode() == KeyEvent.VK_UP) 
+                                           txtPassword.requestFocus();   
+                                    
+                                }
+                                       
+                                
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtContacto.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtContacto.setBorder(bordaColorida);
+                               
+                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                if (cor.equals(Color.GREEN)) {
+                                   txtEndereco.setEnabled(true);
+                                  
+                                } else {
+                                   txtEndereco.setEnabled(false);
+                                 
+                           
+                                }
+
+                                txtContacto.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtContacto.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Contacto
+                         
+                           //Endereco
+                          txtEndereco.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+           
+                                     if (e.getKeyCode() == KeyEvent.VK_UP) 
+                                           txtContacto.requestFocus();   
+                                    
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                                //Pegando o tamanho do texto
+                                int comprimentoTexto = txtEndereco.getText().length();
+
+                                // Define a cor da borda com base no comprimento do texto
+                                Color cor = (comprimentoTexto <6) ? Color.RED : Color.GREEN;
+
+                                // Cria uma borda com a cor desejada
+                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                // Aplica a borda ao campo de texto
+                                txtEndereco.setBorder(bordaColorida);
+                               
+                                txtEndereco.addFocusListener(new FocusListener() {
+                                    @Override
+                                    public void focusGained(FocusEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void focusLost(FocusEvent e) {
+
+                                        // Restaura a borda padrão quando o campo perde o foco
+                                        txtEndereco.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                    }
+                                });
+
+                            }
+                        }); // campo Endereco
+                         
+                          
                         btnActualizar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -2745,6 +2968,6 @@ public class Servicos_Organizacao extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Servicos_Organizacao().setVisible(true);
+        new Funcionario_Caixa().setVisible(true);
     }
 }
