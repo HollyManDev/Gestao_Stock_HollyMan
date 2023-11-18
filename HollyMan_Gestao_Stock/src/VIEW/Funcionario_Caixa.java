@@ -8,6 +8,7 @@ package VIEW;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
+import Validacoes.Metodos_Vendas;
 import com.sun.tools.javac.tree.JCTree;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -18,6 +19,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -65,7 +67,6 @@ public class Funcionario_Caixa extends JFrame {
     ImageIcon Icon_Menssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/mensagem.png"));
 
     // Icons para campos de texto
-  
     ImageIcon Icon_RelatorioMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/relatorio_1.png"));
     ImageIcon Icon_EscreverMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/escrever-mensagem.png"));
     ImageIcon Icon_CaixaMenssagem = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/caixaMenssagens.png"));
@@ -424,6 +425,7 @@ public class Funcionario_Caixa extends JFrame {
 
                         JLabel lblListar = new JLabel();
                         JLabel lblLista_compras = new JLabel();
+                        JTextField txtPesquisa = new JTextField();
                         JLabel lblTotal = new JLabel("Total a Pagar");
                         JLabel lblViewMoney = new JLabel("0");
 
@@ -434,7 +436,7 @@ public class Funcionario_Caixa extends JFrame {
                         //BackGround
                         btnProximo.setBackground(Color.white);
 
-                        lblListar.setBounds(270, 0, 350, 30);
+                        lblListar.setBounds(270, 0, 300, 30);
                         lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         lblTotal.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         lblViewMoney.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -501,6 +503,7 @@ public class Funcionario_Caixa extends JFrame {
                         JScrollPane rol_Compras = new JScrollPane(Lista_Compras);
 
                         rol.setBounds(10, 40, 890, 250);
+                        txtPesquisa.setBounds(690, 0, 200, 30);
                         rol_Compras.setBounds(10, 350, 890, 250);
 
                         btnAdicionar_carinho.setBounds(800, 290, 60, 60);
@@ -533,6 +536,7 @@ public class Funcionario_Caixa extends JFrame {
                                 JLabel lblCVV = new JLabel("CVV");
                                 JLabel lblIcon = new JLabel();
 
+                                JTextField txtPesquisa = new JTextField();
                                 JComboBox jcTransacao = new JComboBox();
                                 JTextField txtNome = new JTextField();
                                 JComboBox jcGenero = new JComboBox();
@@ -556,6 +560,8 @@ public class Funcionario_Caixa extends JFrame {
                                 jcTransacao.addItem("Registar Venda");
                                 jcTransacao.addItem("Pedido de novo Cliente");
                                 jcTransacao.addItem("Pedido de Cliente Registado");
+
+                                jcTransacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
 
                                 jcTipo.setBackground(Color.white);
                                 jcTipo.addItem("");
@@ -621,7 +627,10 @@ public class Funcionario_Caixa extends JFrame {
 
                                 JScrollPane rol_Cli = new JScrollPane(Lista_Cli);
 
+                                Lista_Cli.setEnabled(false);
+
                                 //Fonte
+                                txtPesquisa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 lblTransacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 lblNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                                 lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -689,21 +698,21 @@ public class Funcionario_Caixa extends JFrame {
                                 btnPagar.setEnabled(false);
                                 btnRecibo.setEnabled(false);
 
-                                jcTransacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                //Action 
-
+                                txtPesquisa.setVisible(false);
                                 jcTransacao.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
 
                                         if (jcTransacao.getSelectedIndex() == 1) {
 
-                                            jcTipo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                            jcTransacao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
+                                            jcTransacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
                                             jcTipo.setEnabled(true);
 
                                             lblIcon.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(102, 102, 255)));
 
+                                            txtPesquisa.setVisible(false);
                                             rol_Cli.setVisible(false);
                                             lblNome.setVisible(true);
                                             txtNome.setVisible(true);
@@ -764,11 +773,7 @@ public class Funcionario_Caixa extends JFrame {
                                                 public void actionPerformed(ActionEvent e) {
                                                     if (jcTipo.getSelectedIndex() == 1) {
 
-                                                        lblIcon.setBorder(BorderFactory.createEmptyBorder());
-
-                                                        txtMontante.setEnabled(true);
-                                                        txtMontante.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                        btnPagar.setEnabled(true);
+                                                        jcTipo.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                                         txtNome.setEnabled(false);
                                                         jcGenero.setEnabled(false);
@@ -778,7 +783,72 @@ public class Funcionario_Caixa extends JFrame {
                                                         txtCVV.setEnabled(false);
                                                         btnRecibo.setEnabled(false);
 
+                                                        lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
+                                                        txtMontante.setEnabled(true);
+
+                                                        txtMontante.addKeyListener(new KeyListener() {
+                                                            @Override
+                                                            public void keyTyped(KeyEvent e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyPressed(KeyEvent e) {
+                                                                char c = e.getKeyChar();
+                                                                if (Character.isLetter(c)) {
+                                                                    txtMontante.setEditable(false);
+                                                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                } else {
+                                                                    txtMontante.setEditable(true);
+
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyReleased(KeyEvent e) {
+                                                                //Pegando o tamanho do texto
+                                                                int comprimentoTexto = txtMontante.getText().length();
+
+                                                                // Define a cor da borda com base no comprimento do texto
+                                                                Color cor = (comprimentoTexto <= 1) ? Color.RED : Color.GREEN;
+
+                                                                // Cria uma borda com a cor desejada
+                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                // Aplica a borda ao campo de texto
+                                                                txtMontante.setBorder(bordaColorida);
+
+                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                if (cor.equals(Color.GREEN)) {
+                                                                    btnPagar.setEnabled(true);
+
+                                                                } else {
+                                                                    btnPagar.setEnabled(false);
+
+                                                                }
+
+                                                                txtMontante.addFocusListener(new FocusListener() {
+                                                                    @Override
+                                                                    public void focusGained(FocusEvent e) {
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void focusLost(FocusEvent e) {
+
+                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                        txtMontante.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        }); // campo Montantr
+
                                                         //Salvar Venda por meio do pagamento em Dinheiro
+                                                        btnPagar.setEnabled(true);
                                                         btnPagar.addActionListener(new ActionListener() {
                                                             @Override
                                                             public void actionPerformed(ActionEvent e) {
@@ -797,56 +867,364 @@ public class Funcionario_Caixa extends JFrame {
                                                             lblNome.setText("Nome do Titular da Conta");
                                                             txtMontante.setEnabled(false);
                                                             txtNome.setEnabled(true);
-                                                            jcGenero.setEnabled(true);
+                                                            jcGenero.setEnabled(false);
                                                             txtContacto_Email.setEnabled(false);
-                                                            txtnumero_cartao.setEnabled(true);
-                                                            txtValidade_cartao.setEnabled(true);
-                                                            txtCVV.setEnabled(true);
+                                                            txtnumero_cartao.setEnabled(false);
+                                                            txtValidade_cartao.setEnabled(false);
+                                                            txtCVV.setEnabled(false);
 
-                                                            txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                            txtnumero_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                            txtValidade_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                            txtCVV.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                            jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                            btnPagar.setEnabled(true);
-                                                            btnRecibo.setEnabled(false);
-
-                                                            //Salvar Venda por meio do cartao de Credito
-                                                            btnPagar.addActionListener(new ActionListener() {
+                                                            txtNome.addKeyListener(new KeyListener() {
                                                                 @Override
-                                                                public void actionPerformed(ActionEvent e) {
+                                                                public void keyTyped(KeyEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyPressed(KeyEvent e) {
+                                                                    char c = e.getKeyChar();
+                                                                    if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                                                                        txtNome.setEditable(true);
+                                                                        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                                                            jcGenero.requestFocus();
+                                                                        }
+
+                                                                    } else {
+                                                                        txtNome.setEditable(false);
+                                                                        JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyReleased(KeyEvent e) {
+                                                                    //Pegando o tamanho do texto
+                                                                    int comprimentoTexto = txtNome.getText().length();
+
+                                                                    // Define a cor da borda com base no comprimento do texto
+                                                                    Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                                                                    // Cria uma borda com a cor desejada
+                                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                    // Aplica a borda ao campo de texto
+                                                                    txtNome.setBorder(bordaColorida);
+
+                                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                    if (cor.equals(Color.GREEN)) {
+                                                                        jcGenero.setEnabled(true);
+
+                                                                    } else {
+                                                                        jcGenero.setEnabled(false);
+
+                                                                    }
+
+                                                                    txtNome.addFocusListener(new FocusListener() {
+                                                                        @Override
+                                                                        public void focusGained(FocusEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void focusLost(FocusEvent e) {
+
+                                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                                            txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                        }
+                                                                    });
 
                                                                 }
 
                                                             });
-                                                        } else {
-                                                            if (jcTipo.getSelectedIndex() == 6) {
 
+                                                            jcGenero.addActionListener(new ActionListener() {
+                                                                @Override
+                                                                public void actionPerformed(ActionEvent e) {
+
+                                                                    if (jcGenero.getSelectedIndex() != 0) {
+                                                                        txtContacto_Email.setEnabled(true);
+
+                                                                    } else {
+                                                                        txtContacto_Email.setEnabled(false);
+
+                                                                    }
+                                                                }
+
+                                                            });
+
+                                                            //Numero ou Email
+                                                            txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                @Override
+                                                                public void keyTyped(KeyEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyPressed(KeyEvent e) {
+                                                                    txtContacto_Email.setEditable(true);
+                                                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                        jcGenero.requestFocus();
+                                                                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                                                        txtnumero_cartao.setEnabled(true);
+                                                                    }
+                                                                }
+
+                                                                @Override
+                                                                public void keyReleased(KeyEvent e) {
+                                                                    //Pegando o tamanho do texto
+                                                                    int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                    // Define a cor da borda com base no comprimento do texto
+                                                                    Color cor = ((comprimentoTexto != 9)) ? Color.RED : Color.GREEN;
+
+                                                                    // Cria uma borda com a cor desejada
+                                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                    // Aplica a borda ao campo de texto
+                                                                    txtContacto_Email.setBorder(bordaColorida);
+
+                                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                    if (cor.equals(Color.GREEN)) {
+                                                                        txtnumero_cartao.setEnabled(true);
+
+                                                                    } else {
+                                                                        txtnumero_cartao.setEnabled(false);
+
+                                                                    }
+
+                                                                    txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                        @Override
+                                                                        public void focusGained(FocusEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void focusLost(FocusEvent e) {
+
+                                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                                            txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                        }
+                                                                    });
+
+                                                                }
+                                                            }); // campo Numero Celular
+
+                                                            //Numero de Cartao
+                                                            txtnumero_cartao.addKeyListener(new KeyListener() {
+                                                                @Override
+                                                                public void keyTyped(KeyEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyPressed(KeyEvent e) {
+                                                                    char c = e.getKeyChar();
+                                                                    if (Character.isLetter(c)) {
+                                                                        txtnumero_cartao.setEditable(false);
+                                                                        JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                    } else {
+                                                                        txtnumero_cartao.setEditable(true);
+                                                                        if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                            txtContacto_Email.requestFocus();
+                                                                        }
+
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyReleased(KeyEvent e) {
+                                                                    //Pegando o tamanho do texto
+                                                                    int comprimentoTexto = txtnumero_cartao.getText().length();
+
+                                                                    // Define a cor da borda com base no comprimento do texto
+                                                                    Color cor = (comprimentoTexto != 12) ? Color.RED : Color.GREEN;
+
+                                                                    // Cria uma borda com a cor desejada
+                                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                    // Aplica a borda ao campo de texto
+                                                                    txtnumero_cartao.setBorder(bordaColorida);
+
+                                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                    if (cor.equals(Color.GREEN)) {
+                                                                        txtValidade_cartao.setEnabled(true);
+                                                                        txtCVV.setEnabled(true);
+
+                                                                    } else {
+                                                                        txtValidade_cartao.setEnabled(false);
+                                                                        txtCVV.setEnabled(false);
+
+                                                                    }
+
+                                                                    txtnumero_cartao.addFocusListener(new FocusListener() {
+                                                                        @Override
+                                                                        public void focusGained(FocusEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void focusLost(FocusEvent e) {
+
+                                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                                            txtnumero_cartao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                        }
+                                                                    });
+
+                                                                }
+                                                            }); // campo Numero do Cartão
+
+                                                            //CVV
+                                                            txtCVV.addKeyListener(new KeyListener() {
+                                                                @Override
+                                                                public void keyTyped(KeyEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyPressed(KeyEvent e) {
+                                                                    char c = e.getKeyChar();
+                                                                    if (Character.isLetter(c)) {
+                                                                        txtCVV.setEditable(false);
+                                                                        JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                    } else {
+                                                                        txtCVV.setEditable(true);
+                                                                        if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                            txtnumero_cartao.requestFocus();
+                                                                        }
+
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyReleased(KeyEvent e) {
+                                                                    //Pegando o tamanho do texto
+                                                                    int comprimentoTexto = txtCVV.getText().length();
+
+                                                                    // Define a cor da borda com base no comprimento do texto
+                                                                    Color cor = (comprimentoTexto != 3) ? Color.RED : Color.GREEN;
+
+                                                                    // Cria uma borda com a cor desejada
+                                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                    // Aplica a borda ao campo de texto
+                                                                    txtCVV.setBorder(bordaColorida);
+
+                                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                    if (cor.equals(Color.GREEN)) {
+                                                                        btnPagar.setEnabled(true);
+
+                                                                    } else {
+                                                                        btnPagar.setEnabled(false);
+
+                                                                    }
+
+                                                                    txtCVV.addFocusListener(new FocusListener() {
+                                                                        @Override
+                                                                        public void focusGained(FocusEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void focusLost(FocusEvent e) {
+
+                                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                                            txtCVV.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                        }
+                                                                    });
+
+                                                                }
+                                                            }); // campo CVV
+
+                                                            btnRecibo.setEnabled(false);
+
+                                                        } else {
+                                                            if (jcTipo.getSelectedIndex() == 2) {
+
+                                                                jcTipo.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                txtContacto_Email.setEnabled(true);
                                                                 lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                                lblIcon.setIcon(Icon_cartao1);
-                                                                lblNome.setText("");
-                                                                lblNome.setText("Nome do Titular da Conta");
-
+                                                                lblIcon.setIcon(Icon_mpesa);
+                                                                lblContacto.setText("");
+                                                                lblContacto.setText("Contacto");
                                                                 txtMontante.setEnabled(false);
-                                                                txtNome.setEnabled(true);
-                                                                jcGenero.setEnabled(true);
-                                                                txtContacto_Email.setEnabled(false);
-                                                                txtnumero_cartao.setEnabled(true);
-                                                                txtValidade_cartao.setEnabled(true);
-                                                                txtCVV.setEnabled(true);
+                                                                txtNome.setEnabled(false);
+                                                                jcGenero.setEnabled(false);
+                                                                txtnumero_cartao.setEnabled(false);
+                                                                txtValidade_cartao.setEnabled(false);
+                                                                txtCVV.setEnabled(false);
 
-                                                                txtNome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                                txtnumero_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                                txtValidade_cartao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                                txtCVV.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                                jcGenero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                    @Override
+                                                                    public void keyTyped(KeyEvent e) {
 
-                                                                btnPagar.setEnabled(true);
+                                                                    }
+
+                                                                    @Override
+                                                                    public void keyPressed(KeyEvent e) {
+
+                                                                        char c = e.getKeyChar();
+
+                                                                        if (Character.isLetter(c)) {
+
+                                                                            txtContacto_Email.setEditable(false);
+                                                                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                        } else {
+                                                                            txtContacto_Email.setEditable(true);
+
+                                                                        }
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void keyReleased(KeyEvent e) {
+                                                                        //Pegando o tamanho do texto
+                                                                        int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                        // Define a cor da borda com base no comprimento do texto
+                                                                        Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                        // Cria uma borda com a cor desejada
+                                                                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                        // Aplica a borda ao campo de texto
+                                                                        txtContacto_Email.setBorder(bordaColorida);
+
+                                                                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                        if (cor.equals(Color.GREEN)) {
+                                                                            btnPagar.setEnabled(true);
+
+                                                                        } else {
+                                                                            btnPagar.setEnabled(false);
+                                                                        }
+
+                                                                        txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                            @Override
+                                                                            public void focusGained(FocusEvent e) {
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void focusLost(FocusEvent e) {
+
+                                                                                // Restaura a borda padrão quando o campo perde o foco
+                                                                                txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                            }
+                                                                        });
+
+                                                                    }
+                                                                }); // campo Contacto
+
                                                                 btnRecibo.setEnabled(false);
 
-                                                                //Salvar Venda por meio do Cartão de Debito
+                                                                //Salvar Venda por meio do M-pesa
                                                                 btnPagar.addActionListener(new ActionListener() {
                                                                     @Override
                                                                     public void actionPerformed(ActionEvent e) {
@@ -857,11 +1235,13 @@ public class Funcionario_Caixa extends JFrame {
 
                                                                 });
                                                             } else {
-                                                                if (jcTipo.getSelectedIndex() == 2) {
+                                                                if (jcTipo.getSelectedIndex() == 3) {
+
+                                                                    jcTipo.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                                                     lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                                    lblIcon.setIcon(Icon_mpesa);
+                                                                    lblIcon.setIcon(Icon_emola);
                                                                     lblContacto.setText("");
                                                                     lblContacto.setText("Contacto");
                                                                     txtMontante.setEnabled(false);
@@ -872,12 +1252,71 @@ public class Funcionario_Caixa extends JFrame {
                                                                     txtValidade_cartao.setEnabled(false);
                                                                     txtCVV.setEnabled(false);
 
-                                                                    txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                    txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                        @Override
+                                                                        public void keyTyped(KeyEvent e) {
 
-                                                                    btnPagar.setEnabled(true);
+                                                                        }
+
+                                                                        @Override
+                                                                        public void keyPressed(KeyEvent e) {
+
+                                                                            char c = e.getKeyChar();
+
+                                                                            if (Character.isLetter(c)) {
+
+                                                                                txtContacto_Email.setEditable(false);
+                                                                                JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                            } else {
+                                                                                txtContacto_Email.setEditable(true);
+
+                                                                            }
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void keyReleased(KeyEvent e) {
+                                                                            //Pegando o tamanho do texto
+                                                                            int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                            // Define a cor da borda com base no comprimento do texto
+                                                                            Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                            // Cria uma borda com a cor desejada
+                                                                            Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                            // Aplica a borda ao campo de texto
+                                                                            txtContacto_Email.setBorder(bordaColorida);
+
+                                                                            // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                            if (cor.equals(Color.GREEN)) {
+                                                                                btnPagar.setEnabled(true);
+
+                                                                            } else {
+                                                                                btnPagar.setEnabled(false);
+                                                                            }
+
+                                                                            txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                                @Override
+                                                                                public void focusGained(FocusEvent e) {
+
+                                                                                }
+
+                                                                                @Override
+                                                                                public void focusLost(FocusEvent e) {
+
+                                                                                    // Restaura a borda padrão quando o campo perde o foco
+                                                                                    txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                                }
+                                                                            });
+
+                                                                        }
+                                                                    }); // campo Contacto
+
                                                                     btnRecibo.setEnabled(false);
 
-                                                                    //Salvar Venda por meio do M-pesa
+                                                                    //Salvar Venda por meio do emola
                                                                     btnPagar.addActionListener(new ActionListener() {
                                                                         @Override
                                                                         public void actionPerformed(ActionEvent e) {
@@ -888,11 +1327,13 @@ public class Funcionario_Caixa extends JFrame {
 
                                                                     });
                                                                 } else {
-                                                                    if (jcTipo.getSelectedIndex() == 3) {
+                                                                    if (jcTipo.getSelectedIndex() == 4) {
+
+                                                                        jcTipo.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 
                                                                         lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                                        lblIcon.setIcon(Icon_emola);
+                                                                        lblIcon.setIcon(Icon_mkesh);
                                                                         lblContacto.setText("");
                                                                         lblContacto.setText("Contacto");
                                                                         txtMontante.setEnabled(false);
@@ -902,12 +1343,72 @@ public class Funcionario_Caixa extends JFrame {
                                                                         txtnumero_cartao.setEnabled(false);
                                                                         txtValidade_cartao.setEnabled(false);
                                                                         txtCVV.setEnabled(false);
-                                                                        btnPagar.setEnabled(true);
+
+                                                                        txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                            @Override
+                                                                            public void keyTyped(KeyEvent e) {
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void keyPressed(KeyEvent e) {
+
+                                                                                char c = e.getKeyChar();
+
+                                                                                if (Character.isLetter(c)) {
+
+                                                                                    txtContacto_Email.setEditable(false);
+                                                                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                                } else {
+                                                                                    txtContacto_Email.setEditable(true);
+
+                                                                                }
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void keyReleased(KeyEvent e) {
+                                                                                //Pegando o tamanho do texto
+                                                                                int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                                // Define a cor da borda com base no comprimento do texto
+                                                                                Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                                // Cria uma borda com a cor desejada
+                                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                                // Aplica a borda ao campo de texto
+                                                                                txtContacto_Email.setBorder(bordaColorida);
+
+                                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                                if (cor.equals(Color.GREEN)) {
+                                                                                    btnPagar.setEnabled(true);
+
+                                                                                } else {
+                                                                                    btnPagar.setEnabled(false);
+                                                                                }
+
+                                                                                txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                                    @Override
+                                                                                    public void focusGained(FocusEvent e) {
+
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public void focusLost(FocusEvent e) {
+
+                                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                                        txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                                    }
+                                                                                });
+
+                                                                            }
+                                                                        }); // campo Contacto
+
                                                                         btnRecibo.setEnabled(false);
 
-                                                                        txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                                        //Salvar Venda por meio do emola
+                                                                        //Salvar Venda por meio do m-kesh
                                                                         btnPagar.addActionListener(new ActionListener() {
                                                                             @Override
                                                                             public void actionPerformed(ActionEvent e) {
@@ -917,40 +1418,10 @@ public class Funcionario_Caixa extends JFrame {
                                                                             }
 
                                                                         });
+
                                                                     } else {
-                                                                        if (jcTipo.getSelectedIndex() == 4) {
-
-                                                                            lblIcon.setBorder(BorderFactory.createEmptyBorder());
-
-                                                                            lblIcon.setIcon(Icon_mkesh);
-                                                                            lblContacto.setText("");
-                                                                            lblContacto.setText("Contacto");
-                                                                            txtMontante.setEnabled(false);
-                                                                            txtNome.setEnabled(false);
-                                                                            jcGenero.setEnabled(false);
-                                                                            txtContacto_Email.setEnabled(true);
-                                                                            txtnumero_cartao.setEnabled(false);
-                                                                            txtValidade_cartao.setEnabled(false);
-                                                                            txtCVV.setEnabled(false);
-                                                                            btnPagar.setEnabled(true);
-                                                                            btnRecibo.setEnabled(false);
-
-                                                                            txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                                            //Salvar Venda por meio do m-kesh
-                                                                            btnPagar.addActionListener(new ActionListener() {
-                                                                                @Override
-                                                                                public void actionPerformed(ActionEvent e) {
-
-                                                                                    //Opção de imprimir factura desabilitada
-                                                                                    btnRecibo.setEnabled(true);
-                                                                                }
-
-                                                                            });
-                                                                        } else {
-                                                                            if (jcTipo.getSelectedIndex() == 0) {
-                                                                                JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
-                                                                            }
+                                                                        if (jcTipo.getSelectedIndex() == 0) {
+                                                                            JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
                                                                         }
                                                                     }
                                                                 }
@@ -959,17 +1430,28 @@ public class Funcionario_Caixa extends JFrame {
                                                     }
                                                 }
 
-                                            });////////////////////
-
+                                            });// Fim da sequencia de pagamentos
                                         } else if (jcTransacao.getSelectedIndex() == 2) {
-                                            lblIcon.setVisible(false);
-                                            txtNome.setEnabled(true);
-                                            jcGenero.setEnabled(true);
-                                            jcTipo.setEnabled(false);
-                                            txtContacto_Email.setEnabled(true);
+                                            //Limpando as caixas de Texto antes de receber nova informação
+                                            txtNome.setText("");
+                                            jcGenero.setSelectedIndex(0);
+                                            txtContacto_Email.setText("");
+
+                                            jcTransacao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                            rol_Cli.setVisible(true);
+                                            btnPagar.setEnabled(false);
+                                            Lista_Cli.setEnabled(false);
 
                                             lblNome.setText("");
                                             lblNome.setText("Nome do Cliente");
+                                            lblIcon.setVisible(false);
+                                            txtNome.setEnabled(true);
+                                            jcGenero.setEnabled(false);
+                                            jcTipo.setEnabled(false);
+                                            txtContacto_Email.setEnabled(false);
+
+                                            txtPesquisa.setVisible(false);
 
                                             lblNome.setBounds(10, 355, 200, 30);
                                             txtNome.setBounds(10, 385, 200, 35);
@@ -994,15 +1476,145 @@ public class Funcionario_Caixa extends JFrame {
 
                                             lblIcon.setVisible(false);
 
-                                            rol_Cli.setVisible(true);
-
                                             //  jcTipo.setSelectedIndex(0);
                                             jcGenero.setSelectedIndex(0);
 
-                                            btnPagar.setEnabled(false);
+                                            txtNome.addKeyListener(new KeyListener() {
+                                                @Override
+                                                public void keyTyped(KeyEvent e) {
 
-                                            lblNome.setText("");
-                                            lblNome.setText("Nome do Cliente");
+                                                }
+
+                                                @Override
+                                                public void keyPressed(KeyEvent e) {
+                                                    char c = e.getKeyChar();
+                                                    if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                                                        txtNome.setEditable(true);
+                                                        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                                            jcGenero.requestFocus();
+                                                        }
+
+                                                    } else {
+                                                        txtNome.setEditable(false);
+                                                        JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                    }
+
+                                                }
+
+                                                @Override
+                                                public void keyReleased(KeyEvent e) {
+                                                    //Pegando o tamanho do texto
+                                                    int comprimentoTexto = txtNome.getText().length();
+
+                                                    // Define a cor da borda com base no comprimento do texto
+                                                    Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                                                    // Cria uma borda com a cor desejada
+                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                    // Aplica a borda ao campo de texto
+                                                    txtNome.setBorder(bordaColorida);
+
+                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                    if (cor.equals(Color.GREEN)) {
+                                                        jcGenero.setEnabled(true);
+
+                                                    } else {
+                                                        jcGenero.setEnabled(false);
+
+                                                    }
+
+                                                    txtNome.addFocusListener(new FocusListener() {
+                                                        @Override
+                                                        public void focusGained(FocusEvent e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void focusLost(FocusEvent e) {
+
+                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                            txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                        }
+                                                    });
+
+                                                }
+
+                                            });
+
+                                            jcGenero.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+
+                                                    if (jcGenero.getSelectedIndex() != 0) {
+                                                        txtContacto_Email.setEnabled(true);
+
+                                                    } else {
+                                                        txtContacto_Email.setEnabled(false);
+
+                                                    }
+                                                }
+
+                                            });
+
+                                            //Numero ou Email
+                                            txtContacto_Email.addKeyListener(new KeyListener() {
+                                                @Override
+                                                public void keyTyped(KeyEvent e) {
+
+                                                }
+
+                                                @Override
+                                                public void keyPressed(KeyEvent e) {
+                                                    txtContacto_Email.setEditable(true);
+                                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                        jcGenero.requestFocus();
+                                                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                                        txtnumero_cartao.setEnabled(true);
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void keyReleased(KeyEvent e) {
+                                                    //Pegando o tamanho do texto
+                                                    int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                    // Define a cor da borda com base no comprimento do texto
+                                                    Color cor = ((comprimentoTexto != 9)) ? Color.RED : Color.GREEN;
+
+                                                    // Cria uma borda com a cor desejada
+                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                    // Aplica a borda ao campo de texto
+                                                    txtContacto_Email.setBorder(bordaColorida);
+
+                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                    if (cor.equals(Color.GREEN)) {
+                                                        btnPagar.setEnabled(true);
+
+                                                    } else {
+                                                        btnPagar.setEnabled(false);
+
+                                                    }
+
+                                                    txtContacto_Email.addFocusListener(new FocusListener() {
+                                                        @Override
+                                                        public void focusGained(FocusEvent e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void focusLost(FocusEvent e) {
+
+                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                            txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                        }
+                                                    });
+
+                                                }
+                                            }); // campo Numero Celular
 
                                             //Salvar Venda Pedido
                                             btnPagar.addActionListener(new ActionListener() {
@@ -1017,18 +1629,23 @@ public class Funcionario_Caixa extends JFrame {
 
                                         } else {
                                             if (jcTransacao.getSelectedIndex() == 3) {
+
+                                                txtPesquisa.setVisible(true);
+
+                                                jcTransacao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                Lista_Cli.setEnabled(true);
+
                                                 lblIcon.setVisible(false);
                                                 txtNome.setEnabled(false);
                                                 jcGenero.setEnabled(false);
                                                 jcTipo.setEnabled(false);
                                                 txtContacto_Email.setEnabled(false);
 
-                                                rol_Cli.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                rol_Cli.setEnabled(true);
-
                                                 lblNome.setText("");
                                                 lblNome.setText("Nome do Cliente");
+
+                                                txtPesquisa.setBounds(470, 345, 200, 30);
 
                                                 lblNome.setBounds(10, 355, 200, 30);
                                                 txtNome.setBounds(10, 385, 200, 35);
@@ -1055,13 +1672,42 @@ public class Funcionario_Caixa extends JFrame {
 
                                                 rol_Cli.setVisible(true);
 
-                                                //   jcTipo.setSelectedIndex(0);
                                                 jcGenero.setSelectedIndex(0);
 
                                                 btnPagar.setEnabled(false);
 
-                                                lblNome.setText("");
-                                                lblNome.setText("Nome do Cliente");
+                                                txtNome.setText("");
+                                                jcGenero.setSelectedIndex(0);
+                                                txtContacto_Email.setText("");
+
+                                                Lista_Cli.addMouseListener(new MouseListener() {
+                                                    @Override
+                                                    public void mouseClicked(MouseEvent e) {
+
+                                                        btnPagar.setEnabled(true);
+
+                                                    }
+
+                                                    @Override
+                                                    public void mousePressed(MouseEvent e) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void mouseReleased(MouseEvent e) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void mouseEntered(MouseEvent e) {
+                                                    }
+
+                                                    @Override
+                                                    public void mouseExited(MouseEvent e) {
+
+                                                    }
+
+                                                });
 
                                                 //Salvar Venda Pedido
                                                 btnPagar.addActionListener(new ActionListener() {
@@ -1075,6 +1721,8 @@ public class Funcionario_Caixa extends JFrame {
                                                 });
 
                                             } else {
+                                                jcTipo.setEnabled(false);
+                                                jcTransacao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
                                                 JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
                                             }
 
@@ -1105,6 +1753,7 @@ public class Funcionario_Caixa extends JFrame {
 
                                 pnlVendas.add(rol_Vendas);
                                 pnlVendas.add(rol_Cli);
+                                pnlVendas.add(txtPesquisa);
                                 pnlVendas.add(lblIcon);
                                 pnlVendas.add(lblTransacao);
                                 pnlVendas.add(jcTransacao);
@@ -1141,7 +1790,27 @@ public class Funcionario_Caixa extends JFrame {
                             }
                         });
 
+                        //Implementação da pesquisa google
+                        txtPesquisa.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+
+                            }
+
+                        });
+
                         pnlVenderProdutos.add(lblListar);
+                        pnlVenderProdutos.add(txtPesquisa);
                         pnlVenderProdutos.add(lblLista_compras);
                         pnlVenderProdutos.add(rol);
                         pnlVenderProdutos.add(rol_Compras);
@@ -1172,8 +1841,8 @@ public class Funcionario_Caixa extends JFrame {
                         pnlListar.setBackground(Color.white);
 
                         JLabel lblListar = new JLabel();
-
-                        lblListar.setBounds(270, 0, 350, 30);
+                        JTextField txtPesquisa = new JTextField();
+                        lblListar.setBounds(270, 0, 300, 30);
 
                         lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         lblListar.setText("Lista de Produtos da Organizacao");
@@ -1188,6 +1857,7 @@ public class Funcionario_Caixa extends JFrame {
 
                         //Personalizando a Linhas_Colunas
                         header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                        txtPesquisa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header_Lista.setForeground(new Color(102, 102, 255));
                         Lista_Produtos.setShowGrid(false);
 
@@ -1202,9 +1872,32 @@ public class Funcionario_Caixa extends JFrame {
 
                         Linhas_Colunas.setRowCount(10);
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
+
+                        txtPesquisa.setBounds(690, 0, 200, 30);
+
                         rol.setBounds(10, 40, 890, 600);
 
+                        txtPesquisa.addKeyListener(new KeyListener() {
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+
+                            }
+
+                        });
+
                         pnlListar.add(lblListar);
+
+                        pnlListar.add(txtPesquisa);
 
                         pnlListar.add(rol);
 
@@ -1296,28 +1989,30 @@ public class Funcionario_Caixa extends JFrame {
                                 JLabel lblProdutos = new JLabel();
                                 JLabel lblPedido = new JLabel();
 
+                                JTextField txtPesquisa = new JTextField();
+
                                 //Criando os botoes
                                 BotaoPersonalizado btnPagar = new BotaoPersonalizado("Pagar");
-                                BotaoPersonalizado btnProcurar = new BotaoPersonalizado("Procurar");
+                                BotaoPersonalizado btnRelatorio = new BotaoPersonalizado("PDF");
                                 BotaoPersonalizado btnEditar = new BotaoPersonalizado("Alterar");
 
                                 //Mundando o background
                                 btnPagar.setBackground(Color.white);
-                                btnProcurar.setBackground(Color.white);
+                                btnRelatorio.setBackground(Color.white);
                                 btnEditar.setBackground(Color.white);
 
                                 // Mundando o Foreground
                                 btnPagar.setForeground(new Color(0, 102, 255));
-                                btnProcurar.setForeground(new Color(0, 102, 255));
+                                btnRelatorio.setForeground(new Color(0, 102, 255));
                                 btnEditar.setForeground(new Color(0, 102, 255));
 
                                 //Tirando a Borda
                                 btnPagar.setBorder(BorderFactory.createEmptyBorder());
-                                btnProcurar.setBorder(BorderFactory.createEmptyBorder());
+                                btnRelatorio.setBorder(BorderFactory.createEmptyBorder());
                                 btnEditar.setBorder(BorderFactory.createEmptyBorder());
 
                                 btnPagar.setFocusPainted(false);
-                                btnProcurar.setFocusPainted(false);
+                                btnRelatorio.setFocusPainted(false);
                                 btnEditar.setFocusPainted(false);
 
                                 lblListar.setBounds(365, 0, 350, 30);
@@ -1326,8 +2021,9 @@ public class Funcionario_Caixa extends JFrame {
                                 lblProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                                 lblPedido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                                 btnPagar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
-                                btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnRelatorio.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                                 btnEditar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                txtPesquisa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
                                 lblListar.setText("Clientes com Pedidos");
                                 lblListar.setForeground(new Color(0, 102, 255));
@@ -1401,15 +2097,36 @@ public class Funcionario_Caixa extends JFrame {
                                 lblProdutos.setBounds(365, 410, 200, 30);
                                 lblPedido.setBounds(365, 210, 200, 30);
 
-                                rol_Pedido.setBounds(150, 240, 600, 150);
-                                rol_Cliente1.setBounds(10, 30, 890, 150);
-                                rol_Produtos.setBounds(10, 440, 890, 150);
+                                rol_Pedido.setBounds(150, 250, 600, 150);
+                                txtPesquisa.setBounds(690, 0, 200, 30);
+                                rol_Cliente1.setBounds(10, 40, 890, 150);
+                                rol_Produtos.setBounds(10, 450, 890, 150);
                                 btnPagar.setBounds(600, 615, 100, 30);
-                                btnEditar.setBounds(230, 615, 100, 30);
+                                btnRelatorio.setBounds(390, 615, 100, 30);
+                                btnEditar.setBounds(200, 615, 100, 30);
 
-                                //Este botao vai chamar a tela de pagamento
+                                txtPesquisa.addKeyListener(new KeyListener() {
+                                    @Override
+                                    public void keyTyped(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyPressed(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyReleased(KeyEvent e) {
+
+                                    }
+
+                                });
+
+                                //Instanciando o painel de Pagamentos
                                 pnlPagamento.setVisible(false);
 
+                                //Este botao vai chamar a tela de pagamento
                                 btnPagar.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
@@ -1458,7 +2175,6 @@ public class Funcionario_Caixa extends JFrame {
                                         jcTipo.addItem("Pagamento por emola");
                                         jcTipo.addItem("Pagamento por mKesh");
                                         jcTipo.addItem("Cartão de Credito");
-                                        jcTipo.addItem("Cartão de Debito");
 
                                         ////////////////////////////////////////////////////////////
                                         BotaoPersonalizado btnPagar = new BotaoPersonalizado("Registar ");
@@ -1555,12 +2271,6 @@ public class Funcionario_Caixa extends JFrame {
                                             public void actionPerformed(ActionEvent e) {
                                                 if (jcTipo.getSelectedIndex() == 1) {
 
-                                                    lblIcon.setBorder(BorderFactory.createEmptyBorder());
-
-                                                    txtMontante.setEnabled(true);
-                                                    txtMontante.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-                                                    btnPagar.setEnabled(true);
-
                                                     txtNome.setEnabled(false);
                                                     jcGenero.setEnabled(false);
                                                     txtContacto_Email.setEnabled(false);
@@ -1569,7 +2279,72 @@ public class Funcionario_Caixa extends JFrame {
                                                     txtCVV.setEnabled(false);
                                                     btnRecibo.setEnabled(false);
 
+                                                    lblIcon.setBorder(BorderFactory.createEmptyBorder());
+
+                                                    txtMontante.setEnabled(true);
+
+                                                    txtMontante.addKeyListener(new KeyListener() {
+                                                        @Override
+                                                        public void keyTyped(KeyEvent e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void keyPressed(KeyEvent e) {
+                                                            char c = e.getKeyChar();
+                                                            if (Character.isLetter(c)) {
+                                                                txtMontante.setEditable(false);
+                                                                JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                            } else {
+                                                                txtMontante.setEditable(true);
+
+                                                            }
+
+                                                        }
+
+                                                        @Override
+                                                        public void keyReleased(KeyEvent e) {
+                                                            //Pegando o tamanho do texto
+                                                            int comprimentoTexto = txtMontante.getText().length();
+
+                                                            // Define a cor da borda com base no comprimento do texto
+                                                            Color cor = (comprimentoTexto <= 1) ? Color.RED : Color.GREEN;
+
+                                                            // Cria uma borda com a cor desejada
+                                                            Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                            // Aplica a borda ao campo de texto
+                                                            txtMontante.setBorder(bordaColorida);
+
+                                                            // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                            if (cor.equals(Color.GREEN)) {
+                                                                btnPagar.setEnabled(true);
+
+                                                            } else {
+                                                                btnPagar.setEnabled(false);
+
+                                                            }
+
+                                                            txtMontante.addFocusListener(new FocusListener() {
+                                                                @Override
+                                                                public void focusGained(FocusEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void focusLost(FocusEvent e) {
+
+                                                                    // Restaura a borda padrão quando o campo perde o foco
+                                                                    txtMontante.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                }
+                                                            });
+
+                                                        }
+                                                    }); // campo Montantr
+
                                                     //Salvar Venda por meio do pagamento em Dinheiro
+                                                    btnPagar.setEnabled(true);
                                                     btnPagar.addActionListener(new ActionListener() {
                                                         @Override
                                                         public void actionPerformed(ActionEvent e) {
@@ -1588,44 +2363,361 @@ public class Funcionario_Caixa extends JFrame {
                                                         lblNome.setText("Nome do Titular da Conta");
                                                         txtMontante.setEnabled(false);
                                                         txtNome.setEnabled(true);
-                                                        jcGenero.setEnabled(true);
+                                                        jcGenero.setEnabled(false);
                                                         txtContacto_Email.setEnabled(false);
-                                                        txtnumero_cartao.setEnabled(true);
-                                                        txtValidade_cartao.setEnabled(true);
-                                                        txtCVV.setEnabled(true);
+                                                        txtnumero_cartao.setEnabled(false);
+                                                        txtValidade_cartao.setEnabled(false);
+                                                        txtCVV.setEnabled(false);
 
-                                                        btnPagar.setEnabled(true);
-                                                        btnRecibo.setEnabled(false);
-
-                                                        //Salvar Venda por meio do cartao de Credito
-                                                        btnPagar.addActionListener(new ActionListener() {
+                                                        txtNome.addKeyListener(new KeyListener() {
                                                             @Override
-                                                            public void actionPerformed(ActionEvent e) {
+                                                            public void keyTyped(KeyEvent e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyPressed(KeyEvent e) {
+                                                                char c = e.getKeyChar();
+                                                                if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                                                                    txtNome.setEditable(true);
+                                                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                                                        jcGenero.requestFocus();
+                                                                    }
+
+                                                                } else {
+                                                                    txtNome.setEditable(false);
+                                                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyReleased(KeyEvent e) {
+                                                                //Pegando o tamanho do texto
+                                                                int comprimentoTexto = txtNome.getText().length();
+
+                                                                // Define a cor da borda com base no comprimento do texto
+                                                                Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
+
+                                                                // Cria uma borda com a cor desejada
+                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                // Aplica a borda ao campo de texto
+                                                                txtNome.setBorder(bordaColorida);
+
+                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                if (cor.equals(Color.GREEN)) {
+                                                                    jcGenero.setEnabled(true);
+
+                                                                } else {
+                                                                    jcGenero.setEnabled(false);
+
+                                                                }
+
+                                                                txtNome.addFocusListener(new FocusListener() {
+                                                                    @Override
+                                                                    public void focusGained(FocusEvent e) {
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void focusLost(FocusEvent e) {
+
+                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                        txtNome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                    }
+                                                                });
 
                                                             }
 
                                                         });
-                                                    } else {
-                                                        if (jcTipo.getSelectedIndex() == 6) {
 
+                                                        jcGenero.addActionListener(new ActionListener() {
+                                                            @Override
+                                                            public void actionPerformed(ActionEvent e) {
+
+                                                                if (jcGenero.getSelectedIndex() != 0) {
+                                                                    txtContacto_Email.setEnabled(true);
+
+                                                                } else {
+                                                                    txtContacto_Email.setEnabled(false);
+
+                                                                }
+                                                            }
+
+                                                        });
+
+                                                        //Numero ou Email
+                                                        txtContacto_Email.addKeyListener(new KeyListener() {
+                                                            @Override
+                                                            public void keyTyped(KeyEvent e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyPressed(KeyEvent e) {
+                                                                txtContacto_Email.setEditable(true);
+                                                                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                    jcGenero.requestFocus();
+                                                                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                                                    txtnumero_cartao.setEnabled(true);
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void keyReleased(KeyEvent e) {
+                                                                //Pegando o tamanho do texto
+                                                                int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                // Define a cor da borda com base no comprimento do texto
+                                                                Color cor = (comprimentoTexto != 9 || (txtContacto_Email.getText().equals(""))) ? Color.RED : Color.GREEN;
+
+                                                                // Cria uma borda com a cor desejada
+                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                // Aplica a borda ao campo de texto
+                                                                txtContacto_Email.setBorder(bordaColorida);
+
+                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                if (cor.equals(Color.GREEN)) {
+                                                                    txtnumero_cartao.setEnabled(true);
+
+                                                                } else {
+                                                                    txtnumero_cartao.setEnabled(false);
+
+                                                                }
+
+                                                                txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                    @Override
+                                                                    public void focusGained(FocusEvent e) {
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void focusLost(FocusEvent e) {
+
+                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                        txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        }); // campo Numero Celular
+
+                                                        //Numero de Cartao
+                                                        txtnumero_cartao.addKeyListener(new KeyListener() {
+                                                            @Override
+                                                            public void keyTyped(KeyEvent e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyPressed(KeyEvent e) {
+                                                                char c = e.getKeyChar();
+                                                                if (Character.isLetter(c)) {
+                                                                    txtnumero_cartao.setEditable(false);
+                                                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                } else {
+                                                                    txtnumero_cartao.setEditable(true);
+                                                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                        txtContacto_Email.requestFocus();
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyReleased(KeyEvent e) {
+                                                                //Pegando o tamanho do texto
+                                                                int comprimentoTexto = txtnumero_cartao.getText().length();
+
+                                                                // Define a cor da borda com base no comprimento do texto
+                                                                Color cor = (comprimentoTexto != 12) ? Color.RED : Color.GREEN;
+
+                                                                // Cria uma borda com a cor desejada
+                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                // Aplica a borda ao campo de texto
+                                                                txtnumero_cartao.setBorder(bordaColorida);
+
+                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                if (cor.equals(Color.GREEN)) {
+                                                                    txtValidade_cartao.setEnabled(true);
+                                                                    txtCVV.setEnabled(true);
+
+                                                                } else {
+                                                                    txtValidade_cartao.setEnabled(false);
+                                                                    txtCVV.setEnabled(false);
+
+                                                                }
+
+                                                                txtnumero_cartao.addFocusListener(new FocusListener() {
+                                                                    @Override
+                                                                    public void focusGained(FocusEvent e) {
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void focusLost(FocusEvent e) {
+
+                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                        txtnumero_cartao.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        }); // campo Numero do Cartão
+
+                                                        //CVV
+                                                        txtCVV.addKeyListener(new KeyListener() {
+                                                            @Override
+                                                            public void keyTyped(KeyEvent e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyPressed(KeyEvent e) {
+                                                                char c = e.getKeyChar();
+                                                                if (Character.isLetter(c)) {
+                                                                    txtCVV.setEditable(false);
+                                                                    JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                } else {
+                                                                    txtCVV.setEditable(true);
+                                                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                                                        txtnumero_cartao.requestFocus();
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void keyReleased(KeyEvent e) {
+                                                                //Pegando o tamanho do texto
+                                                                int comprimentoTexto = txtCVV.getText().length();
+
+                                                                // Define a cor da borda com base no comprimento do texto
+                                                                Color cor = (comprimentoTexto != 3) ? Color.RED : Color.GREEN;
+
+                                                                // Cria uma borda com a cor desejada
+                                                                Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                // Aplica a borda ao campo de texto
+                                                                txtCVV.setBorder(bordaColorida);
+
+                                                                // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                if (cor.equals(Color.GREEN)) {
+                                                                    btnPagar.setEnabled(true);
+
+                                                                } else {
+                                                                    btnPagar.setEnabled(false);
+
+                                                                }
+
+                                                                txtCVV.addFocusListener(new FocusListener() {
+                                                                    @Override
+                                                                    public void focusGained(FocusEvent e) {
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void focusLost(FocusEvent e) {
+
+                                                                        // Restaura a borda padrão quando o campo perde o foco
+                                                                        txtCVV.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        }); // campo CVV
+
+                                                        btnRecibo.setEnabled(false);
+
+                                                    } else {
+                                                        if (jcTipo.getSelectedIndex() == 2) {
+                                                            txtContacto_Email.setEnabled(true);
                                                             lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                            lblIcon.setIcon(Icon_cartao1);
-                                                            lblNome.setText("");
-                                                            lblNome.setText("Nome do Titular da Conta");
-
+                                                            lblIcon.setIcon(Icon_mpesa);
+                                                            lblContacto.setText("");
+                                                            lblContacto.setText("Contacto");
                                                             txtMontante.setEnabled(false);
-                                                            txtNome.setEnabled(true);
-                                                            jcGenero.setEnabled(true);
-                                                            txtContacto_Email.setEnabled(false);
-                                                            txtnumero_cartao.setEnabled(true);
-                                                            txtValidade_cartao.setEnabled(true);
-                                                            txtCVV.setEnabled(true);
+                                                            txtNome.setEnabled(false);
+                                                            jcGenero.setEnabled(false);
+                                                            txtnumero_cartao.setEnabled(false);
+                                                            txtValidade_cartao.setEnabled(false);
+                                                            txtCVV.setEnabled(false);
 
-                                                            btnPagar.setEnabled(true);
+                                                            txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                @Override
+                                                                public void keyTyped(KeyEvent e) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyPressed(KeyEvent e) {
+
+                                                                    char c = e.getKeyChar();
+
+                                                                    if (Character.isLetter(c)) {
+
+                                                                        txtContacto_Email.setEditable(false);
+                                                                        JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                    } else {
+                                                                        txtContacto_Email.setEditable(true);
+
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void keyReleased(KeyEvent e) {
+                                                                    //Pegando o tamanho do texto
+                                                                    int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                    // Define a cor da borda com base no comprimento do texto
+                                                                    Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                    // Cria uma borda com a cor desejada
+                                                                    Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                    // Aplica a borda ao campo de texto
+                                                                    txtContacto_Email.setBorder(bordaColorida);
+
+                                                                    // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                    if (cor.equals(Color.GREEN)) {
+                                                                        btnPagar.setEnabled(true);
+
+                                                                    } else {
+                                                                        btnPagar.setEnabled(false);
+                                                                    }
+
+                                                                    txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                        @Override
+                                                                        public void focusGained(FocusEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void focusLost(FocusEvent e) {
+
+                                                                            // Restaura a borda padrão quando o campo perde o foco
+                                                                            txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                        }
+                                                                    });
+
+                                                                }
+                                                            }); // campo Contacto
+
                                                             btnRecibo.setEnabled(false);
 
-                                                            //Salvar Venda por meio do Cartão de Debito
+                                                            //Salvar Venda por meio do M-pesa
                                                             btnPagar.addActionListener(new ActionListener() {
                                                                 @Override
                                                                 public void actionPerformed(ActionEvent e) {
@@ -1636,11 +2728,11 @@ public class Funcionario_Caixa extends JFrame {
 
                                                             });
                                                         } else {
-                                                            if (jcTipo.getSelectedIndex() == 2) {
+                                                            if (jcTipo.getSelectedIndex() == 3) {
 
                                                                 lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                                lblIcon.setIcon(Icon_mpesa);
+                                                                lblIcon.setIcon(Icon_emola);
                                                                 lblContacto.setText("");
                                                                 lblContacto.setText("Contacto");
                                                                 txtMontante.setEnabled(false);
@@ -1651,12 +2743,71 @@ public class Funcionario_Caixa extends JFrame {
                                                                 txtValidade_cartao.setEnabled(false);
                                                                 txtCVV.setEnabled(false);
 
-                                                                txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
+                                                                txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                    @Override
+                                                                    public void keyTyped(KeyEvent e) {
 
-                                                                btnPagar.setEnabled(true);
+                                                                    }
+
+                                                                    @Override
+                                                                    public void keyPressed(KeyEvent e) {
+
+                                                                        char c = e.getKeyChar();
+
+                                                                        if (Character.isLetter(c)) {
+
+                                                                            txtContacto_Email.setEditable(false);
+                                                                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                        } else {
+                                                                            txtContacto_Email.setEditable(true);
+
+                                                                        }
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void keyReleased(KeyEvent e) {
+                                                                        //Pegando o tamanho do texto
+                                                                        int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                        // Define a cor da borda com base no comprimento do texto
+                                                                        Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                        // Cria uma borda com a cor desejada
+                                                                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                        // Aplica a borda ao campo de texto
+                                                                        txtContacto_Email.setBorder(bordaColorida);
+
+                                                                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                        if (cor.equals(Color.GREEN)) {
+                                                                            btnPagar.setEnabled(true);
+
+                                                                        } else {
+                                                                            btnPagar.setEnabled(false);
+                                                                        }
+
+                                                                        txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                            @Override
+                                                                            public void focusGained(FocusEvent e) {
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void focusLost(FocusEvent e) {
+
+                                                                                // Restaura a borda padrão quando o campo perde o foco
+                                                                                txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                            }
+                                                                        });
+
+                                                                    }
+                                                                }); // campo Contacto
+
                                                                 btnRecibo.setEnabled(false);
 
-                                                                //Salvar Venda por meio do M-pesa
+                                                                //Salvar Venda por meio do emola
                                                                 btnPagar.addActionListener(new ActionListener() {
                                                                     @Override
                                                                     public void actionPerformed(ActionEvent e) {
@@ -1667,11 +2818,11 @@ public class Funcionario_Caixa extends JFrame {
 
                                                                 });
                                                             } else {
-                                                                if (jcTipo.getSelectedIndex() == 3) {
+                                                                if (jcTipo.getSelectedIndex() == 4) {
 
                                                                     lblIcon.setBorder(BorderFactory.createEmptyBorder());
 
-                                                                    lblIcon.setIcon(Icon_emola);
+                                                                    lblIcon.setIcon(Icon_mkesh);
                                                                     lblContacto.setText("");
                                                                     lblContacto.setText("Contacto");
                                                                     txtMontante.setEnabled(false);
@@ -1681,12 +2832,72 @@ public class Funcionario_Caixa extends JFrame {
                                                                     txtnumero_cartao.setEnabled(false);
                                                                     txtValidade_cartao.setEnabled(false);
                                                                     txtCVV.setEnabled(false);
-                                                                    btnPagar.setEnabled(true);
+
+                                                                    txtContacto_Email.addKeyListener(new KeyListener() {
+                                                                        @Override
+                                                                        public void keyTyped(KeyEvent e) {
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void keyPressed(KeyEvent e) {
+
+                                                                            char c = e.getKeyChar();
+
+                                                                            if (Character.isLetter(c)) {
+
+                                                                                txtContacto_Email.setEditable(false);
+                                                                                JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                                                                            } else {
+                                                                                txtContacto_Email.setEditable(true);
+
+                                                                            }
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void keyReleased(KeyEvent e) {
+                                                                            //Pegando o tamanho do texto
+                                                                            int comprimentoTexto = txtContacto_Email.getText().length();
+
+                                                                            // Define a cor da borda com base no comprimento do texto
+                                                                            Color cor = (comprimentoTexto != 9) ? Color.RED : Color.GREEN;
+
+                                                                            // Cria uma borda com a cor desejada
+                                                                            Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                                                                            // Aplica a borda ao campo de texto
+                                                                            txtContacto_Email.setBorder(bordaColorida);
+
+                                                                            // Permitindo com que o campo seguinte seja aberto assim como nao
+                                                                            if (cor.equals(Color.GREEN)) {
+                                                                                btnPagar.setEnabled(true);
+
+                                                                            } else {
+                                                                                btnPagar.setEnabled(false);
+                                                                            }
+
+                                                                            txtContacto_Email.addFocusListener(new FocusListener() {
+                                                                                @Override
+                                                                                public void focusGained(FocusEvent e) {
+
+                                                                                }
+
+                                                                                @Override
+                                                                                public void focusLost(FocusEvent e) {
+
+                                                                                    // Restaura a borda padrão quando o campo perde o foco
+                                                                                    txtContacto_Email.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                                                                                }
+                                                                            });
+
+                                                                        }
+                                                                    }); // campo Contacto
+
                                                                     btnRecibo.setEnabled(false);
 
-                                                                    txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                                    //Salvar Venda por meio do emola
+                                                                    //Salvar Venda por meio do m-kesh
                                                                     btnPagar.addActionListener(new ActionListener() {
                                                                         @Override
                                                                         public void actionPerformed(ActionEvent e) {
@@ -1696,40 +2907,10 @@ public class Funcionario_Caixa extends JFrame {
                                                                         }
 
                                                                     });
+
                                                                 } else {
-                                                                    if (jcTipo.getSelectedIndex() == 4) {
-
-                                                                        lblIcon.setBorder(BorderFactory.createEmptyBorder());
-
-                                                                        lblIcon.setIcon(Icon_mkesh);
-                                                                        lblContacto.setText("");
-                                                                        lblContacto.setText("Contacto");
-                                                                        txtMontante.setEnabled(false);
-                                                                        txtNome.setEnabled(false);
-                                                                        jcGenero.setEnabled(false);
-                                                                        txtContacto_Email.setEnabled(true);
-                                                                        txtnumero_cartao.setEnabled(false);
-                                                                        txtValidade_cartao.setEnabled(false);
-                                                                        txtCVV.setEnabled(false);
-                                                                        btnPagar.setEnabled(true);
-                                                                        btnRecibo.setEnabled(false);
-
-                                                                        txtContacto_Email.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
-
-                                                                        //Salvar Venda por meio do m-kesh
-                                                                        btnPagar.addActionListener(new ActionListener() {
-                                                                            @Override
-                                                                            public void actionPerformed(ActionEvent e) {
-
-                                                                                //Opção de imprimir factura desabilitada
-                                                                                btnRecibo.setEnabled(true);
-                                                                            }
-
-                                                                        });
-                                                                    } else {
-                                                                        if (jcTipo.getSelectedIndex() == 0) {
-                                                                            JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
-                                                                        }
+                                                                    if (jcTipo.getSelectedIndex() == 0) {
+                                                                        JOptionPane.showMessageDialog(null, "Escolha uma opção valida!!!");
                                                                     }
                                                                 }
                                                             }
@@ -1775,6 +2956,7 @@ public class Funcionario_Caixa extends JFrame {
 
                                         pnlPagamento.add(rol_Vendas);
                                         pnlPagamento.add(lblLista);
+
                                         pnlPagamento.add(lblIcon);
                                         pnlPagamento.add(lblNome);
                                         pnlPagamento.add(lblGenero);
@@ -1812,12 +2994,13 @@ public class Funcionario_Caixa extends JFrame {
                                 pnlPendentes.add(lblProdutos);
                                 pnlPendentes.add(lblPedido);
 
+                                pnlPendentes.add(txtPesquisa);
                                 pnlPendentes.add(rol_Cliente1);
                                 pnlPendentes.add(rol_Pedido);
                                 pnlPendentes.add(rol_Produtos);
                                 pnlPendentes.add(btnPagar);
                                 pnlPendentes.add(btnEditar);
-                                pnlPendentes.add(btnProcurar);
+                                pnlPendentes.add(btnRelatorio);
 
                                 pnlPendentes.setVisible(true);
 
@@ -1833,6 +3016,137 @@ public class Funcionario_Caixa extends JFrame {
                                 pnlPrincipal.setVisible(false);
                                 pnlDescartados.setVisible(false);
                                 pnlPendentes.setVisible(false);
+
+                                pnlFinalizados.setLayout(null);
+                                pnlFinalizados.setBounds(280, 0, 920, 700);
+                                pnlFinalizados.setBackground(Color.white);
+
+                                JLabel lblListar = new JLabel();
+                                JLabel lblProdutos = new JLabel();
+                                JLabel lblPedido = new JLabel();
+
+                                JTextField txtPesquisa = new JTextField();
+
+                                BotaoPersonalizado btnRecuperar = new BotaoPersonalizado("PDF");
+
+                                btnRecuperar.setBackground(Color.white);
+                                btnRecuperar.setForeground(new Color(0, 102, 255));
+
+                                lblListar.setBounds(365, 0, 350, 30);
+
+                                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                lblProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                lblPedido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                btnRecuperar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                txtPesquisa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                                lblListar.setText("Clientes com Pedidos");
+                                lblListar.setForeground(new Color(0, 102, 255));
+
+                                lblPedido.setText("Pedidos do Cliente");
+                                lblPedido.setForeground(new Color(0, 102, 255));
+
+                                lblProdutos.setText("Produtos do Pedido");
+                                lblProdutos.setForeground(new Color(0, 102, 255));
+
+                                //Lista de Clientes
+                                String[] Colunas_Cliente = {"Cliente", "Genero", "Contacto", "Email", "Status"};
+                                String[][] inf_Cliente = {{}};
+
+                                DefaultTableModel Linhas_Cliente = new DefaultTableModel(inf_Cliente, Colunas_Cliente);
+                                JTable Lista_Cliente = new JTable(Linhas_Cliente);
+                                JTableHeader header_Cliente = Lista_Cliente.getTableHeader();
+
+                                //Personalizando a Linhas_Colunas
+                                header_Cliente.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Cliente.setForeground(new Color(102, 102, 255));
+                                Lista_Cliente.setShowGrid(false);
+
+                                Lista_Cliente.setModel(Linhas_Cliente);
+                                Lista_Cliente.setRowHeight(30);
+
+                                Linhas_Cliente.setRowCount(10);
+                                JScrollPane rol_Cliente1 = new JScrollPane(Lista_Cliente);
+
+                                //Lista de PedidosCodigo_
+                                String[] Colunas_Pedido = {"Codigo", "Data_Pedido ", "Data_Pagamento", "Status"};
+                                String[][] inf_Pedido = {{}};
+
+                                DefaultTableModel Linhas_Pedido = new DefaultTableModel(inf_Pedido, Colunas_Pedido);
+                                JTable Lista_Pedido = new JTable(Linhas_Pedido);
+                                JTableHeader header_Pedido = Lista_Pedido.getTableHeader();
+
+                                //Personalizando a Linhas_Colunas
+                                header_Pedido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Pedido.setForeground(new Color(102, 102, 255));
+                                Lista_Pedido.setShowGrid(false);
+
+                                Lista_Pedido.setModel(Linhas_Pedido);
+                                Lista_Pedido.setRowHeight(30);
+
+                                Linhas_Pedido.setRowCount(10);
+
+                                JScrollPane rol_Pedido = new JScrollPane(Lista_Pedido);
+
+                                //Lista de Produtos
+                                String[] Colunas_Tabela1 = {"Produto", "Marca", "Descrição", "Preço", "Quantidade", "Imagem", "Sub Total", "Total"};
+                                String[][] inf1 = {{}};
+
+                                DefaultTableModel Linhas = new DefaultTableModel(inf1, Colunas_Tabela1);
+                                JTable Lista_Produtos = new JTable(Linhas);
+                                JTableHeader header = Lista_Produtos.getTableHeader();
+
+                                //Personalizando a Linhas_Coluna
+                                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header.setForeground(new Color(102, 102, 255));
+                                Lista_Produtos.setShowGrid(false);
+
+                                Lista_Produtos.setModel(Linhas);
+                                Lista_Produtos.setRowHeight(120);
+
+                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(180);
+
+                                Linhas.setRowCount(10);
+                                JScrollPane rol_Produtos = new JScrollPane(Lista_Produtos);
+
+                                lblProdutos.setBounds(365, 410, 200, 30);
+                                lblPedido.setBounds(365, 210, 200, 30);
+
+                                rol_Pedido.setBounds(150, 250, 600, 150);
+                                txtPesquisa.setBounds(690, 0, 200, 30);
+                                rol_Cliente1.setBounds(10, 40, 890, 150);
+                                rol_Produtos.setBounds(10, 450, 890, 150);
+                                btnRecuperar.setBounds(395, 610, 80, 30);
+
+                                txtPesquisa.addKeyListener(new KeyListener() {
+                                    @Override
+                                    public void keyTyped(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyPressed(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyReleased(KeyEvent e) {
+
+                                    }
+
+                                });
+
+                                pnlFinalizados.add(lblListar);
+                                pnlFinalizados.add(lblProdutos);
+                                pnlFinalizados.add(lblPedido);
+                                pnlFinalizados.add(btnRecuperar);
+
+                                pnlFinalizados.add(txtPesquisa);
+                                pnlFinalizados.add(rol_Cliente1);
+                                pnlFinalizados.add(rol_Pedido);
+                                pnlFinalizados.add(rol_Produtos);
+                                pnlFinalizados.setVisible(true);
+
                             }
                         });
 
@@ -1843,6 +3157,162 @@ public class Funcionario_Caixa extends JFrame {
                                 pnlPrincipal.setVisible(false);
                                 pnlPendentes.setVisible(false);
                                 pnlFinalizados.setVisible(false);
+
+                                pnlDescartados.setLayout(null);
+                                pnlDescartados.setBounds(280, 0, 920, 700);
+                                pnlDescartados.setBackground(Color.white);
+
+                                JLabel lblListar = new JLabel();
+                                JLabel lblProdutos = new JLabel();
+                                JLabel lblPedido = new JLabel();
+
+                                JTextField txtPesquisa = new JTextField();
+
+                                //Criando os botoes
+                                BotaoPersonalizado btnRecuperar = new BotaoPersonalizado("Recuperar");
+                                BotaoPersonalizado btnProcurar = new BotaoPersonalizado("Procurar");
+                                BotaoPersonalizado btnRelatorio = new BotaoPersonalizado("PDF");
+
+                                //Mundando o background
+                                btnRecuperar.setBackground(Color.white);
+                                btnProcurar.setBackground(Color.white);
+                                btnRelatorio.setBackground(Color.white);
+
+                                // Mundando o Foreground
+                                btnRecuperar.setForeground(new Color(0, 102, 255));
+                                btnProcurar.setForeground(new Color(0, 102, 255));
+                                btnRelatorio.setForeground(new Color(0, 102, 255));
+
+                                //Tirando a Borda
+                                btnRecuperar.setBorder(BorderFactory.createEmptyBorder());
+                                btnProcurar.setBorder(BorderFactory.createEmptyBorder());
+                                btnRelatorio.setBorder(BorderFactory.createEmptyBorder());
+
+                                btnRecuperar.setFocusPainted(false);
+                                btnProcurar.setFocusPainted(false);
+                                btnRelatorio.setFocusPainted(false);
+
+                                lblListar.setBounds(365, 0, 350, 30);
+
+                                lblListar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                lblProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                lblPedido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                                btnRecuperar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                btnRelatorio.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                                txtPesquisa.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+
+                                lblListar.setText("Clientes com Pedidos");
+                                lblListar.setForeground(new Color(0, 102, 255));
+
+                                lblPedido.setText("Pedidos do Cliente");
+                                lblPedido.setForeground(new Color(0, 102, 255));
+
+                                lblProdutos.setText("Produtos do Pedido");
+                                lblProdutos.setForeground(new Color(0, 102, 255));
+
+                                //Lista de Clientes
+                                String[] Colunas_Cliente = {"Cliente", "Genero", "Contacto", "Email", "Status"};
+                                String[][] inf_Cliente = {{}};
+
+                                DefaultTableModel Linhas_Cliente = new DefaultTableModel(inf_Cliente, Colunas_Cliente);
+                                JTable Lista_Cliente = new JTable(Linhas_Cliente);
+                                JTableHeader header_Cliente = Lista_Cliente.getTableHeader();
+
+                                //Personalizando a Linhas_Colunas
+                                header_Cliente.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Cliente.setForeground(new Color(102, 102, 255));
+                                Lista_Cliente.setShowGrid(false);
+
+                                Lista_Cliente.setModel(Linhas_Cliente);
+                                Lista_Cliente.setRowHeight(30);
+
+                                Linhas_Cliente.setRowCount(10);
+                                JScrollPane rol_Cliente1 = new JScrollPane(Lista_Cliente);
+
+                                //Lista de PedidosCodigo_
+                                String[] Colunas_Pedido = {"Codigo", "Data_Pedido ", "Data_Descarte", "Status"};
+                                String[][] inf_Pedido = {{}};
+
+                                DefaultTableModel Linhas_Pedido = new DefaultTableModel(inf_Pedido, Colunas_Pedido);
+                                JTable Lista_Pedido = new JTable(Linhas_Pedido);
+                                JTableHeader header_Pedido = Lista_Pedido.getTableHeader();
+
+                                //Personalizando a Linhas_Colunas
+                                header_Pedido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header_Pedido.setForeground(new Color(102, 102, 255));
+                                Lista_Pedido.setShowGrid(false);
+
+                                Lista_Pedido.setModel(Linhas_Pedido);
+                                Lista_Pedido.setRowHeight(30);
+
+                                Linhas_Pedido.setRowCount(10);
+
+                                JScrollPane rol_Pedido = new JScrollPane(Lista_Pedido);
+
+                                //Lista de Produtos
+                                String[] Colunas_Tabela1 = {"Produto", "Marca", "Descrição", "Preço", "Quantidade", "Imagem", "Sub Total", "Total"};
+                                String[][] inf1 = {{}};
+
+                                DefaultTableModel Linhas = new DefaultTableModel(inf1, Colunas_Tabela1);
+                                JTable Lista_Produtos = new JTable(Linhas);
+                                JTableHeader header = Lista_Produtos.getTableHeader();
+
+                                //Personalizando a Linhas_Coluna
+                                header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                                header.setForeground(new Color(102, 102, 255));
+                                Lista_Produtos.setShowGrid(false);
+
+                                Lista_Produtos.setModel(Linhas);
+                                Lista_Produtos.setRowHeight(120);
+
+                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(180);
+
+                                Linhas.setRowCount(10);
+                                JScrollPane rol_Produtos = new JScrollPane(Lista_Produtos);
+
+                                lblProdutos.setBounds(365, 410, 200, 30);
+                                lblPedido.setBounds(365, 210, 200, 30);
+
+                                rol_Pedido.setBounds(150, 250, 600, 150);
+                                txtPesquisa.setBounds(690, 0, 200, 30);
+                                rol_Cliente1.setBounds(10, 40, 890, 150);
+                                rol_Produtos.setBounds(10, 450, 890, 150);
+                                btnRecuperar.setBounds(600, 615, 100, 30);
+                                btnRelatorio.setBounds(230, 615, 100, 30);
+
+                                txtPesquisa.addKeyListener(new KeyListener() {
+                                    @Override
+                                    public void keyTyped(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyPressed(KeyEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void keyReleased(KeyEvent e) {
+
+                                    }
+
+                                });
+
+                                pnlDescartados.add(lblListar);
+                                pnlDescartados.add(lblProdutos);
+                                pnlDescartados.add(lblPedido);
+
+                                pnlDescartados.add(txtPesquisa);
+                                pnlDescartados.add(rol_Cliente1);
+                                pnlDescartados.add(rol_Pedido);
+                                pnlDescartados.add(rol_Produtos);
+                                pnlDescartados.add(btnRecuperar);
+                                pnlDescartados.add(btnRelatorio);
+                                pnlDescartados.add(btnProcurar);
+
+                                pnlDescartados.setVisible(true);
+
                             }
                         });
 
@@ -1854,8 +3324,8 @@ public class Funcionario_Caixa extends JFrame {
                                 MenuPedidos.setVisible(false);
                                 pnlPendentes.setVisible(false);
                                 pnlFinalizados.setVisible(false);
+                                pnlDescartados.setVisible(false);
                                 pnlRelatorios.setVisible(false);
-                                pnlPendentes.setVisible(false);
                                 pnlPagamento.setVisible(false);
                                 pnlPrincipal.setVisible(true);
                                 MenuServicos.setVisible(true);
@@ -1871,6 +3341,8 @@ public class Funcionario_Caixa extends JFrame {
                         MenuPedidos.add(btnVoltarPrincipal);
                         pnlServicos.add(MenuPedidos);
                         pnlServicos.add(pnlPendentes);
+                        pnlServicos.add(pnlFinalizados);
+                        pnlServicos.add(pnlDescartados);
                         pnlServicos.add(pnlPagamento);
                         MenuPedidos.setVisible(true);
                     }
@@ -2641,10 +4113,10 @@ public class Funcionario_Caixa extends JFrame {
                         btnCarregarFoto.setFocusPainted(false);
                         btnActualizar.setBorder(BorderFactory.createEmptyBorder());
                         btnActualizar.setFocusPainted(false);
-                        
+
                         //Validando alguns Campos
-                     //Email
-                          txtEmail.addKeyListener(new KeyListener() {
+                        //Email
+                        txtEmail.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -2652,13 +4124,13 @@ public class Funcionario_Caixa extends JFrame {
 
                             @Override
                             public void keyPressed(KeyEvent e) {
-                                
-                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN ) 
-                                        txtPassword.requestFocus();
-                                    else
-                                        if (e.getKeyCode() == KeyEvent.VK_UP) 
-                                           txtEmail.requestFocus();   
-                                
+
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                    txtPassword.requestFocus();
+                                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtEmail.requestFocus();
+                                }
+
                             }
 
                             @Override
@@ -2674,11 +4146,12 @@ public class Funcionario_Caixa extends JFrame {
 
                                 // Aplica a borda ao campo de texto
                                 txtEmail.setBorder(bordaColorida);
-                           if (cor.equals(Color.GREEN))
-                                   txtPassword.setEnabled(true);
-                           else
-                               txtPassword.setEnabled(false);
-                              
+                                if (cor.equals(Color.GREEN)) {
+                                    txtPassword.setEnabled(true);
+                                } else {
+                                    txtPassword.setEnabled(false);
+                                }
+
                                 txtEmail.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
@@ -2696,8 +4169,8 @@ public class Funcionario_Caixa extends JFrame {
 
                             }
                         }); // campo Email
-                          //Passwrod
-                          txtPassword.addKeyListener(new KeyListener() {
+                        //Passwrod
+                        txtPassword.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -2705,13 +4178,13 @@ public class Funcionario_Caixa extends JFrame {
 
                             @Override
                             public void keyPressed(KeyEvent e) {
-                                
-                                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN ) 
-                                        txtContacto.requestFocus();
-                                    else
-                                        if (e.getKeyCode() == KeyEvent.VK_UP) 
-                                           txtEmail.requestFocus();   
-                                
+
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                    txtContacto.requestFocus();
+                                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtEmail.requestFocus();
+                                }
+
                             }
 
                             @Override
@@ -2727,11 +4200,12 @@ public class Funcionario_Caixa extends JFrame {
 
                                 // Aplica a borda ao campo de texto
                                 txtPassword.setBorder(bordaColorida);
-                                 if (cor.equals(Color.GREEN))
-                                   txtContacto.setEnabled(true);
-                           else
-                               txtContacto.setEnabled(false);
-                              
+                                if (cor.equals(Color.GREEN)) {
+                                    txtContacto.setEnabled(true);
+                                } else {
+                                    txtContacto.setEnabled(false);
+                                }
+
                                 txtPassword.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
@@ -2749,9 +4223,9 @@ public class Funcionario_Caixa extends JFrame {
 
                             }
                         }); // campo Password
-                          
-                          //Contacto
-                          txtContacto.addKeyListener(new KeyListener() {
+
+                        //Contacto
+                        txtContacto.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -2759,22 +4233,23 @@ public class Funcionario_Caixa extends JFrame {
 
                             @Override
                             public void keyPressed(KeyEvent e) {
-                                 char c = e.getKeyChar();
+                                char c = e.getKeyChar();
                                 if (Character.isLetter(c)) {
                                     txtContacto.setEditable(false);
                                     JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
-                        }else{
+                                } else {
                                     txtContacto.setEditable(true);
-                                    
-                                    if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER )
+
+                                    if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
                                         txtEndereco.requestFocus();
-                                    
-                                     if (e.getKeyCode() == KeyEvent.VK_UP) 
-                                           txtPassword.requestFocus();   
-                                    
+                                    }
+
+                                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                        txtPassword.requestFocus();
+                                    }
+
                                 }
-                                       
-                                
+
                             }
 
                             @Override
@@ -2790,15 +4265,14 @@ public class Funcionario_Caixa extends JFrame {
 
                                 // Aplica a borda ao campo de texto
                                 txtContacto.setBorder(bordaColorida);
-                               
+
                                 // Permitindo com que o campo seguinte seja aberto assim como nao
                                 if (cor.equals(Color.GREEN)) {
-                                   txtEndereco.setEnabled(true);
-                                  
+                                    txtEndereco.setEnabled(true);
+
                                 } else {
-                                   txtEndereco.setEnabled(false);
-                                 
-                           
+                                    txtEndereco.setEnabled(false);
+
                                 }
 
                                 txtContacto.addFocusListener(new FocusListener() {
@@ -2818,9 +4292,9 @@ public class Funcionario_Caixa extends JFrame {
 
                             }
                         }); // campo Contacto
-                         
-                           //Endereco
-                          txtEndereco.addKeyListener(new KeyListener() {
+
+                        //Endereco
+                        txtEndereco.addKeyListener(new KeyListener() {
                             @Override
                             public void keyTyped(KeyEvent e) {
 
@@ -2828,10 +4302,11 @@ public class Funcionario_Caixa extends JFrame {
 
                             @Override
                             public void keyPressed(KeyEvent e) {
-           
-                                     if (e.getKeyCode() == KeyEvent.VK_UP) 
-                                           txtContacto.requestFocus();   
-                                    
+
+                                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                    txtContacto.requestFocus();
+                                }
+
                             }
 
                             @Override
@@ -2840,14 +4315,14 @@ public class Funcionario_Caixa extends JFrame {
                                 int comprimentoTexto = txtEndereco.getText().length();
 
                                 // Define a cor da borda com base no comprimento do texto
-                                Color cor = (comprimentoTexto <6) ? Color.RED : Color.GREEN;
+                                Color cor = (comprimentoTexto < 6) ? Color.RED : Color.GREEN;
 
                                 // Cria uma borda com a cor desejada
                                 Border bordaColorida = BorderFactory.createLineBorder(cor);
 
                                 // Aplica a borda ao campo de texto
                                 txtEndereco.setBorder(bordaColorida);
-                               
+
                                 txtEndereco.addFocusListener(new FocusListener() {
                                     @Override
                                     public void focusGained(FocusEvent e) {
@@ -2865,8 +4340,7 @@ public class Funcionario_Caixa extends JFrame {
 
                             }
                         }); // campo Endereco
-                         
-                          
+
                         btnActualizar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {

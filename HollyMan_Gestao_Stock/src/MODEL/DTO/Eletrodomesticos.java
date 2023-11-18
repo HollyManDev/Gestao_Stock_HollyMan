@@ -8,7 +8,6 @@ package MODEL.DTO;
  *
  * @author HOLLY MAN
  */
-public class Menssagem extends MODEL_Funcionario {
-    private String menssagem, remetente, destinatario,data,hora;
-    private int id, fK_funcionario;
+public class Eletrodomesticos {
+    
 }

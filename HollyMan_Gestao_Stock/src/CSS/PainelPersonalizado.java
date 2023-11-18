@@ -17,7 +17,7 @@ import java.awt.geom.RoundRectangle2D;
 
 public class PainelPersonalizado extends JPanel {
     private int cornerRadius = 30; // Raio de 30 para cantos arredondados
-    private Color borderColor = Color.WHITE; // Cor da borda branca
+    private Color borderColor = new Color(0,102,255); // Cor da borda branca
 
     public PainelPersonalizado() {
         setOpaque(false); // Torna a área do painel transparente

@@ -30,6 +30,7 @@ import javax.swing.table.JTableHeader;
 
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
+import CSS.PainelPersonalizado;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JMenu;
@@ -320,7 +321,7 @@ public class Gerente extends JFrame {
 
                 JButton btnGerirCategorias = new JButton("Gerir Categorias");
                 JButton btnGerirProdutos = new JButton("Gerir Produtos");
-                JButton btnRelatorio = new JButton("Relatorio e Estatistica");
+                JButton btnRelatorio = new JButton("Electrodomesticos");
                 JButton btnVoltarPrincipal = new JButton("Voltar");
 
                 JTextField txtbarra2 = new JTextField();
@@ -2623,15 +2624,111 @@ public class Gerente extends JFrame {
                 pnlConfiguracoes.setVisible(false);
                 pnlGestao_Funcionarios.setVisible(false);
                 pnlPerfil.setVisible(false);
-                  
-                pnlVisaoGeral.setLayout(null);
-                pnlVisaoGeral.setBounds(280,0,920,680);
-                pnlVisaoGeral.setBackground(Color.WHITE);
-                
-                
-                pnlVisaoGeral.setVisible(true);
-                pnlauxPrincipal.add(pnlVisaoGeral);
 
+                pnlVisaoGeral.setLayout(null);
+                pnlVisaoGeral.setBounds(280, 0, 920, 680);
+                pnlVisaoGeral.setBackground(Color.WHITE);
+
+                PainelPersonalizado pnlQtds = new PainelPersonalizado();
+
+                PainelPersonalizado pnlFuncionario_Vendas = new PainelPersonalizado();
+                PainelPersonalizado pnlCategorias_produto = new PainelPersonalizado();
+                PainelPersonalizado pnlProdutos_Vendas = new PainelPersonalizado();
+                PainelPersonalizado pnlClientes_Pedidos = new PainelPersonalizado();
+
+                pnlQtds.setLayout(null);
+                pnlQtds.setBounds(10, 10, 900, 80);
+                pnlQtds.setBackground(Color.WHITE);
+
+                pnlFuncionario_Vendas.setLayout(null);
+                pnlFuncionario_Vendas.setBounds(10, 120, 440, 250);
+                pnlFuncionario_Vendas.setBackground(Color.WHITE);
+
+                pnlCategorias_produto.setLayout(null);
+                pnlCategorias_produto.setBounds(470, 120, 440, 250);
+                pnlCategorias_produto.setBackground(Color.WHITE);
+
+                pnlProdutos_Vendas.setLayout(null);
+                pnlProdutos_Vendas.setBounds(10, 390, 440, 250);
+                pnlProdutos_Vendas.setBackground(Color.WHITE);
+
+                pnlClientes_Pedidos.setLayout(null);
+                pnlClientes_Pedidos.setBounds(470, 390, 440, 250);
+                pnlClientes_Pedidos.setBackground(Color.WHITE);
+
+                JLabel lblFuncionario = new JLabel("Funcionarios");
+                JLabel lblQtdFun = new JLabel();
+
+                JLabel lblCategorias = new JLabel("Categorias");
+                JLabel lblQtdCategorias = new JLabel("5");
+
+                JLabel lblProdutos = new JLabel("Produtos");
+                JLabel lblQtdProdutos = new JLabel("50");
+
+                JLabel lblVendas = new JLabel("Vendas");
+                JLabel lblQtdVendas = new JLabel("10");
+
+                JLabel lblPedidos = new JLabel("Clientes");
+                JLabel lblQtdPedidos = new JLabel("6");
+
+                lblFuncionario.setIcon(Icon_Eliminar);
+                lblCategorias.setIcon(Icon_Eliminar);
+                lblProdutos.setIcon(Icon_Eliminar);
+                lblVendas.setIcon(Icon_Eliminar);
+                lblPedidos.setIcon(Icon_Eliminar);
+
+                lblFuncionario.setBounds(20, 5, 140, 40);
+                lblQtdFun.setBounds(85, 40, 30, 30);
+                lblCategorias.setBounds(215, 5, 140, 40);
+                lblQtdCategorias.setBounds(255, 40, 30, 30);
+                lblProdutos.setBounds(430, 5, 140, 40);
+                lblQtdProdutos.setBounds(440, 40, 30, 30);
+                lblVendas.setBounds(600, 5, 140, 40);
+                lblQtdVendas.setBounds(630, 40, 30, 30);
+                lblPedidos.setBounds(750, 5, 140, 40);
+                lblQtdPedidos.setBounds(810, 40, 30, 30);
+
+                lblQtdFun.setText("10");
+
+                //Foreground personalizada
+                lblQtdFun.setForeground(new Color(0, 102, 255));
+                lblQtdCategorias.setForeground(new Color(0, 102, 255));
+                lblQtdProdutos.setForeground(new Color(0, 102, 255));
+                lblQtdVendas.setForeground(new Color(0, 102, 255));
+                lblQtdPedidos.setForeground(new Color(0, 102, 255));
+
+                //Fonte 
+                lblFuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblQtdFun.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblQtdCategorias.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblCategorias.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblQtdProdutos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblQtdVendas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblVendas.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblPedidos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+                lblQtdPedidos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
+
+                pnlQtds.add(lblFuncionario);
+                pnlQtds.add(lblQtdFun);
+                pnlQtds.add(lblQtdCategorias);
+                pnlQtds.add(lblQtdProdutos);
+                pnlQtds.add(lblCategorias);
+                pnlQtds.add(lblProdutos);
+                pnlQtds.add(lblVendas);
+                pnlQtds.add(lblQtdVendas);
+                pnlQtds.add(lblPedidos);
+                pnlQtds.add(lblQtdPedidos);
+
+                pnlVisaoGeral.add(pnlQtds);
+                pnlVisaoGeral.add(pnlFuncionario_Vendas);
+                pnlVisaoGeral.add(pnlCategorias_produto);
+                pnlVisaoGeral.add(pnlClientes_Pedidos);
+                pnlVisaoGeral.add(pnlProdutos_Vendas);
+
+                pnlVisaoGeral.setVisible(true);
+
+                pnlauxPrincipal.add(pnlVisaoGeral);
             }
         });
 
