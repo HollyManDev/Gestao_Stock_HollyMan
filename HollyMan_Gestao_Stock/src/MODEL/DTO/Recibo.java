@@ -4,30 +4,34 @@
  */
 package MODEL.DTO;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author HOLLY MAN
  */
-   @Entity
-public class Relatorio_Menssagem {
+@Entity
+public class Recibo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id")
-    private Funcionario funcionario;
- @Lob
-    private byte[] relatorio__pdf;
-  
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedidos pedido;
+@Lob
+    private byte[] recibo_pdf;
 
+ private String codigo_recibo, produto, cliente, status, metodo_pagamento ;
+  private Date data_pagamento;
+  private long  numero_recibo, qtd, preco, valor_pago;
+         
 }

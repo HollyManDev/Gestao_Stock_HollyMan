@@ -5,6 +5,8 @@
  */
 package VIEW;
 
+import CONTROLLER.Controller_Categoria;
+import CONTROLLER.Controller_Produto;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
@@ -31,6 +33,7 @@ import javax.swing.table.JTableHeader;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
+import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JMenu;
@@ -331,7 +334,7 @@ public class Gerente extends JFrame {
                 btnGerirProdutos.setIcon(Icon_Gerir_Produtos);
 
                 lblFotografia.setBounds(45, 50, 180, 180);
-                txtbarra2.setBounds(30, 251, 210, 1);
+                txtbarra2.setBounds(45, 251, 180, 1);
                 btnGerirCategorias.setBounds(20, 281, 240, 40);
                 btnGerirProdutos.setBounds(13, 351, 240, 40);
                 btnRelatorio.setBounds(23, 421, 240, 40);
@@ -415,13 +418,12 @@ public class Gerente extends JFrame {
                         Lista_Produtos.setShowGrid(false);
 
                         Lista_Produtos.setModel(Linhas_Colunas);
-                        Lista_Produtos.setRowHeight(160);
+                        Lista_Produtos.setRowHeight(150);
 
-                        Lista_Produtos.setRowHeight(120);
                         Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
                         Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
                         Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(200);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(150);
 
                         Linhas_Colunas.setRowCount(10);
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
@@ -473,14 +475,14 @@ public class Gerente extends JFrame {
 
                         //aqui vou configurar a localizacao
                         lblTitulo.setBounds(340, 30, 350, 30);
-                        lblFoto.setBounds(350, 100, 225, 225);
+                        lblFoto.setBounds(350, 145, 225, 150);
                         lblNome.setBounds(110, 120, 200, 30);
                         txtNome.setBounds(110, 150, 200, 35);
                         lblData.setBounds(110, 190, 200, 30);
                         data.setBounds(110, 220, 200, 35);
                         lblSattusCategoria.setBounds(110, 260, 200, 35);
                         jcStatusCategoria.setBounds(110, 290, 200, 35);
-                        btnCarregarImagem.setBounds(400, 290, 150, 40);
+                        btnCarregarImagem.setBounds(405, 300, 150, 30);
                         btnCadastrar.setBounds(650, 133, 120, 40);
                         btnActualizar.setBounds(654, 190, 120, 40);
                         btnEliminar.setBounds(648, 250, 120, 40);
@@ -581,8 +583,33 @@ public class Gerente extends JFrame {
                             }
                         });
 
+                        //carregar img
+                        btnCarregarImagem.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //Criando uma instancia da classe Controller 
+                                Controller_Categoria c_categoria = new Controller_Categoria();
+
+                                //Pegando o metodo que me Permiti pegar uma imagem
+                                Image img = c_categoria.CarregarImagem(lblFoto);
+
+                                lblFoto.setIcon(new ImageIcon(img));
+                                lblFoto.updateUI();
+                                lblFoto.setBounds(400, 145, 150, 150);
+
+                            }
+                        });
+
                         //Eliminar
                         btnEliminar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+
+                        //Actualizar
+                        btnActualizar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
@@ -735,8 +762,8 @@ public class Gerente extends JFrame {
                         lblDescricao.setBounds(700, 50, 200, 30);
                         txtDescricao.setBounds(700, 80, 200, 100);
 
-                        lblFoto.setBounds(670, 160, 225, 225);
-                        btnCarregarFoto.setBounds(714, 355, 175, 40);
+                        lblFoto.setBounds(670, 210, 225, 150);
+                        btnCarregarFoto.setBounds(714, 365, 175, 30);
                         btnCadastrar.setBounds(5, 410, 120, 40);
                         btnActualizar.setBounds(150, 410, 120, 40);
                         btnEliminar.setBounds(295, 410, 100, 40);
@@ -832,32 +859,31 @@ public class Gerente extends JFrame {
                         txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
-                        String[] Colunas_Compras = {"Codigo", "Produto", "Compra", "Venda", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
+                        String[] Colunas_Compras = {"Codigo", "Produto", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
                         String[][] inf_Compras = {{}};
-                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
+                        DefaultTableModel tabela_produtos = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
                         // Criando as Tabelas/Listas
-                        JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
-                        JTableHeader header_Compras = Lista_Funcionarios.getTableHeader();
-                        Lista_Funcionarios.setShowGrid(false);
+                        JTable Lista_Produtos = new JTable(tabela_produtos);
+                        JTableHeader header_Compras = Lista_Produtos.getTableHeader();
+                        Lista_Produtos.setShowGrid(false);
 
                         header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Compras.setForeground(new Color(102, 102, 255));
 
-                        Lista_Funcionarios.setRowHeight(120);
+                        Lista_Produtos.setRowHeight(150);
 
-                        Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
-                        Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        Lista_Funcionarios.getColumnModel().getColumn(2).setPreferredWidth(110);
-                        Lista_Funcionarios.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(120);
-                        Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(110);
-                        Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(100);
-                        Lista_Funcionarios.getColumnModel().getColumn(7).setPreferredWidth(100);
-                        Lista_Funcionarios.getColumnModel().getColumn(8).setPreferredWidth(200);
+                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(80);
+                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
+                        Lista_Produtos.getColumnModel().getColumn(4).setPreferredWidth(120);
+                        Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(110);
+                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(150);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(80);
 
-                        JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
-                        tabela_Funcionarios.setRowCount(10);
+                        JScrollPane rol_Compras = new JScrollPane(Lista_Produtos);
+                        tabela_produtos.setRowCount(10);
 
                         rol_Compras.setBounds(10, 470, 900, 180);
 
@@ -1686,7 +1712,15 @@ public class Gerente extends JFrame {
                         btnCarregarFoto.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
+                                //Criando uma instancia da classe Controller 
+                                Controller_Produto c_produto = new Controller_Produto();
 
+                                //Pegando o metodo que me Permiti pegar uma imagem
+                                Image img = c_produto.CarregarImagem(lblFoto);
+
+                                lblFoto.setIcon(new ImageIcon(img));
+                                lblFoto.updateUI();
+                                lblFoto.setBounds(725, 210, 225, 150);
                             }
                         });
 
@@ -2014,7 +2048,7 @@ public class Gerente extends JFrame {
                 btnProcurar.setFocusPainted(false);
 
                 // Criando a tabela 
-                String[] Colunas_Compras = {"Codigo", "Nome", "Genero", "Idade", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
+                String[] Colunas_Compras = {"Codigo", "Nome", "Genero", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
                 String[][] inf_Compras = {{}};
                 DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
 
@@ -2024,12 +2058,14 @@ public class Gerente extends JFrame {
                 Lista_Funcionarios.setShowGrid(false);
                 header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 header_Compras.setForeground(new Color(102, 102, 255));
-                Lista_Funcionarios.setRowHeight(120);
-                Lista_Funcionarios.getColumnModel().getColumn(9).setPreferredWidth(200);
+                Lista_Funcionarios.setRowHeight(150);
+                Lista_Funcionarios.getColumnModel().getColumn(8).setPreferredWidth(150);
                 Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(90);
                 Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
-                Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(150);
-                Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(150);
+                Lista_Funcionarios.getColumnModel().getColumn(3).setPreferredWidth(120);
+                Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(120);
+                Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(100);
+                Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(120);
                 JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
                 tabela_Funcionarios.setRowCount(10);
                 rol_Compras.setBounds(10, 470, 900, 180);

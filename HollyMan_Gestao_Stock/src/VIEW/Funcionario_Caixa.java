@@ -8,7 +8,6 @@ package VIEW;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
-import Validacoes.Metodos_Vendas;
 import com.sun.tools.javac.tree.JCTree;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -475,15 +474,15 @@ public class Funcionario_Caixa extends JFrame {
                         JTableHeader header_Produtos = Lista_Produtos.getTableHeader();
 
                         Lista_Produtos.setModel(tabela);
-                        Lista_Produtos.setRowHeight(120);
-                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(180);
+                        Lista_Produtos.setRowHeight(150);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(150);
                         Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(100);
                         Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(100);
                         Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
 
                         Lista_Compras.setModel(tabela_Compras);
-                        Lista_Compras.setRowHeight(120);
-                        Lista_Compras.getColumnModel().getColumn(5).setPreferredWidth(200);
+                        Lista_Compras.setRowHeight(150);
+                        Lista_Compras.getColumnModel().getColumn(5).setPreferredWidth(150);
                         Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(100);
 
                         //Personalizando a Lista de Produtos
@@ -592,8 +591,8 @@ public class Funcionario_Caixa extends JFrame {
                                 JTableHeader header_Vendas = Lista_Vendas.getTableHeader();
 
                                 Lista_Vendas.setModel(tabela_Vendas);
-                                Lista_Vendas.setRowHeight(120);
-                                Lista_Vendas.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                Lista_Vendas.setRowHeight(150);
+                                Lista_Vendas.getColumnModel().getColumn(5).setPreferredWidth(150);
                                 Lista_Vendas.getColumnModel().getColumn(2).setPreferredWidth(100);
                                 Lista_Vendas.getColumnModel().getColumn(0).setPreferredWidth(100);
 
@@ -1862,8 +1861,8 @@ public class Funcionario_Caixa extends JFrame {
                         Lista_Produtos.setShowGrid(false);
 
                         Lista_Produtos.setModel(Linhas_Colunas);
-                        Lista_Produtos.setRowHeight(120);
-                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(200);
+                        Lista_Produtos.setRowHeight(150);
+                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(150);
                         Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(150);
                         Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(110);
                         Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
@@ -2087,9 +2086,9 @@ public class Funcionario_Caixa extends JFrame {
                                 Lista_Produtos.setShowGrid(false);
 
                                 Lista_Produtos.setModel(Linhas);
-                                Lista_Produtos.setRowHeight(120);
+                                Lista_Produtos.setRowHeight(150);
 
-                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(150);
 
                                 Linhas.setRowCount(10);
                                 JScrollPane rol_Produtos = new JScrollPane(Lista_Produtos);
@@ -2192,8 +2191,8 @@ public class Funcionario_Caixa extends JFrame {
                                         JTableHeader header_Vendas = Lista_Vendas.getTableHeader();
 
                                         Lista_Vendas.setModel(tabela_Vendas);
-                                        Lista_Vendas.setRowHeight(120);
-                                        Lista_Vendas.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                        Lista_Vendas.setRowHeight(150);
+                                        Lista_Vendas.getColumnModel().getColumn(5).setPreferredWidth(150);
                                         Lista_Vendas.getColumnModel().getColumn(2).setPreferredWidth(100);
                                         Lista_Vendas.getColumnModel().getColumn(0).setPreferredWidth(100);
 
@@ -3102,9 +3101,9 @@ public class Funcionario_Caixa extends JFrame {
                                 Lista_Produtos.setShowGrid(false);
 
                                 Lista_Produtos.setModel(Linhas);
-                                Lista_Produtos.setRowHeight(120);
+                                Lista_Produtos.setRowHeight(150);
 
-                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(150);
 
                                 Linhas.setRowCount(10);
                                 JScrollPane rol_Produtos = new JScrollPane(Lista_Produtos);
@@ -3264,9 +3263,9 @@ public class Funcionario_Caixa extends JFrame {
                                 Lista_Produtos.setShowGrid(false);
 
                                 Lista_Produtos.setModel(Linhas);
-                                Lista_Produtos.setRowHeight(120);
+                                Lista_Produtos.setRowHeight(150);
 
-                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(180);
+                                Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(150);
 
                                 Linhas.setRowCount(10);
                                 JScrollPane rol_Produtos = new JScrollPane(Lista_Produtos);
@@ -3446,13 +3445,13 @@ public class Funcionario_Caixa extends JFrame {
                 header_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 infCaProdutos.setShowGrid(false);
 
-                infCaProdutos.getColumnModel().getColumn(4).setPreferredWidth(200);
+                infCaProdutos.getColumnModel().getColumn(4).setPreferredWidth(150);
 
                 infCa.setModel(tabela);
                 infCaProdutos.setModel(tabela_Produtos);
 
                 infCa.setRowHeight(30);
-                infCaProdutos.setRowHeight(120);
+                infCaProdutos.setRowHeight(150);
 
                 tabela.setRowCount(10);
                 tabela_Produtos.setRowCount(10);

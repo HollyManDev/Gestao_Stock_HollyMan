@@ -7,6 +7,9 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +17,17 @@ import javax.swing.JOptionPane;
  * @author HOLLY MAN
  */
 public class ConectionDB {
-    Connection conn;
-    public Connection ConectingDB(){
-        String url = "jdbc:mysql://localhost:3306/gestao_stock?user=root&password=";
+  EntityManager em;
+    public EntityManager connecting (){
         try {
-            conn = DriverManager.getConnection(url);
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
+        em = emf.createEntityManager();
+        
+     
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ConnectingDB" + e.getMessage());
+            System.out.println(e.getMessage());
         }
-        return conn;
+            return em;
     }
-    
+   
 }

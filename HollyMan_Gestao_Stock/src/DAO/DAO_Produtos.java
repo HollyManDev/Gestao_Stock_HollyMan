@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Validacoes;
+package DAO;
 
 /**
  *
  * @author HOLLY MAN
  */
-public class Metodos_Gestao_Categorias {
+public class DAO_Produtos {
     
 }

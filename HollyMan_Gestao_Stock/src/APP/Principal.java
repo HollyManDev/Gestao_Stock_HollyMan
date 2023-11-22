@@ -1,16 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package APP;
+
+import VIEW.Login;
 
 /**
  *
  * @author HOLLY MAN
  */
 public class Principal {
+
     public static void main(String[] args) {
-        
+        new Login().setVisible(true);
     }
-    
+
 }
