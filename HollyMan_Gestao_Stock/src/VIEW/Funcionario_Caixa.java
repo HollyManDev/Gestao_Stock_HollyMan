@@ -42,6 +42,8 @@ import javax.swing.table.JTableHeader;
  *
  * @author HOLLY MAN
  */
+
+
 public class Funcionario_Caixa extends JFrame {
 
     ImageIcon fotografiaPerfil = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Aten.jpeg"));
@@ -91,7 +93,7 @@ public class Funcionario_Caixa extends JFrame {
 
     // Este é o construtor da classe respondavel pela criacaoda frame e tudo que nele existir
     public Funcionario_Caixa() {
-
+        
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);

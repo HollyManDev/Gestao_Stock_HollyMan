@@ -4,38 +4,110 @@
  */
 package DAO;
 
-import Interface_Metodos.Metodos;
-import MODEL.DTO.Categorias;
+
 import MODEL.DTO.Funcionario;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HOLLY MAN
  */
-public class DAO_Funcionario implements Metodos {
+public class DAO_Funcionario  {
+
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
+EntityManager em = emf.createEntityManager();
 
     ArrayList<Funcionario> lista = null;
 
-    @Override
-    public void save(Object fun) {
+    public void save_Fun(Object fun) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
+
+        em = new ConectionDB().connecting();
+
+        try {
+
+            em.getTransaction().begin();
+            em.persist(fun);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            emf.close();
+            JOptionPane.showMessageDialog(null, "Funcionario Cadastrado!!!");
+        }
 
     }
 
-    @Override
-    public ArrayList<Categorias> FindAll() {
+
+    public ArrayList<Funcionario> FindAll() {
+
+        em = new ConectionDB().connecting();
+
+        lista = null;
+
+        try {
+        lista = (ArrayList<Funcionario>) em.createQuery("FROM Funcionario", Funcionario.class).getResultList();
+
+            em.close();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao Buscar Funcionarios : " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+    public ArrayList<Funcionario> SearchFun(Funcionario fun) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
+        em = new ConectionDB().connecting();
+        try {
+            fun = em.find(Funcionario.class, fun.getId());
+
+            lista.add( fun);
+            em.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Buscar Funcionarios : " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+  
+    public void Update(Object fun) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
+
+        em = new ConectionDB().connecting();
+
+        try {
+
+            em.getTransaction().begin();
+            em.merge(fun);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            emf.close();
+            JOptionPane.showMessageDialog(null, "Funcionario Actualizado!!!");
+        }
+    }
+
+
+    public ArrayList Search(Object fun) {
 
         return null;
-    }
-
-    @Override
-    public ArrayList<Categorias> Search(Object fun) {
-
-        return null;
-    }
-
-    @Override
-    public void Update(Object c) {
 
     }
 }

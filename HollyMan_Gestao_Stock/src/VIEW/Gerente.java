@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package VIEW;
 
 import CONTROLLER.Controller_Categoria;
+import CONTROLLER.Controller_Funcionario;
 import CONTROLLER.Controller_Produto;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -14,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,17 +28,32 @@ import javax.swing.table.JTableHeader;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
+import DAO.DAO_Funcionario;
+import MODEL.DTO.Funcionario;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -83,6 +93,9 @@ public class Gerente extends JFrame {
     ImageIcon Icon_Actualizar = new ImageIcon(Gerente.class.getResource("/Imagens/editar.png"));
     ImageIcon Icon_Eliminar = new ImageIcon(Gerente.class.getResource("/Imagens/excluir.png"));
     ImageIcon Icon_Menssagem = new ImageIcon(Gerente.class.getResource("/Imagens/mensagem.png"));
+
+    private ImageIcon icon;
+    private byte[] imagemBytes;
 
     public Gerente() {
 
@@ -1859,17 +1872,6 @@ public class Gerente extends JFrame {
                 //Craindo as Componentes
                 JLabel lblTitulo = new JLabel("Gerir Funcionarios");
                 JLabel lblFoto = new JLabel();
-                JLabel imgApelido = new JLabel();
-                JLabel imgNome = new JLabel();
-                JLabel imgGenero = new JLabel();
-                JLabel imgNascimento = new JLabel();
-                JLabel imgBI = new JLabel();
-                JLabel imgEmail = new JLabel();
-                JLabel imgPassword = new JLabel();
-                JLabel imgContacto = new JLabel();
-                JLabel imgContratacao = new JLabel();
-                JLabel imgAcesso = new JLabel();
-                JLabel imgEndereço = new JLabel();
 
                 JLabel lblApelido = new JLabel("Apelido");
                 JLabel lblNome = new JLabel("Nome");
@@ -2048,26 +2050,21 @@ public class Gerente extends JFrame {
                 btnProcurar.setFocusPainted(false);
 
                 // Criando a tabela 
-                String[] Colunas_Compras = {"Codigo", "Nome", "Genero", "Endereço", "Email", "Contacto", "Função", "Salario", "Fotografia", "Status"};
-                String[][] inf_Compras = {{}};
-                DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf_Compras, Colunas_Compras);
+                String[] Colunas_Compras = {"Codigo", "Apelido", "Nome", "Genero", "Email", "Status"};
 
                 // Criando as Tabelas/Listas
-                JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
-                JTableHeader header_Compras = Lista_Funcionarios.getTableHeader();
-                Lista_Funcionarios.setShowGrid(false);
+                JTable Tabela_Funcionarios = new JTable();
+                JTableHeader header_Compras = Tabela_Funcionarios.getTableHeader();
+
+                Tabela_Funcionarios.setShowGrid(false);
+
                 header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+
                 header_Compras.setForeground(new Color(102, 102, 255));
-                Lista_Funcionarios.setRowHeight(150);
-                Lista_Funcionarios.getColumnModel().getColumn(8).setPreferredWidth(150);
-                Lista_Funcionarios.getColumnModel().getColumn(0).setPreferredWidth(90);
-                Lista_Funcionarios.getColumnModel().getColumn(1).setPreferredWidth(150);
-                Lista_Funcionarios.getColumnModel().getColumn(3).setPreferredWidth(120);
-                Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(120);
-                Lista_Funcionarios.getColumnModel().getColumn(5).setPreferredWidth(100);
-                Lista_Funcionarios.getColumnModel().getColumn(6).setPreferredWidth(120);
-                JScrollPane rol_Compras = new JScrollPane(Lista_Funcionarios);
-                tabela_Funcionarios.setRowCount(10);
+
+                Tabela_Funcionarios.setRowHeight(30);
+
+                JScrollPane rol_Compras = new JScrollPane(Tabela_Funcionarios);
                 rol_Compras.setBounds(10, 470, 900, 180);
 
                 //Restrigindo as componentes e Coolocando acessibilidade Inicial
@@ -2083,6 +2080,8 @@ public class Gerente extends JFrame {
                 jcFuncao.setEnabled(false);
                 jcStatus.setEnabled(false);
                 txtSalario.setEnabled(false);
+                btnCadastrar.setEnabled(false);
+                btnCarregarFoto.setEnabled(false);
 
                 //Campo nome do Funxionario, colocando eventos
                 txtApelido.addKeyListener(new KeyListener() {
@@ -2312,8 +2311,13 @@ public class Gerente extends JFrame {
                         //Pegando o tamanho do texto
                         int comprimentoTexto = txtEmail.getText().length();
 
+                        Controller_Funcionario c = new Controller_Funcionario();
+
+                        //Chamando op metodo que verifica o email
+                        boolean result = c.validarEmail(txtEmail.getText());
+
                         // Define a cor da borda com base no comprimento do texto
-                        Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
+                        Color cor = (result == false) ? Color.RED : Color.GREEN;
 
                         // Cria uma borda com a cor desejada
                         Border bordaColorida = BorderFactory.createLineBorder(cor);
@@ -2638,14 +2642,157 @@ public class Gerente extends JFrame {
                 btnProcurar.setBackground(Color.white);
                 btnEliminar.setBackground(Color.white);
 
+                //Instancia do objecto qyue vai invocar os metodos
+                DAO_Funcionario dao_fun = new DAO_Funcionario();
+
+                //Invocando o metodo que traz todos os dados
+                ArrayList<Funcionario> lista = dao_fun.FindAll();
+
+                DefaultTableModel model1 = new DefaultTableModel(Colunas_Compras, 0);
+
+                Tabela_Funcionarios.setModel(model1);
+
+                for (int i = 0; i < lista.size(); i++) {
+                    Object[] row = new Object[8];
+
+                    row[0] = lista.get(i).getCodigo_Fun();
+                    row[1] = lista.get(i).getApelido();
+                    row[2] = lista.get(i).getNome();
+                    row[3] = lista.get(i).getGenero();
+                    row[4] = lista.get(i).getEmail();
+                    row[5] = lista.get(i).getEstado();
+                    model1.addRow(row);
+                }
+
                 //Dando ação aos Botoes
                 btnCadastrar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        //Formatando as caixas de data
+                        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+                        Controller_Funcionario c_fun = new Controller_Funcionario();
+
+                        int contacto = Integer.parseInt(txtContacto.getText());
+                        double salario = Double.parseDouble(txtSalario.getText());
+
+                        Date nascimento = (txtNascimento.getDate());
+                        Date contratacao = (txtData_Contratacao.getDate());
+
+                        String genero = (String) jcGenero.getSelectedItem();
+                        String funcao = (String) jcFuncao.getSelectedItem();
+                        String status = (String) jcStatus.getSelectedItem();
+
+                        String apelido = txtApelido.getText();
+                        String nome = txtNome.getText();
+                        String bi = txtBI_Nuit.getText();
+                        String email = txtEmail.getText();
+                        String password = txtPassword.getText();
+                        String acesso = txtAcesso.getText();
+                        String endereco = txtEndereco.getText();
+                        String codigo_fun = "FUNSM_" + 1000;
+                        c_fun.Verificacao(codigo_fun, apelido, nome, bi, genero, nascimento, email, password, contacto, contratacao, acesso, endereco, funcao, status, salario, imagemBytes);
 
                     }
                 });
 
+                //Dando ação aos Botoes
+                btnCarregarFoto.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Controller_Funcionario c = new Controller_Funcionario();
+
+                        imagemBytes = c.CarregarImagem(lblFoto);
+                        icon = new ImageIcon(imagemBytes);
+                        lblFoto.setIcon(icon);
+                        lblFoto.updateUI();
+                        lblFoto.setBounds(730, 95, 225, 210);
+
+                    }
+                });
+
+                btnActualizar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Controller_Funcionario c = new Controller_Funcionario();
+
+                    }
+                });
+                Tabela_Funcionarios.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        txtNome.setEnabled(true);
+                        txtBI_Nuit.setEnabled(true);
+                        jcGenero.setEnabled(true);
+                        txtNascimento.setEnabled(true);
+                        txtEmail.setEnabled(true);
+                        txtPassword.setEnabled(true);
+                        txtContacto.setEnabled(true);
+                        txtData_Contratacao.setEnabled(true);
+                        txtEndereco.setEnabled(true);
+                        jcFuncao.setEnabled(true);
+                        jcStatus.setEnabled(true);
+                        txtSalario.setEnabled(true);
+                        btnCadastrar.setEnabled(false);
+                        btnCarregarFoto.setEnabled(true);
+
+                        int linha_escolhida = Tabela_Funcionarios.getSelectedRow();
+
+                        String id = (String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 0);
+                        txtApelido.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 1));
+                        txtNome.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 2));
+                        jcGenero.setSelectedItem((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 3));
+                        txtEmail.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 4));
+                        jcStatus.setSelectedItem((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 5));
+
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).getCodigo_Fun().equalsIgnoreCase(id)) {
+                                txtBI_Nuit.setText(lista.get(i).getNumero_BI_Nuit());
+                                txtNascimento.setDate(lista.get(i).getData_nascimento());
+                                txtContacto.setText(String.valueOf(lista.get(i).getContacto()));
+                                txtData_Contratacao.setDate(lista.get(i).getData_contratacao());
+                                txtEndereco.setText(lista.get(i).getEndereco());
+                                jcFuncao.setSelectedItem(lista.get(i).getFuncao());
+                                txtSalario.setText(String.valueOf(lista.get(i).getSalario()));
+
+                                byte[] img = lista.get(i).getFoto();
+                                BufferedImage imagem = null;
+                                try {
+                                    imagem = ImageIO.read(new ByteArrayInputStream(img));
+                                } catch (IOException ex) {
+                                    JOptionPane.showMessageDialog(null, "Erro ao Converter a Imagem " + ex.getMessage());
+                                }
+
+                                ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                                lblFoto.setIcon(Icone);
+                                lblFoto.setBounds(730, 95, 225, 210);
+
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+
+                });
                 pnlauxPrincipal.add(pnlGestao_Funcionarios);
                 pnlGestao_Funcionarios.setVisible(true);
             }

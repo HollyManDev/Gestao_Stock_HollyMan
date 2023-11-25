@@ -5,8 +5,11 @@
  */
 package VIEW;
 
+import CONTROLLER.Controller_Funcionario;
 import CSS.BotaoLogin;
 import CSS.BotaoPersonalizado;
+import DAO.DAO_Funcionario;
+import MODEL.DTO.Funcionario;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,6 +19,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -35,7 +39,7 @@ import javax.swing.border.Border;
  */
 public class Login extends javax.swing.JFrame {
 
-    ImageIcon Icon_Logo = new ImageIcon(Login.class.getResource("/Imagens/Icon.jpeg"));
+    ImageIcon Icon_Logo = new ImageIcon(Login.class.getResource("/Imagens/logo2.png"));
 
     public Login() {
         this.setSize(950, 600);
@@ -60,7 +64,7 @@ public class Login extends javax.swing.JFrame {
         JTextField txtEmail = new JTextField();
         JPasswordField txtPassword = new JPasswordField();
 
-        BotaoLogin btnLogin = new  BotaoLogin("Entrar");
+        BotaoLogin btnLogin = new BotaoLogin("Entrar");
         JButton btnRecuperarSenha = new JButton("Esqueceu Senha?");
         btnRecuperarSenha.setForeground(new Color(73, 55, 3));
 
@@ -115,7 +119,6 @@ public class Login extends javax.swing.JFrame {
         lblData_Hora.setForeground(new Color(0, 102, 255));
         lblData_Hora.setForeground(Color.white);
         txtEmail.setForeground(Color.black);
-      
 
         //background
         btnRecuperarSenha.setBackground(Color.white);
@@ -153,8 +156,13 @@ public class Login extends javax.swing.JFrame {
                 //Pegando o tamanho do texto
                 int comprimentoTexto = txtEmail.getText().length();
 
+                Controller_Funcionario c = new Controller_Funcionario();
+
+                //Chamando op metodo que verifica o email
+                boolean result = c.validarEmail(txtEmail.getText());
+
                 // Define a cor da borda com base no comprimento do texto
-                Color cor = (comprimentoTexto < 10) ? Color.RED : Color.GREEN;
+                Color cor = (result == false) ? Color.RED : Color.GREEN;
 
                 // Cria uma borda com a cor desejada
                 Border bordaColorida = BorderFactory.createMatteBorder(0, 0, 1, 0, cor);
@@ -248,30 +256,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Login a funcionar");
-                lblInformativo.setText("Credencias Invalidas");
-            }
-
-        });
-
-        btnRecuperarSenha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Recuperacao de senha ");
-            }
-
-        });
-
         //Inserindo a Data actual no Rodapé
         Date data = new Date();
         DateFormat formatador = DateFormat.getDateInstance(DateFormat.FULL);
         lblData_Hora.setText(formatador.format(data));
 
-        //  lblTitulo.setForeground(Color.BLACK);
-        //  lblData_Hora.setForeground(Color.BLACK);
         this.add(pnlprincipal);
         pnlprincipal.add(pnlLogo);
         pnlprincipal.add(pnlLogin);
@@ -287,6 +276,40 @@ public class Login extends javax.swing.JFrame {
         pnlLogin.add(btnRecuperarSenha);
         pnlLogin.add(lblInformativo);
 
+//Instanciando o objecto dao que vai me gtrazer os metodos relativos ao funcionario
+        DAO_Funcionario dao_fun = new DAO_Funcionario();
+
+        //Buscando os Dados no Banco
+        ArrayList<Funcionario> lista = dao_fun.FindAll();
+
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                lblInformativo.setText("");
+
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).getEmail().equalsIgnoreCase(txtEmail.getText()) && (lista.get(i).getPassword().equalsIgnoreCase(txtPassword.getText()))) {
+                        new Login().setVisible(false);
+                        dispose();
+                        new Gerente().setVisible(true);
+                        
+                    } else {
+                        lblInformativo.setText("Credencias Invalidas");
+                    }
+                    break;
+                }
+            }
+
+        });
+
+        btnRecuperarSenha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Recuperacao de senha ");
+            }
+
+        });
         this.setVisible(true);
     }
 

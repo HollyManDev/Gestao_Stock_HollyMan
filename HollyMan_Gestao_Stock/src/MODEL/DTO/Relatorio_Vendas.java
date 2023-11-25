@@ -9,7 +9,7 @@ package MODEL.DTO;
  *
  * @author HOLLY MAN
  */
-public class Relatorio_Vendas extends Vendas {
+public class Relatorio_Vendas {
 
  
 }
