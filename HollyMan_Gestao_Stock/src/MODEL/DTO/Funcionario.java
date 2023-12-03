@@ -1,7 +1,7 @@
 package MODEL.DTO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -52,26 +52,31 @@ public class Funcionario implements Serializable {
     @Lob
     private byte[] foto;
 
-    public Funcionario(long id, String codigo_Fun, String apelido, String nome, String genero, Date data_nascimento, String numero_BI_Nuit, String endereco, String email, String password, int contacto, String nivel_acesso, Date data_contratacao, String funcao, double salario, String estado, byte[] foto) {
+    public Funcionario(long id, List<Vendas> vendas, List<Pedidos> pedidos, List<Mensagem> mensagensEnviadas, List<Relatorio_Menssagem> relatoriosEnviados, String codigo_Fun, String apelido, String nome, String genero, String numero_BI_Nuit, String endereco, String email, String password, int contacto, Date data_nascimento, Date data_contratacao, String nivel_acesso, String funcao, double salario, String estado, byte[] foto) {
         this.id = id;
+        this.vendas = vendas;
+        this.pedidos = pedidos;
+        this.mensagensEnviadas = mensagensEnviadas;
+        this.relatoriosEnviados = relatoriosEnviados;
         this.codigo_Fun = codigo_Fun;
         this.apelido = apelido;
         this.nome = nome;
         this.genero = genero;
-        this.data_nascimento = data_nascimento;
         this.numero_BI_Nuit = numero_BI_Nuit;
         this.endereco = endereco;
         this.email = email;
         this.password = password;
         this.contacto = contacto;
-        this.nivel_acesso = nivel_acesso;
+        this.data_nascimento = data_nascimento;
         this.data_contratacao = data_contratacao;
+        this.nivel_acesso = nivel_acesso;
         this.funcao = funcao;
         this.salario = salario;
         this.estado = estado;
         this.foto = foto;
     }
-    
+
+   
     public Funcionario(){
         
     }
@@ -148,14 +153,6 @@ public class Funcionario implements Serializable {
         this.genero = genero;
     }
 
-    public Date getData_nascimento() {
-        return data_nascimento;
-    }
-
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
     public String getNumero_BI_Nuit() {
         return numero_BI_Nuit;
     }
@@ -196,20 +193,27 @@ public class Funcionario implements Serializable {
         this.contacto = contacto;
     }
 
+     public java.sql.Date getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(java.sql.Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+   public java.sql.Date getData_contratacao() {
+        return data_contratacao;
+    }
+
+    public void setData_contratacao(java.sql.Date data_contratacao) {
+        this.data_contratacao = data_contratacao;
+    }
+
     public String getNivel_acesso() {
         return nivel_acesso;
     }
 
     public void setNivel_acesso(String nivel_acesso) {
         this.nivel_acesso = nivel_acesso;
-    }
-
-    public Date getData_contratacao() {
-        return data_contratacao;
-    }
-
-    public void setData_contratacao(Date data_contratacao) {
-        this.data_contratacao = data_contratacao;
     }
 
     public String getFuncao() {
@@ -244,4 +248,5 @@ public class Funcionario implements Serializable {
         this.foto = foto;
     }
 
+ 
 }    

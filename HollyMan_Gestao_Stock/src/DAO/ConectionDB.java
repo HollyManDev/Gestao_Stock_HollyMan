@@ -7,9 +7,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,17 +15,18 @@ import javax.swing.JOptionPane;
  * @author HOLLY MAN
  */
 public class ConectionDB {
-  EntityManager em;
-    public EntityManager connecting (){
+  
+    public Connection connecting (){
+       
+        Connection conn = null;
         try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("seuPU");
-        em = emf.createEntityManager();
-        
-     
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            String url = "jdbc:mysql://localhost:3306/super_mercado?user=root&password=";
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
         }
-            return em;
+        return conn;
     }
-   
 }

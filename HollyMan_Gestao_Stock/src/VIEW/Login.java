@@ -41,6 +41,16 @@ public class Login extends javax.swing.JFrame {
 
     ImageIcon Icon_Logo = new ImageIcon(Login.class.getResource("/Imagens/logo2.png"));
 
+    public static long id;
+
+    public static long getId() {
+        return id;
+    }
+
+    public static void setId(long id) {
+        Login.id = id;
+    }
+
     public Login() {
         this.setSize(950, 600);
         this.setLocationRelativeTo(null);
@@ -91,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 30));
         lblTitulo.setForeground(new Color(3, 52, 73));
 
-        btnLogin.setFocusPainted(false);
+        //  btnLogin.setFocusPainted(false);
         btnRecuperarSenha.setFocusPainted(false);
         btnRecuperarSenha.setBorder(BorderFactory.createEmptyBorder());
 
@@ -280,24 +290,56 @@ public class Login extends javax.swing.JFrame {
         DAO_Funcionario dao_fun = new DAO_Funcionario();
 
         //Buscando os Dados no Banco
-        ArrayList<Funcionario> lista = dao_fun.FindAll();
+        ArrayList<Funcionario> lista = dao_fun.FindAll_Login();
 
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 lblInformativo.setText("");
 
                 for (int i = 0; i < lista.size(); i++) {
                     if (lista.get(i).getEmail().equalsIgnoreCase(txtEmail.getText()) && (lista.get(i).getPassword().equalsIgnoreCase(txtPassword.getText()))) {
-                        new Login().setVisible(false);
-                        dispose();
-                        new Gerente().setVisible(true);
-                        
+
+                        // Este metodo visa a pegar o id de quem se autenticou para entrar 
+                        setId(lista.get(i).getId());
+
+                        //Nesta condição verifico se a conta esta activa ou nao
+                        if (lista.get(i).getEstado().equalsIgnoreCase(" Activo ")) {
+                            //caso ela esteja activa, verifica-se qual funcionario esta acedendo o sistema
+                            if ((lista.get(i).getFuncao().equals("Caixa")) && (lista.get(i).getNivel_acesso().equalsIgnoreCase("Funcionario"))) {
+
+                                new Login().setVisible(false);
+                                dispose();
+
+                                //Chamando nova tela
+                                new Funcionario_Caixa().setVisible(true);
+
+                            } else {
+                                // O mesmo acontece aqui
+                                if ((lista.get(i).getNivel_acesso().equals("Gerente"))) {
+
+                                    new Login().setVisible(false);
+
+                                    //tirando 
+                                    dispose();
+
+                                    //Chamando nova tela
+                                    new Admin().setVisible(true);
+                                    break;
+                                }
+                            }
+
+                        } else {
+
+                            //aqui é quando a conta esta inactiva
+                            JOptionPane.showMessageDialog(null, "Esta conta esta Inactiva!");
+                            break;
+                        }
+
                     } else {
+                        //Neste passo , so e executado quando a combinacao de email e password esta incorrectas
                         lblInformativo.setText("Credencias Invalidas");
                     }
-                    break;
                 }
             }
 
@@ -306,10 +348,10 @@ public class Login extends javax.swing.JFrame {
         btnRecuperarSenha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Recuperacao de senha ");
-            }
 
+            }
         });
+
         this.setVisible(true);
     }
 

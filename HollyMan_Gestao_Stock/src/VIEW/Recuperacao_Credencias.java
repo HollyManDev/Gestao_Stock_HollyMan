@@ -8,6 +8,6 @@ package VIEW;
  *
  * @author HOLLY MAN
  */
-public class Venda {
+public class Recuperacao_Credencias {
     
 }

@@ -5,18 +5,17 @@
     <!-- Implementação do JPA -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
-    <class>MODEL.DTO.Categorias</class>
     <class>MODEL.DTO.Produtos</class>
-     <class>MODEL.DTO.Promocao</class>
+    <class>MODEL.DTO.Promocao</class>
     <class>MODEL.DTO.Vendas</class>
-     <class>MODEL.DTO.Cliente</class>
+    <class>MODEL.DTO.Cliente</class>
     <class>MODEL.DTO.Pedidos</class>
-    <class>MODEL.DTO.Funcionario</class>
     <class>MODEL.DTO.Factura</class>
     <class>MODEL.DTO.Recibo</class>
     <class>MODEL.DTO.Mensagem</class>
     <class>MODEL.DTO.Relatorio_Menssagem</class>
- 
+    <class>MODEL.DTO.Funcionario</class>
+    <class>MODEL.DTO.Categorias</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

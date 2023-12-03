@@ -1,6 +1,7 @@
 package MODEL.DTO;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -23,9 +24,9 @@ public class Categorias implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String categoria;
+    private String nome_categoria;
       private String codigoCategoria;
-    private String estado;
+      private Date data_cadastro;
     private String status;
 
     @Lob
@@ -34,16 +35,16 @@ public class Categorias implements Serializable {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Produtos> produtos = new ArrayList<>();
 
-    public Categorias(long id, String categoria, String codigoCategoria, String estado, String status, byte[] imagem) {
+    public Categorias(long id, String nome_categoria, String codigoCategoria, Date data_cadastro, String status, byte[] imagem) {
         this.id = id;
-        this.categoria = categoria;
+        this.nome_categoria = nome_categoria;
         this.codigoCategoria = codigoCategoria;
-        this.estado = estado;
+        this.data_cadastro = data_cadastro;
         this.status = status;
         this.imagem = imagem;
     }
 
-    
+ 
     public Categorias() {
 
     }
@@ -56,12 +57,12 @@ public class Categorias implements Serializable {
         this.id = id;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getNome_categoria() {
+        return nome_categoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setNome_categoria(String nome_categoria) {
+        this.nome_categoria = nome_categoria;
     }
 
     public String getCodigoCategoria() {
@@ -72,12 +73,12 @@ public class Categorias implements Serializable {
         this.codigoCategoria = codigoCategoria;
     }
 
-    public String getEstado() {
-        return estado;
+    public Date getData_cadastro() {
+        return data_cadastro;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 
     public String getStatus() {
@@ -103,5 +104,7 @@ public class Categorias implements Serializable {
     public void setProdutos(List<Produtos> produtos) {
         this.produtos = produtos;
     }
+
+   
 
 }

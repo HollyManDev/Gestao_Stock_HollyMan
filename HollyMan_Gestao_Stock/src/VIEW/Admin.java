@@ -28,9 +28,11 @@ import javax.swing.table.JTableHeader;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
+import DAO.DAO_Categoria;
 import DAO.DAO_Funcionario;
+import MODEL.DTO.Categorias;
 import MODEL.DTO.Funcionario;
-import java.awt.Component;
+
 import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -39,65 +41,84 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Date;
+
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author HOLLY MAN
  */
-public class Gerente extends JFrame {
+public class Admin extends JFrame {
 
     // Craindo instancias das Imagens
-    ImageIcon Icon_Logo = new ImageIcon(Gerente.class.getResource("/Imagens/Logo.jpeg"));
-    ImageIcon Icon_Admin = new ImageIcon(Gerente.class.getResource("/Imagens/Gerente1.png"));
-    ImageIcon Icon_Configurações = new ImageIcon(Gerente.class.getResource("/Imagens/definicoes2.png"));
-    ImageIcon Icon_Perfil = new ImageIcon(Gerente.class.getResource("/Imagens/Perfil2.png"));
-    ImageIcon Icon_Gestao_Funcionario = new ImageIcon(Gerente.class.getResource("/Imagens/funcionarios.png"));
-    ImageIcon Icon_Voltar = new ImageIcon(Gerente.class.getResource("/Imagens/botao-voltar.png"));
-    ImageIcon Icon_Foto = new ImageIcon(Gerente.class.getResource("/Imagens/imagemGaleria.png"));
-    ImageIcon Icon_Produtos_Categoria = new ImageIcon(Gerente.class.getResource("/Imagens/categorias.png"));
-    ImageIcon Icon_VisaoGeral = new ImageIcon(Gerente.class.getResource("/Imagens/Visao_Geral.png"));
-    ImageIcon Icon_Procurar = new ImageIcon(Gerente.class.getResource("/Imagens/Busca1.png"));
-    ImageIcon Icon_Gerir_Produtos = new ImageIcon(Gerente.class.getResource("/Imagens/Gerir_Produtos.png"));
-    ImageIcon Icon_Adicionar = new ImageIcon(Gerente.class.getResource("/Imagens/adicionar.png"));
-    ImageIcon Icon_Listar = new ImageIcon(Gerente.class.getResource("/Imagens/Listar_1.png"));
-    ImageIcon Icon_CarregarInf = new ImageIcon(Gerente.class.getResource("/Imagens\\CarregarInf.png"));
-    ImageIcon Icon_ActualizarC = new ImageIcon(Gerente.class.getResource("/Imagens/editar.png"));
-    ImageIcon Icon_Proximo = new ImageIcon(Gerente.class.getResource("/Imagens/proximo.png"));
-    ImageIcon Icon_Anterior = new ImageIcon(Gerente.class.getResource("/Imagens/anterior.png"));
-    ImageIcon Icon_ListarFun = new ImageIcon(Gerente.class.getResource("/Imagens/listarFun.png"));
+    ImageIcon Icon_Logo = new ImageIcon(Admin.class.getResource("/Imagens/Logo.jpeg"));
+    ImageIcon Icon_Admin = new ImageIcon(Admin.class.getResource("/Imagens/Gerente1.png"));
+    ImageIcon Icon_Configurações = new ImageIcon(Admin.class.getResource("/Imagens/definicoes2.png"));
+    ImageIcon Icon_Perfil = new ImageIcon(Admin.class.getResource("/Imagens/Perfil2.png"));
+    ImageIcon Icon_Gestao_Funcionario = new ImageIcon(Admin.class.getResource("/Imagens/funcionarios.png"));
+    ImageIcon Icon_Voltar = new ImageIcon(Admin.class.getResource("/Imagens/botao-voltar.png"));
+    ImageIcon Icon_Foto = new ImageIcon(Admin.class.getResource("/Imagens/imagemGaleria.png"));
+    ImageIcon Icon_Produtos_Categoria = new ImageIcon(Admin.class.getResource("/Imagens/categorias.png"));
+    ImageIcon Icon_VisaoGeral = new ImageIcon(Admin.class.getResource("/Imagens/Visao_Geral.png"));
+    ImageIcon Icon_Procurar = new ImageIcon(Admin.class.getResource("/Imagens/Busca1.png"));
+    ImageIcon Icon_Gerir_Produtos = new ImageIcon(Admin.class.getResource("/Imagens/Gerir_Produtos.png"));
+    ImageIcon Icon_Adicionar = new ImageIcon(Admin.class.getResource("/Imagens/adicionar.png"));
+    ImageIcon Icon_Listar = new ImageIcon(Admin.class.getResource("/Imagens/Listar_1.png"));
+    ImageIcon Icon_CarregarInf = new ImageIcon(Admin.class.getResource("/Imagens\\CarregarInf.png"));
+    ImageIcon Icon_ActualizarC = new ImageIcon(Admin.class.getResource("/Imagens/editar.png"));
+    ImageIcon Icon_Proximo = new ImageIcon(Admin.class.getResource("/Imagens/proximo.png"));
+    ImageIcon Icon_Anterior = new ImageIcon(Admin.class.getResource("/Imagens/anterior.png"));
+    ImageIcon Icon_ListarFun = new ImageIcon(Admin.class.getResource("/Imagens/listarFun.png"));
 
     ///
     ///
-    ImageIcon Icon_EscreverMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/escrever-mensagem.png"));
-    ImageIcon Icon_CaixaMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/caixaMenssagens.png"));
-    ImageIcon Icon_RelatorioMenssagem = new ImageIcon(Gerente.class.getResource("/Imagens/relatorio_1.png"));
+    ImageIcon Icon_EscreverMenssagem = new ImageIcon(Admin.class.getResource("/Imagens/escrever-mensagem.png"));
+    ImageIcon Icon_CaixaMenssagem = new ImageIcon(Admin.class.getResource("/Imagens/caixaMenssagens.png"));
+    ImageIcon Icon_RelatorioMenssagem = new ImageIcon(Admin.class.getResource("/Imagens/relatorio_1.png"));
     //Icons
 
-    ImageIcon Icon_foto = new ImageIcon(Gerente.class.getResource("/Imagens/imagemGaleria.png"));
-    ImageIcon Icon_CarregarFoto = new ImageIcon(Gerente.class.getResource("/Imagens/CarregarImagemF.png"));
-    ImageIcon Icon_Actualizar = new ImageIcon(Gerente.class.getResource("/Imagens/editar.png"));
-    ImageIcon Icon_Eliminar = new ImageIcon(Gerente.class.getResource("/Imagens/excluir.png"));
-    ImageIcon Icon_Menssagem = new ImageIcon(Gerente.class.getResource("/Imagens/mensagem.png"));
+    ImageIcon Icon_foto = new ImageIcon(Admin.class.getResource("/Imagens/imagemGaleria.png"));
+    ImageIcon Icon_foto1 = new ImageIcon(Admin.class.getResource(""));
+    ImageIcon Icon_CarregarFoto = new ImageIcon(Admin.class.getResource("/Imagens/CarregarImagemF.png"));
+    ImageIcon Icon_Actualizar = new ImageIcon(Admin.class.getResource("/Imagens/editar.png"));
+    ImageIcon Icon_Eliminar = new ImageIcon(Admin.class.getResource("/Imagens/excluir.png"));
+    ImageIcon Icon_Menssagem = new ImageIcon(Admin.class.getResource("/Imagens/mensagem.png"));
 
     private ImageIcon icon;
     private byte[] imagemBytes;
+    Long chave = null;
+    String codigo = null;
+    int linha = 0;
+    DefaultListModel<Funcionario> modelo = new DefaultListModel<>();
 
-    public Gerente() {
+    public static long id;
+
+    public static long getId() {
+        return id;
+    }
+
+    public static void setId(long id) {
+        Admin.id = id;
+    }
+
+    public Admin() {
+        Login l = new Login();
+        l.setVisible(false);
+        dispose();
 
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
@@ -218,10 +239,10 @@ public class Gerente extends JFrame {
         JLabel lblFormacao = new JLabel();
         JTextField txtbarra = new JTextField();
 
-        txtbarra.setBounds(10, 220, 255, 1);
-        lblFoto.setBounds(10, 70, 130, 120);
-        lblNomefuncionario.setBounds(150, 135, 280, 30);
-        lblFormacao.setBounds(150, 125, 280, 100);
+        txtbarra.setBounds(5, 240, 255, 1);
+        lblFoto.setBounds(5, 70, 150, 150);
+        lblNomefuncionario.setBounds(155, 135, 280, 30);
+        lblFormacao.setBounds(180, 125, 280, 100);
         lblNomefuncionario.setText("Holy Man");
         lblFormacao.setText("Gerente");
         lblFormacao.setForeground(Color.white);
@@ -229,8 +250,8 @@ public class Gerente extends JFrame {
         lblNomefuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
         lblFormacao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 12));
 
-        //Criando instancias dos botoes da tela Gerente
-        JButton btnPerfil = new JButton("   Meu Perfil");
+        //Criando instancias dos botoes da tela Admin
+        JButton btnMeuPerfil = new JButton("   Meu Perfil");
         JButton btnGestao_Produtos = new JButton(" Categorias & Produtos");
         JButton btnGestao_Funcionarios = new JButton("  Funcionarios");
         JButton btnVisaoGeral = new JButton("  Visão Geral");
@@ -240,14 +261,14 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.setForeground(Color.white);
         btnGestao_Funcionarios.setForeground(Color.white);
         btnVisaoGeral.setForeground(Color.white);
-        btnPerfil.setForeground(Color.white);
+        btnMeuPerfil.setForeground(Color.white);
         btnVoltar.setForeground(Color.white);
 
         //Personalizando o Background dos Botoes
         btnGestao_Produtos.setBackground(new Color(102, 102, 255));
         btnGestao_Funcionarios.setBackground(new Color(102, 102, 255));
         btnVisaoGeral.setBackground(new Color(102, 102, 255));
-        btnPerfil.setBackground(new Color(102, 102, 255));
+        btnMeuPerfil.setBackground(new Color(102, 102, 255));
         btnVoltar.setBackground(new Color(102, 102, 255));
 
         //Personalizando a Borda dos Botoes
@@ -257,8 +278,8 @@ public class Gerente extends JFrame {
         btnGestao_Funcionarios.setFocusPainted(false);
         btnVisaoGeral.setBorder(BorderFactory.createEmptyBorder());
         btnVisaoGeral.setFocusPainted(false);
-        btnPerfil.setBorder(BorderFactory.createEmptyBorder());
-        btnPerfil.setFocusPainted(false);
+        btnMeuPerfil.setBorder(BorderFactory.createEmptyBorder());
+        btnMeuPerfil.setFocusPainted(false);
         btnVoltar.setBorder(BorderFactory.createEmptyBorder());
         btnVoltar.setFocusPainted(false);
 
@@ -266,12 +287,12 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnGestao_Funcionarios.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnVisaoGeral.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
-        btnPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
+        btnMeuPerfil.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
         btnVoltar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 18));
 
         //Colocando Icon
         lblFoto.setIcon(Icon_Admin);
-        btnPerfil.setIcon(Icon_Perfil);
+        btnMeuPerfil.setIcon(Icon_Perfil);
         btnVoltar.setIcon(Icon_Voltar);
         btnGestao_Funcionarios.setIcon(Icon_Gestao_Funcionario);
         btnGestao_Produtos.setIcon(Icon_Produtos_Categoria);
@@ -281,7 +302,7 @@ public class Gerente extends JFrame {
         btnGestao_Produtos.setBounds(3, 250, 260, 40);
         btnGestao_Funcionarios.setBounds(6, 310, 170, 40);
         btnVisaoGeral.setBounds(6, 380, 160, 40);
-        btnPerfil.setBounds(6, 450, 145, 40);
+        btnMeuPerfil.setBounds(6, 450, 145, 40);
         btnVoltar.setBounds(6, 520, 110, 40);
 
         //Adicionando as  Compomentes ao painel 
@@ -292,28 +313,181 @@ public class Gerente extends JFrame {
         pnlMenu_Botoes.add(btnGestao_Produtos);
         pnlMenu_Botoes.add(btnGestao_Funcionarios);
         pnlMenu_Botoes.add(btnVisaoGeral);
-        pnlMenu_Botoes.add(btnPerfil);
+        pnlMenu_Botoes.add(btnMeuPerfil);
         pnlMenu_Botoes.add(btnVoltar);
+
+        //Instancia do objecto da classe dAO QUE TRAZ O METODO necessario para trazer tudo sobre o funcionario
+        DAO_Funcionario dao_fun = new DAO_Funcionario();
+        Funcionario fun = new Funcionario();
+        //Pegando o id
+        fun.setId(l.getId());
+
+        // Chamando o metodo e atribuindo os dados a uma lista_Fun
+        ArrayList<Funcionario> lista = dao_fun.Find_Fun(fun);
+
+        //Neste é onde colocamos a imagem e o nome do Funcionario
+        for (Funcionario i : lista) {
+
+            byte[] img = i.getFoto();
+            BufferedImage imagem = null;
+            try {
+                imagem = ImageIO.read(new ByteArrayInputStream(img));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+            lblNomefuncionario.setText(i.getNome());
+            lblFoto.setIcon(Icone);
+
+        }
 
         // Criando Instancias de paineis a serem usados  nos botoes abaixos
         JPanel pnlGestao_Funcionarios = new JPanel();
         JPanel pnlVisaoGeral = new JPanel();
         JPanel pnlMenssagens = new JPanel();
         JPanel pnlConfiguracoes = new JPanel();
-        JPanel pnlPerfil = new JPanel();
+        JPanel pnlMeuPerfil = new JPanel();
 
         // Dando visibilidade inicial
         pnlGestao_Funcionarios.setVisible(false);
         pnlVisaoGeral.setVisible(false);
         pnlMenssagens.setVisible(false);
         pnlConfiguracoes.setVisible(false);
-        pnlPerfil.setVisible(false);
+        pnlMeuPerfil.setVisible(false);
 
         //Background
         pnlGestao_Funcionarios.setBackground(Color.white);
         pnlVisaoGeral.setBackground(Color.white);
         pnlMenssagens.setBackground(Color.white);
         pnlConfiguracoes.setBackground(Color.white);
+
+        btnMeuPerfil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pnlPrincipal.setVisible(true);
+                pnlGestao_Funcionarios.setVisible(false);
+                pnlVisaoGeral.setVisible(false);
+                pnlConfiguracoes.setVisible(false);
+                pnlMenssagens.setVisible(false);
+                pnlMenu_Botoes.setVisible(false);
+
+                pnlMeuPerfil.setBounds(0, 0, 280, 700);
+                pnlMeuPerfil.setBackground(new Color(102, 102, 255));
+                pnlMeuPerfil.setLayout(null);
+
+                pnlPrincipal.setBounds(280, 0, 920, 700);
+
+                //Declarando as componentes
+                JLabel lblApelido = new JLabel();
+                JLabel lblNomeFuncionario = new JLabel();
+                JLabel lblGenero = new JLabel();
+                JLabel lblData_Nascimento = new JLabel();
+                JLabel lblNumeroBI = new JLabel();
+                JLabel lblEmail = new JLabel();
+                JLabel lblContacto = new JLabel();
+                JLabel lblestado = new JLabel();
+                JTextField txtbarra1 = new JTextField();
+                JButton btnSair2 = new JButton("  Voltar");
+
+                //Neste passo Continuo com a lista_Fun, mas somente vou colocar os dados referente ao funcionario
+                JLabel lblFotografia = new JLabel();
+
+                for (Funcionario i : lista) {
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                    lblFotografia.setIcon(Icone);
+
+                    lblApelido.setText("Apelido :  " + i.getApelido());
+                    lblNomeFuncionario.setText("Nome : " + i.getNome());
+                    lblGenero.setText("Genero : " + i.getGenero());
+                    lblData_Nascimento.setText("Data de Nascimento : " + i.getData_nascimento());
+                    lblNumeroBI.setText("Numero de BI : " + i.getNumero_BI_Nuit());
+                    lblEmail.setText("Email: " + i.getEmail());
+                    lblContacto.setText("Contacto : " + i.getContacto());
+                    lblestado.setText("Estado : " + i.getEstado());
+
+                }
+
+                //Comando para mudar o Foreground (cor das letras)
+                lblApelido.setForeground(Color.white);
+                lblNomeFuncionario.setForeground(Color.white);
+                lblGenero.setForeground(Color.white);
+                lblData_Nascimento.setForeground(Color.white);
+                lblNumeroBI.setForeground(Color.white);
+                lblEmail.setForeground(Color.white);
+                lblContacto.setForeground(Color.white);
+                lblestado.setForeground(Color.white);
+
+                // Reajustando a posicao das componentes criadas
+                lblFotografia.setBounds(45, 70, 180, 180);
+                lblApelido.setBounds(30, 251, 280, 30);
+                lblNomeFuncionario.setBounds(30, 291, 280, 30);
+                lblGenero.setBounds(30, 331, 280, 30);
+                lblData_Nascimento.setBounds(30, 371, 280, 30);
+                lblNumeroBI.setBounds(30, 411, 280, 30);
+                lblEmail.setBounds(30, 451, 280, 30);
+                lblContacto.setBounds(30, 491, 280, 30);
+                lblestado.setBounds(30, 531, 280, 30);
+                txtbarra1.setBounds(30, 231, 205, 1);
+                btnSair2.setBounds(10, 591, 140, 30);
+
+                // Personalizando o botao voltar
+                btnSair2.setBorder(BorderFactory.createEmptyBorder());
+                btnSair2.setFocusPainted(false);
+
+                btnSair2.setBackground(new Color(102, 102, 255));
+                btnSair2.setForeground(Color.white);
+
+                //Colocando Icon nos botoes
+                btnSair2.setIcon(Icon_Voltar);
+
+                //Personalizando a fonte da labels
+                lblApelido.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblNomeFuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblGenero.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblData_Nascimento.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblNumeroBI.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblEmail.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblContacto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lblestado.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                btnSair2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+
+                //Adicionando todas componentes ao painel
+                pnlMeuPerfil.add(lblFotografia);
+                pnlMeuPerfil.add(lblApelido);
+                pnlMeuPerfil.add(lblNomeFuncionario);
+                pnlMeuPerfil.add(lblGenero);
+                pnlMeuPerfil.add(lblData_Nascimento);
+                pnlMeuPerfil.add(lblNumeroBI);
+                pnlMeuPerfil.add(lblEmail);
+                pnlMeuPerfil.add(lblContacto);
+                pnlMeuPerfil.add(lblestado);
+                pnlMeuPerfil.add(txtbarra1);
+                pnlMeuPerfil.add(btnSair2);
+                pnlauxPrincipal.add(pnlMeuPerfil);
+                pnlauxPrincipal.add(pnlPrincipal);
+                pnlMeuPerfil.setVisible(true);
+
+                // dando acção ao botao para voltar
+                btnSair2.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        pnlMeuPerfil.setVisible(false);
+                        pnlMenu_Botoes.setVisible(true);
+                    }
+                });
+
+            }
+        });
 
         // dando acção ao botao Gestao de Produtos
         btnGestao_Produtos.addActionListener(new ActionListener() {
@@ -324,7 +498,7 @@ public class Gerente extends JFrame {
                 pnlVisaoGeral.setVisible(false);
                 pnlMenssagens.setVisible(false);
                 pnlConfiguracoes.setVisible(false);
-                pnlPerfil.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
                 pnlMenu_Botoes.setVisible(false);
 
                 JPanel pnlMenu_Gestaoprodutos = new JPanel();
@@ -343,10 +517,26 @@ public class Gerente extends JFrame {
                 JTextField txtbarra2 = new JTextField();
                 JLabel lblFotografia = new JLabel();
 
-                lblFotografia.setIcon(Icon_Logo);
+                // Colocando a imagem de perfil
+                for (Funcionario i : lista) {
+
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                    lblNomefuncionario.setText(i.getNome());
+                    lblFotografia.setIcon(Icone);
+
+                }
                 btnGerirProdutos.setIcon(Icon_Gerir_Produtos);
 
-                lblFotografia.setBounds(45, 50, 180, 180);
+                lblFotografia.setBounds(45, 70, 180, 180);
                 txtbarra2.setBounds(45, 251, 180, 1);
                 btnGerirCategorias.setBounds(20, 281, 240, 40);
                 btnGerirProdutos.setBounds(13, 351, 240, 40);
@@ -418,28 +608,20 @@ public class Gerente extends JFrame {
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnEliminar = new JButton("Eliminar");
 
-                        String[] Colunas_Tabela = {"Codigo", "Nome ", "Imagem", "Data", "Estado"};
-                        String[][] inf = {{}};
+                        String[] Colunas = {"Codigo", "Nome ", "Data", "Estado"};
+                        DefaultTableModel model = new DefaultTableModel(Colunas, 0);
 
-                        DefaultTableModel Linhas_Colunas = new DefaultTableModel(inf, Colunas_Tabela);
-                        JTable Lista_Produtos = new JTable(Linhas_Colunas);
-                        JTableHeader header_Lista = Lista_Produtos.getTableHeader();
+                        JTable Lista_Categorias = new JTable(model);
+                        JTableHeader header_Lista = Lista_Categorias.getTableHeader();
 
                         //Personalizando a Linhas_Colunas
                         header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Lista.setForeground(new Color(102, 102, 255));
-                        Lista_Produtos.setShowGrid(false);
+                        Lista_Categorias.setShowGrid(false);
 
-                        Lista_Produtos.setModel(Linhas_Colunas);
-                        Lista_Produtos.setRowHeight(150);
+                        Lista_Categorias.setRowHeight(30);
 
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(50);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(150);
-
-                        Linhas_Colunas.setRowCount(10);
-                        JScrollPane rol = new JScrollPane(Lista_Produtos);
+                        JScrollPane rol = new JScrollPane(Lista_Categorias);
 
                         // Adicionando Icon    
                         lblFoto.setIcon(Icon_Foto);
@@ -506,6 +688,8 @@ public class Gerente extends JFrame {
                         jcStatusCategoria.setEnabled(false);
                         btnCadastrar.setEnabled(false);
                         btnCarregarImagem.setEnabled(false);
+                        btnActualizar.setEnabled(false);
+                        btnEliminar.setEnabled(false);
 
                         //Eventos em cada Campo a ser Introduzido Dados 
                         txtNome.addKeyListener(new KeyListener() {
@@ -588,11 +772,112 @@ public class Gerente extends JFrame {
 
                         });
 
+                        //Farei o metodo que vai buscar os dados e colocar na  tabela 
+                        Controller_Categoria c_Categoria = new Controller_Categoria();
+                        DAO_Categoria dao_c = new DAO_Categoria();
+
+                        ArrayList<Categorias> lista = dao_c.FindAll_Categoria();
+
+                        int tamanho;
+
+                        if (lista == null) {
+                            tamanho = 0;
+                            JOptionPane.showMessageDialog(null, "Nao existe categoria cadastrada ainda!");
+
+                        } else {
+                            tamanho = lista.size();
+
+                            for (Categorias i : lista) {
+                                Object[] row = new Object[4];
+
+                                row[0] = i.getCodigoCategoria();
+                                row[1] = i.getNome_categoria();
+                                row[2] = i.getData_cadastro();
+                                row[3] = i.getStatus();
+                                model.addRow(row);
+
+                            }//Fim do for loop
+
+                        }
+                        // Dando Evento a tabela de Categorias 
+                        Lista_Categorias.addMouseListener(new MouseListener() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+
+                                btnCadastrar.setEnabled(false);
+                                btnActualizar.setEnabled(true);
+                                btnEliminar.setEnabled(true);
+                                btnCarregarImagem.setEnabled(true);
+
+                                txtNome.setEnabled(true);
+                                jcStatusCategoria.setEnabled(false);
+
+                                linha = Lista_Categorias.getSelectedRow();
+
+                                codigo = (String) Lista_Categorias.getModel().getValueAt(Lista_Categorias.getSelectedRow(), 0);
+                                txtNome.setText((String) Lista_Categorias.getModel().getValueAt(Lista_Categorias.getSelectedRow(), 1));
+                                data.setDate((Date) Lista_Categorias.getModel().getValueAt(Lista_Categorias.getSelectedRow(), 2));
+                                jcStatusCategoria.setSelectedItem((String) Lista_Categorias.getModel().getValueAt(Lista_Categorias.getSelectedRow(), 3));
+
+                                for (int i = 0; i < lista.size(); i++) {
+                                    if (lista.get(i).getCodigoCategoria() == (codigo)) {
+
+                                        byte[] img = lista.get(i).getImagem();
+                                        BufferedImage imagem = null;
+                                        try {
+                                            imagem = ImageIO.read(new ByteArrayInputStream(img));
+                                        } catch (IOException ex) {
+                                            JOptionPane.showMessageDialog(null, "Erro ao Converter a Imagem " + ex.getMessage());
+                                        }
+
+                                        ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                                        lblFoto.setIcon(null);
+                                        lblFoto.setIcon(Icone);
+                                        lblFoto.setBounds(407, 145, 225, 150);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+
+                            }
+
+                        });
                         //Acção para cada um dos botoes
                         btnCadastrar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 
+                                Controller_Categoria c = new Controller_Categoria();
+                                String codigo = "CATSM" + 1000 + tamanho;
+                                String nome = txtNome.getText();
+
+                                java.util.Date data_cadastro = data.getDate();
+
+                                java.sql.Date data2 = new java.sql.Date(data_cadastro.getTime());
+
+                                String estado = (String) jcStatusCategoria.getSelectedItem();
+
+                                byte[] img = imagemBytes;
+
+                                c.Verificacao_Save(codigo, nome, data2, img, estado);
                             }
                         });
 
@@ -604,19 +889,11 @@ public class Gerente extends JFrame {
                                 Controller_Categoria c_categoria = new Controller_Categoria();
 
                                 //Pegando o metodo que me Permiti pegar uma imagem
-                                Image img = c_categoria.CarregarImagem(lblFoto);
-
-                                lblFoto.setIcon(new ImageIcon(img));
+                                imagemBytes = c_categoria.CarregarImagem(lblFoto);
+                                icon = new ImageIcon(imagemBytes);
+                                lblFoto.setIcon(icon);
                                 lblFoto.updateUI();
-                                lblFoto.setBounds(400, 145, 150, 150);
-
-                            }
-                        });
-
-                        //Eliminar
-                        btnEliminar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
+                                lblFoto.setBounds(407, 145, 225, 150);
 
                             }
                         });
@@ -625,6 +902,45 @@ public class Gerente extends JFrame {
                         btnActualizar.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
+                                Controller_Categoria c = new Controller_Categoria();
+
+                                String nome = txtNome.getText();
+
+                                java.util.Date data_cadastro = data.getDate();
+
+                                java.sql.Date data2 = new java.sql.Date(data_cadastro.getTime());
+
+                                byte[] img = imagemBytes;
+
+                                if (img == null) {
+                                    for (Categorias i : lista) {
+                                        if (i.getCodigoCategoria().equals(codigo)) {
+                                            img = i.getImagem();
+                                        }
+                                    }
+
+                                }
+
+                                c.Verificacao_Update(codigo, nome, data2, img);
+                            }
+
+                        });
+                        //Eliminar
+                        btnEliminar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                DAO_Categoria dao_c = new DAO_Categoria();
+                                Categorias c = new Categorias();
+                                if (codigo == null) {
+                                    JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                                } else {
+                                    c.setCodigoCategoria(codigo);
+
+                                    c.setStatus(" Inactiva ");
+
+                                    dao_c.Estado_Categoria(c);
+                                }
 
                             }
                         });
@@ -659,7 +975,7 @@ public class Gerente extends JFrame {
                         pnlGestao_Funcionarios.setVisible(false);
                         pnlVisaoGeral.setVisible(false);
                         pnlMenssagens.setVisible(false);
-                        pnlPerfil.setVisible(false);
+                        pnlMeuPerfil.setVisible(false);
 
                         pnlGerirProdutos.setBackground(Color.white);
                         pnlGerirProdutos.setLayout(null);
@@ -1863,7 +2179,7 @@ public class Gerente extends JFrame {
                 pnlVisaoGeral.setVisible(false);
                 pnlMenssagens.setVisible(false);
                 pnlConfiguracoes.setVisible(false);
-                pnlPerfil.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
 
                 pnlGestao_Funcionarios.setBackground(Color.white);
                 pnlGestao_Funcionarios.setLayout(null);
@@ -1902,13 +2218,18 @@ public class Gerente extends JFrame {
                 JComboBox jcFuncao = new JComboBox<>();
                 JComboBox jcStatus = new JComboBox<>();
                 JTextField txtSalario = new JTextField();
+                JTextField txtpesquisa = new JTextField();
+                JScrollPane srp = new JScrollPane();
+                JList lista_2 = new JList();
+
+                srp.add(lista_2);
 
                 JButton btnCarregarFoto = new JButton("Carregar IMG");
                 JButton btnActualizar = new JButton("Actualizar");
-                JButton btnReset = new JButton("Limpar");
+                JButton btnReactivar = new JButton("Activar");
                 JButton btnCadastrar = new JButton("Cadastrar");
                 JButton btnProcurar = new JButton("procurar");
-                JButton btnEliminar = new JButton("Demitir");
+                JButton btnEliminar = new JButton("Desactivar");
 
                 //Foreground
                 lblTitulo.setForeground(new Color(102, 102, 255));
@@ -1964,8 +2285,10 @@ public class Gerente extends JFrame {
 
                 btnCadastrar.setBounds(470, 290, 120, 40);
                 btnActualizar.setBounds(600, 290, 125, 40);
-                btnEliminar.setBounds(470, 360, 100, 40);
-                btnReset.setBounds(600, 360, 100, 40);
+                btnEliminar.setBounds(470, 360, 130, 40);
+                btnReactivar.setBounds(600, 360, 100, 40);
+                txtpesquisa.setBounds(710, 360, 180, 35);
+                srp.setBounds(710, 400, 180, 35);
 
                 //cOLOCANDO AS INFORMACOES NAS CAIXAS
                 jcGenero.addItem("");
@@ -1974,7 +2297,7 @@ public class Gerente extends JFrame {
                 jcGenero.setBackground(Color.white);
 
                 jcFuncao.addItem("");
-                jcFuncao.addItem(" Helper Clients ");
+                jcFuncao.addItem("Ajudante");
                 jcFuncao.addItem(" Recepcionista ");
                 jcFuncao.addItem("Caixa");
                 jcFuncao.setBackground(Color.white);
@@ -1984,7 +2307,7 @@ public class Gerente extends JFrame {
                 jcStatus.addItem(" Inactivo ");
                 jcStatus.setBackground(Color.white);
 
-                txtPassword.setText("0000000000");
+                txtPassword.setText("00000000");
                 txtAcesso.setText("Funcionario");
 
                 txtPassword.setEnabled(false);
@@ -2008,7 +2331,7 @@ public class Gerente extends JFrame {
                 lblSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                 btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                btnReactivar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                 btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
@@ -2028,7 +2351,9 @@ public class Gerente extends JFrame {
                 jcFuncao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 jcStatus.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                 txtSalario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
+                lista_2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
 
+                lblFoto.setIcon(Icon_foto1);
                 lblFoto.setIcon(Icon_foto);
                 btnCarregarFoto.setIcon(Icon_CarregarFoto);
                 btnActualizar.setIcon(Icon_ActualizarC);
@@ -2040,8 +2365,8 @@ public class Gerente extends JFrame {
                 btnCarregarFoto.setFocusPainted(false);
                 btnActualizar.setBorder(BorderFactory.createEmptyBorder());
                 btnActualizar.setFocusPainted(false);
-                btnReset.setBorder(BorderFactory.createEmptyBorder());
-                btnReset.setFocusPainted(false);
+                btnReactivar.setBorder(BorderFactory.createEmptyBorder());
+                btnReactivar.setFocusPainted(false);
                 btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
                 btnCadastrar.setFocusPainted(false);
                 btnEliminar.setBorder(BorderFactory.createEmptyBorder());
@@ -2082,6 +2407,10 @@ public class Gerente extends JFrame {
                 txtSalario.setEnabled(false);
                 btnCadastrar.setEnabled(false);
                 btnCarregarFoto.setEnabled(false);
+                btnActualizar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnReactivar.setEnabled(false);
+                srp.setVisible(false);
 
                 //Campo nome do Funxionario, colocando eventos
                 txtApelido.addKeyListener(new KeyListener() {
@@ -2601,11 +2930,13 @@ public class Gerente extends JFrame {
                 pnlGestao_Funcionarios.add(jcFuncao);
                 pnlGestao_Funcionarios.add(jcStatus);
                 pnlGestao_Funcionarios.add(txtSalario);
+                pnlGestao_Funcionarios.add(txtpesquisa);
+                pnlGestao_Funcionarios.add(srp);
 
                 pnlGestao_Funcionarios.add(rol_Compras);
 
                 pnlGestao_Funcionarios.add(btnCarregarFoto);
-                pnlGestao_Funcionarios.add(btnReset);
+                pnlGestao_Funcionarios.add(btnReactivar);
                 pnlGestao_Funcionarios.add(btnActualizar);
                 pnlGestao_Funcionarios.add(btnCadastrar);
                 pnlGestao_Funcionarios.add(btnProcurar);
@@ -2632,12 +2963,12 @@ public class Gerente extends JFrame {
                 btnCadastrar.setForeground(new Color(0, 102, 255));
                 btnEliminar.setForeground(new Color(0, 102, 255));
                 btnProcurar.setForeground(new Color(0, 102, 255));
-                btnReset.setForeground(new Color(0, 102, 255));
+                btnReactivar.setForeground(new Color(0, 102, 255));
 
                 // Personalizando o BackGround
                 btnCarregarFoto.setBackground(Color.white);
                 btnActualizar.setBackground(Color.white);
-                btnReset.setBackground(Color.white);
+                btnReactivar.setBackground(Color.white);
                 btnCadastrar.setBackground(Color.white);
                 btnProcurar.setBackground(Color.white);
                 btnEliminar.setBackground(Color.white);
@@ -2646,38 +2977,42 @@ public class Gerente extends JFrame {
                 DAO_Funcionario dao_fun = new DAO_Funcionario();
 
                 //Invocando o metodo que traz todos os dados
-                ArrayList<Funcionario> lista = dao_fun.FindAll();
+                ArrayList<Funcionario> lista_Fun = dao_fun.FindAll();
 
                 DefaultTableModel model1 = new DefaultTableModel(Colunas_Compras, 0);
 
                 Tabela_Funcionarios.setModel(model1);
 
-                for (int i = 0; i < lista.size(); i++) {
+                for (int i = 0; i < lista_Fun.size(); i++) {
                     Object[] row = new Object[8];
+                    if (!lista_Fun.get(i).getNivel_acesso().equalsIgnoreCase("Gerente")) {
+                        row[0] = lista_Fun.get(i).getId();
+                        row[1] = lista_Fun.get(i).getApelido();
+                        row[2] = lista_Fun.get(i).getNome();
+                        row[3] = lista_Fun.get(i).getGenero();
+                        row[4] = lista_Fun.get(i).getEmail();
+                        row[5] = lista_Fun.get(i).getEstado();
+                        model1.addRow(row);
+                    }
 
-                    row[0] = lista.get(i).getCodigo_Fun();
-                    row[1] = lista.get(i).getApelido();
-                    row[2] = lista.get(i).getNome();
-                    row[3] = lista.get(i).getGenero();
-                    row[4] = lista.get(i).getEmail();
-                    row[5] = lista.get(i).getEstado();
-                    model1.addRow(row);
                 }
-
                 //Dando ação aos Botoes
                 btnCadastrar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //Formatando as caixas de data
-                        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                        //Formatando as caixas
 
                         Controller_Funcionario c_fun = new Controller_Funcionario();
 
                         int contacto = Integer.parseInt(txtContacto.getText());
                         double salario = Double.parseDouble(txtSalario.getText());
 
-                        Date nascimento = (txtNascimento.getDate());
-                        Date contratacao = (txtData_Contratacao.getDate());
+                        java.util.Date nascimento = txtNascimento.getDate();
+
+                        java.util.Date contratacao = (txtData_Contratacao.getDate());
+
+                        java.sql.Date nascimento2 = new java.sql.Date(nascimento.getTime());
+                        java.sql.Date contratacao2 = new java.sql.Date(contratacao.getTime());
 
                         String genero = (String) jcGenero.getSelectedItem();
                         String funcao = (String) jcFuncao.getSelectedItem();
@@ -2690,9 +3025,27 @@ public class Gerente extends JFrame {
                         String password = txtPassword.getText();
                         String acesso = txtAcesso.getText();
                         String endereco = txtEndereco.getText();
-                        String codigo_fun = "FUNSM_" + 1000;
-                        c_fun.Verificacao(codigo_fun, apelido, nome, bi, genero, nascimento, email, password, contacto, contratacao, acesso, endereco, funcao, status, salario, imagemBytes);
 
+                        long tamanho = lista_Fun.size() + 1;
+
+                        String codigo_fun = "FUNSM" + 1000 + tamanho;
+
+                        c_fun.Verificacao(codigo_fun, apelido, nome, bi, genero, nascimento2, email, password, contacto, contratacao2, acesso, endereco, funcao, status, salario, imagemBytes);
+
+                        for (int i = 0; i < lista_Fun.size(); i++) {
+                            Object[] row = new Object[8];
+                            if ((i == lista_Fun.size() - 1) && (!lista_Fun.get(i).getNivel_acesso().equalsIgnoreCase("Gerente"))) {
+
+                                row[0] = lista_Fun.get(i).getId();
+                                row[1] = lista_Fun.get(i).getApelido();
+                                row[2] = lista_Fun.get(i).getNome();
+                                row[3] = lista_Fun.get(i).getGenero();
+                                row[4] = lista_Fun.get(i).getEmail();
+                                row[5] = lista_Fun.get(i).getEstado();
+                                model1.addRow(row);
+                            }
+
+                        }
                     }
                 });
 
@@ -2711,16 +3064,16 @@ public class Gerente extends JFrame {
                     }
                 });
 
-                btnActualizar.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Controller_Funcionario c = new Controller_Funcionario();
-
-                    }
-                });
                 Tabela_Funcionarios.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+
+                        btnCadastrar.setEnabled(false);
+                        btnActualizar.setEnabled(true);
+                        btnEliminar.setEnabled(true);
+                        btnReactivar.setEnabled(true);
+                        btnCarregarFoto.setEnabled(true);
+
                         txtNome.setEnabled(true);
                         txtBI_Nuit.setEnabled(true);
                         jcGenero.setEnabled(true);
@@ -2733,29 +3086,27 @@ public class Gerente extends JFrame {
                         jcFuncao.setEnabled(true);
                         jcStatus.setEnabled(true);
                         txtSalario.setEnabled(true);
-                        btnCadastrar.setEnabled(false);
-                        btnCarregarFoto.setEnabled(true);
 
-                        int linha_escolhida = Tabela_Funcionarios.getSelectedRow();
+                        linha = Tabela_Funcionarios.getSelectedRow();
 
-                        String id = (String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 0);
+                        chave = (Long) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 0);
                         txtApelido.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 1));
                         txtNome.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 2));
                         jcGenero.setSelectedItem((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 3));
                         txtEmail.setText((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 4));
                         jcStatus.setSelectedItem((String) Tabela_Funcionarios.getModel().getValueAt(Tabela_Funcionarios.getSelectedRow(), 5));
 
-                        for (int i = 0; i < lista.size(); i++) {
-                            if (lista.get(i).getCodigo_Fun().equalsIgnoreCase(id)) {
-                                txtBI_Nuit.setText(lista.get(i).getNumero_BI_Nuit());
-                                txtNascimento.setDate(lista.get(i).getData_nascimento());
-                                txtContacto.setText(String.valueOf(lista.get(i).getContacto()));
-                                txtData_Contratacao.setDate(lista.get(i).getData_contratacao());
-                                txtEndereco.setText(lista.get(i).getEndereco());
-                                jcFuncao.setSelectedItem(lista.get(i).getFuncao());
-                                txtSalario.setText(String.valueOf(lista.get(i).getSalario()));
+                        for (int i = 0; i < lista_Fun.size(); i++) {
+                            if (lista_Fun.get(i).getId() == (chave)) {
+                                txtBI_Nuit.setText(lista_Fun.get(i).getNumero_BI_Nuit());
+                                txtNascimento.setDate(lista_Fun.get(i).getData_nascimento());
+                                txtContacto.setText(String.valueOf(lista_Fun.get(i).getContacto()));
+                                txtData_Contratacao.setDate(lista_Fun.get(i).getData_contratacao());
+                                txtEndereco.setText(lista_Fun.get(i).getEndereco());
+                                jcFuncao.setSelectedItem(lista_Fun.get(i).getFuncao());
+                                txtSalario.setText(String.valueOf(lista_Fun.get(i).getSalario()));
 
-                                byte[] img = lista.get(i).getFoto();
+                                byte[] img = lista_Fun.get(i).getFoto();
                                 BufferedImage imagem = null;
                                 try {
                                     imagem = ImageIO.read(new ByteArrayInputStream(img));
@@ -2764,12 +3115,12 @@ public class Gerente extends JFrame {
                                 }
 
                                 ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                                lblFoto.setIcon(null);
                                 lblFoto.setIcon(Icone);
                                 lblFoto.setBounds(730, 95, 225, 210);
 
                             }
                         }
-
                     }
 
                     @Override
@@ -2793,6 +3144,159 @@ public class Gerente extends JFrame {
                     }
 
                 });
+                btnActualizar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        Controller_Funcionario c_fun = new Controller_Funcionario();
+
+                        int contacto = Integer.parseInt(txtContacto.getText());
+                        double salario = Double.parseDouble(txtSalario.getText());
+
+                        java.util.Date nascimento = txtNascimento.getDate();
+
+                        java.util.Date contratacao = (txtData_Contratacao.getDate());
+
+                        java.sql.Date nascimento2 = new java.sql.Date(nascimento.getTime());
+                        java.sql.Date contratacao2 = new java.sql.Date(contratacao.getTime());
+
+                        String genero = (String) jcGenero.getSelectedItem();
+                        String funcao = (String) jcFuncao.getSelectedItem();
+                        String status = (String) jcStatus.getSelectedItem();
+
+                        String apelido = txtApelido.getText();
+                        String nome = txtNome.getText();
+                        String bi = txtBI_Nuit.getText();
+                        String email = txtEmail.getText();
+                        String password = txtPassword.getText();
+                        String acesso = txtAcesso.getText();
+                        String endereco = txtEndereco.getText();
+
+                        byte[] img = null;
+                        long id = 0;
+
+                        for (Funcionario i : lista_Fun) {
+
+                            if (i.getId() == chave) {
+                                id = chave;
+                                if (imagemBytes == null) {
+                                    img = i.getFoto();
+                                } else {
+                                    img = imagemBytes;
+                                }
+                            }
+
+                        }
+
+                        c_fun.Verificacao_Update_Manager(id, apelido, nome, bi, genero, nascimento2, email, password, contacto, contratacao2, acesso, endereco, funcao, status, salario, img);
+
+                        //Invocando o metodo que traz todos os dados
+                    }
+                });
+
+                btnEliminar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        DAO_Funcionario dao_fun = new DAO_Funcionario();
+                        if (chave == null) {
+                            JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                        } else {
+                            fun.setId(chave);
+
+                            fun.setEstado(" Inactivo ");
+
+                            dao_fun.Estado_Fun(fun);
+                        }
+
+                    }
+
+                });
+                btnReactivar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        DAO_Funcionario dao_fun = new DAO_Funcionario();
+                        if (chave == null) {
+                            JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                        } else {
+                            fun.setId(chave);
+
+                            fun.setEstado(" Activo ");
+
+                            dao_fun.Estado_Fun(fun);
+                        }
+
+                    }
+
+                });
+
+                lista_2.setModel(modelo);
+
+                txtpesquisa.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        char c = e.getKeyChar();
+                        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c) || (e.getKeyCode() == KeyEvent.VK_DOWN) || (e.getKeyCode() == KeyEvent.VK_RIGHT) || (e.getKeyCode() == KeyEvent.VK_LEFT)) {
+                            txtpesquisa.setEditable(true);
+                            if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+                            }
+
+                        } else {
+                            txtpesquisa.setEditable(false);
+                            JOptionPane.showMessageDialog(null, "Introduza Caracteres validos!!!");
+                        }
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        //Pegando o tamanho do texto
+                        int comprimentoTexto = txtpesquisa.getText().length();
+
+                        // Define a cor da borda com base no comprimento do texto
+                        Color cor = (comprimentoTexto < 1) ? Color.RED : Color.GREEN;
+
+                        // Cria uma borda com a cor desejada
+                        Border bordaColorida = BorderFactory.createLineBorder(cor);
+
+                        // Aplica a borda ao campo de texto
+                        txtpesquisa.setBorder(bordaColorida);
+
+                        // Permitindo com que o campo seguinte seja aberto assim como nao
+                        if (cor.equals(Color.GREEN)) {
+                            srp.setVisible(true);
+                            DAO_Funcionario dao_fun = new DAO_Funcionario();
+
+                            modelo = dao_fun.GoogleSearch(txtpesquisa);
+
+                        } else {
+                            srp.setVisible(false);
+
+                        }
+
+                        txtpesquisa.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+
+                                // Restaura a borda padrão quando o campo perde o foco
+                                txtpesquisa.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+
+                            }
+                        });
+
+                    }
+                }); // campopesquisa
+
                 pnlauxPrincipal.add(pnlGestao_Funcionarios);
                 pnlGestao_Funcionarios.setVisible(true);
             }
@@ -2806,7 +3310,7 @@ public class Gerente extends JFrame {
                 pnlMenssagens.setVisible(false);
                 pnlConfiguracoes.setVisible(false);
                 pnlGestao_Funcionarios.setVisible(false);
-                pnlPerfil.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
 
                 pnlVisaoGeral.setLayout(null);
                 pnlVisaoGeral.setBounds(280, 0, 920, 680);
@@ -2924,7 +3428,7 @@ public class Gerente extends JFrame {
                 pnlVisaoGeral.setVisible(false);
                 pnlConfiguracoes.setVisible(false);
                 pnlGestao_Funcionarios.setVisible(false);
-                pnlPerfil.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
 
                 JPanel pnlMenssagens = new JPanel();
                 pnlMenssagens.setLayout(null);
@@ -2939,13 +3443,30 @@ public class Gerente extends JFrame {
 
                 JTextField txtbarra2 = new JTextField();
                 JLabel lblFotografia = new JLabel();
-                lblFotografia.setIcon(Icon_Logo);
+
+                // Colocando a imagem de perfil
+                for (Funcionario i : lista) {
+
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                    lblNomefuncionario.setText(i.getNome());
+                    lblFotografia.setIcon(Icone);
+
+                }
                 btnEnviar.setIcon(Icon_EscreverMenssagem);
                 btnCaixa.setIcon(Icon_CaixaMenssagem);
                 btnGerir.setIcon(Icon_Configurações);
                 btnVoltarPrincipal.setIcon(Icon_Voltar);
 
-                lblFotografia.setBounds(45, 50, 180, 180);
+                lblFotografia.setBounds(45, 70, 180, 180);
                 txtbarra2.setBounds(30, 251, 210, 1);
                 btnEnviar.setBounds(30, 281, 130, 40);
                 btnCaixa.setBounds(30, 351, 140, 40);
@@ -3158,10 +3679,27 @@ public class Gerente extends JFrame {
 
                         JTextField txtbarra2 = new JTextField();
                         JLabel lblFotografia = new JLabel();
-                        lblFotografia.setIcon(Icon_Logo);
+
+                        // Colocando a imagem de perfil
+                        for (Funcionario i : lista) {
+
+                            byte[] img = i.getFoto();
+                            BufferedImage imagem = null;
+                            try {
+                                imagem = ImageIO.read(new ByteArrayInputStream(img));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                            lblNomefuncionario.setText(i.getNome());
+                            lblFotografia.setIcon(Icone);
+
+                        }
                         btnRelatorio_enviadas.setIcon(Icon_RelatorioMenssagem);
 
-                        lblFotografia.setBounds(45, 50, 180, 180);
+                        lblFotografia.setBounds(45, 50, 150, 150);
                         txtbarra2.setBounds(30, 251, 210, 1);
                         btnMenssagens_Envidas.setBounds(20, 281, 240, 40);
                         btnMenssagens_Recebidas.setBounds(13, 351, 240, 40);
@@ -3293,7 +3831,7 @@ public class Gerente extends JFrame {
                 pnlVisaoGeral.setVisible(false);
                 pnlMenssagens.setVisible(false);
                 pnlGestao_Funcionarios.setVisible(false);
-                pnlPerfil.setVisible(false);
+                pnlMeuPerfil.setVisible(false);
 
                 pnlConfiguracoes.setBounds(0, 0, 280, 700);
                 pnlConfiguracoes.setBackground(new Color(102, 102, 255));
@@ -3306,7 +3844,7 @@ public class Gerente extends JFrame {
                 JLabel lblFotografia = new JLabel();
                 JTextField txtbarra = new JTextField();
 
-                lblFotografia.setBounds(45, 50, 180, 180);
+                lblFotografia.setBounds(45, 70, 150, 150);
                 txtbarra.setBounds(30, 251, 210, 1);
 
                 btnActualizardados.setBounds(20, 280, 220, 40);
@@ -3325,7 +3863,23 @@ public class Gerente extends JFrame {
                 btnActualizardados.setBorder(BorderFactory.createEmptyBorder());
                 btnActualizardados.setFocusPainted(false);
 
-                lblFotografia.setIcon(Icon_Logo);
+                // Colocando a imagem de perfil
+                for (Funcionario i : lista) {
+
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                    lblNomefuncionario.setText(i.getNome());
+                    lblFotografia.setIcon(Icone);
+
+                }
                 btnVoltar.setIcon(Icon_Voltar);
                 btnActualizardados.setIcon(Icon_Gestao_Funcionario);
 
@@ -3333,6 +3887,18 @@ public class Gerente extends JFrame {
                 pnlConfiguracoes.add(txtbarra);
                 pnlConfiguracoes.add(btnVoltar);
                 pnlConfiguracoes.add(btnActualizardados);
+
+                for (Funcionario i : lista) {
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                        ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                        lblFotografia.setIcon(Icone);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
 
                 // Declarando os paineis que irei usar no botao defincao
                 JPanel pnlActualizar_Dados = new JPanel();
@@ -3396,9 +3962,9 @@ public class Gerente extends JFrame {
                         JButton btnActualizar = new JButton("Actualizar");
 
                         // Criando a tabela 
-                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Fotografia"};
-                        String[][] inf = {{}};
-                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
+                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Estado"};
+
+                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(Colunas, 0);
 
                         // Criando as Tabelas/Listas
                         JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
@@ -3406,8 +3972,6 @@ public class Gerente extends JFrame {
 
                         Lista_Funcionarios.setShowGrid(false);//
                         Lista_Funcionarios.setRowHeight(120);
-
-                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
 
                         header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header.setForeground(new Color(102, 102, 255));
@@ -3836,6 +4400,100 @@ public class Gerente extends JFrame {
                         // Personalizando o BackGround
                         btnCarregarFoto.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
+
+                        for (Funcionario i : lista) {
+                            Object[] row = new Object[8];
+
+                            row[0] = i.getEmail();
+                            row[1] = i.getPassword();
+                            row[2] = i.getContacto();
+                            row[3] = i.getEndereco();
+                            row[4] = i.getEstado();
+
+                            tabela_Funcionarios.addRow(row);
+
+                        }//Fim do for loop
+
+                        for (Funcionario i : lista) {
+
+                            txtApelido.setText(i.getApelido());
+                            txtNome.setText(i.getNome());
+                            jcGenero.setSelectedItem(i.getGenero());
+                            txtBI_Nuit.setText(i.getNumero_BI_Nuit());
+                            txtNascimento.setDate(i.getData_nascimento());
+                            txtContacto.setText(String.valueOf(i.getContacto()));
+                            txtEmail.setText(i.getEmail());
+                            txtPassword.setText(i.getPassword());
+                            txtData_Contratacao.setDate(i.getData_contratacao());
+                            txtEndereco.setText(i.getEndereco());
+                            jcFuncao.setSelectedItem(i.getFuncao());
+                            txtSalario.setText(String.valueOf(i.getSalario()));
+                            txtAcesso.setText(i.getNivel_acesso());
+                            jcStatus.setSelectedItem(i.getEstado());
+
+                            byte[] img = i.getFoto();
+                            BufferedImage imagem = null;
+                            try {
+                                imagem = ImageIO.read(new ByteArrayInputStream(img));
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "Erro ao Converter a Imagem " + ex.getMessage());
+                            }
+
+                            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                            lblFoto.setIcon(null);
+                            lblFoto.setIcon(Icone);
+                            lblFoto.setBounds(380, 205, 225, 210);
+
+                        }
+
+                        // aqui irei carregar uma nova imagem
+                        btnCarregarFoto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Controller_Funcionario c = new Controller_Funcionario();
+
+                                imagemBytes = c.CarregarImagem(lblFoto);
+                                icon = new ImageIcon(imagemBytes);
+                                lblFoto.setIcon(icon);
+                                lblFoto.updateUI();
+                                lblFoto.setBounds(380, 205, 225, 210);
+
+                            }
+
+                        });
+                        // Este botao vai actualizar tudo relativamente ao funciomnario, mas apenas oque esta no seu dominio
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Controller_Funcionario c = new Controller_Funcionario();
+                                long id = 0;
+                                byte[] img = null;
+                                int cell = Integer.parseInt(txtContacto.getText());
+
+                                String email = (txtEmail.getText());
+                                String password = (txtPassword.getText());
+                                int contacto = (cell);
+                                String endereco = (txtEndereco.getText());
+                                id = 0;
+//Uma vez que que trago todos dados do banco, o campo  imagem nao pode ficar fazio senao dara erro!!!
+                                for (Funcionario i : lista) {
+                                    id = i.getId();
+                                    if (imagemBytes == null) {
+                                        img = (i.getFoto());
+                                    } else {
+                                        img = (imagemBytes);
+                                    }
+
+                                }
+                                //Mando os dados para serem verificados, antes de actualizar
+                                c.validacao_Update(id, email, password, endereco, contacto, img);
+                                new Admin().setVisible(false);
+                                dispose();
+                                new Admin().setVisible(true);
+
+                            }
+
+                        });
                         pnlActualizar_Dados.setVisible(true);
 
                     }
@@ -3863,7 +4521,7 @@ public class Gerente extends JFrame {
             }
         });
         // Perfil
-        btnPerfil.addActionListener(new ActionListener() {
+        btnMeuPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -3883,10 +4541,13 @@ public class Gerente extends JFrame {
         pnlauxPrincipal.add(pnlPrincipal);
         pnlPrincipal.add(lblLogo);
         this.add(pnlauxPrincipal);
+
+        this.setVisible(true);
+
         this.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new Gerente().setVisible(true);
+        new Admin().setVisible(true);
     }
 }

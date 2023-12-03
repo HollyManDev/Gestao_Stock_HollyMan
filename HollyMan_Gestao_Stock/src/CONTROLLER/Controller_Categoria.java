@@ -4,10 +4,14 @@
  */
 package CONTROLLER;
 
+import DAO.DAO_Categoria;
 import MODEL.DTO.Categorias;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.util.Date;
+import java.sql.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -21,22 +25,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Controller_Categoria {
 
-    Image img;
+    DAO_Categoria dao_c = new DAO_Categoria();
 
-    Categorias c = new Categorias();
+    byte[] imagemBytes;
 
-    public void ValidarCampos(String nome, Date data, String status, Image foto) {
-        
-        if (nome.equals("") || (data.equals("") || (status.equals("")))) 
-            JOptionPane.showMessageDialog(null, "Certifique-se de ter preenchido todos campos!!!");
-        else{
-            //Criando uma instancia do objecto da classe categoria para poder ter acesso aos getters e setters
-            Categorias c = new Categorias();
-        }
-
-    }
-
-    public Image CarregarImagem(JLabel lblFoto) {
+    public byte[] CarregarImagem(JLabel lblFoto) {
 
         JFileChooser jfc = new JFileChooser();
         jfc.setDialogTitle("Selecionar um arquivo");
@@ -46,15 +39,56 @@ public class Controller_Categoria {
         if (resultado == JFileChooser.APPROVE_OPTION) {
             try {
 
-                img = ImageIO.read(jfc.getSelectedFile()).getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                Image imagem = ImageIO.read(jfc.getSelectedFile()).getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 
+                // Converta a imagem para um array de bytes
+                BufferedImage bufferedImage = new BufferedImage(imagem.getWidth(null), imagem.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                Graphics g = bufferedImage.getGraphics();
+                g.drawImage(imagem, 0, 0, null);
+                g.dispose();
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage, "png", baos);
+
+                imagemBytes = baos.toByteArray();
             } catch (Exception e) {
-
                 JOptionPane.showMessageDialog(null, "Erro ao carregar a imagem!!!");
-
             }
         }
-        return img;
+        return imagemBytes;
+    }
+
+    public void Verificacao_Save(String codigo, String nome, Date data, byte[] img, String estado) {
+        Categorias c = new Categorias();
+        if (codigo.equals("") || nome.equals("") || data.equals("") || img.equals("") || estado.equals("")) {
+            JOptionPane.showMessageDialog(null, "Certifique-se de ter preenchido todos os campos!");
+        } else {
+
+            c.setCodigoCategoria(codigo);
+            c.setNome_categoria(nome);
+            c.setData_cadastro(data);
+            c.setImagem(img);
+            c.setStatus(estado);
+            dao_c.save_Categoria(c);
+
+        }
+
+    }
+
+    public void Verificacao_Update(String codigo, String nome, Date data, byte[] img) {
+        Categorias c = new Categorias();
+        if (nome.equals("") || data.equals("") || img.equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Certifique-se de ter preenchido todos os campos!");
+        } else {
+          
+           c.setCodigoCategoria(codigo);
+            c.setNome_categoria(nome);
+            c.setData_cadastro(data);
+            c.setImagem(img);
+
+            dao_c.Update_Manager_Categoria(c);
+        }
 
     }
 }

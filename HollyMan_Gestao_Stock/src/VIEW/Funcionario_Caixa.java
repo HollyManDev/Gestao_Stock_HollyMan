@@ -5,13 +5,15 @@
  */
 package VIEW;
 
+import CONTROLLER.Controller_Funcionario;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
-import CSS.PainelPersonalizado;
-import com.sun.tools.javac.tree.JCTree;
+import DAO.DAO_Funcionario;
+import MODEL.DTO.Funcionario;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -20,6 +22,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,13 +44,12 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author HOLLY MAN
  */
-
-
 public class Funcionario_Caixa extends JFrame {
 
     ImageIcon fotografiaPerfil = new ImageIcon(Funcionario_Caixa.class.getResource("/Imagens/Aten.jpeg"));
@@ -91,9 +97,26 @@ public class Funcionario_Caixa extends JFrame {
     JPanel pnlPrincipal = new JPanel();
     JPanel pnlauxPrincipal = new JPanel();
 
+    byte[] imagemBytes;
+
+    ImageIcon icon;
+
+    public static long id;
+
+    public static long getId() {
+        return id;
+    }
+
+    public static void setId(long id) {
+        Funcionario_Caixa.id = id;
+    }
+
     // Este é o construtor da classe respondavel pela criacaoda frame e tudo que nele existir
     public Funcionario_Caixa() {
-        
+        Login l = new Login();
+        l.setVisible(false);
+        dispose();
+
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
@@ -138,10 +161,9 @@ public class Funcionario_Caixa extends JFrame {
         JLabel lblNomefuncionario = new JLabel();
         JLabel lblFormacao = new JLabel();
 
-        lblFoto.setBounds(10, 40, 100, 120);
-        lblNomefuncionario.setBounds(120, 75, 280, 30);
-        lblFormacao.setBounds(120, 65, 280, 100);
-        lblNomefuncionario.setText("Holy Man");
+        lblFoto.setBounds(5, 10, 150, 150);
+        lblNomefuncionario.setBounds(160, 75, 280, 30);
+        lblFormacao.setBounds(180, 65, 280, 100);
         lblFormacao.setText("Funcionario");
         lblFormacao.setForeground(Color.white);
         lblNomefuncionario.setForeground(Color.white);
@@ -150,7 +172,7 @@ public class Funcionario_Caixa extends JFrame {
 
         lblFoto.setIcon(fotografiaPerfil);
 
-        txtbarra.setBounds(10, 180, 255, 1);
+        txtbarra.setBounds(5, 180, 255, 1);
 
         // O codigo abaixo é referente aos butoes de menu (personalizacao)
         btnServicos.setBounds(21, 200, 110, 40);
@@ -218,6 +240,39 @@ public class Funcionario_Caixa extends JFrame {
         pnlDe_Menu_Principal.add(btnDefinicoes);
         pnlDe_Menu_Principal.add(btnSair);
 
+        //Instancia do objecto da classe login, que pega o id do usuario que acessou
+        //Instancia do objecto da classe dAO QUE TRAZ O METODO necessario para trazer tudo sobre o funcionario
+        DAO_Funcionario dao_fun = new DAO_Funcionario();
+
+        Funcionario fun = new Funcionario();
+        //Pegando o id
+        if (Funcionario_Caixa.getId() == 0) {
+            fun.setId(l.getId());
+        } else {
+            fun.setId(Funcionario_Caixa.getId());
+        }
+
+        // Chamando o metodo e atribuindo os dados a uma lista
+        ArrayList<Funcionario> lista = dao_fun.Find_Fun(fun);
+
+        //Neste é onde colocamos a imagem e o nome do Funcionario
+        for (Funcionario i : lista) {
+
+            byte[] img = i.getFoto();
+            BufferedImage imagem = null;
+            try {
+                imagem = ImageIO.read(new ByteArrayInputStream(img));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+            lblNomefuncionario.setText(i.getNome());
+            lblFoto.setIcon(Icone);
+
+        }
+
         // Neste passo vou criar paineis e dar accção para cada um desses botes.
         JPanel pnlMeuPerfil = new JPanel();
         JPanel pnlServicos = new JPanel();
@@ -260,15 +315,31 @@ public class Funcionario_Caixa extends JFrame {
                 JTextField txtbarra1 = new JTextField();
                 JButton btnSair2 = new JButton("  Voltar");
 
+                //Neste passo Continuo com a lista, mas somente vou colocar os dados referente ao funcionario
                 JLabel lblFotografia = new JLabel();
-                lblApelido.setText("Apelido :  Langa");
-                lblNomeFuncionario.setText("Nome :  Belton");
-                lblGenero.setText("Genero :  Masculino");
-                lblData_Nascimento.setText("Data de Nascimento :  03/04/2003");
-                lblNumeroBI.setText("Numero de BI : 100105802273N");
-                lblEmail.setText("Email:  beltonlanga@gmail.com");
-                lblContacto.setText("Contacto :  843454984");
-                lblestado.setText("Estado : Activo");
+
+                for (Funcionario i : lista) {
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                    lblFotografia.setIcon(Icone);
+
+                    lblApelido.setText("Apelido :  " + i.getApelido());
+                    lblNomeFuncionario.setText("Nome : " + i.getNome());
+                    lblGenero.setText("Genero : " + i.getGenero());
+                    lblData_Nascimento.setText("Data de Nascimento : " + i.getData_nascimento());
+                    lblNumeroBI.setText("Numero de BI : " + i.getNumero_BI_Nuit());
+                    lblEmail.setText("Email: " + i.getEmail());
+                    lblContacto.setText("Contacto : " + i.getContacto());
+                    lblestado.setText("Estado : " + i.getEstado());
+
+                }
 
                 //Comando para mudar o Foreground (cor das letras)
                 lblApelido.setForeground(Color.white);
@@ -315,7 +386,6 @@ public class Funcionario_Caixa extends JFrame {
                 btnSair2.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
 
                 //Adicionando todas componentes ao painel
-                lblFotografia.setIcon(fotografiaPerfil);
                 pnlMeuPerfil.add(lblFotografia);
                 pnlMeuPerfil.add(lblApelido);
                 pnlMeuPerfil.add(lblNomeFuncionario);
@@ -407,6 +477,23 @@ public class Funcionario_Caixa extends JFrame {
                 btnPedidos.setBorder(BorderFactory.createEmptyBorder());
                 btnPedidos.setFocusPainted(false);
 
+                // Colocando a imagem de perfil
+                for (Funcionario i : lista) {
+
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                    lblNomefuncionario.setText(i.getNome());
+                    lblFotografia.setIcon(Icone);
+
+                }
                 //Colocando Icones
                 btnVoltarPrincipal.setIcon(Icon_Voltar);
                 btnListarProdutos.setIcon(Icon_Listar);
@@ -1928,7 +2015,7 @@ public class Funcionario_Caixa extends JFrame {
                         JButton btnDescartados = new JButton("   Descartados");
                         JButton btnVoltarPrincipal = new JButton("   Voltar");
 
-                        lblFotografia.setBounds(45, 50, 180, 180);
+                        lblFotografia.setBounds(45, 70, 180, 180);
                         txtbarra2.setBounds(30, 251, 210, 1);
                         MenuPedidos.setBounds(0, 0, 280, 700);
                         btnPendentes.setBounds(40, 281, 150, 40);
@@ -1962,8 +2049,25 @@ public class Funcionario_Caixa extends JFrame {
                         btnDescartados.setBorder(BorderFactory.createEmptyBorder());
                         btnDescartados.setFocusPainted(false);
 
+                        // Colocando a imagem de perfil
+                        for (Funcionario i : lista) {
+
+                            byte[] img = i.getFoto();
+                            BufferedImage imagem = null;
+                            try {
+                                imagem = ImageIO.read(new ByteArrayInputStream(img));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                            lblNomefuncionario.setText(i.getNome());
+                            lblFotografia.setIcon(Icone);
+
+                        }
                         //Colocando Icones
-                        lblFotografia.setIcon(Imagem_Fundo);
+
                         btnVoltarPrincipal.setIcon(Icon_Voltar);
                         btnFinalizados.setIcon(Icon_Listar);
                         btnPendentes.setIcon(Icon_Vender);
@@ -3365,8 +3469,6 @@ public class Funcionario_Caixa extends JFrame {
                     }
                 });
 
-                lblFotografia.setIcon(fotografiaPerfil);
-
                 MenuServicos.add(lblFotografia);
                 MenuServicos.add(txtbarra2);
                 MenuServicos.add(btnVender);
@@ -3513,13 +3615,29 @@ public class Funcionario_Caixa extends JFrame {
 
                 JTextField txtbarra2 = new JTextField();
                 JLabel lblFotografia = new JLabel();
-                lblFotografia.setIcon(fotografiaPerfil);
+                // Colocando a imagem de perfil
+                for (Funcionario i : lista) {
+
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                    lblNomefuncionario.setText(i.getNome());
+                    lblFotografia.setIcon(Icone);
+
+                }
                 btnEnviar.setIcon(Icon_EscreverMenssagem);
                 btnCaixa.setIcon(Icon_CaixaMenssagem);
                 btnGerir.setIcon(Icon_Definições);
                 btnVoltarPrincipal.setIcon(Icon_Voltar);
 
-                lblFotografia.setBounds(45, 50, 180, 180);
+                lblFotografia.setBounds(45, 70, 180, 180);
                 txtbarra2.setBounds(40, 251, 210, 1);
                 btnEnviar.setBounds(47, 281, 135, 40);
                 btnCaixa.setBounds(42, 351, 150, 40);
@@ -3731,10 +3849,27 @@ public class Funcionario_Caixa extends JFrame {
 
                         JTextField txtbarra2 = new JTextField();
                         JLabel lblFotografia = new JLabel();
-                        lblFotografia.setIcon(fotografiaPerfil);
+
+                        // Colocando a imagem de perfil
+                        for (Funcionario i : lista) {
+
+                            byte[] img = i.getFoto();
+                            BufferedImage imagem = null;
+                            try {
+                                imagem = ImageIO.read(new ByteArrayInputStream(img));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+                            lblNomefuncionario.setText(i.getNome());
+                            lblFotografia.setIcon(Icone);
+
+                        }
                         btnRelatorio_enviadas.setIcon(Icon_RelatorioMenssagem);
 
-                        lblFotografia.setBounds(45, 50, 180, 180);
+                        lblFotografia.setBounds(45, 70, 180, 180);
                         txtbarra2.setBounds(30, 251, 210, 1);
                         btnMenssagens_Envidas.setBounds(20, 281, 240, 40);
                         btnMenssagens_Recebidas.setBounds(13, 351, 240, 40);
@@ -3878,7 +4013,7 @@ public class Funcionario_Caixa extends JFrame {
                 JLabel lblFotografia = new JLabel();
                 JTextField txtbarra = new JTextField();
 
-                lblFotografia.setBounds(45, 50, 180, 180);
+                lblFotografia.setBounds(45, 70, 180, 180);
                 txtbarra.setBounds(30, 251, 210, 1);
 
                 btnActualizardados.setBounds(20, 280, 220, 40);
@@ -3897,7 +4032,18 @@ public class Funcionario_Caixa extends JFrame {
                 btnActualizardados.setBorder(BorderFactory.createEmptyBorder());
                 btnActualizardados.setFocusPainted(false);
 
-                lblFotografia.setIcon(fotografiaPerfil);
+                for (Funcionario i : lista) {
+                    byte[] img = i.getFoto();
+                    BufferedImage imagem = null;
+                    try {
+                        imagem = ImageIO.read(new ByteArrayInputStream(img));
+                        ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                        lblFotografia.setIcon(Icone);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
                 btnVoltar.setIcon(Icon_Voltar);
                 btnActualizardados.setIcon(Icon_btnActualizarFu);
 
@@ -3968,9 +4114,8 @@ public class Funcionario_Caixa extends JFrame {
                         JButton btnActualizar = new JButton("Actualizar");
 
                         // Criando a tabela 
-                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Fotografia"};
-                        String[][] inf = {{}};
-                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(inf, Colunas);
+                        String[] Colunas = {"Email", "Password", "Contacto", "Endereço", "Estado"};
+                        DefaultTableModel tabela_Funcionarios = new DefaultTableModel(Colunas, 0);
 
                         // Criando as Tabelas/Listas
                         JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
@@ -3978,8 +4123,6 @@ public class Funcionario_Caixa extends JFrame {
 
                         Lista_Funcionarios.setShowGrid(false);//
                         Lista_Funcionarios.setRowHeight(120);
-
-                        Lista_Funcionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
 
                         header.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header.setForeground(new Color(102, 102, 255));
@@ -4342,14 +4485,7 @@ public class Funcionario_Caixa extends JFrame {
                             }
                         }); // campo Endereco
 
-                        btnActualizar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
 
-                            }
-                        });
-
-                        pnlActualizar_Dados.add(lblTitulo);
                         pnlActualizar_Dados.add(lblTitulo);
                         pnlActualizar_Dados.add(lblApelido);
                         pnlActualizar_Dados.add(lblNome);
@@ -4408,6 +4544,100 @@ public class Funcionario_Caixa extends JFrame {
                         // Personalizando o BackGround
                         btnCarregarFoto.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
+
+                        Controller_Funcionario c = new Controller_Funcionario();
+
+                        for (Funcionario i : lista) {
+                            Object[] row = new Object[8];
+
+                            row[0] = i.getEmail();
+                            row[1] = i.getPassword();
+                            row[2] = i.getContacto();
+                            row[3] = i.getEndereco();
+                            row[4] = i.getEstado();
+
+                            tabela_Funcionarios.addRow(row);
+
+                        }//Fim do for loop
+
+                        for (Funcionario i : lista) {
+
+                            txtApelido.setText(i.getApelido());
+                            txtNome.setText(i.getNome());
+                            jcGenero.setSelectedItem(i.getGenero());
+                            txtBI_Nuit.setText(i.getNumero_BI_Nuit());
+                            txtNascimento.setDate(i.getData_nascimento());
+                            txtContacto.setText(String.valueOf(i.getContacto()));
+                            txtEmail.setText(i.getEmail());
+                            txtPassword.setText(i.getPassword());
+                            txtData_Contratacao.setDate(i.getData_contratacao());
+                            txtEndereco.setText(i.getEndereco());
+                            jcFuncao.setSelectedItem(i.getFuncao());
+                            txtSalario.setText(String.valueOf(i.getSalario()));
+                            txtAcesso.setText(i.getNivel_acesso());
+                            jcStatus.setSelectedItem(i.getEstado());
+
+                            byte[] img = i.getFoto();
+                            BufferedImage imagem = null;
+                            try {
+                                imagem = ImageIO.read(new ByteArrayInputStream(img));
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "Erro ao Converter a Imagem " + ex.getMessage());
+                            }
+
+                            ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                            lblFoto.setIcon(null);
+                            lblFoto.setIcon(Icone);
+                            lblFoto.setBounds(380, 205, 225, 210);
+
+                        }
+
+                        // aqui irei carregar uma nova imagem
+                        btnCarregarFoto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                imagemBytes = c.CarregarImagem(lblFoto);
+                                icon = new ImageIcon(imagemBytes);
+                                lblFoto.setIcon(icon);
+                                lblFoto.updateUI();
+                                lblFoto.setBounds(380, 205, 225, 210);
+
+                            }
+
+                        });
+                        // Este botao vai actualizar tudo relativamente ao funciomnario, mas apenas oque esta no seu dominio
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                long id = 0;
+                                byte[] img = null;
+                                int cell = Integer.parseInt(txtContacto.getText());
+
+                                String email = (txtEmail.getText());
+                                String password = (txtPassword.getText());
+                                int contacto = (cell);
+                                String endereco = (txtEndereco.getText());
+                                id = 0;
+//Uma vez que que trago todos dados do banco, o campo  imagem nao pode ficar fazio senao dara erro!!!
+                                for (Funcionario i : lista) {
+                                    id = i.getId();
+                                    if (imagemBytes == null) {
+                                        img = (i.getFoto());
+                                    } else {
+                                        img = (imagemBytes);
+                                    }
+
+                                }
+                                //Mando os dados para serem verificados, antes de actualizar
+                                c.validacao_Update(id, email, password, endereco, contacto, img);
+                                new Funcionario_Caixa().setVisible(false);
+                                dispose();
+                                new Funcionario_Caixa().setVisible(true);
+
+                            }
+
+                        });
                         pnlActualizar_Dados.setVisible(true);
 
                     }
@@ -4442,7 +4672,4 @@ public class Funcionario_Caixa extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Funcionario_Caixa().setVisible(true);
-    }
 }
