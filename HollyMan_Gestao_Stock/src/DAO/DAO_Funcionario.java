@@ -247,45 +247,34 @@ public class DAO_Funcionario {
         }
 
     }
-      DefaultListModel model;
-      
-      public DefaultListModel<Funcionario> GoogleSearch(JTextField txtpesquisa) {
-        String sql = "select * from funcionario where nome or apelido like '" +txtpesquisa.getText() + "%'" + "order by nome";
-        conn = new ConectionDB().connecting();
+      public ArrayList<Funcionario> GoogleSearch(JTextField txtpesquisa) {
+    
 
-        try {
+    String sql = "SELECT * FROM funcionario WHERE nome LIKE ? OR apelido LIKE ? ORDER BY nome";
+    conn = new ConectionDB().connecting();
 
-            pstm = conn.prepareStatement(sql);
-            rs = pstm.executeQuery();
+    try {
+        pstm = conn.prepareStatement(sql);
+        pstm.setString(1, txtpesquisa.getText() + "%");
+        pstm.setString(2, txtpesquisa.getText() + "%");
 
-            while (rs.next()) {
-                Funcionario fun = new Funcionario();
-                fun.setId(rs.getInt(1));
-                fun.setCodigo_Fun(rs.getString(2));
-                fun.setApelido(rs.getString(3));
-                fun.setNome(rs.getString(4));
-                fun.setGenero(rs.getString(5));
-                fun.setData_nascimento(rs.getDate(6));
-                fun.setNumero_BI_Nuit(rs.getString(7));
-                fun.setContacto(rs.getInt(8));
-                fun.setEmail(rs.getString(9));
-                fun.setPassword(rs.getString(10));
-                fun.setEndereco(rs.getString(11));
-                fun.setFoto(rs.getBytes(12));
-                fun.setFuncao(rs.getString(13));
-                fun.setNivel_acesso(rs.getString(14));
-                fun.setSalario(rs.getDouble(15));
-                fun.setData_contratacao(rs.getDate(16));
-                fun.setEstado(rs.getString(17));
+        rs = pstm.executeQuery();
 
-                model.addElement(fun);
+        while (rs.next()) {
+            Funcionario fun = new Funcionario();
 
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Pesquisa Google" + ex);
+              
+                fun.setNome(rs.getString("nome"));
+                        
 
+            lista.add(fun);
         }
-        return model;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Pesquisa Google" + ex);
     }
+
+    return lista;
+}
+
       
     }

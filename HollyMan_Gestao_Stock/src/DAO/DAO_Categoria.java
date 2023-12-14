@@ -95,11 +95,12 @@ public class DAO_Categoria {
 
     public void Estado_Categoria(Categorias c) {
 
-        String sql = "update categorias set  status = ? where codigoCategoria = " + c.getCodigoCategoria();
+        String sql = "update categorias set  status = ? where codigoCategoria = ?";
         conn = new ConectionDB().connecting();
         try {
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, c.getStatus());
+            pstm.setString(2, c.getCodigoCategoria());
             pstm.executeUpdate();
             pstm.close();
 

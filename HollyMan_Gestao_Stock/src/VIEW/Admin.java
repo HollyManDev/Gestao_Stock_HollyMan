@@ -3,6 +3,7 @@ package VIEW;
 import CONTROLLER.Controller_Categoria;
 import CONTROLLER.Controller_Funcionario;
 import CONTROLLER.Controller_Produto;
+import CONTROLLER.MultilineCellRenderer;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,8 +31,10 @@ import CSS.JLabelComBordaRedonda;
 import CSS.PainelPersonalizado;
 import DAO.DAO_Categoria;
 import DAO.DAO_Funcionario;
+import DAO.DAO_Produtos;
 import MODEL.DTO.Categorias;
 import MODEL.DTO.Funcionario;
+import MODEL.DTO.Produtos;
 
 import java.awt.Image;
 import java.awt.event.FocusEvent;
@@ -45,6 +48,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.text.DateFormat;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -54,6 +58,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -607,12 +612,17 @@ public class Admin extends JFrame {
                         JButton btnCadastrar = new JButton("Adicionar");
                         JButton btnActualizar = new JButton("Actualizar");
                         JButton btnEliminar = new JButton("Eliminar");
+                        JButton btnActivar = new JButton("Activar");
 
                         String[] Colunas = {"Codigo", "Nome ", "Data", "Estado"};
                         DefaultTableModel model = new DefaultTableModel(Colunas, 0);
 
                         JTable Lista_Categorias = new JTable(model);
                         JTableHeader header_Lista = Lista_Categorias.getTableHeader();
+                        Lista_Categorias.getColumnModel().getColumn(0).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Categorias.getColumnModel().getColumn(1).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Categorias.getColumnModel().getColumn(2).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Categorias.getColumnModel().getColumn(3).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
 
                         //Personalizando a Linhas_Colunas
                         header_Lista.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
@@ -628,6 +638,7 @@ public class Admin extends JFrame {
                         btnCarregarImagem.setIcon(Icon_CarregarFoto);
                         btnEliminar.setIcon(Icon_Eliminar);
                         btnCadastrar.setIcon(Icon_Adicionar);
+                        btnActivar.setIcon(Icon_Adicionar);
                         btnActualizar.setIcon(Icon_ActualizarC);
 
                         //Aqui vou definir a cor das letras
@@ -639,6 +650,7 @@ public class Admin extends JFrame {
                         btnCadastrar.setForeground(new Color(0, 102, 255));
                         btnActualizar.setForeground(new Color(0, 102, 255));
                         btnEliminar.setForeground(new Color(0, 102, 255));
+                        btnActivar.setForeground(new Color(0, 102, 255));
 
                         //Aqui vou definir a fonte
                         lblTitulo.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 22));
@@ -648,6 +660,7 @@ public class Admin extends JFrame {
                         btnCarregarImagem.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnActivar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         txtNome.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         data.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
@@ -661,12 +674,15 @@ public class Admin extends JFrame {
                         btnActualizar.setFocusPainted(false);
                         btnEliminar.setBorder(BorderFactory.createEmptyBorder());
                         btnEliminar.setFocusPainted(false);
+                        btnActivar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActivar.setFocusPainted(false);
 
                         //Background
                         btnCarregarImagem.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
+                        btnActivar.setBackground(Color.white);
 
                         //aqui vou configurar a localizacao
                         lblTitulo.setBounds(340, 30, 350, 30);
@@ -679,8 +695,9 @@ public class Admin extends JFrame {
                         jcStatusCategoria.setBounds(110, 290, 200, 35);
                         btnCarregarImagem.setBounds(405, 300, 150, 30);
                         btnCadastrar.setBounds(650, 133, 120, 40);
-                        btnActualizar.setBounds(654, 190, 120, 40);
-                        btnEliminar.setBounds(648, 250, 120, 40);
+                        btnActualizar.setBounds(654, 180, 120, 40);
+                        btnEliminar.setBounds(648, 230, 120, 40);
+                        btnActivar.setBounds(653, 280, 100, 40);
                         rol.setBounds(110, 390, 680, 200);
 
                         //Colocando a visibilidade inicial
@@ -690,6 +707,7 @@ public class Admin extends JFrame {
                         btnCarregarImagem.setEnabled(false);
                         btnActualizar.setEnabled(false);
                         btnEliminar.setEnabled(false);
+                        btnActivar.setEnabled(false);
 
                         //Eventos em cada Campo a ser Introduzido Dados 
                         txtNome.addKeyListener(new KeyListener() {
@@ -807,6 +825,7 @@ public class Admin extends JFrame {
                                 btnCadastrar.setEnabled(false);
                                 btnActualizar.setEnabled(true);
                                 btnEliminar.setEnabled(true);
+                                btnActivar.setEnabled(true);
                                 btnCarregarImagem.setEnabled(true);
 
                                 txtNome.setEnabled(true);
@@ -820,7 +839,8 @@ public class Admin extends JFrame {
                                 jcStatusCategoria.setSelectedItem((String) Lista_Categorias.getModel().getValueAt(Lista_Categorias.getSelectedRow(), 3));
 
                                 for (int i = 0; i < lista.size(); i++) {
-                                    if (lista.get(i).getCodigoCategoria() == (codigo)) {
+
+                                    if (lista.get(i).getCodigoCategoria().equalsIgnoreCase(codigo)) {
 
                                         byte[] img = lista.get(i).getImagem();
                                         BufferedImage imagem = null;
@@ -866,7 +886,7 @@ public class Admin extends JFrame {
                             public void actionPerformed(ActionEvent e) {
 
                                 Controller_Categoria c = new Controller_Categoria();
-                                String codigo = "CATSM" + 1000 + tamanho;
+                                String codigo = "CATSM" + 1000 + tamanho + "HM";
                                 String nome = txtNome.getText();
 
                                 java.util.Date data_cadastro = data.getDate();
@@ -937,7 +957,26 @@ public class Admin extends JFrame {
                                 } else {
                                     c.setCodigoCategoria(codigo);
 
-                                    c.setStatus(" Inactiva ");
+                                    c.setStatus("Inactivo");
+
+                                    dao_c.Estado_Categoria(c);
+                                }
+
+                            }
+                        });
+
+                        btnActivar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                DAO_Categoria dao_c = new DAO_Categoria();
+                                Categorias c = new Categorias();
+                                if (codigo == null) {
+                                    JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                                } else {
+                                    c.setCodigoCategoria(codigo);
+
+                                    c.setStatus("Activo");
 
                                     dao_c.Estado_Categoria(c);
                                 }
@@ -958,6 +997,7 @@ public class Admin extends JFrame {
                         pnlGeirCategorias.add(btnCadastrar);
                         pnlGeirCategorias.add(btnActualizar);
                         pnlGeirCategorias.add(btnEliminar);
+                        pnlGeirCategorias.add(btnActivar);
                         pnlGeirCategorias.add(rol);
 
                         // Dando Acção aos Botoes
@@ -984,18 +1024,6 @@ public class Admin extends JFrame {
                         //Craindo as Componentes
                         JLabel lblTitulo = new JLabel("Gerir Produtos");
                         JLabel lblFoto = new JLabel();
-                        JLabel imgApelido = new JLabel();
-                        JLabel imgNome = new JLabel();
-                        JLabel imgGenero = new JLabel();
-                        JLabel imgNascimento = new JLabel();
-                        JLabel imgBI = new JLabel();
-                        JLabel imgEmail = new JLabel();
-                        JLabel imgPassword = new JLabel();
-                        JLabel imgContacto = new JLabel();
-                        JLabel imgContratacao = new JLabel();
-                        JLabel imgAcesso = new JLabel();
-                        JLabel imgEndereço = new JLabel();
-
                         JLabel lblCategoria_Produto = new JLabel("Categoria do Produto");
                         JLabel lblNome = new JLabel("Nome do Produto");
                         JLabel lblCodigo_Barra = new JLabel("Codigo de Barra");
@@ -1029,10 +1057,14 @@ public class Admin extends JFrame {
                         JTextField txtPreco_Compra = new JTextField();
                         JTextField txtPreco_Venda = new JTextField();
                         JTextArea txtDescricao = new JTextArea();
+                        
+                        txtDescricao.setWrapStyleWord(true);
+                        txtDescricao.setLineWrap(true);
+                        JScrollPane scrtxtDescricao = new JScrollPane(txtDescricao);
 
                         JButton btnCarregarFoto = new JButton("Carregar IMG");
                         JButton btnActualizar = new JButton("Actualizar");
-                        JButton btnReset = new JButton("Limpar");
+                        JButton btnActivar = new JButton("Activar");
                         JButton btnCadastrar = new JButton("Adicionar");
                         JButton btnProcurar = new JButton("procurar");
                         JButton btnEliminar = new JButton("Eliminar");
@@ -1096,7 +1128,7 @@ public class Admin extends JFrame {
                         btnCadastrar.setBounds(5, 410, 120, 40);
                         btnActualizar.setBounds(150, 410, 120, 40);
                         btnEliminar.setBounds(295, 410, 100, 40);
-                        btnReset.setBounds(395, 410, 100, 40);
+                        btnActivar.setBounds(395, 410, 100, 40);
 
                         //cOLOCANDO AS INFORMACOES NAS CAIXAS
                         jcCategoria_Produto.addItem("");
@@ -1142,7 +1174,7 @@ public class Admin extends JFrame {
                         lblDescricao.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         btnCarregarFoto.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnActualizar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
-                        btnReset.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
+                        btnActivar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnCadastrar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnEliminar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
                         btnProcurar.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 18));
@@ -1177,8 +1209,8 @@ public class Admin extends JFrame {
                         btnCarregarFoto.setFocusPainted(false);
                         btnActualizar.setBorder(BorderFactory.createEmptyBorder());
                         btnActualizar.setFocusPainted(false);
-                        btnReset.setBorder(BorderFactory.createEmptyBorder());
-                        btnReset.setFocusPainted(false);
+                        btnActivar.setBorder(BorderFactory.createEmptyBorder());
+                        btnActivar.setFocusPainted(false);
                         btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
                         btnCadastrar.setFocusPainted(false);
                         btnEliminar.setBorder(BorderFactory.createEmptyBorder());
@@ -1188,31 +1220,30 @@ public class Admin extends JFrame {
                         txtDescricao.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 
                         // Criando a tabela 
-                        String[] Colunas_Compras = {"Codigo", "Produto", "Investimento", "Retorno", "Qtd_Disp", "Lucro", "Imagem", "Status"};
-                        String[][] inf_Compras = {{}};
-                        DefaultTableModel tabela_produtos = new DefaultTableModel(inf_Compras, Colunas_Compras);
+                        String[] Colunas_Compras = {"Codigo", "Produto", "Total_Investido", "Lucro_unt", "Total_Lucro", "Total_Retorno", "Qtd_Disp", "Status"};
+
+                        DefaultTableModel tabela_produtos = new DefaultTableModel(Colunas_Compras, 0);
 
                         // Criando as Tabelas/Listas
                         JTable Lista_Produtos = new JTable(tabela_produtos);
                         JTableHeader header_Compras = Lista_Produtos.getTableHeader();
                         Lista_Produtos.setShowGrid(false);
 
+                        Lista_Produtos.getColumnModel().getColumn(0).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(1).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(2).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(3).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(4).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(5).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(6).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(7).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+
                         header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
                         header_Compras.setForeground(new Color(102, 102, 255));
 
-                        Lista_Produtos.setRowHeight(150);
-
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(80);
-                        Lista_Produtos.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(110);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(4).setPreferredWidth(120);
-                        Lista_Produtos.getColumnModel().getColumn(5).setPreferredWidth(110);
-                        Lista_Produtos.getColumnModel().getColumn(6).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(80);
+                        Lista_Produtos.setRowHeight(30);
 
                         JScrollPane rol_Compras = new JScrollPane(Lista_Produtos);
-                        tabela_produtos.setRowCount(10);
 
                         rol_Compras.setBounds(10, 470, 900, 180);
 
@@ -1239,12 +1270,12 @@ public class Admin extends JFrame {
                         btnCadastrar.setForeground(new Color(0, 102, 255));
                         btnEliminar.setForeground(new Color(0, 102, 255));
                         btnProcurar.setForeground(new Color(0, 102, 255));
-                        btnReset.setForeground(new Color(0, 102, 255));
+                        btnActivar.setForeground(new Color(0, 102, 255));
 
                         // Personalizando o BackGround
                         btnCarregarFoto.setBackground(Color.white);
                         btnActualizar.setBackground(Color.white);
-                        btnReset.setBackground(Color.white);
+                        btnActivar.setBackground(Color.white);
                         btnCadastrar.setBackground(Color.white);
                         btnProcurar.setBackground(Color.white);
                         btnEliminar.setBackground(Color.white);
@@ -1265,7 +1296,6 @@ public class Admin extends JFrame {
                         btnCadastrar.setEnabled(false);
                         btnCarregarFoto.setEnabled(false);
 
-                        jcCategoria_Produto.addItem("Teste");
                         //Seguem as validacoes dos campos, somente permitindo que cada campo seja preenchido so e somente se o seu antecessor tiver sido
                         jcCategoria_Produto.addActionListener(new ActionListener() {
                             @Override
@@ -2037,53 +2067,6 @@ public class Admin extends JFrame {
                             }
                         });
 
-                        // Neste passo seguem os pocessos de cadastrar, listar e outros
-                        btnCarregarFoto.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                //Criando uma instancia da classe Controller 
-                                Controller_Produto c_produto = new Controller_Produto();
-
-                                //Pegando o metodo que me Permiti pegar uma imagem
-                                Image img = c_produto.CarregarImagem(lblFoto);
-
-                                lblFoto.setIcon(new ImageIcon(img));
-                                lblFoto.updateUI();
-                                lblFoto.setBounds(725, 210, 225, 150);
-                            }
-                        });
-
-                        ///Cadastrar
-                        btnCadastrar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-
-                        ///Actualizar
-                        btnActualizar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-                        ///Eliminar
-                        btnEliminar.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-
-                        ///Limpar Todos campos Campos
-                        btnReset.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                            }
-                        });
-
                         //Adicionando as Componentes 
                         pnlGerirProdutos.add(lblTitulo);
                         pnlGerirProdutos.add(lblTitulo);
@@ -2126,12 +2109,392 @@ public class Admin extends JFrame {
                         pnlGerirProdutos.add(rol_Compras);
 
                         pnlGerirProdutos.add(btnCarregarFoto);
-                        pnlGerirProdutos.add(btnReset);
+                        pnlGerirProdutos.add(btnActivar);
                         pnlGerirProdutos.add(btnActualizar);
                         pnlGerirProdutos.add(btnCadastrar);
 
                         pnlGerirProdutos.add(btnProcurar);
                         pnlGerirProdutos.add(btnEliminar);
+
+                        //   Colocando todas categorias na caixa apropriada
+                        DAO_Categoria dao_c = new DAO_Categoria();
+                        //Trazendo todas categorias 
+                        ArrayList<Categorias> lista_categorias = dao_c.FindAll_Categoria();
+
+                        for (Categorias i : lista_categorias) {
+                            jcCategoria_Produto.addItem(i.getNome_categoria());
+                        }
+
+                        //Buscando e trazendo todos registos
+                        DAO_Produtos dao_pro = new DAO_Produtos();
+                        Controller_Produto cont_pro = new Controller_Produto();
+
+                        ArrayList<Produtos> lista_produtos = dao_pro.FindAll_Produtos();
+
+                        int tamanho;
+
+                        if (lista == null) {
+
+                            tamanho = 0;
+
+                            JOptionPane.showMessageDialog(null, "Nao existe Produto cadastrada ainda!");
+
+                        } else {
+                            tamanho = lista_produtos.size();
+
+                            double qtd = 0;
+                            double retorno;
+
+                            for (int i = 0; i < lista_produtos.size(); i++) {
+                                Object[] row = new Object[8];
+
+                                row[0] = lista_produtos.get(i).getCodigo_produto();
+                                row[1] = lista_produtos.get(i).getNome_produto();
+                                row[2] = lista_produtos.get(i).getTotal_custos();
+                                row[3] = lista_produtos.get(i).getLucro_unidade();
+
+                                if (lista_produtos.get(i).getTipo_Produto().equalsIgnoreCase("Embalado")) {
+                                    qtd = lista_produtos.get(i).getQuantidade_embalada() * lista_produtos.get(i).getQuantidade_emEmbalagem();
+                                    row[4] = lista_produtos.get(i).getLucro_unidade() * qtd;
+                                    retorno = lista_produtos.get(i).getLucro_unidade() * qtd;
+
+                                } else {
+
+                                    row[4] = lista_produtos.get(i).getLucro_unidade() * lista_produtos.get(i).getQuantidade_Adicionar();
+                                    qtd = lista_produtos.get(i).getQuantidade_Adicionar();
+                                    retorno = lista_produtos.get(i).getLucro_unidade() * lista_produtos.get(i).getQuantidade_Adicionar();
+                                }
+                                row[5] = retorno + lista_produtos.get(i).getTotal_custos();
+
+                                row[6] = qtd;
+
+                                row[7] = lista_produtos.get(i).getStatus();
+
+                                tabela_produtos.addRow(row);
+
+                            }//Fim do for loop
+
+                        }//Fim do metodo que lista na tabela
+
+                        //metodo da tabela 
+                        Lista_Produtos.addMouseListener(new MouseListener() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+
+                                txtNome.setEnabled(true);
+                                txtCodigo_Barra.setEnabled(true);
+                                txtValidade.setEnabled(true);
+                                txtNumero_Lote.setEnabled(true);
+                                jcEmbalado.setEnabled(true);
+                                jcMedida.setEnabled(true);
+                                txtStatus.setEnabled(false);
+                                txtPeso_Volume.setEnabled(true);
+                                txtPreco_Compra.setEnabled(true);
+                                txtPreco_Venda.setEnabled(true);
+                                txtMarca.setEnabled(true);
+                                txtDescricao.setEnabled(true);
+
+                                btnCadastrar.setEnabled(false);
+                                btnActualizar.setEnabled(true);
+                                btnEliminar.setEnabled(true);
+                                btnActivar.setEnabled(true);
+                                btnCarregarFoto.setEnabled(true);
+
+                                linha = Lista_Produtos.getSelectedRow();
+
+                                codigo = (String) Lista_Produtos.getModel().getValueAt(Lista_Produtos.getSelectedRow(), 0);
+                                txtNome.setText((String) Lista_Produtos.getModel().getValueAt(Lista_Produtos.getSelectedRow(), 1));
+                                txtStatus.setSelectedItem((String) Lista_Produtos.getModel().getValueAt(Lista_Produtos.getSelectedRow(), 7));
+
+                                for (int i = 0; i < lista_produtos.size(); i++) {
+                                    if (lista_produtos.get(i).getCodigo_produto() == (codigo)) {
+
+                                        //Neste passo estou comparando o a chave estrangeira com chave primaria da categoria e depois passo o nome da tal categoria
+                                        for (Categorias c : lista_categorias) {
+                                            if (lista_produtos.get(i).getCodigo_categoria() == c.getId()) {
+                                                jcCategoria_Produto.setSelectedItem(c.getNome_categoria());
+                                            }
+                                        }
+
+                                        txtCodigo_Barra.setText(String.valueOf(lista_produtos.get(i).getCodigo_barra()));
+                                        txtValidade.setDate((Date) lista_produtos.get(i).getValidade());
+                                        txtNumero_Lote.setText(String.valueOf(lista_produtos.get(i).getLote()));
+                                        jcEmbalado.setSelectedItem(lista_produtos.get(i).getTipo_Produto());
+                                        txtQntEmbalagem.setText(String.valueOf(lista_produtos.get(i).getQuantidade_embalada()));
+                                        txtProdutos_Embalagem.setText(String.valueOf(lista_produtos.get(i).getQuantidade_emEmbalagem()));
+                                        txtProdutosQtd.setText(String.valueOf(lista_produtos.get(i).getQuantidade_Adicionar()));
+                                        txtMarca.setText((String) (lista_produtos.get(i).getMarca()));
+                                        jcMedida.setSelectedItem(lista_produtos.get(i).getUnidadeMedida());
+                                        txtPeso_Volume.setText(String.valueOf(lista_produtos.get(i).getPeso_volume()));
+                                        txtPreco_Compra.setText(String.valueOf(lista_produtos.get(i).getPreco_compra()));
+                                        txtPreco_Venda.setText(String.valueOf(lista_produtos.get(i).getPreco_venda()));
+                                        txtDescricao.setText((String) (lista_produtos.get(i).getDescricao()));
+
+                                        if (lista_produtos.get(i).getTipo_Produto().equalsIgnoreCase("Embalado")) {
+                                            txtQntEmbalagem.setEnabled(true);
+                                            txtProdutos_Embalagem.setEnabled(true);
+                                            txtProdutosQtd.setEnabled(false);
+
+                                        } else {
+                                            txtQntEmbalagem.setEnabled(false);
+                                            txtProdutos_Embalagem.setEnabled(false);
+                                            txtProdutosQtd.setEnabled(true);
+                                        }
+
+                                        byte[] img = lista_produtos.get(i).getImagem();
+                                        BufferedImage imagem = null;
+                                        try {
+                                            imagem = ImageIO.read(new ByteArrayInputStream(img));
+                                        } catch (IOException ex) {
+                                            JOptionPane.showMessageDialog(null, "Erro ao Converter a Imagem " + ex.getMessage());
+                                        }
+
+                                        ImageIcon Icone = new ImageIcon(imagem.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                                        lblFoto.setIcon(null);
+                                        lblFoto.setIcon(Icone);
+                                        lblFoto.setBounds(725, 210, 225, 150);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+
+                            public void mousePressed(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+
+                            }
+
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+
+                            }
+
+                        });
+                        // Neste passo seguem os pocessos de cadastrar, listar e outros
+                        btnCarregarFoto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //Criando uma instancia da classe Controller 
+                                Controller_Produto c_produto = new Controller_Produto();
+
+                                //Pegando o metodo que me Permiti pegar uma imagem
+                                imagemBytes = c_produto.CarregarImagem(lblFoto);
+
+                                lblFoto.setIcon(new ImageIcon(imagemBytes));
+                                lblFoto.updateUI();
+                                lblFoto.setBounds(725, 210, 225, 150);
+                            }
+                        });
+
+                        ///Cadastrar
+                        btnCadastrar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                String codigo = "PROSM" + 1000 + tamanho + "HM";
+
+                                String nivel_dispo = "100%";
+
+                                double total_custo = 0;
+                                double pre_custo = 0;
+                                double lucro = 0;
+
+                                String categoria = (String) jcCategoria_Produto.getSelectedItem();
+
+                                Long categoria_codigo = null;
+
+                                for (Categorias i : lista_categorias) {
+
+                                    if (i.getNome_categoria().equalsIgnoreCase(categoria)) {
+
+                                        categoria_codigo = i.getId();
+
+                                    }
+
+                                }
+
+                                String nome = txtNome.getText();
+
+                                long codigo_barra = Long.parseLong(txtCodigo_Barra.getText());
+
+                                java.util.Date validade = txtValidade.getDate();
+
+                                java.sql.Date validade2 = new java.sql.Date(validade.getTime());
+
+                                java.util.Date data = new java.util.Date();
+
+                                int numero_lote = Integer.parseInt(txtNumero_Lote.getText());
+
+                                String tipo_produto = (String) jcEmbalado.getSelectedItem();
+
+                                int numero_embalagens;
+                                int qtd_emEmbalagem;
+                                int total_Produtos;
+
+                                if (tipo_produto.equalsIgnoreCase("Embalado")) {
+                                    numero_embalagens = Integer.parseInt(txtQntEmbalagem.getText());
+                                    qtd_emEmbalagem = Integer.parseInt(txtProdutos_Embalagem.getText());
+                                    total_Produtos = 0;
+                                    pre_custo = numero_embalagens * qtd_emEmbalagem;
+
+                                } else {
+                                    numero_embalagens = 0;
+                                    qtd_emEmbalagem = 0;
+                                    total_Produtos = Integer.parseInt(txtProdutosQtd.getText());
+                                    pre_custo = total_Produtos;
+                                }
+                                String estado = (String) txtStatus.getSelectedItem();
+
+                                String marca = txtMarca.getText();
+
+                                String medida = (String) jcMedida.getSelectedItem();
+
+                                double peso_volume = Double.parseDouble(txtPeso_Volume.getText());
+
+                                double preco_compra = Double.parseDouble(txtPreco_Compra.getText());
+
+                                double preco_venda = Double.parseDouble(txtPreco_Venda.getText());
+
+                                String descricao = txtDescricao.getText();
+
+                                total_custo = pre_custo * preco_compra;
+
+                                lucro = preco_venda - preco_compra;
+
+                                cont_pro.Verificacao_Save(categoria_codigo, codigo, nome, codigo_barra, validade2, numero_lote, tipo_produto, numero_embalagens, qtd_emEmbalagem, total_Produtos, estado, marca, medida, peso_volume, preco_compra, preco_venda, nivel_dispo, total_custo, lucro, descricao, imagemBytes);
+                            }
+                        });
+
+                        ///Actualizar
+                        btnActualizar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                double total_custo = 0;
+                                double pre_custo = 0;
+                                double lucro = 0;
+
+                                String categoria = (String) jcCategoria_Produto.getSelectedItem();
+
+                                Long categoria_codigo = null;
+
+                                for (Categorias i : lista_categorias) {
+
+                                    if (i.getNome_categoria().equalsIgnoreCase(categoria)) {
+
+                                        categoria_codigo = i.getId();
+
+                                    }
+
+                                }
+
+                                String nome = txtNome.getText();
+
+                                long codigo_barra = Long.parseLong(txtCodigo_Barra.getText());
+
+                                java.util.Date validade = txtValidade.getDate();
+
+                                java.sql.Date validade2 = new java.sql.Date(validade.getTime());
+
+                                java.util.Date data = new java.util.Date();
+
+                                int numero_lote = Integer.parseInt(txtNumero_Lote.getText());
+
+                                String tipo_produto = (String) jcEmbalado.getSelectedItem();
+
+                                double numero_embalagens;
+                                double qtd_emEmbalagem;
+                                double total_Produtos;
+
+                                if (tipo_produto.equalsIgnoreCase("Embalado")) {
+                                    numero_embalagens = Double.parseDouble(txtQntEmbalagem.getText());
+                                    qtd_emEmbalagem = Double.parseDouble(txtProdutos_Embalagem.getText());
+                                    total_Produtos = 0;
+                                    pre_custo = numero_embalagens * qtd_emEmbalagem;
+
+                                } else {
+                                    numero_embalagens = 0;
+                                    qtd_emEmbalagem = 0;
+                                    total_Produtos = Double.parseDouble(txtProdutosQtd.getText());
+                                    pre_custo = total_Produtos;
+                                }
+                                String estado = (String) txtStatus.getSelectedItem();
+
+                                String marca = txtMarca.getText();
+
+                                String medida = (String) jcMedida.getSelectedItem();
+
+                                double peso_volume = Double.parseDouble(txtPeso_Volume.getText());
+
+                                double preco_compra = Double.parseDouble(txtPreco_Compra.getText());
+
+                                double preco_venda = Double.parseDouble(txtPreco_Venda.getText());
+
+                                String descricao = txtDescricao.getText();
+
+                                total_custo = pre_custo * preco_compra;
+
+                                lucro = preco_venda - preco_compra;
+
+                                byte[] img = imagemBytes;
+
+                                if (img == null) {
+                                    for (Produtos i : lista_produtos) {
+                                        if (i.getCodigo_produto().equals(codigo)) {
+                                            img = i.getImagem();
+                                        }
+                                    }
+
+                                }
+                                cont_pro.Verificacao_UPdate(categoria_codigo, codigo, nome, codigo_barra, validade2, numero_lote, tipo_produto, numero_embalagens, qtd_emEmbalagem, total_Produtos, marca, medida, peso_volume, preco_compra, preco_venda, total_custo, lucro, descricao, img);
+                            }
+                        });
+                        ///Eliminar
+                        btnEliminar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                DAO_Produtos dao_p = new DAO_Produtos();
+                                Produtos p = new Produtos();
+                                if (codigo == null) {
+                                    JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                                } else {
+                                    p.setCodigo_produto(codigo);
+
+                                    p.setStatus("Inactivo");
+
+                                    dao_p.Estado_Produto(p);
+                                }
+                            }
+                        });
+                        ///Limpar Todos campos Campos
+                        btnActivar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                DAO_Produtos dao_p = new DAO_Produtos();
+                                Produtos p = new Produtos();
+                                if (codigo == null) {
+                                    JOptionPane.showMessageDialog(null, "Primeiro selecione um funcionario na tabela");
+                                } else {
+                                    p.setCodigo_produto(codigo);
+
+                                    p.setStatus("Activo");
+
+                                    dao_p.Estado_Produto(p);
+                                }
+                            }
+                        });
 
                         pnlauxPrincipal.add(pnlGerirProdutos);
                         pnlGerirProdutos.setVisible(true);
@@ -2168,7 +2531,8 @@ public class Admin extends JFrame {
 
                 pnlMenu_Gestaoprodutos.setVisible(true);
             }
-        }); // Fim  Gerir Produtos
+        }
+        ); // Fim  Gerir Produtos
 
         // Gestao de Funcionarios
         btnGestao_Funcionarios.addActionListener(new ActionListener() {
@@ -2218,8 +2582,11 @@ public class Admin extends JFrame {
                 JComboBox jcFuncao = new JComboBox<>();
                 JComboBox jcStatus = new JComboBox<>();
                 JTextField txtSalario = new JTextField();
+
                 JTextField txtpesquisa = new JTextField();
+
                 JScrollPane srp = new JScrollPane();
+
                 JList lista_2 = new JList();
 
                 srp.add(lista_2);
@@ -2375,22 +2742,31 @@ public class Admin extends JFrame {
                 btnProcurar.setFocusPainted(false);
 
                 // Criando a tabela 
-                String[] Colunas_Compras = {"Codigo", "Apelido", "Nome", "Genero", "Email", "Status"};
+                String[] Colunas_Funcionarios = {"Codigo", "Apelido", "Nome", "Genero", "Email", "Status"};
 
+                  DefaultTableModel model1 = new DefaultTableModel(Colunas_Funcionarios , 0);
+                  
                 // Criando as Tabelas/Listas
-                JTable Tabela_Funcionarios = new JTable();
-                JTableHeader header_Compras = Tabela_Funcionarios.getTableHeader();
+                JTable Tabela_Funcionarios = new JTable(model1);
+                JTableHeader header_Funcionarios = Tabela_Funcionarios.getTableHeader();
 
                 Tabela_Funcionarios.setShowGrid(false);
 
-                header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+                Tabela_Funcionarios.getColumnModel().getColumn(0).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                Tabela_Funcionarios.getColumnModel().getColumn(1).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                Tabela_Funcionarios.getColumnModel().getColumn(2).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                Tabela_Funcionarios.getColumnModel().getColumn(3).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                Tabela_Funcionarios.getColumnModel().getColumn(4).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                Tabela_Funcionarios.getColumnModel().getColumn(5).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
 
-                header_Compras.setForeground(new Color(102, 102, 255));
+                header_Funcionarios .setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 16));
+
+                header_Funcionarios .setForeground(new Color(102, 102, 255));
 
                 Tabela_Funcionarios.setRowHeight(30);
 
-                JScrollPane rol_Compras = new JScrollPane(Tabela_Funcionarios);
-                rol_Compras.setBounds(10, 470, 900, 180);
+                JScrollPane rol_Funcionarios = new JScrollPane(Tabela_Funcionarios);
+                rol_Funcionarios .setBounds(10, 470, 900, 180);
 
                 //Restrigindo as componentes e Coolocando acessibilidade Inicial
                 txtNome.setEnabled(false);
@@ -2933,7 +3309,7 @@ public class Admin extends JFrame {
                 pnlGestao_Funcionarios.add(txtpesquisa);
                 pnlGestao_Funcionarios.add(srp);
 
-                pnlGestao_Funcionarios.add(rol_Compras);
+                pnlGestao_Funcionarios.add(rol_Funcionarios );
 
                 pnlGestao_Funcionarios.add(btnCarregarFoto);
                 pnlGestao_Funcionarios.add(btnReactivar);
@@ -2978,10 +3354,6 @@ public class Admin extends JFrame {
 
                 //Invocando o metodo que traz todos os dados
                 ArrayList<Funcionario> lista_Fun = dao_fun.FindAll();
-
-                DefaultTableModel model1 = new DefaultTableModel(Colunas_Compras, 0);
-
-                Tabela_Funcionarios.setModel(model1);
 
                 for (int i = 0; i < lista_Fun.size(); i++) {
                     Object[] row = new Object[8];
@@ -3271,14 +3643,16 @@ public class Admin extends JFrame {
                         if (cor.equals(Color.GREEN)) {
                             srp.setVisible(true);
                             DAO_Funcionario dao_fun = new DAO_Funcionario();
+                            ArrayList<Funcionario> lista = dao_fun.GoogleSearch(txtpesquisa);
 
-                            modelo = dao_fun.GoogleSearch(txtpesquisa);
+                            DefaultListModel<Funcionario> modelo = new DefaultListModel<>();
+                            for (Funcionario i : lista) {
+                                modelo.addElement(i);
+                                System.out.println(i);
+                            }
 
-                        } else {
-                            srp.setVisible(false);
-
+                            lista_2.setModel(modelo);
                         }
-
                         txtpesquisa.addFocusListener(new FocusListener() {
                             @Override
                             public void focusGained(FocusEvent e) {
@@ -3347,10 +3721,10 @@ public class Admin extends JFrame {
                 JLabel lblQtdFun = new JLabel();
 
                 JLabel lblCategorias = new JLabel("Categorias");
-                JLabel lblQtdCategorias = new JLabel("5");
+                JLabel lblQtdCategorias = new JLabel();
 
                 JLabel lblProdutos = new JLabel("Produtos");
-                JLabel lblQtdProdutos = new JLabel("50");
+                JLabel lblQtdProdutos = new JLabel();
 
                 JLabel lblVendas = new JLabel("Vendas");
                 JLabel lblQtdVendas = new JLabel("10");
@@ -3365,25 +3739,22 @@ public class Admin extends JFrame {
                 lblPedidos.setIcon(Icon_Eliminar);
 
                 lblFuncionario.setBounds(20, 5, 140, 40);
-                lblQtdFun.setBounds(85, 40, 30, 30);
-                lblCategorias.setBounds(215, 5, 140, 40);
-                lblQtdCategorias.setBounds(255, 40, 30, 30);
+                lblQtdFun.setBounds(95, 40, 30, 30);
+                lblCategorias.setBounds(210, 5, 140, 40);
+                lblQtdCategorias.setBounds(290, 40, 30, 30);
                 lblProdutos.setBounds(430, 5, 140, 40);
-                lblQtdProdutos.setBounds(440, 40, 30, 30);
+                lblQtdProdutos.setBounds(490, 40, 30, 30);
                 lblVendas.setBounds(600, 5, 140, 40);
-                lblQtdVendas.setBounds(630, 40, 30, 30);
+                lblQtdVendas.setBounds(650, 40, 30, 30);
                 lblPedidos.setBounds(750, 5, 140, 40);
-                lblQtdPedidos.setBounds(810, 40, 30, 30);
-
-                lblQtdFun.setText("10");
+                lblQtdPedidos.setBounds(815, 40, 30, 30);
 
                 //Foreground personalizada
-                lblQtdFun.setForeground(new Color(0, 102, 255));
-                lblQtdCategorias.setForeground(new Color(0, 102, 255));
-                lblQtdProdutos.setForeground(new Color(0, 102, 255));
-                lblQtdVendas.setForeground(new Color(0, 102, 255));
-                lblQtdPedidos.setForeground(new Color(0, 102, 255));
-
+//                lblQtdFun.setForeground(new Color(0, 102, 255));
+//                lblQtdCategorias.setForeground(new Color(0, 102, 255));
+//                lblQtdProdutos.setForeground(new Color(0, 102, 255));
+//                lblQtdVendas.setForeground(new Color(0, 102, 255));
+//                lblQtdPedidos.setForeground(new Color(0, 102, 255));
                 //Fonte 
                 lblFuncionario.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
                 lblQtdFun.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.BOLD, 16));
@@ -3412,6 +3783,19 @@ public class Admin extends JFrame {
                 pnlVisaoGeral.add(pnlCategorias_produto);
                 pnlVisaoGeral.add(pnlClientes_Pedidos);
                 pnlVisaoGeral.add(pnlProdutos_Vendas);
+
+                //Fazendo a contagem total das coisas.
+                DAO_Categoria dao_c = new DAO_Categoria();
+                DAO_Produtos dao_p = new DAO_Produtos();
+                DAO_Funcionario dao_f = new DAO_Funcionario();
+
+                ArrayList<Categorias> lista_categorias = dao_c.FindAll_Categoria();
+                ArrayList<Produtos> lista_produtos = dao_p.FindAll_Produtos();
+                ArrayList<Funcionario> lista_funcionarios = dao_f.FindAll();
+
+                lblQtdCategorias.setText(String.valueOf(lista_categorias.size()));
+                lblQtdProdutos.setText(String.valueOf(lista_produtos.size()));
+                lblQtdFun.setText(String.valueOf(lista_funcionarios.size()));
 
                 pnlVisaoGeral.setVisible(true);
 
@@ -3969,6 +4353,12 @@ public class Admin extends JFrame {
                         // Criando as Tabelas/Listas
                         JTable Lista_Funcionarios = new JTable(tabela_Funcionarios);
                         JTableHeader header = Lista_Funcionarios.getTableHeader();
+
+                        Lista_Funcionarios.getColumnModel().getColumn(0).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Funcionarios.getColumnModel().getColumn(1).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Funcionarios.getColumnModel().getColumn(2).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Funcionarios.getColumnModel().getColumn(3).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Funcionarios.getColumnModel().getColumn(4).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
 
                         Lista_Funcionarios.setShowGrid(false);//
                         Lista_Funcionarios.setRowHeight(120);

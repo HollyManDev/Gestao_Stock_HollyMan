@@ -5,7 +5,7 @@
  */
 package MODEL.DTO;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -40,30 +40,34 @@ public class Produtos {
     @JoinColumn(name = "pedido_id")
     private Pedidos pedido;
 
-    private String codigo_produto, nome_produto, lote, codigo_barra, validade, tipo_Produto, nivelMinimo_Disponibilidade, Marca, Descricao, unidadeMedida;
+    private String codigo_produto, nome_produto, tipo_Produto, nivelMinimo_Disponibilidade, Marca, Descricao, unidadeMedida;
+    private int lote;
+       private long  codigo_barra, codigo_categoria;
 
-    private Date data_cadastro;
+    private Date data_cadastro, validade;
     @Lob
     private byte[] imagem;
 
-    private double quantidade_embalada, quantidade_emEmbalagem, quantidade_Adicionar, peso_volume, preco_compra, preco_venda, lucro_unidade, total_custos, valor_esperado, totalDisponiveis;
+   
+    private double  quantidade_embalada, quantidade_emEmbalagem, quantidade_Adicionar, peso_volume, preco_compra, preco_venda, lucro_unidade, total_custos, totalDisponiveis;
+
+   
     private String Status;
 
-    public Produtos(long id, Categorias categoria, Pedidos pedido, String codigo_produto, String nome_produto, String lote, String codigo_barra, String validade, String tipo_Produto, String nivelMinimo_Disponibilidade, String Marca, String Descricao, String unidadeMedida, Date data_cadastro, byte[] imagem, double quantidade_embalada, double quantidade_emEmbalagem, double quantidade_Adicionar, double peso_volume, double preco_compra, double preco_venda, double lucro_unidade, double total_custos, double valor_esperado, double totalDisponiveis, String Status) {
+    public Produtos(long id, String codigo_produto, Long codigo_categoria, String nome_produto, String tipo_Produto, String nivelMinimo_Disponibilidade, String Marca, String Descricao, String unidadeMedida, int lote, long codigo_barra, Date data_cadastro, Date validade, byte[] imagem, double quantidade_embalada, double quantidade_emEmbalagem, double quantidade_Adicionar, double peso_volume, double preco_compra, double preco_venda, double lucro_unidade, double total_custos, double totalDisponiveis, String Status) {
         this.id = id;
-        this.categoria = categoria;
-        this.pedido = pedido;
         this.codigo_produto = codigo_produto;
+        this.codigo_categoria = codigo_categoria;
         this.nome_produto = nome_produto;
-        this.lote = lote;
-        this.codigo_barra = codigo_barra;
-        this.validade = validade;
         this.tipo_Produto = tipo_Produto;
         this.nivelMinimo_Disponibilidade = nivelMinimo_Disponibilidade;
         this.Marca = Marca;
         this.Descricao = Descricao;
         this.unidadeMedida = unidadeMedida;
+        this.lote = lote;
+        this.codigo_barra = codigo_barra;
         this.data_cadastro = data_cadastro;
+        this.validade = validade;
         this.imagem = imagem;
         this.quantidade_embalada = quantidade_embalada;
         this.quantidade_emEmbalagem = quantidade_emEmbalagem;
@@ -73,12 +77,11 @@ public class Produtos {
         this.preco_venda = preco_venda;
         this.lucro_unidade = lucro_unidade;
         this.total_custos = total_custos;
-        this.valor_esperado = valor_esperado;
         this.totalDisponiveis = totalDisponiveis;
         this.Status = Status;
     }
 
-    private Produtos() {
+    public Produtos() {
 
     }
 
@@ -122,36 +125,20 @@ public class Produtos {
         this.codigo_produto = codigo_produto;
     }
 
+    public Long getCodigo_categoria() {
+        return codigo_categoria;
+    }
+
+    public void setCodigo_categoria(Long codigo_categoria) {
+        this.codigo_categoria = codigo_categoria;
+    }
+
     public String getNome_produto() {
         return nome_produto;
     }
 
     public void setNome_produto(String nome_produto) {
         this.nome_produto = nome_produto;
-    }
-
-    public String getLote() {
-        return lote;
-    }
-
-    public void setLote(String lote) {
-        this.lote = lote;
-    }
-
-    public String getCodigo_barra() {
-        return codigo_barra;
-    }
-
-    public void setCodigo_barra(String codigo_barra) {
-        this.codigo_barra = codigo_barra;
-    }
-
-    public String getValidade() {
-        return validade;
-    }
-
-    public void setValidade(String validade) {
-        this.validade = validade;
     }
 
     public String getTipo_Produto() {
@@ -194,12 +181,36 @@ public class Produtos {
         this.unidadeMedida = unidadeMedida;
     }
 
+    public int getLote() {
+        return lote;
+    }
+
+    public void setLote(int lote) {
+        this.lote = lote;
+    }
+
+    public long getCodigo_barra() {
+        return codigo_barra;
+    }
+
+    public void setCodigo_barra(long codigo_barra) {
+        this.codigo_barra = codigo_barra;
+    }
+
     public Date getData_cadastro() {
         return data_cadastro;
     }
 
     public void setData_cadastro(Date data_cadastro) {
         this.data_cadastro = data_cadastro;
+    }
+
+    public Date getValidade() {
+        return validade;
+    }
+
+    public void setValidade(Date validade) {
+        this.validade = validade;
     }
 
     public byte[] getImagem() {
@@ -274,14 +285,6 @@ public class Produtos {
         this.total_custos = total_custos;
     }
 
-    public double getValor_esperado() {
-        return valor_esperado;
-    }
-
-    public void setValor_esperado(double valor_esperado) {
-        this.valor_esperado = valor_esperado;
-    }
-
     public double getTotalDisponiveis() {
         return totalDisponiveis;
     }
@@ -298,4 +301,5 @@ public class Produtos {
         this.Status = Status;
     }
 
+   
 }

@@ -6,12 +6,16 @@
 package VIEW;
 
 import CONTROLLER.Controller_Funcionario;
+import CONTROLLER.MultilineCellRenderer;
 import CSS.BotaoPersonalizado;
 import CSS.JLabelComBordaRedonda;
 import DAO.DAO_Funcionario;
+import DAO.DAO_Produtos;
 import MODEL.DTO.Funcionario;
+import MODEL.DTO.Produtos;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -42,6 +46,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -549,12 +554,10 @@ public class Funcionario_Caixa extends JFrame {
                         btnEliminar_Carinho.setBackground(Color.white);
 
                         String[] Colunas_Produtos = {"Produto", "Marca", "Codigo_Barra", "Descrição", "Preço", "Medida", "Qtd Disponivel", "Imagem"};
-                        String[][] inf = {{}};
-                        DefaultTableModel tabela = new DefaultTableModel(inf, Colunas_Produtos);
+                        DefaultTableModel tabela = new DefaultTableModel(Colunas_Produtos, 0);
 
                         String[] Colunas_Compras = {"Produto", "Marca", "Descrição", "Preço", "Quantidade", "Imagem", "Sub Total"};
-                        String[][] inf_Compras = {{}};
-                        DefaultTableModel tabela_Compras = new DefaultTableModel(inf_Compras, Colunas_Compras);
+                        DefaultTableModel tabela_Compras = new DefaultTableModel(Colunas_Compras, 0);
 
                         // Criando as Tabelas/Listas
                         JTable Lista_Produtos = new JTable(tabela);
@@ -562,16 +565,19 @@ public class Funcionario_Caixa extends JFrame {
                         JTableHeader header_Compras = Lista_Compras.getTableHeader();
                         JTableHeader header_Produtos = Lista_Produtos.getTableHeader();
 
-                        Lista_Produtos.setModel(tabela);
-                        Lista_Produtos.setRowHeight(150);
-                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(150);
-                        Lista_Produtos.getColumnModel().getColumn(0).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(2).setPreferredWidth(100);
-                        Lista_Produtos.getColumnModel().getColumn(3).setPreferredWidth(100);
+                        Lista_Produtos.setRowHeight(100);
+                        Lista_Produtos.getColumnModel().getColumn(7).setPreferredWidth(100);
+                        Lista_Produtos.getColumnModel().getColumn(0).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(1).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(2).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(3).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(4).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(5).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
+                        Lista_Produtos.getColumnModel().getColumn(6).setCellRenderer(new MultilineCellRenderer.MultilineCellRendererWrapper());
 
                         Lista_Compras.setModel(tabela_Compras);
-                        Lista_Compras.setRowHeight(150);
-                        Lista_Compras.getColumnModel().getColumn(5).setPreferredWidth(150);
+                        Lista_Compras.setRowHeight(100);
+                        Lista_Compras.getColumnModel().getColumn(5).setPreferredWidth(100);
                         Lista_Compras.getColumnModel().getColumn(0).setPreferredWidth(100);
 
                         //Personalizando a Lista de Produtos
@@ -584,7 +590,6 @@ public class Funcionario_Caixa extends JFrame {
                         header_Compras.setFont(new Font("Bahnschrift SemiBold SemiConden", Font.PLAIN, 14));
                         header_Compras.setForeground(new Color(102, 102, 255));
 
-                        tabela.setRowCount(10);
                         tabela_Compras.setRowCount(10);
 
                         JScrollPane rol = new JScrollPane(Lista_Produtos);
@@ -603,6 +608,59 @@ public class Funcionario_Caixa extends JFrame {
                         btnAdicionar_carinho.setIcon(Icon_Adicionar_Carinha);
                         btnEliminar_Carinho.setIcon(Icon_Eliminar_Carinha);
 
+                        // Colocando os dados na tabela
+                        DAO_Produtos dao_p = new DAO_Produtos();
+
+                        ArrayList<Produtos> lista_produtos = dao_p.FindAll_Produtos();
+
+                        ImageIcon imagemIcon;
+
+                        // Preenchimento da tabela de produtos
+                        for (int i = 0; i < lista_produtos.size(); i++) {
+                            Object[] row = new Object[8];
+
+                            row[0] = lista_produtos.get(i).getNome_produto();
+                            row[1] = lista_produtos.get(i).getMarca();
+                            row[2] = lista_produtos.get(i).getCodigo_barra();
+                            row[3] = lista_produtos.get(i).getDescricao();
+                            row[4] = lista_produtos.get(i).getPreco_venda() - lista_produtos.get(i).getPreco_compra();
+                            row[5] = lista_produtos.get(i).getUnidadeMedida();
+
+                            if (lista_produtos.get(i).getTipo_Produto().equalsIgnoreCase("Embalado")) {
+                                row[6] = lista_produtos.get(i).getQuantidade_emEmbalagem() * lista_produtos.get(i).getQuantidade_embalada();
+                            } else {
+                                row[6] = lista_produtos.get(i).getQuantidade_Adicionar();
+                            }
+
+                            // Adiciona a imagem na célula 7
+                            byte[] imagemBytes = lista_produtos.get(i).getImagem();
+                            if (imagemBytes != null && imagemBytes.length > 0) {
+                                BufferedImage imagem = null;
+                                try {
+                                    imagem = ImageIO.read(new ByteArrayInputStream(imagemBytes));
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+
+                                imagemIcon = new ImageIcon(imagem.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+                                row[7] = imagemIcon;
+                            } else {
+                                row[7] = null;
+                            }
+
+                            // Adiciona a linha à tabela
+                            tabela.addRow(row);
+                        }
+
+                        TableColumnModel columnModel = Lista_Produtos.getColumnModel();
+                        columnModel.getColumn(7).setCellRenderer(new DefaultTableCellRenderer() {
+                            @Override
+                            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                                JLabel label = new JLabel();
+                                label.setIcon((ImageIcon) value);
+                                return label;
+                            }
+                        });
                         //Dando ação
                         btnProximo.addActionListener(new ActionListener() {
                             @Override
@@ -4485,7 +4543,6 @@ public class Funcionario_Caixa extends JFrame {
                             }
                         }); // campo Endereco
 
-
                         pnlActualizar_Dados.add(lblTitulo);
                         pnlActualizar_Dados.add(lblApelido);
                         pnlActualizar_Dados.add(lblNome);
@@ -4672,4 +4729,7 @@ public class Funcionario_Caixa extends JFrame {
         this.setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new Funcionario_Caixa().setVisible(true);
+    }
 }
